@@ -135,3 +135,20 @@ details pre {
   background: var(--panel); padding: .75rem; border-radius: .5rem;
 }
 footer.small a { color: var(--muted); }
+
+/* Sepia, the old-map look: parchment and brown ink. */
+:root[data-theme="sepia"] {
+  --bg: #efe2c4; --panel: #e6d3ab; --card: #f6ebd0; --ink: #3a2a18;
+  --muted: #6c5536; --line: #cbb386;
+  --s: 42%; --l: 33%; --sb: 38%; --lb: 84%; color-scheme: light;
+}
+:root[data-theme="sepia"] .pitch { border-left-color: #a8875a; }
+:root[data-theme="sepia"] .map-link img, :root[data-theme="sepia"] .grid.wide .tile img { filter: sepia(.35); }
+
+/* The theme button, top right on every page the site writes. */
+.theme-btn {
+  position: fixed; top: .75rem; right: .75rem; z-index: 5;
+  font: inherit; font-size: .85rem; padding: .3rem .8rem; border-radius: 99px; cursor: pointer;
+  background: var(--card); color: var(--ink); border: 1px solid var(--line);
+}
+.theme-btn:hover { background: var(--panel); }
