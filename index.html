@@ -16,11 +16,13 @@ function label(){b.textContent="Theme: "+names[r.dataset.theme]}
 b.addEventListener("click",function(){var t=order[(order.indexOf(r.dataset.theme)+1)%3];r.dataset.theme=t;
 try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();</script>
 <button class="sound-btn" id="sound-btn" type="button"></button>
-<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,started=false;
+<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,started=false,GULLS=6;
 try{on=localStorage.getItem("ctb-sound")!=="off"}catch(e){}
 function label(){b.textContent=!on?"🔇 Sound off":started?"🔊 Sound on":"🔊 Click anywhere for the sea"}
-function sea(){if(!on){if(a)a.pause();return}if(!a){a=new Audio("sounds/waves.mp3");a.loop=true;a.volume=.25}
+function sea(){if(!on){if(a)a.pause();return}if(!a){a=new Audio("sounds/waves.mp3");a.loop=true;a.volume=.25;gulls()}
 a.play().catch(function(){})}
+function gulls(){setTimeout(function(){if(on&&a&&!a.paused){var g=new Audio("sounds/gull_"+(1+Math.floor(Math.random()*GULLS))+".mp3");
+g.volume=.18;g.play().catch(function(){})}gulls()},6000+Math.random()*12000)}
 function first(e){if(started||e.target===b)return;started=true;sea();label()}
 document.addEventListener("pointerdown",first,true);document.addEventListener("keydown",first,true);
 b.addEventListener("click",function(){if(!started&&on){started=true;sea();label();return}on=!on;started=true;try{localStorage.setItem("ctb-sound",on?"on":"off")}catch(e){}
