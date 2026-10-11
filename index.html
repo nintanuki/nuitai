@@ -21,9 +21,9 @@ try{on=localStorage.getItem("ctb-sound")!=="off"}catch(e){}
 function label(){b.textContent=!on?"🔇 Sound off":started?"🔊 Sound on":"🔊 Click anywhere for the sea"}
 function sea(){if(!on){if(a)a.pause();return}if(!a){a=new Audio("sounds/waves.mp3");a.loop=true;a.volume=.25}
 a.play().catch(function(){})}
-function first(){if(started)return;started=true;sea();label()}
+function first(e){if(started||e.target===b)return;started=true;sea();label()}
 document.addEventListener("pointerdown",first,true);document.addEventListener("keydown",first,true);
-b.addEventListener("click",function(){on=!on;started=true;try{localStorage.setItem("ctb-sound",on?"on":"off")}catch(e){}
+b.addEventListener("click",function(){if(!started&&on){started=true;sea();label();return}on=!on;started=true;try{localStorage.setItem("ctb-sound",on?"on":"off")}catch(e){}
 label();sea()});label()})();</script>
 <main class="wrap">
   <header class="hero">
