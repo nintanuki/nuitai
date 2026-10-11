@@ -78,3 +78,60 @@ footer.small {
   margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line);
   color: var(--muted); font-size: .8rem; line-height: 1.5;
 }
+
+/* The gallery and the credits page. */
+.wrap.wide { max-width: 76rem; }
+.jump { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0 1.5rem; }
+.pill {
+  display: inline-block; padding: .25rem .7rem; border-radius: 99px; text-decoration: none;
+  font-size: .9rem; background: var(--cb); color: var(--c); border: 1px solid var(--c);
+}
+.pill:hover { background: var(--card); }
+section { margin: 2.2rem 0; scroll-margin-top: 1rem; }
+section h2 {
+  font-family: var(--serif); font-size: 1.6rem; color: var(--c); margin: 0 0 .5rem;
+  padding-bottom: .3rem; border-bottom: 3px solid var(--c);
+}
+section h2 .n { font-family: var(--sans); font-size: .9rem; color: var(--muted); margin-left: .6rem; font-weight: 400; }
+section .note { color: var(--muted); margin: 0 0 1rem; }
+.grid { display: grid; gap: .9rem; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+.grid.wide { grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+.tile {
+  margin: 0; background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--c);
+  border-radius: .7rem; overflow: hidden; display: flex; flex-direction: column;
+}
+.tile > a { display: block; background: var(--panel); }
+.tile img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border: 0; border-radius: 0; }
+.grid.wide .tile img { aspect-ratio: auto; object-fit: contain; background: #fff; }
+.tile figcaption { margin: 0; padding: .5rem .65rem .65rem; font-size: .9rem; color: var(--ink); }
+.tile figcaption b { display: block; line-height: 1.3; }
+.tile figcaption span { display: block; color: var(--muted); margin-top: .2rem; }
+.tile figcaption .old { font-style: italic; }
+.tile .from { display: block; margin-top: .3rem; color: var(--c); font-size: .85rem; text-decoration: none; }
+.tile .from:hover { text-decoration: underline; }
+.faces { display: flex; flex-wrap: wrap; gap: .6rem; }
+.face {
+  display: block; width: 4.5rem; height: 4.5rem; border-radius: .6rem; overflow: hidden;
+  border: 2px solid var(--c); background: var(--cb);
+}
+.face img { width: 100%; height: 100%; object-fit: cover; image-rendering: pixelated; display: block; }
+/* One frame of the sprite sheet: the walk-down row, 64 px frames, drawn three times as big. */
+.sprite .frame {
+  display: block; height: 12rem; image-rendering: pixelated;
+  background: url("art/sprites/kailo-lpc.png") no-repeat; background-size: 2496px auto;
+  background-position: center -1920px; background-color: var(--panel);
+}
+.block {
+  margin: 1.5rem 0; padding: 1rem 1.25rem; background: var(--card);
+  border: 1px solid var(--line); border-left: 5px solid var(--c); border-radius: .7rem;
+}
+.block h2 { border: 0; padding: 0; font-size: 1.35rem; }
+.block ul { padding-left: 1.2rem; }
+.block li { margin: .35rem 0; }
+.block a { color: var(--c); }
+details summary { cursor: pointer; color: var(--c); }
+details pre {
+  white-space: pre-wrap; font-size: .78rem; max-height: 24rem; overflow: auto;
+  background: var(--panel); padding: .75rem; border-radius: .5rem;
+}
+footer.small a { color: var(--muted); }
