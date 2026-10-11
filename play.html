@@ -309,6 +309,7 @@ try{const s=localStorage.getItem("ctb-speed");if(SPEEDS[s])S.speed=s}catch(e){}
 const $=id=>document.getElementById(id), app=$("app");
 /* Sound (Frankie, 10/9): the pygame game's menu sounds and its waves loop, pasted in by
    game/shared/build.py as ART.sounds, plus generated blips for hits, heals and misses.
+   The waves play on the story page only (Frankie, 10/11), which defines STORY.
    A no-op in the sweep, which runs this script with no page. */
 const SND=(()=>{ const none={play(){},blip(){},waves(){},toggle(){return false},on:false};
   if(typeof window==="undefined"||typeof Audio==="undefined")return none;
@@ -322,7 +323,7 @@ const SND=(()=>{ const none={play(){},blip(){},waves(){},toggle(){return false},
     const [type,f0,f1,vol,len]={hit:["square",180,55,.16,.16],heal:["sine",520,1040,.14,.3],miss:["triangle",900,300,.06,.13]}[kind];
     o.type=type; o.frequency.setValueAtTime(f0,t); o.frequency.exponentialRampToValueAtTime(f1,t+len*.9);
     g.gain.setValueAtTime(vol,t); g.gain.exponentialRampToValueAtTime(.001,t+len); o.start(t); o.stop(t+len+.01) }catch(x){} }
-  function waves(want){ try{ if(want&&on&&src.waves){ if(!wave){wave=new Audio(src.waves);wave.loop=true;wave.volume=.25}
+  function waves(want){ try{ if(want&&on&&src.waves&&typeof STORY!=="undefined"){ if(!wave){wave=new Audio(src.waves);wave.loop=true;wave.volume=.25}
       if(wave.paused)wave.play().catch(()=>{}) } else if(wave&&!wave.paused)wave.pause() }catch(x){} }
   function toggle(){ on=!on; try{localStorage.setItem("ctb-sound",on?"on":"off")}catch(x){} if(!on)waves(false); return on }
   return {play,blip,waves,toggle,get on(){return on}} })();
