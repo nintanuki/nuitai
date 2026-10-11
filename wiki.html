@@ -612,12 +612,12 @@ document.addEventListener("keydown", e => {
 $("menu-btn").addEventListener("click", () => document.body.classList.toggle("menu"));
 $("shade").addEventListener("click", () => document.body.classList.remove("menu"));
 
-// Light or dark. Follows the computer unless the button has been pressed.
+// Light or dark. Dark unless the button has been pressed (Frankie, 10/11).
 (function () {
   const root = document.documentElement;
   let saved = null;
   try { saved = localStorage.getItem("nuitai-wiki-theme"); } catch (e) { /* no storage, fine */ }
-  if (saved === "light" || saved === "dark") root.dataset.theme = saved;
+  root.dataset.theme = (saved === "light" || saved === "dark") ? saved : "dark";
   const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches);
   const label = () => { $("theme-btn").textContent = isDark() ? "Light" : "Dark"; };   // the button names where it takes you
   label();

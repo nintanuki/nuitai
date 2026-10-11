@@ -152,3 +152,5 @@ footer.small a { color: var(--muted); }
   background: var(--card); color: var(--ink); border: 1px solid var(--line);
 }
 .theme-btn:hover { background: var(--panel); }
+/* In sepia the name is ocean blue (Frankie, 10/11). */
+:root[data-theme="sepia"] .hero h1 { color: #1f5f8b; }
