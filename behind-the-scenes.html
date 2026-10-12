@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Behind the Scenes · Nuitai</title>
+<link rel="stylesheet" href="site.css?v=308a08e5">
+<script>(function(){var t=null;try{t=localStorage.getItem("nuitai-site-theme")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia"})()</script>
+<script>(function(){var r=document.documentElement,i=null;try{i=sessionStorage.getItem("nuitai-behind")}catch(e){}
+if(i!=="in")r.classList.add("gated")})()</script>
+</head>
+<body>
+<button class="theme-btn" id="theme-btn" type="button" aria-label="Change the colors"></button>
+<script>(function(){var r=document.documentElement,b=document.getElementById("theme-btn"),
+order=["sepia","dark","light"],names={dark:"Dark",light:"Light",sepia:"Sepia"};
+function label(){b.textContent="Theme: "+names[r.dataset.theme]}
+b.addEventListener("click",function(){var t=order[(order.indexOf(r.dataset.theme)+1)%3];r.dataset.theme=t;
+try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();</script>
+<main class="wrap">
+  <p class="crumb"><a href="index.html">&larr; Nuitai</a></p>
+  <h1 class="title">Behind the scenes</h1>
+
+  <section class="gate hue" style="--h:350">
+    <h2>Spoilers past this point</h2>
+    <p>This is the workshop. It tells the secrets the wiki keeps, the real places and stories Nuitai is built from, the ideas that are not canon yet and the questions nobody has answered. If you would rather meet the world the way a player will, go back to the <a href="wiki.html">wiki</a>.</p>
+    <button class="enter" id="enter" type="button">Come in anyway</button>
+  </section>
+
+  <div id="inside">
+  <nav class="jump" aria-label="On this page">
+    <a class="pill hue" style="--h:195" href="#why">Why Nuitai</a>
+    <a class="pill hue" style="--h:25" href="#circle">The circle</a>
+    <a class="pill hue" style="--h:45" href="#choices">Small choices</a>
+    <a class="pill hue" style="--h:350" href="#secrets">Secrets</a>
+    <a class="pill hue" style="--h:150" href="#sources">Where it comes from</a>
+    <a class="pill hue" style="--h:280" href="#drafts">Not canon yet</a>
+    <a class="pill hue" style="--h:0" href="#disagree">Loose threads</a>
+    <a class="pill hue" style="--h:220" href="#open">Still undecided</a>
+    <a class="pill hue" style="--h:260" href="#numbers">The numbers</a>
+  </nav>
+
+  <section id="why" class="block hue" style="--h:195">
+    <h2>Why Nuitai exists</h2>
+    <p>It started with Final Fantasy X, about twenty years ago, and with being tired of fantasy that is always dark, cold and medieval European. Nuitai is the opposite on purpose: bright water, warm islands, and cultures that fantasy rarely visits, Polynesia and maritime Southeast Asia above all.</p>
+    <p>From One Piece came the idea that every island should have its own premise, so sailing to a new one feels like opening a new book. And a small country like Kiribati, a few hundred square miles of land scattered over a huge sea, is the feeling of the map: a little land in a lot of ocean.</p>
+  </section>
+
+  <section id="circle" class="block hue" style="--h:25">
+    <h2>The circle</h2>
+    <p>Before he knew it had a name, the author drew a circle on a map of the real world: Hawaii, down to New Zealand, across to maritime Southeast Asia and up to Japan. That circle turned out to be almost exactly the Pacific Ring of Fire, the ring of volcanoes around the ocean. "That is my circle!"</p>
+    <p>So the ring became the rule. Every inspiration comes from inside it, the ring and everything it encloses. Anything from outside has to arrive by sea through a place on the ring, the way India's faiths reached Bali. That is how the Bandari carry a Hindu and Buddhist inheritance into the islands.</p>
+    <p>The rule cuts things too. Haitian Vodou was part of the dark Matua look for a long time, and it is out, because Haiti is outside the ring. It was always the look that mattered, not the religion, and the ring has its own macabre ancestor traditions to draw on instead: the Toraja of Sulawesi and the carvers of the Sepik.</p>
+    <p>Laid out as a ring around a maelstrom, Nuitai is about the size of the whole Pacific. The directions mostly match the real ocean; the distances to the west and south are stretched to close the ring.</p>
+  </section>
+
+  <section id="choices" class="block hue" style="--h:45">
+    <h2>Small choices with a story</h2>
+    <dl class="pairs">
+      <dt>Light is La, not Ra</dt>
+      <dd>The Māori word for the sun is <i>rā</i>. Written Ra, it read too much like the Egyptian sun god, so the element is La, and Ra is only how the people of Matua say it.</dd>
+      <dt>Ata used to be Aku</dt>
+      <dd>The god of darkness and fear was renamed partly to get away from Aku, the villain of Samurai Jack. <i>Ata</i> means shadow in Samoan and Māori.</dd>
+      <dt>Kulāiwi, the starting island</dt>
+      <dd>Hawaiian for homeland. Taken apart, the word means something like "plain of bones," and it was chosen for the whole word, not its pieces.</dd>
+      <dt>Magic is kinesthetic</dt>
+      <dd>Every spell needs a motion or a breath. A tied-up mage cannot cast. The word was chosen over the advice that it sounds like a school learning style, because it says exactly the thing.</dd>
+      <dt>No drawn map is canon</dt>
+      <dd>The real map is a table: every region's direction, distance in miles and width. A program draws the pictures from that table, so a picture can never disagree with the world. The island shapes on the maps are invented.</dd>
+      <dt>"Fluxx rules"</dt>
+      <dd>After the card game: the stronger a move, the more of a wildcard it should be. Paku's Tidal Wave hits every enemy, then washes his own party around, Paku included.</dd>
+      <dt>No MP</dt>
+      <dd>"I was never a fan of MP." Moves have waits and cooldowns instead of a magic bar.</dd>
+      <dt>People are not Pokémon</dt>
+      <dd>Monsters have elemental weaknesses. People do not.</dd>
+      <dt>Paku is not Maui</dt>
+      <dd>Paku's look comes from Garp in One Piece first, then Whitebeard, Might Guy and All Might. Disney's Maui is the look to stay away from.</dd>
+      <dt>Eight hundred years</dt>
+      <dd>The Bandari arrived eight centuries ago, around the time the real Polynesian long voyages between Hawaii and Tahiti were about to end for good. Far enough back that nobody alive can settle an argument about the homeland they came from.</dd>
+      <dt>Shaka's face is never shown</dt>
+      <dd>Art shows his symbols, the sun and his sword in the sand, or his back. It borrows from early Buddhist art, which showed the Buddha only through symbols. And Shaka died choking on breadfruit, a plain death at the end of a sage's life, the way the Buddha died after a meal of spoiled food.</dd>
+    </dl>
+  </section>
+
+  <section id="secrets" class="block hue" style="--h:350">
+    <h2>The secrets the wiki keeps</h2>
+    <p><b>The Luminary of Kota Emas.</b> The old Luminary is dead, and the temple is hiding it. The new Luminary, Tahji, is a child of about eight and a gaja, one of the elephant people, chosen by a test the way a reincarnation is found. The priest who repeats his words is the one really ruling. The curtain and the story of an illness go further than the tradition of the veiled face: they hide how young he is.</p>
+    <p>The model is the Fifth Dalai Lama, whose death in 1682 his regent hid for about fifteen years.</p>
+    <p>Still not settled: what it costs when the secret comes out, and whether the old Luminary was a gaja too.</p>
+  </section>
+
+  <section id="sources" class="hue" style="--h:150">
+    <h2>Where it comes from</h2>
+    <p class="note">The real places, words, myths and games behind each part of Nuitai, as the author has confirmed them. Open a group to read it.</p>
+    <details class="src"><summary>Places<span class="n">8</span></summary><dl class="pairs"><dt>Māla Iki Islands</dt><dd>Hawaii, &quot;but all things idyllic&quot;</dd><dt>Lanuloa Archipelago</dt><dd>Shaped like the Philippines: a long north-to-south chain. Its people wear the pre-colonial Philippine wardrobe and its monsters are Philippine</dd><dt>Fire Islands</dt><dd>The Solomon Islands and Vanuatu</dd><dt>Matua Archipelago</dt><dd>New Guinea area (Papua New Guinea)</dd><dt>Bayang Seas</dt><dd>The Sulu Sea and Borneo coast, historically famous for pirates; the Sulu side of the Philippine influence</dd><dt>Matahari Archipelago</dt><dd>Indonesia and the other Southeast Asian islands</dd><dt>Kame Kingdom</dt><dd>Southern Japanese islands, like the Ryukyu Islands</dd><dt>Tokelau (North Sea)</dt><dd>The Bering Sea and the Aleutian Islands. Its otter people draw on the Aleut (Unangan)</dd></dl></details>
+<details class="src"><summary>History and dates<span class="n">4</span></summary><dl class="pairs"><dt>Shaka&#x27;s illumination</dt><dd>The Buddha. The date was set for the story&#x27;s arithmetic, not to match his.</dd><dt>The Bandari arrive</dt><dd>Around 1200 CE: Polynesians settling New Zealand, and the long voyages between Hawaii and Tahiti about to end for good.</dd><dt>Kota Emas founded by survivors</dt><dd>Malacca, a golden trade city founded about 1400 by Parameswara, a prince fleeing the fall of Singapura.</dd><dt>The Luminary&#x27;s death kept secret</dt><dd>The Fifth Dalai Lama, whose death in 1682 his regent hid for about 15 years. The Luminary found by a test as a reincarnation is how a Dalai Lama is found.</dd></dl></details>
+<details class="src"><summary>The world as a whole<span class="n">11</span></summary><dl class="pairs"><dt>Why Nuitai exists</dt><dd>Final Fantasy X, twenty years ago, and being tired of dark western medieval fantasy</dd><dt>The cultures</dt><dd>Under-represented in fantasy: maritime Southeast Asia and Polynesia</dd><dt>Nuitai&#x27;s circle, the frame</dt><dd>The Pacific Ring of Fire, the ring and everything it encloses. Every inspiration comes from inside it; anything from outside arrives by sea through a place on the ring, the way Hinduism reached Bali. The author drew the circle, Hawaii to New Zealand to maritime Southeast Asia to Japan, before he knew the ring existed: &quot;that is my circle!&quot;</dd><dt>The spirituality</dt><dd>Buddhism, Taoism, Shinto and other animist and nature religions, and indigenous polytheism</dd><dt>The map region</dt><dd>Oceania and Polynesia, plus Okinawa and the Ryukyus</dd><dt>A map of waters, a little land in a huge sea</dt><dd>Kiribati, about 310 square miles of land</dd><dt>Islands each with their own premise</dt><dd>One Piece</dd><dt>Lanuloa, the Grand Line of this world</dt><dd>One Piece&#x27;s Grand Line</dd><dt>Lanuloa as a region of archipelagos</dt><dd>The Malay Archipelago</dd><dt>Fire Islands, real model</dt><dd>Several South Pacific islands, never one: Samoa (the accent, the fire dancing, the sister covenant), Vanuatu (the volcanoes), the Solomon Islands (the shell money, the map), with Tonga (the <i>fahu</i>) and Fiji (the Beqa firewalkers) to draw on</dd><dt>Sky people ruins</dt><dd>Maya, Aztec and Inca temples, and Easter Island&#x27;s megaliths</dd></dl></details>
+<details class="src"><summary>Words and names<span class="n">37</span></summary><dl class="pairs"><dt>Nuitai</dt><dd>Polynesian <i>nui</i> (great) + <i>tai</i> (sea)</dd><dt>Nuitai&#x27;lo</dt><dd>Nuitai + Hawaiian <i>ʻōlelo</i>, speech</dd><dt>Nuitagata</dt><dd><i>nui</i> + <i>tai</i> + <i>gata</i>, from <i>tangata</i> / <i>kanaka</i> / <i>taʻata</i> (person) and Japanese <i>kata</i></dd><dt>Laniakea, the cosmos</dt><dd>The Laniakea Supercluster, Hawaiian &quot;immense heaven&quot;</dd><dt>Kulāiwi</dt><dd>Hawaiian, homeland. Chosen for &quot;homeland,&quot; not its parts, &quot;plain of bones&quot;</dd><dt>Māla Iki</dt><dd>Hawaiian <i>māla</i> (garden) + <i>iki</i> (small); was Māori Māra Iti</dd><dt>Matua</dt><dd>Polynesian parent; was Hawaiian <i>mākua</i></dd><dt>Velafi</dt><dd>Samoan <i>vela</i> (hot) + <i>afi</i> (fire)</dd><dt>Bayang Seas</dt><dd>Indonesian <i>bayang</i>, shadow</dd><dt>Bandar</dt><dd>Renamed for sound from Benar, Malay &quot;true&quot;</dd><dt>Halabena</dt><dd>Malay, &quot;the way of truth&quot;</dd><dt>Kame</dt><dd>Japanese, turtle</dd><dt>Tokelau and its other forms</dt><dd>Māori <i>tokerau</i> (north wind), Samoan <i>toʻelau</i> (trade wind), Hawaiian <i>Koʻolau</i></dd><dt>Mauga</dt><dd>Samoan, mountain</dd><dt>Akua, Akua Nui, Akua Iki</dt><dd>Hawaiian god, great, small</dd><dt>Ngaro</dt><dd>Hawaiian <i>nalo</i>, Samoan <i>galo</i>, Māori <i>ngaro</i>: hidden, lost</dd><dt>Marama</dt><dd>Māori moon and light, Hawaiian <i>malama</i></dd><dt>Pōhaku</dt><dd>Hawaiian, stone</dd><dt>Pōlelo, stone speech</dt><dd>Hawaiian <i>pōhaku</i> + <i>ʻōlelo</i></dd><dt>Pua&#x27;a</dt><dd>Hawaiian, pig</dd><dt>Lelua</dt><dd>Hawaiian <i>lele</i> (fly) + <i>lua</i> (the Hawaiian martial art)</dd><dt>Mā, the magic root</dt><dd>Japanese <i>ma</i>, as in <i>mahō</i>, magic</dd><dt>La&#x27;gata, Shaka&#x27;s title</dt><dd>The Buddha&#x27;s title, Tathāgata</dd><dt>Sarpic and Deva names</dt><dd>Sanskrit kept whole, the way Bali and Indonesia keep it</dd><dt>Bandari personal names</dt><dd>Everyday Malay and Indonesian words</dd><dt>Damar Jago</dt><dd>Malay <i>damar</i> (resin torch), <i>jago</i> (champion, fighting rooster)</dd><dt>Asap Setia</dt><dd>Malay <i>asap</i> (smoke), <i>setia</i> (loyal)</dd><dt>Sarjana</dt><dd>Indonesian, scholar</dd><dt>Penyamun</dt><dd>Malay, robber</dd><dt>Lanun, pirates</dt><dd>Malay, pirate</dd><dt>Olola</dt><dd>Aurora, bent to Orora, then Olola</dd><dt>Tawiri</dt><dd>Māori Tāwhiri, as in Tāwhirimātea, god of weather</dd><dt>Ikagata</dt><dd>Japanese <i>ika</i>, squid</dd><dt>Ata (was Aku)</dt><dd>Samoan and Māori <i>ata</i>, shadow. Renamed partly to get away from Aku, the Samurai Jack villain</dd><dt>The elements</dt><dd>Ahi, fire (Hawaiian, Māori; Samoan <i>afi</i>); Wai, water; Lau, leaf; La, sun (Māori <i>rā</i>, written La partly because Ra is the Egyptian sun god)</dd><dt>Blue Ring</dt><dd>The blue-ringed octopus</dd><dt>King Kamehameha</dt><dd>The Hawaiian king, and the Dragon Ball move</dd></dl></details>
+<details class="src"><summary>Gods and faith<span class="n">17</span></summary><dl class="pairs"><dt>Shaka</dt><dd>The Buddha, with some of the Monkey King</dd><dt>Shaka&#x27;s face never shown</dt><dd>A mix of the custom of never showing Muhammad and early Buddhist art that showed the Buddha only through symbols</dd><dt>The Teachings of Shaka, the Spiral</dt><dd>Buddhism: karma, attachment, death and rebirth</dd><dt>Sarpa, and Shaka growing out of it</dt><dd>Hinduism, the way Buddhism grew out of it. Bali is the model for a place that kept both. &quot;Indian, South Asian, Balinese, Vedic&quot;. Balinese Hinduism as it looks, split gates, palm-leaf offerings, masked dance, the day of silence, arrived by sea with the Bandari</dd><dt>Jangya</dt><dd>Hindu imagery, but he must not look like Ganesha</dd><dt>Lanu</dt><dd>The Hawaiian god Kāne, made female, and Te Fiti from Moana</dd><dt>Moanatu</dt><dd>Kanaloa, more than Poseidon</dd><dt>Mauga</dt><dd>Pele, the Hawaiian volcano goddess. The name is Samoan for mountain</dd><dt>Anúa</dt><dd>Animism, like Shinto</dd><dt>The old gods of the sky people</dt><dd>Polynesian gods, plus native Central and South American gods</dd><dt>The Māra name clash</dt><dd>Māra, the demon who tempts the Buddha, and the Elder Scrolls goddess. The author found it interesting, not a problem</dd><dt>Mana</dt><dd>The real Oceanic idea, including mana pooling in people and things</dd><dt>Magic&#x27;s written limits</dt><dd>Sanderson&#x27;s laws of magic</dd><dt>How magic looks</dt><dd>Between Avatar and Demon Slayer</dd><dt>Channeling through breath</dt><dd>Taoism, tai chi, Demon Slayer&#x27;s breathing styles</dd><dt>Every faith is right</dt><dd>The Elder Scrolls</dd><dt>Nagas</dt><dd>The many-armed nagas of Southeast Asian art</dd></dl></details>
+<details class="src"><summary>Peoples and characters<span class="n">33</span></summary><dl class="pairs"><dt>Nuitagata</dt><dd>Oceania and Polynesia, with Okinawa, plus Southeast Asian clothing. The Southeast Asian side comes from the Bandari, and the Gubat Banwa art, a Filipino tabletop game, is the clothing reference. The Philippine side lives in Lanuloa, the Sulu side in the Bayang</dd><dt>The three accents</dt><dd>East is Hawaiian, Velafi is Samoan, Matua is Māori</dd><dt>Velafi fire dancing</dt><dd>Samoa</dd><dt>Velafi matriarchy</dt><dd>The Samoan <i>feagaiga</i>, the sister-brother covenant</dd><dt>Matua and the Callers</dt><dd>Māori, plus the macabre ancestor traditions inside the ring: the Toraja of Sulawesi first, then the Sepik and malagan traditions of New Guinea. &quot;Polynesia goes goth.&quot; Haitian Vodou is out: Haiti lies outside the ring. It was always the look, not the religion</dd><dt>Bandari</dt><dd>Southeast Asia: the foreign missionary culture with a Buddhist-like faith. Maritime Southeast Asia, Indonesian and Malaysian</dd><dt>Bandari going by the family name</dt><dd>Japanese custom</dd><dt>Kame people</dt><dd>Ryukyu and Okinawa. East Asian, Chinese and Japanese, above all the Ryukyus and Okinawa: the Zen and Taoist part of the world, where Nuitai&#x27;s karate comes from, and they meditate</dd><dt>Kame and Bandari speech</dt><dd>Kame are Japanese; Bandari are Malay and Indonesian, with Sanskrit for sacred things</dd><dt>Lanigata, feathered serpents</dt><dd>Native South American art (the stone speech look). Easter Island plus Aztec and Inca, for the Lanigata and the old Lanuloa structures</dd><dt>The Ikagata&#x27;s two halves</dt><dd>South America from the drowned Lanigata ruins they keep (the Moche, Chan Chan and the Inca <i>quipu</i> as models), East Asia from the Kame they trade with (the Ryukyus, Ryūgū-jō, Nirai Kanai). Their road under Tokelau is the Aleutians, where the ring&#x27;s two halves meet</dd><dt>The otter people of Tokelau</dt><dd>The Aleut (Unangan) of the Aleutian Islands, and the sea otter.</dd><dt>Pōhaku golems</dt><dd>The Legend of Zelda, Shadow of the Colossus</dd><dt>Vanara</dt><dd>A film Monkey King, for the face</dd><dt>Hina and the Māla priests</dt><dd>Yuna from Final Fantasy X, and Shinto priestesses</dd><dt>Hina&#x27;s name</dt><dd>Hina, the Polynesian goddess, often tied to the moon</dd><dt>The Callers&#x27; death magic</dt><dd>Lulu from Final Fantasy X</dd><dt>Kailo&#x27;s martial magic</dt><dd>The benders of Avatar; tai chi, wuxia, karate. Its first name was Wu Wei</dd><dt>Olola</dt><dd>Ty Lee from Avatar, for the fighting</dd><dt>Genemon</dt><dd>Jinbei from One Piece (&quot;Jinbei vibes&quot;); Roshi and Miyagi were considered</dd><dt>Genemon and Olola in battle</dt><dd>The Final Fantasy Monk</dd><dt>Kiki</dt><dd>Yuffie or Rikku</dd><dt>Tawiri</dt><dd>The old Matua witch idea, &quot;voiced by Kate Mulgrew&quot; as a joke</dd><dt>Paku&#x27;s look</dt><dd>Garp above all, then Whitebeard, Might Guy, an older Kamina, All Might, Armstrong. Disney&#x27;s Maui is the look to avoid</dd><dt>Asap&#x27;s personality</dt><dd>Amos Burton from The Expanse</dd><dt>Asap&#x27;s look and kit</dt><dd>A Southeast Asian ninja, black with red</dd><dt>Tahji&#x27;s personality</dt><dd>Pure Aang, or cowardly Gohan (a question in the notes)</dd><dt>Pua&#x27;a&#x27;s personality</dt><dd>Monkey D. Luffy</dd><dt>Zealots and Wai&#x27;Ki Wardens</dt><dd>The D&amp;D Paladin</dd><dt>Sila, the Zealots&#x27; sword art</dt><dd>Silat, with Templar vibes</dd><dt>Wai&#x27;Kenpō</dt><dd>Karate, &quot;water style karate&quot;</dd><dt>Lelua</dt><dd>Capoeira, on the research list</dd><dt>Bayang pirates, Ren</dt><dd>One Piece and the Golden Age of Piracy</dd></dl></details>
+<details class="src"><summary>Culture and things<span class="n">13</span></summary><dl class="pairs"><dt>Clothing</dt><dd>Polynesian and Southeast Asian, in the spirit of Chrono Cross and Final Fantasy X</dd><dt>Bandari buildings</dt><dd>Indonesian and Malay vernacular houses: the rumah adat and Malay stilt houses with tiered or horned roofs; old Malacca&#x27;s mosques have three-tiered pyramid roofs and pagoda minarets. Not Thai temples. Kota Emas is a melting pot like Malacca, so it shows variety</dd><dt>Ships</dt><dd>Junks with slanted sails, or island canoes, never galleons</dd><dt>Weapons and tech level</dt><dd>The Golden Age of Piracy at the most</dd><dt>Shell-string money</dt><dd>The Solomon Islands</dd><dt>Barter plus coin in the east</dt><dd>Morrowind</dd><dt>Māla Iki dyed cloth</dt><dd>Besaid in Final Fantasy X</dd><dt>Kava</dt><dd>The real Pacific drink</dd><dt>Kaigara and Charu</dt><dd>Go and chess, as placeholders</dd><dt>Script ciphers</dt><dd>Aurebesh from Star Wars and Al Bhed from Final Fantasy X</dd><dt>Bandhasa script look</dt><dd>Thai, Tibetan, Devanagari, Hiragana</dd><dt>Stone Speech script</dt><dd>South American stone carving, Final Fantasy X glyphs, Rongorongo</dd><dt>God temples</dt><dd>Zelda dungeons</dd></dl></details>
+<details class="src"><summary>The game<span class="n">29</span></summary><dl class="pairs"><dt>Influences overall</dt><dd>Final Fantasy X first; then Moana, Chrono Cross, One Piece, Avatar, Raya, Ghibli, Zelda, Shadow of the Colossus, Star Wars, Sanderson</dd><dt>A cast of fifteen</dt><dd>Final Fantasy VI and Chrono Cross</dd><dt>The finished game</dt><dd>A Super Nintendo JRPG in the line of Chrono Trigger, Final Fantasy VI and Dragon Quest</dd><dt>Default rules</dt><dd>Classic Final Fantasy</dd><dt>CTB turns, swapping, the command menu</dt><dd>Final Fantasy X</dd><dt>Every enemy has an answer; bosses have a hook</dt><dd>Final Fantasy X: Wakka for fliers, Auron for armor; Yunalesca</dd><dt>Combos</dt><dd>Chrono Trigger double techs, including both characters being ready</dd><dt>Party picker</dt><dd>Chrono Trigger</dd><dt>Shared bag plus pockets</dt><dd>Dragon Quest</dd><dt>Battle text, monsters alone on screen</dt><dd>Dragon Quest</dd><dt>Picture map</dt><dd>A Dragon Quest overworld; Final Fantasy VI and Chrono Trigger world maps</dd><dt>Fluxx rules</dt><dd>The card game Fluxx</dd><dt>No Fire, Fira, Firaga</dt><dd>Rejecting Final Fantasy&#x27;s tiers</dd><dt>No MP</dt><dd>&quot;I was never a fan of MP&quot;</dd><dt>The six elements</dt><dd>The six sages and medallions of Ocarina of Time</dd><dt>The six roles</dt><dd>Final Fantasy XIII&#x27;s paradigm roles</dd><dt>Weakness triangles</dt><dd>Pokémon, but people have no weaknesses (&quot;People are not Pokemon&quot;)</dd><dt>Effectiveness messages</dt><dd>Pokémon, as a placeholder</dd><dt>Burn</dt><dd>Pokémon</dd><dt>Zombie</dt><dd>Final Fantasy</dd><dt>Ten stats</dt><dd>Final Fantasy X</dd><dt>Growth by use, no levels</dt><dd>Final Fantasy II and The Elder Scrolls; one check a battle like Call of Cthulhu</dd><dt>Defend</dt><dd>Final Fantasy IV to VII</dd><dt>A character&#x27;s pair is their job</dt><dd>Kimahri as a blue mage in Final Fantasy X</dd><dt>Move names (Cure, Esuna, Haste, Flare, Regen, Protect, Shell, Berserk, Throw, Kill, Mug)</dt><dd>Final Fantasy, as placeholders on purpose</dd><dt>Armor Break, Mental Break</dt><dd>Final Fantasy X</dd><dt>Vine Whip</dt><dd>Pokémon, a placeholder</dd><dt>Gohei, Hina&#x27;s and Tahji&#x27;s wand</dt><dd>The Shinto paper wand</dd><dt>Monsters in the pygame game</dt><dd>Philippine folklore, from a free sprite pack</dd></dl></details>
+<details class="src"><summary>Story and writing<span class="n">5</span></summary><dl class="pairs"><dt>A small plot that grows into a large one</dt><dd>Chrono Trigger, from a missing girl to Lavos</dd><dt>No chosen ones</dt><dd>The tropes-to-avoid list</dd><dt>The codex voice</dt><dd>Mass Effect&#x27;s codex</dd><dt>In-world books</dt><dd>The Elder Scrolls</dd><dt>Bandar as a mystery</dt><dd>Akavir in The Elder Scrolls</dd></dl></details>
+<details class="src"><summary>Found afterward: real echoes discovered later<span class="n">1</span></summary><dl class="pairs"><dt>Pua&#x27;a</dt><dd>Kamapua&#x27;a, the Hawaiian pig demigod: a shapeshifting trickster and famous lover. In the best-known story he courts Pele, and their fight shapes the land. Pele is Mauga&#x27;s source.</dd></dl></details>
+  </section>
+
+  <section id="drafts" class="block hue" style="--h:280">
+    <h2>Not canon yet</h2>
+    <p>Written, liked, and waiting for a decision.</p>
+    <ul>
+      <li><b>The sky people never left.</b> The ruins show coiling, feathered, wingless serpents on every wall, and everyone took them for decoration. In this draft the Lanigata are those serpents, and the long shapes that turn slowly above the clouds, the ones sailors point out to their children, are them. Still alive, and nobody knows.</li>
+      <li><b>Pua'a, the god who bled.</b> A boar god of animals and mortals, the only god known to bleed, and already dead. Every island tells his death differently: drunk wrestling, an eating contest. Everyone who hears it says, "Yes, that sounds like him."</li>
+      <li><b>The boar people in the chants.</b> The oldest migration chants list tusked, red-haired ancestors who stayed behind on a shore no chart records.</li>
+    </ul>
+  </section>
+
+  <section id="disagree" class="block hue" style="--h:0">
+    <h2>Loose threads</h2>
+    <ul>
+      <li><b>The sun is crowded.</b> Six gods and beasts have some claim on the sun or its light. That is kept on purpose: it is what splits the faith of Māla in two. The one rule is not to add a seventh.</li>
+      <li><b>Pirates from a lost homeland.</b> One article says the pirates raided the coasts of Bandar, but nobody has reached Bandar in eight hundred years. The likely fix: the pirates came over with the fleets, and today's crews are their heirs.</li>
+    </ul>
+  </section>
+
+  <section id="open" class="block hue" style="--h:220">
+    <h2>Still undecided</h2>
+    <p>Questions about the world nobody has answered yet, easiest first.</p>
+    <ul class="qs"><li>The missing subtitles, and in-world words for the English names</li><li>How are the shared words spelled?</li><li>Does Kota Emas borrow Malacca&#x27;s founding legend?</li><li>What does Kulāiwi live on, and how Hawaiian is it?</li><li>Can Ata attack on its own?</li><li>What does each region have that others want?</li><li>Leilagi&#x27;s tail</li><li>Where do the Sarpics live?</li><li>Accents outside Nuitai&#x27;lo</li><li>Does Sarjana stay Manusia?</li><li>Are the Nagas grounded Lanigata?</li><li>Nuitagata as two lineages and a north to south gradient</li><li>Do the Cindaku have stripes before they turn?</li><li>Who governs a Nuitagata village?</li><li>Who sits where in society</li><li>Does an element raise a stat, and which one?</li><li>Which map is canon?</li><li>New gods</li><li>New species and new locations</li><li>The undersea city near the Kame Kingdom: where, what it is called, what it keeps</li><li>The otter people of Tokelau: their name, their islands, their art</li><li>Temples for the gods and shrines for the guardian beasts</li><li>What does a Caller&#x27;s pact cost?</li><li>When did the Bandari arrive?</li><li>Politics, economics and social structure</li><li>Divine animal ancestors, one per people</li></ul>
+  </section>
+
+  <section id="numbers" class="block hue" style="--h:260">
+    <h2>The numbers</h2>
+    <p>The battle system was tested by having the computer play thousands of fights. Two things it found: a healer is the most valuable member of a party, and three damage dealers with no support get wiped out. Being able to swap in the bench raised the win rate from 88 out of 100 to 99.</p>
+    <p><a href="sweep.html">The full sweep</a>, every party against every fight.</p>
+  </section>
+  </div>
+
+  <footer class="small">Illustrations are AI placeholder concept art and will be replaced. Every fact in the wiki is the author's; Claude assembles the articles from them. The game code was written with Claude. <a href="credits.html">Credits and legal</a>. Built 2026-10-12.</footer>
+</main>
+<script>(function(){var r=document.documentElement,b=document.getElementById("enter");
+b.addEventListener("click",function(){r.classList.remove("gated");try{sessionStorage.setItem("nuitai-behind","in")}catch(e){}
+document.getElementById("inside").scrollIntoView()})})();</script>
+</body>
+</html>
