@@ -206,6 +206,9 @@ details.src summary { cursor: pointer; padding: .5rem 0; font-family: var(--seri
 details.src summary .n { font-family: var(--sans); font-size: .85rem; color: var(--muted); margin-left: .6rem; }
 details.src[open] { padding-bottom: .8rem; }
 ul.qs li { margin: .3rem 0; }
+dl.pairs .meta { display: block; color: var(--muted); font-size: .88rem; margin-top: .15rem; }
+.back-doors { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 0 0 1rem; }
+.back-doors .back-door { margin: 0; }
 .block p a, .block li a { color: var(--c); }
 /* The front door's way in to behind the scenes, under the map (Frankie, 10/12). */
 .back-door {
