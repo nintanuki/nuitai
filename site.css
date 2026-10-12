@@ -45,6 +45,10 @@ a { color: inherit; }
 /* The front page's sea chart, drawn by drawings.py, sits behind everything in the border color. */
 .chart { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; color: var(--line); }
 body { position: relative; z-index: 0; }
+/* The gallery's plumeria garland, top and bottom. */
+.lei { line-height: 0; }
+.lei svg { display: block; }
+.lei.bottom svg { transform: scaleY(-1); }
 .hero h1 .nautilus { height: .78em; width: auto; vertical-align: -.04em; margin-right: .22em; }
 /* A word with its definition on hover, or on tap on a phone. */
 .def { position: relative; border-bottom: 1px dotted var(--muted); cursor: help; }
