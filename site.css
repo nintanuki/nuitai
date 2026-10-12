@@ -207,7 +207,7 @@ details.src summary .n { font-family: var(--sans); font-size: .85rem; color: var
 details.src[open] { padding-bottom: .8rem; }
 ul.qs li { margin: .3rem 0; }
 .block p a, .block li a { color: var(--c); }
-/* The front door's way in to behind the scenes, under the doors. */
+/* The front door's way in to behind the scenes, under the map (Frankie, 10/12). */
 .back-door {
   display: block; margin: 0 0 1rem; padding: .7rem 1rem; text-align: center; text-decoration: none;
   color: var(--muted); border: 1px dashed var(--line); border-radius: .8rem; background: var(--card);
