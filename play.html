@@ -311,7 +311,9 @@ function rollFoes(){
   foes.forEach(f=>{if(count[f[0]]>1){seen[f[0]]=(seen[f[0]]||0)+1;f[0]=f[0]+" "+"ABC"[seen[f[0]]-1]}});
   return foes}
 const SPEEDS={Slow:1.7,Normal:1,Fast:.45};
-let S={screen:"setup",picks:["Kailo the Cook","Holy Hina","Granny Tawiri"],enc:Object.keys(ENC)[0],speed:"Normal"};
+/* Party of seven (D-196), on by default: three fight, four on the bench, the first three picked start. Off: pick three, everyone else is the bench. */
+const SEVEN=["Kailo the Cook","Holy Hina","Granny Tawiri","Maika the Sage","Master Genemon","Prof. Sarjana","Dancer Olola"]; /* Frankie, 10/12, for the test only */
+let S={screen:"setup",seven:true,picks:SEVEN.slice(),enc:Object.keys(ENC)[0],speed:"Normal"};
 try{const s=localStorage.getItem("ctb-speed");if(SPEEDS[s])S.speed=s}catch(e){}
 const $=id=>document.getElementById(id), app=$("app");
 /* Sound (Frankie, 10/9): the pygame game's menu sounds and its waves loop, pasted in by
@@ -379,14 +381,15 @@ function seal(){ const q=S.queue; if(q.length&&!q[q.length-1].snap)q[q.length-1]
 function say(msg,o){ seal(); S.queue.push(Object.assign({msg},o||{})) }
 
 function start(){
-  if(S.rndP&&!S.embed)S.picks=Object.keys(ROSTER).sort(()=>Math.random()-.5).slice(0,3);
+  if(S.rndP&&!S.embed)S.picks=Object.keys(ROSTER).sort(()=>Math.random()-.5).slice(0,S.seven?7:3);
+  const field=S.embed?S.picks:S.picks.slice(0,3), traveling=S.picks.length>3&&!S.embed;
   S.foes=S.embed?S.embed.foes.map(f=>{const m=MON[f.monster];return [f.name,m.hp,cap(f.element),m.list,m.beast?1:0,m.immune,m.poison_rate||0,m.boss?1:0,f.sprite||null,m.steal||null]}):rollFoes();
   let id=0; S.units=[]; S.queue=[]; S.pending=null; S.cmd=null; S.lock=false; S.preview=null; S.over=null; S.active=null; S.spent=false; S.busy=false;
-  S.picks.forEach(n=>{const st=statsFor(ROSTER[n]),hp=st.hp*C.hp/10;S.units.push({id:id++,name:n,side:"party",max:hp,hp,st,elements:ROSTER[n],pocket:INV.pockets[n],t:Math.random(),status:{},haste:0})});
+  field.forEach(n=>{const st=statsFor(ROSTER[n]),hp=st.hp*C.hp/10;S.units.push({id:id++,name:n,side:"party",max:hp,hp,st,elements:ROSTER[n],pocket:INV.pockets[n],t:Math.random(),status:{},haste:0})});
   S.foes.forEach(m=>{const hp=Math.round(m[1]*C.mHP),spr=ART.sprites[m[8]]?m[8]:null;S.units.push({id:id++,name:m[0],sprite:spr,icon:spr?"":FOE[m[0].split(" ")[0]]||"",side:"foe",max:hp,hp,st:statsFor(m[7]?[m[2],m[2]]:[m[2]]),element:m[2],moves:m[3],beast:!!m[4],boss:!!m[7],immune:m[5]||[],pr:m[6]||C.poison,loot:m[9],elements:[],t:Math.random(),status:{},haste:0})});
   /* The bench: everyone not picked. They sit outside S.units, so nothing in the fight can see or hit them,
      and their clocks stand still. No random numbers are drawn for them, so the simulation's seeded fights stay the same. */
-  S.bench=S.embed?[]:Object.keys(ROSTER).filter(n=>!S.picks.includes(n)).map(n=>{const st=statsFor(ROSTER[n]),hp=st.hp*C.hp/10;return {id:id++,name:n,side:"party",max:hp,hp,st,elements:ROSTER[n],pocket:INV.pockets[n],t:0,status:{},haste:0}});
+  S.bench=S.embed?[]:(traveling?S.picks.slice(3):Object.keys(ROSTER).filter(n=>!S.picks.includes(n))).map(n=>{const st=statsFor(ROSTER[n]),hp=st.hp*C.hp/10;return {id:id++,name:n,side:"party",max:hp,hp,st,elements:ROSTER[n],pocket:INV.pockets[n],t:0,status:{},haste:0}});
   S.screen="battle"; build(); advance();
 }
 function deal(t,amt){ if(t.hp<=0)return; t.hp=Math.max(0,t.hp-amt); if(t.hp<=0){t.status={};t.guard=null;t.ward=false;t.haste=0;t.berserk=0;t.tiger=false;say(`${t.name} falls.`,{t:t.id})} }
@@ -937,16 +940,17 @@ function bagPage(){
 /* The picker's stat line. A stat at 15 or more is that character's strength, so it is bolded. */
 function statLine(els){const s=statsFor(els);
   return `<span class="sl">${[["HP",s.hp*C.hp/10,s.hp],["Str",s.str],["Mag",s.mag],["Vit",s.vit],["Spr",s.spr],["Spd",s.spd]].map(([k,v,raw])=>(raw??v)>=15?`${k} <b>${v}</b>`:`${k} ${v}`).join(" · ")}</span>`}
+const need=()=>S.seven?7:3;
 function setup(){
   const v=S.view||"fight", tabs=`<div class="tabs" role="tablist">${[["fight","⚔️ Fight"],["bag","🎒 Bag"],["chars","📖 Characters"],["beasts","🐾 Bestiary"]].map(([k,l])=>`<button class="tab ${v===k?"on":""}" role="tab" aria-selected="${v===k}" data-view="${k}">${l}</button>`).join("")}</div>`;
   if(v==="chars"){app.innerHTML=tabs+charsPage();return}
   if(v==="beasts"){app.innerHTML=tabs+beastsPage();return}
   if(v==="bag"){app.innerHTML=tabs+bagPage();return}
   const rb=(k,on,label)=>`<button class="small ${on?"on":""}" data-do="${k}">🎲 ${label}</button>`;
-  app.innerHTML=tabs+`<section class="panel"><div class="rowx"><h2>Choose your characters</h2>${rb("rp",S.rndP,"Random")}</div><p class="muted">Pick three to start. Everyone else waits on the bench. On any party member's turn you can swap them for someone on the bench, for free, as often as you like. The turn ends when someone acts.</p>
-  ${S.rndP?`<p class="muted">Three characters will be drawn when the fight starts.</p>`:`<div class="grid pgrid">${Object.keys(ROSTER).map(n=>`<button data-p="${n}" class="pc${S.picks.includes(n)?" on":""}">${face(n)||`<span class="face noface">?</span>`}<span class="pcw"><span class="chips">${ROSTER[n].map(e=>chip(e)).join("")}${dietMark(n)}</span><b>${n}</b></span></button>`).join("")}</div>
+  app.innerHTML=tabs+`<section class="panel"><div class="rowx"><h2>Choose your characters</h2><span class="chips"><button class="small ${S.seven?"on":""}" data-do="seven">⛵ Party of seven</button>${rb("rp",S.rndP,"Random")}</span></div><p class="muted">${S.seven?"Pick seven to travel with you. The first three you pick fight; the other four wait on the bench. The rest stay on the boat.":"Pick three to start. Everyone else waits on the bench."} On any party member's turn you can swap them for someone on the bench, for free, as often as you like. The turn ends when someone acts.</p>
+  ${S.rndP?`<p class="muted">${S.seven?"Seven":"Three"} characters will be drawn when the fight starts${S.seven?", the first three to fight":""}.</p>`:`<div class="grid pgrid">${Object.keys(ROSTER).map(n=>`<button data-p="${n}" class="pc${S.picks.includes(n)?" on":""}">${face(n)||`<span class="face noface">?</span>`}<span class="pcw"><span class="chips">${ROSTER[n].map(e=>chip(e)).join("")}${dietMark(n)}</span><b>${n}</b>${S.seven&&S.picks.includes(n)?`<span class="muted">${S.picks.indexOf(n)<3?"⚔️ Fights":"🪑 Bench"}</span>`:""}</span></button>`).join("")}</div>
   <div class="chips"><span class="muted">🎒 Carrying:</span>${S.picks.map(n=>`<span class="muted"><b>${n}</b> ${INV.pockets[n].length?counted(INV.pockets[n]).map(([k,c])=>ITEM[k].icon+(c>1?"x"+c:"")).join(" "):"nothing"}</span>`).join("")}<button class="small" data-view="bag">Open the bag</button></div>`}</section>
-  <button class="go" data-do="start" ${S.rndP||S.picks.length===3?"":"disabled"}>${S.rndP||S.picks.length===3?"FIGHT!":"Pick "+(3-S.picks.length)+" more"}</button>` }
+  <button class="go" data-do="start" ${S.rndP||S.picks.length===need()?"":"disabled"}>${S.rndP||S.picks.length===need()?"FIGHT!":"Pick "+(need()-S.picks.length)+" more"}</button>` }
 function preview(a){ if(S.busy||S.over)return; S.preview=a; paintOrder(rows(a),a?`If ${byId(S.active).name} uses ${a.n}`:"Turn order") }
 
 app.addEventListener("click",e=>{
@@ -966,7 +970,8 @@ app.addEventListener("click",e=>{
   if(d.view){S.view=d.view;return setup()}
   if(d.prof){S.prof=d.prof;return setup()}
   if(d.beast){S.beast=d.beast;return setup()}
-  if(d.p){const i=S.picks.indexOf(d.p);if(i>=0)S.picks.splice(i,1);else if(S.picks.length<3)S.picks.push(d.p);return setup()}
+  if(d.p){const i=S.picks.indexOf(d.p);if(i>=0)S.picks.splice(i,1);else if(S.picks.length<need())S.picks.push(d.p);return setup()}
+  if(d.do==="seven"){S.seven=!S.seven;S.picks=S.seven?SEVEN.slice():S.picks.slice(0,3);return setup()}
   if(d.e){S.enc=d.e;return setup()}
   if(d.do==="rp"){S.rndP=!S.rndP;return setup()}
   if(d.do==="re"){S.rndE=!S.rndE;return setup()}
