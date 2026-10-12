@@ -42,6 +42,10 @@ a { color: inherit; }
   margin: 0; letter-spacing: .02em;
 }
 .hero .tag { font-size: 1.2rem; margin: .75rem 0 0; }
+/* The front page's sea chart, drawn by drawings.py, sits behind everything in the border color. */
+.chart { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; color: var(--line); }
+body { position: relative; z-index: 0; }
+.hero h1 .nautilus { height: .78em; width: auto; vertical-align: -.04em; margin-right: .22em; }
 /* A word with its definition on hover, or on tap on a phone. */
 .def { position: relative; border-bottom: 1px dotted var(--muted); cursor: help; }
 .def::after {
