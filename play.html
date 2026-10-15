@@ -599,9 +599,9 @@ const SEVEN=["Kailo the Cook","Holy Hina","Granny Tawiri","Maika the Sage","Mast
 let S={screen:"setup",seven:true,warmup:true,picks:SEVEN.slice(),enc:Object.keys(ENC)[0],speed:"Normal"};
 S.stances=loadStances();
 try{const s=localStorage.getItem("ctb-speed");if(SPEEDS[s])S.speed=s}catch(e){}
-/* Looks (Frankie, 10/15): Plain (the default since 10/16); NES 1, black boxes, white borders and pixel text with the scenery
+/* Looks (Frankie, 10/15): Plain (the default again since later on 10/15); NES 1, black boxes, white borders and pixel text with the scenery
    behind the enemies; NES 2, the same with the scenery behind the whole page and a plain enemy window. The browser remembers it
-   (the key moved to ctb-look2 on 10/16 so every browser starts back on Plain). The choice is on the party screen and under the gear. */
+   (the key moved to ctb-look2 later on 10/15 so every browser starts back on Plain). The choice is on the party screen and under the gear. */
 const LOOKS={plain:"Plain",nes:"NES 1",nes2:"NES 2"}, STAGE_ALL="jungle";
 function setLook(k){ if(!LOOKS[k])k="plain"; S.look=k; const r=document.documentElement; r.dataset.look=k==="nes2"?"nes":k; r.dataset.scene=k==="nes2"?"page":"enemies";
   try{localStorage.setItem("ctb-look2",k)}catch(e){} document.querySelectorAll("button[data-look]").forEach(b=>b.classList.toggle("on",b.dataset.look===k)) }
