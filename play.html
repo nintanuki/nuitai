@@ -1098,9 +1098,13 @@ const ORD=["Ahi","Wai","Lau","La","Ata","Mana"];
 /* Everything a character knows that takes a slot, in both stances. */
 const knownBy=n=>{const who={name:n,elements:ROSTER[n]};return ACTIONS.filter(a=>a.id&&!a.off&&(a.sp?a.sp===n:a.ok(who)))};
 const reach=a=>a.up?Array.from({length:TIERS-a.warm+1},(_,i)=>a.warm+i):[a.warm];
-/* The starting loadout: both-stance abilities first, each in its own tier, moved up if it can grow and the tier is full. */
+/* The starting loadout: each ability in its own tier, moved up if it can grow and the tier is full. Abilities that fit
+   only one row go in first, so the ones that can grow make room and nothing starts in the bank (Frankie, 10/15). When a
+   row is still too full, the least essential waits in the bank: a single cure first, since Cure All covers it; healing
+   never (Frankie, 10/15). */
+const spare=a=>a.st&&a.st[0]==="heal"?0:/^Cure (?!All)/.test(a.n)?2:1;
 function defaultLoad(n){const l={},cnt={};
-  knownBy(n).sort((x,y)=>x.warm-y.warm||(x.tier==="element")-(y.tier==="element")||ORD.indexOf(bothEls(x,n)[0])-ORD.indexOf(bothEls(y,n)[0])||x.n.localeCompare(y.n))
+  knownBy(n).sort((x,y)=>reach(x).length-reach(y).length||spare(x)-spare(y)||x.warm-y.warm||(x.tier==="element")-(y.tier==="element")||ORD.indexOf(bothEls(x,n)[0])-ORD.indexOf(bothEls(y,n)[0])||x.n.localeCompare(y.n))
    .forEach(a=>{const t=reach(a).find(t=>(cnt[t]||0)<PER);if(t&&l[a.id]==null){l[a.id]=t;cnt[t]=(cnt[t]||0)+1}});
   return l}
 let LOADS={}; try{LOADS=JSON.parse(localStorage.getItem("ctb-loadout")||"{}")||{}}catch(e){}
@@ -1298,6 +1302,10 @@ function act(a,t){ if(S.busy&&!S.chain)return; if(a.pick)return openChain(t); co
    point left, may follow with the stamina just built, aims at the locked enemy if it aims at an enemy, and ends the turn;
    so does End turn, or using up the points. The wait is spent at the end: the strokes' points, plus the technique's own wait. */
 const ATTACK_PICK={n:"Attack",pick:true,tg:"foe",get c(){return A("Attack").c}};
+/* Picking the enemy is not a commitment (Frankie, 10/15): until the first strike is thrown, Back, another command or
+   another enemy undoes it. */
+const loose=()=>S.chain&&!S.chain.pts&&!S.chain.said;
+function dropChain(){S.chain=null;S.lock=false;const c=$("cmds");if(c)c.innerHTML=cmdsHTML(byId(S.active))}
 function openChain(t){ if(!t||t.hp<=0)return; S.chain={pts:0,landed:0,t}; S.pending=null; S.cmd="attack"; S.lock=true; preview(null); paintMenu() }
 function strike(k){ const c=S.chain,s=STK(); if(!c||S.over||!s||c.pts+s[k].points>s.points)return; const u=byId(S.active);
   if(!c.said){c.said=1;say(`${u.name} attacks.`,{a:u.id,big:1,nolog:1})}
@@ -1476,7 +1484,8 @@ const shortNm=u=>u.side==="foe"?nm(u).replace(/ ([A-J])$/,(m,l)=>" "+("ABCDEFGHI
 /* The green bar is readiness: empty right after a turn, by the fatigue it built, and full when the next turn comes (Frankie, 10/15). */
 const readyOf=u=>{const now=S.now!=null?S.now:Math.min(...S.units.filter(x=>x.hp>0).map(x=>x.t)),t0=u.t0!=null?u.t0:0,span=u.t-t0;
   return u.hp<=0?0:span>0?Math.max(0,Math.min(1,(now-t0)/span)):1};
-const unitCard=u=>`<div class="unit ${u.side==="foe"?"foe":""}" id="u${u.id}" data-u="${u.id}"><span class="upic">${pic(u)}</span><div class="ubody"><div class="top"><span class="name">${shortNm(u)}</span><span class="uel"></span><span class="hpt"></span></div><div class="meter"><b>HP</b><div class="bar"><i></i></div></div>${u.side==="foe"?"":`<div class="meter" aria-hidden="true"><b>MP</b><div class="bar mp"><i></i></div></div><div class="meter" aria-hidden="true"><b>FP</b><div class="bar rd"><i></i></div></div>`}<div class="chips"></div></div></div>`;
+/* Enemies show MP and FP too (Frankie, 10/15): a dodged strike shows as their mana going up. */
+const unitCard=u=>`<div class="unit ${u.side==="foe"?"foe":""}" id="u${u.id}" data-u="${u.id}"><span class="upic">${pic(u)}</span><div class="ubody"><div class="top"><span class="name">${shortNm(u)}</span><span class="uel"></span><span class="hpt"></span></div><div class="meter"><b>HP</b><div class="bar"><i></i></div></div><div class="meter" aria-hidden="true"><b>MP</b><div class="bar mp"><i></i></div></div><div class="meter" aria-hidden="true"><b>FP</b><div class="bar rd"><i></i></div></div><div class="chips"></div></div></div>`;
 function build(){
   const sp=Object.keys(SPEEDS).map(k=>`<button class="small ${S.speed===k?"on":""}" data-speed="${k}">${k}</button>`).join("");
   const ap=[["","Off"],["play","Plays"],["swap","Plays and swaps"]].map(([k,l])=>`<button class="small ${(S.auto||"")===k?"on":""}" data-auto="${k||"off"}">${l}</button>`).join("");
@@ -1644,12 +1653,12 @@ const hitPct=(x,c,t,u)=>Math.max(0,Math.min(100,Math.round(((x.hit+STK().steady*
 function strokeMenu(u){ const s=STK(),c=S.chain;
   if(!c)return `<h2>⚔️ Attack</h2>`;
   const left=s.points-c.pts, t=c.t.hp>0?c.t:null;
-  return `<h2>⚔️ Attack${t?` ${nm(t)}`:""}</h2><div class="ptsrow"><div class="pts" id="pts" aria-label="${left} of ${s.points} points left">${Array.from({length:s.points},(_,i)=>`<i class="${i<left?"on":""}"></i>`).join("")}</div><button class="small" data-do="endturn" ${c.pts?"":"disabled"}>End turn</button></div><div class="menu">${STROKES.map(k=>{const x=s[k],dis=x.points>left,last=!dis&&x.points===left;
+  return `<h2>⚔️ Attack${t?` ${nm(t)}`:""}</h2><div class="ptsrow"><div class="pts" id="pts" aria-label="${left} of ${s.points} points left">${Array.from({length:s.points},(_,i)=>`<i class="${i<left?"on":""}"></i>`).join("")}</div>${loose()?`<button class="small" data-do="chainback">Back</button>`:`<button class="small" data-do="endturn" ${c.pts?"":"disabled"}>End turn</button>`}</div><div class="menu">${STROKES.map(k=>{const x=s[k],dis=x.points>left,last=!dis&&x.points===left;
     return `<button class="itm${last?" last":""}" style="--k:var(--ahi)" data-stroke="${k}" ${dis?"disabled":""}><span class="row"><b>${x.name}</b><span class="chips">${statChip(["phys",Math.round(attackPow()*x.power)])}<span class="wn hit">${hitPct(x,c,t,u)}%</span><span class="wn gain">+${x.points} mana</span>${ask(STROKE_D[k]+` Builds the mana when it lands. Wait ${x.points*attackWait()}. Chance to hit ${t?nm(t):"it"} now: ${hitPct(x,c,t,u)}%. Every strike that lands this turn adds ${Math.round(s.steady*100)}% to the next.${last?" It uses the last of your points, so it ends the turn.":""}`)}</span></span><span class="d">${STROKE_D[k]}</span></button>`}).join("")}
     <button class="itm" style="--k:var(--mana)" data-cmd="tech" ${left<1?"disabled":""}><span class="row"><b>✨ Technique</b><span class="chips">${ask("Use a technique with the mana you have now. It ends the turn.")}</span></span><span class="d">Spend the mana. Ends the turn.</span></button>
     </div>` }
 function cmdsHTML(u){
-  if(S.chain)return CMDS.map(([k,l,col])=>`<button class="cmd ${S.cmd===k?"on":""}" data-cmd="${k}"${col?` style="--k:${col}"`:""} ${k==="attack"||k==="tech"||(k==="defend"&&FAT())?"":"disabled"}>${l}</button>`).join("");
+  if(S.chain&&!loose())return CMDS.map(([k,l,col])=>`<button class="cmd ${S.cmd===k?"on":""}" data-cmd="${k}"${col?` style="--k:${col}"`:""} ${k==="attack"||k==="tech"||(k==="defend"&&FAT())?"":"disabled"}>${l}</button>`).join("");
   const ok={attack:true,defend:true,tech:techs(u).length>0||combosFor(u).length>0,item:actionsFor(u).some(a=>a.item),swap:(S.bench||[]).some(b=>b.hp>0)};
   return CMDS.map(([k,l,col])=>{const a=k==="attack"?A("Attack"):k==="defend"?A("Defend"):null;
     return `<button class="cmd ${S.cmd===k?"on":""}" data-cmd="${k}"${a&&!(k==="attack"&&STK())?` data-a="${ACTIONS.indexOf(a)}"`:""}${col?` style="--k:${col}"`:""} ${ok[k]?"":"disabled"}>${l}</button>`}).join("")}
@@ -1719,6 +1728,11 @@ function loadoutHTML(n){ if(!WARM||!SLOT)return "";
    <div class="mgrid">${rows}</div>
    <div class="bank${pick&&l[pick.id]!=null?" fits":""}" data-bank="1"><span class="bk">Bank</span><div class="slots">${bank.length?bank.map(a=>slot(a)).join(""):'<span class="muted">Empty: everything is slotted.</span>'}</div></div>
    ${LOADS[n]?`<button class="small" data-do="reload">Back to the starting loadout</button>`:""}`}
+/* The Equip tab (Frankie, 10/15): each character's loadout, set between fights like the bag. Armor and the rest come later. */
+function equipPage(){
+  const n=S.prof||"Kailo the Cook";
+  return `<section class="panel"><div class="plist">${Object.keys(ROSTER).map(k=>`<button data-prof="${k}" class="${k===n?"on":""}">${face(k,1)}${k}</button>`).join("")}</div></section>
+  <section class="panel prof"><h2>🗡️ Equip: ${n}</h2>${loadoutHTML(n)||'<p class="muted">Abilities take slots only with mana on.</p>'}</section>`}
 function charsPage(){
   const n=S.prof||"Kailo the Cook", P=PROFILE[n]||{title:"",text:""}, st=statsFor(ROSTER[n]);
   const who={name:n,elements:ROSTER[n]}, abil=ACTIONS.filter(a=>a.sp?a.sp===n:!a.item&&a.n!=="Defend"&&a.ok(who)).sort((x,y)=>!!y.sp-!!x.sp);
@@ -1727,7 +1741,6 @@ function charsPage(){
    <div class="ph">${PORTRAIT[n]?`<img class="face xl" src="${PORTRAIT[n]}" alt="">`:""}<div class="col" style="gap:6px"><h2>${P.fam?`<span class="nm">${[["fam",P.fam,"family name"],["giv",P.given,"given name"]].map(([c,w,l])=>`<span class="${c}">${w}<small>${l}</small></span>`).join("")}</span>`:(P.name||n)} <span class="t">${P.title}</span></h2><span class="chips">${ROSTER[n].map(e=>chip(e,EL[e]+" "+e)).join("")}${FISH.has(n)?`<span class="chip veg-chip">🐟 Pescatarian</span>`:VEG.has(n)?`<span class="chip veg-chip">🌿 Vegetarian</span>`:""}</span></div></div>
    <p>${linkWiki(P.text)}</p>
    <h3>Stats</h3>${statRows(st,st.hp*C.hp/10)}
-   ${loadoutHTML(n)}
    ${(()=>{const sk=l=>[...l.filter(a=>a.n==="Attack"||menuOf(who,a)==="skill"),...l.filter(a=>a.n!=="Attack"&&menuOf(who,a)==="magic")].map(a=>abilityCard(a,n)).join("");
      const base=abil.filter(a=>!a.form), el=e=>base.filter(a=>a.tier==="element"&&a.el===e), any=base.filter(a=>!(a.tier==="element"&&a.el&&ROSTER[n].includes(a.el)));
      return `<h3>✨ In any stance</h3><div class="abl">${sk(any)}</div>`+(STANCE[n]||[]).map(s=>`<h3>${chip(s.el)} ${s.name}</h3><p class="muted">${s.about}</p><div class="abl">${sk(el(s.el))||'<p class="muted">No element moves of its own yet.</p>'}</div>`).join("")})()}
@@ -1835,11 +1848,12 @@ function rulesPage(){const W=WARM||{},K=W.strokes||{},e=x=>chip(x)+" "+x;
   ${sec("--accent","⚙️ Extras",`<ul><li><b>Autopilot</b> plays the fight for you. "Plays and swaps" also uses the bench.</li><li><b>Playback</b> sets how fast the fight runs.</li><li><b>🏟️ Gauntlet</b>: the same seven, fight after fight, with no healing in between, until the party falls.</li></ul>`)}
   </section>`}
 function setup(){
-  const v=S.view||"fight", tabs=`<div class="tabs" role="tablist">${[["fight","⚔️ Fight"],["bag","🎒 Bag"],["chars","📖 Characters"],["beasts","🐾 Bestiary"],["rules","📜 Rules"]].map(([k,l])=>`<button class="tab ${v===k?"on":""}" role="tab" aria-selected="${v===k}" data-view="${k}">${l}</button>`).join("")}</div>`;
+  const v=S.view||"fight", tabs=`<div class="tabs" role="tablist">${[["fight","⚔️ Fight"],["bag","🎒 Bag"],["equip","🗡️ Equip"],["chars","📖 Characters"],["beasts","🐾 Bestiary"],["rules","📜 Rules"]].map(([k,l])=>`<button class="tab ${v===k?"on":""}" role="tab" aria-selected="${v===k}" data-view="${k}">${l}</button>`).join("")}</div>`;
   if(v==="chars"){app.innerHTML=tabs+charsPage();return}
   if(v==="beasts"){app.innerHTML=tabs+beastsPage();return}
   if(v==="rules"){app.innerHTML=tabs+rulesPage();return}
   if(v==="bag"){app.innerHTML=tabs+bagPage();return}
+  if(v==="equip"){app.innerHTML=tabs+equipPage();return}
   if(S.g){app.innerHTML=tabs+gauntletPage();return}
   app.innerHTML=tabs+`<section class="panel"><div class="rowx"><h2>Choose your party</h2><span class="chips"><span class="muted">Look</span>${Object.entries(LOOKS).map(([k,l])=>`<button class="small ${S.look===k?"on":""}" data-look="${k}">${l}</button>`).join("")}<button class="small" data-do="rp">🎲 Random</button></span></div><ul class="howto">
    <li><b>Pick seven.</b> The first three fight. The other four wait on the bench, and you can swap them in on your turn for free.</li>
@@ -1860,6 +1874,7 @@ function preview(a){ if((S.busy&&!S.chain)||S.over)return; S.preview=a; const pt
 app.addEventListener("click",e=>{
   const ps=e.target.closest&&e.target.closest("[data-st]"); if(ps){e.preventDefault();e.stopPropagation();const n=ps.dataset.st;S.stances[n]=1-startStance(n);saveStances();return setup()}
   const c=e.target.closest(".unit.pick"); if(c&&S.pending&&(!S.busy||S.chain))return act(S.pending,byId(+c.dataset.u));
+  const fc=loose()&&e.target.closest(".unit.foe"); if(fc){const t=byId(+fc.dataset.u);if(t&&t.hp>0&&t!==S.chain.t){S.chain.t=t;paintMenu()}return}
   /* The loadout (D-327): with an ability picked up, a lit row or the bank takes it, wherever in it you click. */
   const lo=S.pick&&e.target.closest("[data-tier],[data-bank]"), pb=e.target.closest("[data-pick]");
   if(lo&&!(pb&&pb.dataset.pick===S.pick)){const n=S.prof||"Kailo the Cook",l=loadOf(n);if(lo.dataset.tier)l[S.pick]=+lo.dataset.tier;else delete l[S.pick];
@@ -1906,6 +1921,8 @@ app.addEventListener("click",e=>{
   if(d.do==="back"){S.pending=null;preview(null);return paintCtx()}
   if(d.stroke){if(S.over||S.auto)return; return strike(d.stroke)}
   if(d.do==="endturn"){if(!S.chain)return; return endChain()}
+  if(d.do==="chainback"){if(!loose())return; dropChain(); S.cmd="attack"; S.lock=true; S.pending=ATTACK_PICK; preview(ATTACK_PICK); return paintCtx()}
+  if((d.cmd||d.swap)&&loose())dropChain();
   if(d.cmd&&S.chain){if(d.cmd==="attack"||d.cmd==="tech"){S.cmd=d.cmd;S.pending=null;preview(null);paintCtx()} return}
   if(d.cmd==="attack"&&STK()){if(S.busy||S.over||S.auto)return; S.cmd="attack"; S.lock=true; S.pending=ATTACK_PICK; preview(ATTACK_PICK); return paintCtx()}
   if(d.cmd){if(S.busy||S.over||S.auto)return; S.cmd=d.cmd; S.lock=true; S.pending=null; S.mixing=null;
