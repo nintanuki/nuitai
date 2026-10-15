@@ -599,12 +599,13 @@ const SEVEN=["Kailo the Cook","Holy Hina","Granny Tawiri","Maika the Sage","Mast
 let S={screen:"setup",seven:true,warmup:true,picks:SEVEN.slice(),enc:Object.keys(ENC)[0],speed:"Normal"};
 S.stances=loadStances();
 try{const s=localStorage.getItem("ctb-speed");if(SPEEDS[s])S.speed=s}catch(e){}
-/* Looks (Frankie, 10/15): Plain; NES 1, black boxes, white borders and pixel text with the scenery behind the enemies (the
-   default); NES 2, the same with the scenery behind the whole page and a plain enemy window. The browser remembers it. */
+/* Looks (Frankie, 10/15): Plain (the default since 10/16); NES 1, black boxes, white borders and pixel text with the scenery
+   behind the enemies; NES 2, the same with the scenery behind the whole page and a plain enemy window. The browser remembers it
+   (the key moved to ctb-look2 on 10/16 so every browser starts back on Plain). The choice is on the party screen and under the gear. */
 const LOOKS={plain:"Plain",nes:"NES 1",nes2:"NES 2"}, STAGE_ALL="jungle";
-function setLook(k){ if(!LOOKS[k])k="nes"; S.look=k; const r=document.documentElement; r.dataset.look=k==="nes2"?"nes":k; r.dataset.scene=k==="nes2"?"page":"enemies";
-  try{localStorage.setItem("ctb-look",k)}catch(e){} document.querySelectorAll("button[data-look]").forEach(b=>b.classList.toggle("on",b.dataset.look===k)) }
-try{setLook(localStorage.getItem("ctb-look")||"nes")}catch(e){setLook("nes")}
+function setLook(k){ if(!LOOKS[k])k="plain"; S.look=k; const r=document.documentElement; r.dataset.look=k==="nes2"?"nes":k; r.dataset.scene=k==="nes2"?"page":"enemies";
+  try{localStorage.setItem("ctb-look2",k)}catch(e){} document.querySelectorAll("button[data-look]").forEach(b=>b.classList.toggle("on",b.dataset.look===k)) }
+try{setLook(localStorage.getItem("ctb-look2")||"plain")}catch(e){setLook("plain")}
 /* The Warmup toggle (D-206), on by default; the browser remembers it. Off plays the 10/6 wait rules exactly as before. */
 /* Stamina and the party of seven are simply the rules since 10/13 night (Frankie); S.warmup and S.seven stay as flags so the sweep and the lab can still run the old rules. */
 const $=id=>document.getElementById(id), app=$("app");
@@ -1682,7 +1683,7 @@ function setup(){
   if(v==="rules"){app.innerHTML=tabs+rulesPage();return}
   if(v==="bag"){app.innerHTML=tabs+bagPage();return}
   if(S.g){app.innerHTML=tabs+gauntletPage();return}
-  app.innerHTML=tabs+`<section class="panel"><div class="rowx"><h2>Choose your party</h2><span class="chips"><button class="small" data-do="rp">🎲 Random</button></span></div><ul class="howto">
+  app.innerHTML=tabs+`<section class="panel"><div class="rowx"><h2>Choose your party</h2><span class="chips"><span class="muted">Look</span>${Object.entries(LOOKS).map(([k,l])=>`<button class="small ${S.look===k?"on":""}" data-look="${k}">${l}</button>`).join("")}<button class="small" data-do="rp">🎲 Random</button></span></div><ul class="howto">
    <li><b>Pick seven.</b> The first three fight. The other four wait on the bench, and you can swap them in on your turn for free.</li>
    <li><b>Attack to build mana.</b> Every hit that lands fills the mana dots under your HP.</li>
    <li><b>Spend mana on Techniques:</b> elemental moves, heals and each character's special.</li>
