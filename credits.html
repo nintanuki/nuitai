@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Credits and Legal · Nuitai</title>
-<link rel="stylesheet" href="site.css?v=83c9fe22">
+<link rel="stylesheet" href="site.css?v=6e63aa6b">
 <script>(function(){var t=null;try{t=localStorage.getItem("nuitai-site-theme")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia"})()</script>
 </head>
 <body>
@@ -15,6 +15,16 @@ order=["sepia","dark","light"],names={dark:"Dark",light:"Light",sepia:"Sepia"};
 function label(){b.textContent="Theme: "+names[r.dataset.theme]}
 b.addEventListener("click",function(){var t=order[(order.indexOf(r.dataset.theme)+1)%3];r.dataset.theme=t;
 try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();</script>
+<button class="sound-btn" id="sound-btn" type="button"></button>
+<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,started=false;
+try{on=localStorage.getItem("ctb-sound")!=="off"}catch(e){}
+function label(){b.textContent=!on?"🔇 Music off":started?"🔊 Music on":"🔊 Click anywhere for music"}
+function play(){if(!on){if(a)a.pause();return}if(!a){a=new Audio("music/calm-bay.mp3");a.loop=true;a.volume=.35}
+a.play().catch(function(){})}
+function first(e){if(started||e.target===b)return;started=true;play();label()}
+document.addEventListener("pointerdown",first,true);document.addEventListener("keydown",first,true);
+b.addEventListener("click",function(){if(!started&&on){started=true;play();label();return}on=!on;started=true;try{localStorage.setItem("ctb-sound",on?"on":"off")}catch(e){}
+label();play()});label()})();</script>
 <main class="wrap">
   <p class="crumb"><a href="index.html">&larr; Nuitai</a></p>
   <h1 class="title">Credits and legal</h1>
@@ -133,6 +143,9 @@ legs/shorts/shorts/male/walk.png
       <li>The monsters in the battle test are from <a href="https://merchant-shade.itch.io/ph-myth-creatures">Philippine Mythological Creature Sprites</a> by Merchant Shade, released as CC0.</li>
       <li>The sound of the waves is made from <a href="https://opengameart.org/node/11174">Beach Ocean Waves</a> by jasinski, released as CC0.</li>
       <li>The gulls are cut from <a href="https://bigsoundbank.com/gulls-on-the-harbor-s2573.html">Gulls on the Harbor</a> by Joseph Sardin, BigSoundBank, released as CC0.</li>
+      <li>Original music by Marllon Silva (<a href="https://www.youtube.com/xdeviruchi">xDeviruchi</a>), from his album <i>16-bit Fantasy &amp; Adventure</i> (2025): <i>Title Theme</i>, <i>Battle 1</i>, <i>Battle 2</i>, <i>Decisive Battle 1: Don't Be Afraid</i>, <i>Decisive Battle 2: The Calamity</i>, <i>Victory!</i>, <i>Where The Winds Roam</i> and <i>Definitely Our Town</i>, in the battle and the story. Used under his license, which allows games; the songs may not be copied from here.</li>
+      <li><i>Goblins Den</i>, the music between fights, is from Minifantasy Dungeon Music by <a href="https://www.patreon.com/leohpaz">Leohpaz</a>, free to use in projects.</li>
+      <li><i>Calm Bay</i>, in the story and on this page, is by DanielHren, from <a href="https://pixabay.com/music/">Pixabay</a>, under the <a href="https://pixabay.com/service/license-summary/">Pixabay Content License</a>.</li>
       <li>The menu sounds in the battle test are from the <a href="https://leohpaz.itch.io/minifantasy-dungeon-sfx-pack">Minifantasy Dungeon SFX Pack</a> by Leohpaz.</li>
       <li>The battle and story pages use the fonts <a href="https://fonts.google.com/specimen/Atkinson+Hyperlegible">Atkinson Hyperlegible</a> and <a href="https://fonts.google.com/specimen/Fredoka">Fredoka</a>, under the SIL Open Font License, served by Google Fonts.</li>
       <li>The wiki reads its articles with <a href="https://github.com/markedjs/marked">marked</a>, under the MIT License.</li>

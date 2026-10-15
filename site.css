@@ -187,7 +187,7 @@ footer.small a { color: var(--muted); }
 /* In sepia the name is ocean blue (Frankie, 10/11). */
 :root[data-theme="sepia"] .hero h1 { color: #1f5f8b; }
 .door b .em { display: inline; font-size: 1em; margin: 0; color: inherit; }
-/* The front page's sound button, top left, the same look as the theme button. */
+/* The sound button on the front page and the credits page, top left, the same look as the theme button. */
 .sound-btn {
   position: fixed; top: .75rem; left: .75rem; z-index: 5;
   font: inherit; font-size: .85rem; padding: .3rem .8rem; border-radius: 99px; cursor: pointer;
