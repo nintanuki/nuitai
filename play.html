@@ -232,8 +232,7 @@ html[data-look="nes"]{font-size:11px}
 [data-look="nes"] body{font-size:11px;line-height:1.6;background:#000;image-rendering:pixelated}
 [data-look="nes"] .panel,[data-look="nes"] .unit,[data-look="nes"] .slot,[data-look="nes"] button,[data-look="nes"] .gcard{background:#000!important;color:#fff;border:4px solid #fff!important;border-radius:12px!important;box-shadow:none!important}
 [data-look="nes"] .battle .panel>h2{display:none}
-[data-look="nes"] .battle #partyp .unit,[data-look="nes"] .battle .order .slot{border-top:none!important;border-right:none!important;border-bottom:none!important;border-radius:0!important}
-[data-look="nes"] .battle #partyp .unit{border-left:none!important}
+[data-look="nes"] .battle .order .slot{border-top:none!important;border-right:none!important;border-bottom:none!important;border-radius:0!important}
 [data-look="nes"] .battle .stage .unit{background:transparent!important;border:none!important}
 [data-look="nes"] .order .slot{border-left:4px solid #8a5ae0!important}
 [data-look="nes"] .order .slot.foe{border-left-color:#d0452f!important}
@@ -245,10 +244,10 @@ html[data-look="nes"]{font-size:11px}
 .battle{font-size:.92rem}
 .battle *:not(.upic):not(.upic *){font-size:1em!important}
 .battle .panel{border-width:3px;border-radius:14px}
-#partyp .unit,.order .slot{border-color:transparent!important;background:transparent!important;box-shadow:none!important}
+.order .slot{border-color:transparent!important;background:transparent!important;box-shadow:none!important}
 #partyp .unit{padding:7px 8px;gap:8px} #partyp .unit .top{margin-bottom:3px} #partyp .unit .face{width:44px;height:44px;margin:0}
 .unit .name{flex:0 1 auto} .unit .top{gap:5px}
-#partyp .unit.active .name,.order .slot.now{color:#ffd84a!important}
+.order .slot.now{color:#ffd84a!important}
 /* The turn order, easier to read (Frankie, 10/15): bigger pictures, enemies on a dark red tile with their number, party
    on none, a yellow frame on whose turn it is. The column is only as tall as the list. */
 .order{gap:5px}
@@ -402,6 +401,107 @@ button.cmd.on,button.cmd:hover:not(:disabled),button.cmd:focus-visible{border-le
 .tier .menu .row{flex-wrap:nowrap;justify-content:space-between}
 @media (max-width:520px){.ctx .tier .menu{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ctx .bench{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+/* No scroll bars in a fight (Frankie, 10/15): the page is one screen, the command window is as tall as its menu, and the
+   enemy window gives up the room. The turn order and the log show what fits; the log keeps its newest lines. */
+@media (min-width:701px){
+  body:has(.battle){overflow:hidden}
+  .battle{height:calc(100dvh - 70px);min-height:0}
+  .field{overflow:visible;display:flex;flex-direction:column;min-height:0;margin:0;padding:0}
+  .field .sides{flex:1 0 auto}
+  .field .sides>.panel{min-height:0;overflow:hidden}
+  .stage{min-height:0!important}
+  .stage .unit .spr{height:min(170px,24vh)!important}
+  .field #menu{flex:none}
+  .field .cmdwrap,.field .ctx{min-height:0;overflow:visible}
+  .order,.log{overflow:hidden!important}
+  main .battle{grid-template-rows:minmax(min-content,1fr) 84px}
+  .battle .unit .chips:empty{display:none}
+}
+/* A short screen, or zoomed in: the party keeps its room; the log and the enemy pictures shrink first. */
+@media (min-width:701px) and (max-height:700px){
+  main .battle{grid-template-rows:minmax(min-content,1fr) 60px}
+  .battle #partyp{gap:4px} .battle #partyp .unit{padding-block:3px} .battle #partyp .unit .face{width:36px;height:36px}
+  .stage .unit .spr{height:min(120px,13vh)!important}
+  .field .ctx{min-height:0;gap:4px} .tiers{gap:3px} .tier .menu{gap:4px} .tier .menu button{padding:2px 8px} .tier .tn{margin-top:1px;width:1.6em;height:1.6em}
+  .field .panel{padding:8px;gap:6px} .field{gap:8px} .battle{gap:8px}
+}
+.log{justify-content:flex-end;-webkit-mask-image:linear-gradient(transparent,#000 1.4em);mask-image:linear-gradient(transparent,#000 1.4em)}
+.log>*{flex:none}
+/* An enemy's card is a name, its element beside it like the party's, and one HP bar (Frankie, 10/15). */
+.battle .unit .top{flex-wrap:nowrap;justify-content:flex-start} .stage .unit .name{flex-basis:auto} .battle .unit .uel{margin:0}
+/* Name, elements, then HP on one line; the three bars the same length (Frankie, 10/15). */
+.battle .unit .hpt{margin-left:auto}
+.stage .ubody{padding-bottom:6px!important}
+/* Each fighter in the party window has a window of its own; whose turn it is shows as a slowly pulsing gold border, not a
+   yellow name. Yellow numbers mean low HP (Frankie, 10/15). */
+#partyp .unit{border:3px solid var(--line)!important;border-radius:10px!important;background:var(--panel)!important;box-shadow:none!important}
+#partyp .unit.active{border-color:#ffd84a!important;animation:turnglow 1.6s ease-in-out infinite}
+@keyframes turnglow{50%{border-color:#7a6420}}
+.unit.lowhp .hpt{color:var(--lowhp,#a86b00)}
+[data-look="nes"]{--lowhp:#ffd84a}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--lowhp:#ffd84a} }
+:root[data-theme="dark"]{--lowhp:#ffd84a}
+/* Final Fantasy VI's layout (Frankie, 10/15): the enemies across the top; under them the commands on the left and the
+   party on the right, side by side. Tried 10/15 and set aside; on only with the ff6 class on the page. */
+@media (min-width:701px){
+  html.ff6 .battle .field{display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,300px);grid-template-rows:minmax(0,1fr) auto;gap:10px}
+  html.ff6 .field .sides{display:contents}
+  html.ff6 .field .stage{grid-column:1/3;grid-row:1;container-type:size}
+  html.ff6 .field #partyp{grid-column:2;grid-row:2}
+  html.ff6 .field #menu{grid-column:1;grid-row:2;min-width:0}
+  html.ff6 .field .stage .unit .spr{height:clamp(36px,calc(100cqh - 70px),200px)!important;max-width:240px}
+  html.ff6 .field .stage .unit{max-width:260px}
+  html.ff6 .field .ctx .tier .menu{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  html.ff6 .field .tier .menu .row b{white-space:nowrap}
+  html.ff6 .battle .field .cmds{display:flex;flex-direction:column}
+  html.ff6 .field #partyp{min-width:0;overflow:hidden}
+}
+/* The two who are waiting fade out (Frankie, 10/15). */
+#partyp:has(.unit.active) .unit:not(.active){opacity:.5}
+/* Bigger portraits in the party window (Frankie, 10/15). */
+/* Segmented bars for MP and FP (Frankie, 10/15): MP has a segment per point of mana; FP a segment per point of fatigue
+   the last action built, so each notch that fills is one point worked off. HP stays smooth. */
+.battle .meter>.bar.mp,.battle .meter>.bar.rd{height:9px}
+.bar.mp::after,.bar.rd::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:repeating-linear-gradient(to right,transparent 0 calc(100% / var(--n,1) - 2px),var(--panel) calc(100% / var(--n,1) - 2px) calc(100% / var(--n,1)))}
+/* Every enemy at the same zoom, so a small sprite is not blown up past a big one (Frankie, 10/15): each sprite pixel is
+   --px screen pixels, 3 on a tall screen, 2 on a short one, 1 on a phone. */
+.stage{--px:3}
+@media (max-height:799px){.stage{--px:2}}
+@media (max-width:700px){.stage{--px:1}}
+.battle .stage .unit .spr{height:calc(var(--ph,48)*var(--px)*1px)!important;width:auto;max-width:none}
+.stage{justify-content:safe center!important}
+/* A little room between a name and its elements; shorter bar labels so the cards are shorter (Frankie, 10/15). */
+.battle .unit .name{margin-right:6px}
+.battle .meter>b{font-size:10px!important;line-height:1}
+.battle .meter{line-height:1}
+.battle .unit .chips{display:flex;flex-wrap:wrap;gap:2px 8px}
+.battle .unit .chips .stat{margin:0}
+.battle .unit .chips .stat small{font-size:.75em!important;margin-left:1px}
+@media (min-width:701px){ .sides{grid-template-columns:minmax(0,1.5fr) minmax(340px,.75fr)!important} }
+.stage .unit .top{flex-wrap:wrap!important}
+.battle #partyp .unit .face{width:56px!important;height:56px!important}
+/* The enemies stand together in the middle, not pushed to the edges (Frankie, 10/15). */
+.stage{justify-content:center!important;column-gap:clamp(8px,2vw,32px)!important}
+/* In a fight the song tag sits at the top, beside the gear, where nothing else is (Frankie, 10/15). */
+.nowplay{pointer-events:auto;cursor:pointer}
+.nowplay em{font-style:normal}
+.nowplay.mini{padding:4px 9px;border-radius:999px}
+.nowplay.mini>:not(span),.nowplay.mini span>:not(em){display:none}
+.nowplay.mini span{color:inherit;font-size:1rem}
+.nowplay.mini span em~*{display:none}
+.stage .unit .name{white-space:normal;overflow:visible}
+/* A phone (Frankie, 10/15): the whole fight on one screen; the turn order goes first. */
+@media (max-width:700px){ .battle .orderbox{display:none} }
+/* Retro, easier to read (Frankie, 10/15): the pixel font for headings, tabs, commands and fighters' names; a clean, larger
+   font for everything else. A picked party card stays black with a lit border, so its Fights or Bench still shows. */
+html[data-look="nes"]{font-size:14px}
+:root:root:root[data-look="nes"]{--body:"Atkinson Hyperlegible",Verdana,sans-serif}
+[data-look="nes"] body{font-size:14px;line-height:1.45}
+html[data-look="nes"] :is(h1,h2,.tabs .tab,button.cmd,.battle .unit .name){font-family:"Press Start 2P",monospace!important;font-size:11px!important;line-height:1.6}
+html[data-look="nes"] h1{font-size:18px!important}
+html[data-look="nes"] button.pc.on{background:#000!important;color:#fff!important;border-color:#ffd84a!important}
+html[data-look="nes"] .pcw b{white-space:normal}
 @media (max-width:520px){button.cmd{font-size:.95rem;padding:8px 6px}}
 /* A move's numbers: physical in Strength's red, magic in Magic's purple, healing in green, as on the stat rows. */
 .stat{display:inline-block;border-radius:999px;padding:0 8px;margin-right:6px;font-size:.78rem;font-weight:700;border:2px solid var(--k);color:var(--ink);white-space:nowrap}
@@ -643,7 +743,10 @@ const SND=(()=>{ const none={play(){},blip(){},waves(){},toggle(){return false},
   const MUSIC=(()=>{try{return JSON.parse(document.getElementById("music").textContent)}catch(x){return {base:"",songs:{},play:{}}}})(), bufs={};
   let mood=null, song=null, fought=false;
   const tag=document.createElement("div"); tag.className="nowplay"; tag.hidden=true; document.body&&document.body.appendChild(tag);
-  function showing(f){ const s=f&&MUSIC.songs[f]; tag.hidden=!s; if(s)tag.innerHTML=`<span>🎵 Now playing</span> <b></b> <i></i>`, tag.querySelector("b").textContent=s.title, tag.querySelector("i").textContent="by "+s.by }
+  /* The tag folds to a note when clicked, and the browser remembers it (Frankie, 10/15). */
+  try{tag.classList.toggle("mini",localStorage.getItem("ctb-np-mini")==="1")}catch(x){}
+  tag.title="Click to fold or open"; tag.addEventListener("click",()=>{const m=tag.classList.toggle("mini");try{localStorage.setItem("ctb-np-mini",m?"1":"0")}catch(x){}});
+  function showing(f){ const s=f&&MUSIC.songs[f]; tag.hidden=!s; if(s)tag.innerHTML=`<span><em>🎵</em> Now playing</span> <b></b> <i></i>`, tag.querySelector("b").textContent=s.title, tag.querySelector("i").textContent="by "+s.by }
   function audio(){ ctx=ctx||new (window.AudioContext||window.webkitAudioContext)(); if(ctx.state==="suspended")ctx.resume().catch(()=>{}); return ctx }
   function load(f){ return bufs[f]=bufs[f]||fetch(MUSIC.base+f).then(r=>{if(!r.ok)throw new Error(f);return r.arrayBuffer()})
     .then(b=>new Promise((ok,no)=>audio().decodeAudioData(b,ok,no))) }
@@ -1320,7 +1423,7 @@ const shortNm=u=>u.side==="foe"?nm(u).replace(/ ([A-J])$/,(m,l)=>" "+("ABCDEFGHI
 /* The green bar is readiness: empty right after a turn, by the fatigue it built, and full when the next turn comes (Frankie, 10/15). */
 const readyOf=u=>{const now=S.now!=null?S.now:Math.min(...S.units.filter(x=>x.hp>0).map(x=>x.t)),t0=u.t0!=null?u.t0:0,span=u.t-t0;
   return u.hp<=0?0:span>0?Math.max(0,Math.min(1,(now-t0)/span)):1};
-const unitCard=u=>`<div class="unit ${u.side==="foe"?"foe":""}" id="u${u.id}" data-u="${u.id}"><span class="upic">${pic(u)}</span><div class="ubody"><div class="top"><span class="name">${shortNm(u)}</span><span class="uel"></span><span class="hpt"></span></div><div class="meter"><b>HP</b><div class="bar"><i></i></div></div><div class="meter" aria-hidden="true"><b>MP</b><div class="bar mp"><i></i></div></div><div class="meter" aria-hidden="true"><b>FP</b><div class="bar rd"><i></i></div></div><div class="chips"></div></div></div>`;
+const unitCard=u=>`<div class="unit ${u.side==="foe"?"foe":""}" id="u${u.id}" data-u="${u.id}"><span class="upic">${pic(u)}</span><div class="ubody"><div class="top"><span class="name">${shortNm(u)}</span><span class="uel"></span><span class="hpt"></span></div><div class="meter"><b>HP</b><div class="bar"><i></i></div></div>${u.side==="foe"?"":`<div class="meter" aria-hidden="true"><b>MP</b><div class="bar mp"><i></i></div></div><div class="meter" aria-hidden="true"><b>FP</b><div class="bar rd"><i></i></div></div>`}<div class="chips"></div></div></div>`;
 function build(){
   const sp=Object.keys(SPEEDS).map(k=>`<button class="small ${S.speed===k?"on":""}" data-speed="${k}">${k}</button>`).join("");
   const ap=[["","Off"],["play","Plays"],["swap","Plays and swaps"]].map(([k,l])=>`<button class="small ${(S.auto||"")===k?"on":""}" data-auto="${k||"off"}">${l}</button>`).join("");
@@ -1336,6 +1439,7 @@ function build(){
     <section class="panel" id="partyp"><h2>Party</h2>${S.units.filter(u=>u.side==="party").map(mk).join("")}</section></div>
     <section class="panel" id="menu"></section>
    </div></div>`;
+  document.querySelectorAll(".stage .spr").forEach(i=>{const f=()=>i.style.setProperty("--ph",i.naturalHeight);i.complete?f():i.addEventListener("load",f)});
   new MutationObserver(()=>shortenIn($("menu"))).observe($("menu"),{childList:true,subtree:true}) }
 function paint(sn){
   sn.units.forEach(s=>{const u=byId(s.id),el=card(s.id),f=s.hp/u.max,st=[];
@@ -1344,19 +1448,20 @@ function paint(sn){
     if(s.guard)st.push(chip(s.guard==="reflect"||s.guard==="mirror_ward"?"La":s.guard==="trap"?"Ata":"Wai",{provoke:"😈 Provoking",trap:"😈 Dirty Trick ready",sentinel:"🛡️ Sentinel up",purity:"🛡️ Status Guard up",counter:"🛡️ Counter Guard up",spring:"🛡️ Spring Guard up",reflect:"🪞 Mirror up",tide_veil:"🛡️ Tide Veil up",mirror_ward:"🪞 Mirror Ward up"}[s.guard]));
     const cur=u.side==="party"&&STANCE[u.name]&&STANCE[u.name][s.stance||0], els=u.side==="party"?u.elements.map(e=>elBox(e,cur&&cur.el===e)).join(""):chip(u.element)+(u.boss?chip("none","👑 boss"):"")+(u.beast?chip("none","🐾 beast"):"");
     hpTo(el,s.hp,u.max,f);
-    const mp=el.querySelector(".mp"); if(mp){mp.parentNode.hidden=!warmOn(); if(warmOn())mp.firstElementChild.style.width=(s.warm||0)/WARM.cap*100+"%"}
-    const rd=el.querySelector(".rd"); if(rd)rd.firstElementChild.style.width=(s.rd!=null?s.rd:1)*100+"%";
+    const mp=el.querySelector(".mp"); if(mp){mp.parentNode.hidden=!warmOn(); if(warmOn()){mp.firstElementChild.style.width=(s.warm||0)/WARM.cap*100+"%";mp.style.setProperty("--n",WARM.cap)}}
+    const rd=el.querySelector(".rd"); if(rd){rd.firstElementChild.style.width=(s.rd!=null?s.rd:1)*100+"%";rd.style.setProperty("--n",Math.max(1,Math.round(u.fat||1)))}
     /* Numbers and elements are on hover now (Frankie, 10/15: "the less text on the screen the better"); statuses stay on the card. */
     el.title=`${u.name}: HP ${s.hp} of ${u.max}${warmOn()?`, mana ${s.warm||0} of ${WARM.cap}`:""}. ${u.side==="party"?u.elements.join(" and "):u.element+(u.boss?", boss":"")+(u.beast?", beast":"")}.`;
     el.querySelector(".uel").innerHTML=u.side==="party"?u.elements.map(e=>elBox(e,cur&&cur.el===e)).join(""):chip(u.element);
-    el.querySelector(".chips").innerHTML=st.map(x=>x.replace(/class="chip [^"]*"/,'class="stat"')).join("");
+    /* Statuses as their emoji and count only, the word on hover (Frankie, 10/15). */
+    el.querySelector(".chips").innerHTML=st.map(x=>{const t=(x.match(/>([^<]*)</)||[,""])[1].trim(),e=t.split(" ")[0],n=(t.match(/ (\d+)$/)||[])[1];return `<span class="stat" title="${t}">${e}${n?`<small>${n}</small>`:""}</span>`}).join("");
     el.classList.toggle("dead",s.hp<=0); el.classList.toggle("active",s.id===sn.active&&s.hp>0) });
   paintOrder(sn.rows) }
 /* The HP bar and number move to their new value instead of jumping. A hit: the bar drops fast and a pale trail drains
    after it. A heal: the trail jumps ahead in green and the bar fills up to it. The number counts as the bar moves. */
 function hpTo(el,hp,max,f){
   const barBox=el.querySelector(".bar"), bar=barBox.querySelector("i"); let tr=barBox.querySelector("b"); if(!tr){tr=document.createElement("b");barBox.prepend(tr)}
-  const was=el._hp==null?hp:el._hp; el._hp=hp; bar.className=f<.35?"low":"";
+  const was=el._hp==null?hp:el._hp; el._hp=hp; bar.className=f<.35?"low":""; el.classList.toggle("lowhp",f<.35);
   if(hp<was){tr.style.transition="none";tr.style.background="#ffffff";tr.style.width=was/max*100+"%";void tr.offsetWidth;
     bar.style.transition="width .3s ease-out";bar.style.width=f*100+"%";tr.style.transition="width .8s ease-in-out .35s";tr.style.width=f*100+"%"}
   else if(hp>was){tr.style.transition="none";tr.style.background="var(--rd)";tr.style.width=f*100+"%";

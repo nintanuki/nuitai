@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Ask Sarjana · Nuitai</title>
+<link rel="stylesheet" href="site.css?v=044ee9a1">
+<script>(function(){var t=null;try{t=localStorage.getItem("nuitai-site-theme")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia"})()</script>
+<style>
+/* Ask Sarjana (Frankie, 10/15): a conversation with the scholar. His words in Wai's blue, the visitor's in a warm sand. */
+.ask-head { display: flex; align-items: center; gap: 1rem; margin: 0 0 1rem; }
+.ask-head img { width: 96px; height: 96px; object-fit: cover; border-radius: 50%; border: 3px solid var(--line); flex: none; }
+.ask-head p { margin: .2rem 0 0; color: var(--muted); }
+.talk { display: flex; flex-direction: column; gap: .8rem; margin: 0 0 1rem; }
+.say { --h: 205; max-width: 85%; padding: .7rem 1rem; border-radius: .9rem; background: var(--card);
+  border: 1px solid var(--line); border-left: 5px solid var(--c); }
+.say p { margin: 0 0 .5rem; } .say p:last-of-type { margin: 0; }
+.say.you { --h: 32; align-self: flex-end; border-left: 1px solid var(--line); border-right: 5px solid var(--c); }
+.say .who { font-family: var(--serif); font-weight: 700; color: var(--c); font-size: .95rem; margin: 0 0 .2rem; }
+.say.wait { color: var(--muted); font-style: italic; }
+.say.oops { --h: 5; }
+.say .read { margin: .6rem 0 0; font-size: .9rem; color: var(--muted); }
+.say .read a { color: var(--c); margin-right: .7rem; }
+.starts[hidden] { display: none; }
+.starts { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; }
+.starts button, .ask button { font: inherit; cursor: pointer; border-radius: 999px; padding: .35rem .9rem;
+  background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+.starts button:hover { border-color: var(--muted); }
+.ask { display: flex; gap: .5rem; }
+.ask textarea { flex: 1; font: inherit; padding: .6rem .8rem; border-radius: .8rem; resize: vertical; min-height: 2.8rem;
+  background: var(--card); color: var(--ink); border: 1px solid var(--line); }
+.ask button { --h: 205; align-self: flex-end; background: var(--c); color: var(--bg); border-color: var(--c); font-weight: 700; }
+.ask button:disabled { opacity: .5; cursor: default; }
+@media (max-width: 520px) { .say { max-width: 100%; } .ask-head img { width: 72px; height: 72px; } }
+</style>
+</head>
+<body>
+<button class="theme-btn" id="theme-btn" type="button" aria-label="Change the colors"></button>
+<script>(function(){var r=document.documentElement,b=document.getElementById("theme-btn"),
+order=["sepia","dark","light"],names={dark:"Dark",light:"Light",sepia:"Sepia"};
+function label(){b.textContent="Theme: "+names[r.dataset.theme]}
+b.addEventListener("click",function(){var t=order[(order.indexOf(r.dataset.theme)+1)%3];r.dataset.theme=t;
+try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();</script>
+<main class="wrap">
+  <p class="crumb"><a href="index.html">&larr; Nuitai</a></p>
+  <div class="ask-head">
+    <img src="art/portraits/sarjana-portrait-a.png" alt="Sarjana, a young scholar in spectacles">
+    <div>
+      <h1 class="title" style="margin:0">Ask Sarjana</h1>
+      <p>A scholar of the Archaeological Society who has read everything on the wiki, and nothing more. No spoilers.</p>
+    </div>
+  </div>
+
+  <div class="talk" id="talk" aria-live="polite">
+    <div class="say hue"><p class="who">Sarjana</p><p>Oh! A visitor. I'm Sarjana, of the Archaeological Society. Ask me about Nuitai: its islands, its peoples, its gods, its ruins. Especially the ruins. If the records don't say, I'll tell you so.</p></div>
+  </div>
+
+  <div class="starts" id="starts">
+    <button type="button">Who were the Sky People?</button>
+    <button type="button">What is Wai?</button>
+    <button type="button">Tell me about Kota Emas.</button>
+  </div>
+
+  <form class="ask" id="ask">
+    <textarea id="q" rows="2" maxlength="1000" placeholder="Ask about Nuitai" aria-label="Your question"></textarea>
+    <button type="submit" id="send" class="hue">Ask</button>
+  </form>
+
+  <footer class="small">Sarjana's answers are written by Claude, an AI, from the wiki's articles, and can be wrong. The wiki is the record. Illustrations are AI placeholder concept art and will be replaced. Every fact in the wiki is the author's; Claude assembles the articles from them. The game code was written with Claude. <a href="credits.html">Credits and legal</a>. Built 2026-10-15.</footer>
+</main>
+<script>
+(function () {
+  // Where Sarjana's server is. On the repo's preview server, the one running on this computer.
+  var local = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+  var SAGE = local ? "http://localhost:8787/ask" : "";
+  var talk = document.getElementById("talk"), form = document.getElementById("ask"),
+      q = document.getElementById("q"), send = document.getElementById("send"), history = [];
+
+  function bubble(cls, who, text) {
+    var d = document.createElement("div");
+    d.className = "say hue " + cls;
+    var w = document.createElement("p"); w.className = "who"; w.textContent = who; d.appendChild(w);
+    text.split(/\n\s*\n/).forEach(function (para) {
+      var p = document.createElement("p"); p.textContent = para.trim(); d.appendChild(p);
+    });
+    talk.appendChild(d);
+    d.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    return d;
+  }
+
+  function sources(d, list) {
+    if (!list || !list.length) return;
+    var r = document.createElement("p"); r.className = "read"; r.appendChild(document.createTextNode("Read more: "));
+    list.forEach(function (s) {
+      var a = document.createElement("a");
+      a.href = "wiki.html#/" + s.id.split("/").map(encodeURIComponent).join("/");
+      a.textContent = s.title; r.appendChild(a);
+    });
+    d.appendChild(r);
+  }
+
+  function ask(text) {
+    text = text.trim();
+    if (!text || send.disabled) return;
+    document.getElementById("starts").hidden = true;
+    bubble("you", "You", text);
+    history.push({ role: "user", content: text });
+    q.value = ""; send.disabled = true;
+    var wait = bubble("wait", "Sarjana", "Sarjana leafs through his notes...");
+    fetch(SAGE, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ messages: history }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (data) {
+        wait.remove();
+        if (data.answer) {
+          history.push({ role: "assistant", content: data.answer });
+          sources(bubble("", "Sarjana", data.answer), data.sources);
+        } else {
+          history.pop();
+          bubble("oops", "Sarjana", data.error || "Sarjana has stepped out of the reading room. Try again in a little while.");
+        }
+      })
+      .catch(function () {
+        wait.remove(); history.pop();
+        bubble("oops", "Sarjana", "Sarjana has stepped out of the reading room. Try again in a little while.");
+      })
+      .then(function () { send.disabled = false; q.focus(); });
+  }
+
+  if (!SAGE) {
+    send.disabled = true; q.disabled = true;
+    document.getElementById("starts").hidden = true;
+    bubble("wait", "Sarjana", "Sarjana hasn't opened the reading room yet. Come back soon.");
+    return;
+  }
+  form.addEventListener("submit", function (e) { e.preventDefault(); ask(q.value); });
+  q.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(q.value); } });
+  document.querySelectorAll("#starts button").forEach(function (b) { b.addEventListener("click", function () { ask(b.textContent); }); });
+})();
+</script>
+</body>
+</html>
