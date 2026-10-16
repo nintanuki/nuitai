@@ -23,16 +23,6 @@ body.shelled > .content { flex: 1; min-width: 0; }
 /* In sepia the name is ocean blue (Frankie, 10/11). */
 :root[data-theme="sepia"] .shell-brand { color: #1f5f8b; }
 .shell-tag { margin: 8px 8px 16px; font-size: 14px; color: var(--muted); line-height: 1.4; }
-/* A word with its definition on hover, or on tap on a phone. */
-.def { position: relative; border-bottom: 1px dotted var(--muted); cursor: help; }
-.def::after {
-  content: attr(data-def); position: absolute; left: 0; top: calc(100% + 6px); width: 240px; padding: 9px 12px;
-  background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
-  box-shadow: 0 4px 14px rgb(0 0 0 / .15); font-size: 14px; line-height: 1.4; text-align: left;
-  opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5;
-}
-.def:hover::after, .def:focus::after { opacity: 1; }
-.def:focus { outline: none; }
 
 /* The doors as a menu: the open one shows its sub-pages, the one you are on is in its colour. */
 .shell-menu { flex: 1; display: flex; flex-direction: column; gap: 3px; }
@@ -54,6 +44,10 @@ body.shelled > .content { flex: 1; min-width: 0; }
 .shell-item li a:hover { background: var(--cb); }
 .shell-item li a.on { background: var(--cb); color: var(--c); font-weight: 600; }
 .shell-item li a .n { margin-left: auto; font-size: 12px; color: var(--muted); font-weight: 400; }
+/* Ask Sarjana sits at the bottom, with his portrait (Frankie, 10/16). */
+.shell-ask { margin-top: auto; }
+.shell-ask > a { padding: 6px 10px; }
+.shell-face { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c); flex: none; background: var(--card); }
 /* On the wiki, its own list of articles sits in the Wiki door, drawn by the wiki. */
 .shell-item .side {
   display: none; position: static; width: auto; height: auto; transform: none; padding: 2px 0 8px 9px;
@@ -65,9 +59,10 @@ body.shelled > .content { flex: 1; min-width: 0; }
 /* The foot: the theme and sound buttons, the credits link. */
 .shell-foot {
   margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);
-  display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; font-size: 13px; color: var(--muted);
 }
 .shell-foot a { color: var(--muted); }
+.shell-credits { width: 100%; text-align: center; margin-top: 2px; }
 .shell-foot a.on { color: var(--ink); font-weight: 600; }
 .theme-btn, .sound-btn {
   font: inherit; font-size: 13px; padding: 4px 11px; border-radius: 99px; cursor: pointer;
