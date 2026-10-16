@@ -94,7 +94,8 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
     var r = document.createElement("p"); r.className = "read"; r.appendChild(document.createTextNode("Read more: "));
     list.forEach(function (s) {
       var a = document.createElement("a");
-      a.href = "wiki.html#/" + s.id.split("/").map(encodeURIComponent).join("/");
+      a.href = s.id.indexOf("page/") === 0 ? s.id.slice(5) + ".html"
+        : "wiki.html#/" + s.id.split("/").map(encodeURIComponent).join("/");
       a.textContent = s.title; r.appendChild(a);
     });
     d.appendChild(r);
