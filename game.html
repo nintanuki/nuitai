@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<meta name="description" content="The Nuitai game: the battle test, the story test and the tabletop game.">
+<meta property="og:site_name" content="Nuitai">
+<meta property="og:title" content="Game · Nuitai">
+<meta property="og:description" content="The Nuitai game: the battle test, the story test and the tabletop game.">
+<meta property="og:url" content="https://nintanuki.github.io/nuitai/game.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nintanuki.github.io/nuitai/art/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Game · Nuitai</title>
+<link rel="stylesheet" href="site.css?v=761c944a">
+<script>(function(){var t=null;try{t=localStorage.getItem("nuitai-site-theme")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia"})()</script>
+</head>
+<body>
+<button class="theme-btn" id="theme-btn" type="button" aria-label="Change the colors"></button>
+<script>(function(){var r=document.documentElement,b=document.getElementById("theme-btn"),
+order=["sepia","dark","light"],names={dark:"Dark",light:"Light",sepia:"Sepia"};
+function label(){b.textContent="Theme: "+names[r.dataset.theme]}
+b.addEventListener("click",function(){var t=order[(order.indexOf(r.dataset.theme)+1)%3];r.dataset.theme=t;
+try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();</script>
+<main class="wrap">
+  <p class="crumb"><a href="index.html">&larr; Nuitai</a></p>
+  <h1 class="title">Game</h1>
+  <p>Nuitai is being built into a turn-based RPG in the style of the Super Nintendo classics. These are the parts that can be played or read now.</p>
+
+  <nav class="doors" aria-label="The game">
+    <a class="door hue" style="--h:350" href="play.html"><b>Battle <span class="em" aria-hidden="true">⚔️</span></b><span>The battle test. Fifteen characters, turn-based fights, in the browser.</span></a>
+    <a class="door hue" style="--h:45" href="story.html"><b>Story <span class="em" aria-hidden="true">📖</span></b><span>One scene: portraits, a choice, a fight and two endings.</span></a>
+    <a class="door hue" style="--h:220" href="tabletop.html"><b>Tabletop <span class="em" aria-hidden="true">🎲</span></b><span>The tabletop roleplaying game, with its own rules. Coming: the manual will live here.</span></a>
+  </nav>
+
+  <footer class="small"><a href="credits.html">Credits and legal</a>. Built 2026-10-16.</footer>
+</main>
+</body>
+</html>
