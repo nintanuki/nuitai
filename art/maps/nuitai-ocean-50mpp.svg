@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1274" height="962" viewBox="0 0 1274 962" role="img" aria-label="Nuitai. The ocean, at 50 miles to the pixel. Green is land, and the blue is how near the maelstrom you are.">
 <title>Nuitai</title>
-<desc>Generated 2026-10-09 by tools/mapgen/mapgen.py from lore/register/places.md and lore/article/sailing.md. The water is canon, the islands are not. Output, never canon.</desc>
+<desc>Generated 2026-10-16 by tools/mapgen/mapgen.py from lore/register/places.md and lore/article/sailing.md. The water is canon, the islands are not. Output, never canon.</desc>
 <style>
   :root {
     --ink: #15181C; --ink-soft: #596069; --ink-faint: #868E97;
@@ -2156,5 +2156,5 @@
 <text class="note" x="878" y="802">The regions take 161.3° of the ring. The other 198.7° is</text>
 <text class="note" x="878" y="820">open ocean, and everything inside 2,500 miles is</text>
 <text class="note" x="878" y="838">empty on purpose.</text>
-<text class="faint" x="26" y="944">Generated 2026-10-09 by tools/mapgen/mapgen.py from lore/register/places.md and lore/article/sailing.md. The water is canon, the islands are not. Output, never canon.</text>
+<text class="faint" x="26" y="944">Generated 2026-10-16 by tools/mapgen/mapgen.py from lore/register/places.md and lore/article/sailing.md. The water is canon, the islands are not. Output, never canon.</text>
 </svg>
