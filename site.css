@@ -68,6 +68,9 @@ body { position: relative; z-index: 0; }
   background: var(--panel); font-family: var(--serif); font-size: 1.1rem; line-height: 1.6;
 }
 .pitch p { margin: 0; }
+/* Today on Nuitai: where Pōhaku Nui is (build.py, today_line). Each region's name in its own colour. */
+.today { margin: -1rem 0 2rem; line-height: 1.6; }
+.today a.hue { color: var(--c); font-weight: 600; }
 
 .doors {
   display: grid; gap: .9rem; margin: 0 0 2rem;
