@@ -73,7 +73,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 (function () {
   // Where Sarjana's server is. On the repo's preview server, the one running on this computer.
   var local = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-  var SAGE = local ? "http://localhost:8787/ask" : "";
+  var SAGE = local ? "http://localhost:8787/ask" : "https://nuitai-sage.nintanuki.workers.dev/ask";
   var talk = document.getElementById("talk"), form = document.getElementById("ask"),
       q = document.getElementById("q"), send = document.getElementById("send"), history = [];
 
