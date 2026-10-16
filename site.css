@@ -34,14 +34,8 @@ body {
   font-family: var(--sans); font-size: 17px; line-height: 1.55;
 }
 a { color: inherit; }
-.wrap { max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
-
-.hero { text-align: center; padding: 2rem 0 1rem; }
-.hero h1 {
-  font-family: var(--serif); font-size: clamp(3rem, 10vw, 5rem); line-height: 1;
-  margin: 0; letter-spacing: .02em;
-}
-.hero .tag { font-size: 1.2rem; margin: .75rem 0 0; }
+/* The column beside the shell (shell.css): as wide as the page wants, centred in what is left. */
+main.wrap { flex: 1 1 auto; min-width: 0; width: 100%; max-width: 56rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
 /* The front page's sea chart, drawn by drawings.py, sits behind everything in the border color. */
 .chart { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; color: var(--line); }
 body { position: relative; z-index: 0; }
@@ -49,26 +43,14 @@ body { position: relative; z-index: 0; }
 .lei { line-height: 0; }
 .lei svg { display: block; }
 .lei.bottom svg { transform: scaleY(-1); }
-.hero h1 .nautilus { height: .78em; width: auto; vertical-align: -.04em; margin-right: .22em; }
-/* A word with its definition on hover, or on tap on a phone. */
-.def { position: relative; border-bottom: 1px dotted var(--muted); cursor: help; }
-.def::after {
-  content: attr(data-def); position: absolute; left: 50%; top: calc(100% + .5rem);
-  transform: translateX(-50%); width: min(18rem, 80vw); padding: .6rem .8rem;
-  background: var(--card); color: var(--ink); border: 1px solid var(--line); border-radius: 8px;
-  box-shadow: 0 4px 14px rgb(0 0 0 / .15); font-size: .95rem; line-height: 1.4; text-align: left;
-  opacity: 0; pointer-events: none; transition: opacity .15s; z-index: 5;
-}
-.def:hover::after, .def:focus::after { opacity: 1; }
-.def:focus { outline: none; }
 
 .pitch {
   margin: 1.5rem 0 2rem; padding: 1rem 1.25rem; border-left: 4px solid var(--line);
   background: var(--panel); font-family: var(--serif); font-size: 1.1rem; line-height: 1.6;
 }
 .pitch p { margin: 0; }
-/* Today on Nuitai: where Pōhaku Nui is (build.py, today_line). Each region's name in its own colour. */
-.today { margin: -.5rem 0 1.5rem; line-height: 1.6; text-align: center; }
+/* Today on Nuitai: where Pōhaku Nui is (build.py, today_line), under the map. Each region's name in its own colour. */
+.today { margin: .7rem 0 0; line-height: 1.6; text-align: center; }
 .today a.hue { color: var(--c); font-weight: 600; }
 
 .doors {
@@ -84,14 +66,16 @@ body { position: relative; z-index: 0; }
 .door b { display: block; font-family: var(--serif); font-size: 1.4rem; color: var(--c); }
 .door span { display: block; color: var(--muted); font-size: .95rem; margin-top: .2rem; }
 
-.map-link { display: block; margin: 0 auto 2rem; max-width: 34rem; }
+/* The front page: the map is the home view, as big as the screen allows (Frankie, 10/16), with the names over it. */
+main.wrap.home { max-width: none; padding: 1.25rem 2rem 1.5rem; }
+.map-link { display: block; margin: 0 auto; width: min(100%, calc(100vh - 6.5rem)); }
 .map-link img { width: 100%; height: auto; display: block; border-radius: .8rem; border: 1px solid var(--line); }
 /* The names over the painted map. The sea is dark in both themes, so the labels are always
    light on dark, edged in the region's wiki colour. */
 .map-wrap { position: relative; }
 .map-link .place {
   position: absolute; transform: translate(-50%, -50%); white-space: nowrap;
-  font: 600 clamp(.6rem, 2.1vw, .85rem)/1.2 var(--sans); color: #fff; text-decoration: none;
+  font: 600 clamp(.65rem, 1vw, 1rem)/1.2 var(--sans); color: #fff; text-decoration: none;
   padding: .15em .55em; border-radius: 99px; background: rgb(10 20 40 / .72);
   border: 2px solid rgb(255 255 255 / .55); box-shadow: 0 1px 4px rgb(0 0 0 / .5);
 }
@@ -102,10 +86,11 @@ body { position: relative; z-index: 0; }
 .map-wrap:has(.sky:hover, .sky:focus-visible) .sky-layer { opacity: 1; }
 .map-link figcaption { text-align: center; margin-top: .5rem; color: var(--muted); }
 .map-link figcaption a { color: inherit; }
-
-.crumb { margin: 0 0 1rem; }
-.crumb a { color: var(--muted); text-decoration: none; }
-.crumb a:hover { color: var(--ink); }
+main.wrap.home footer.small { text-align: center; margin-top: 1.2rem; padding-top: .6rem; }
+@media (max-width: 860px) {
+  main.wrap.home { padding: 1rem; }
+  .map-link { width: 100%; }
+}
 h1.title { font-family: var(--serif); font-size: 2.4rem; margin: 0 0 .5rem; }
 figure { margin: 2rem 0; }
 figure img { width: 100%; height: auto; display: block; border-radius: .8rem; border: 1px solid var(--line); background: #fff; }
@@ -182,23 +167,7 @@ footer.small a { color: var(--muted); }
 :root[data-theme="sepia"] .pitch { border-left-color: #a8875a; }
 :root[data-theme="sepia"] .map-link img, :root[data-theme="sepia"] .grid.wide .tile img { filter: sepia(.35); }
 
-/* The theme button, top right on every page the site writes. */
-.theme-btn {
-  position: fixed; top: .75rem; right: .75rem; z-index: 5;
-  font: inherit; font-size: .85rem; padding: .3rem .8rem; border-radius: 99px; cursor: pointer;
-  background: var(--card); color: var(--ink); border: 1px solid var(--line);
-}
-.theme-btn:hover { background: var(--panel); }
-/* In sepia the name is ocean blue (Frankie, 10/11). */
-:root[data-theme="sepia"] .hero h1 { color: #1f5f8b; }
 .door b .em { display: inline; font-size: 1em; margin: 0; color: inherit; }
-/* The sound button on the front page and the credits page, top left, the same look as the theme button. */
-.sound-btn {
-  position: fixed; top: .75rem; left: .75rem; z-index: 5;
-  font: inherit; font-size: .85rem; padding: .3rem .8rem; border-radius: 99px; cursor: pointer;
-  background: var(--card); color: var(--ink); border: 1px solid var(--line);
-}
-.sound-btn:hover { background: var(--panel); }
 
 /* Behind the scenes: the spoiler warning at the door, then everything. */
 .gate {
