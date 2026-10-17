@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1274" height="962" viewBox="0 0 1274 962" role="img" aria-label="Nuitai. The ocean, at 50 miles to the pixel. Green is land, and the blue is how near the maelstrom you are.">
+<svg xmlns="http://www.w3.org/2000/svg" width="1274" height="962" viewBox="0 0 1274 962" role="img" aria-label="Nuitai. The ocean, at 50 miles to the pixel. Green is land, and the blue is how near the whirlpool you are.">
 <title>Nuitai</title>
 <desc>Generated 2026-10-16 by tools/mapgen/mapgen.py from lore/register/places.md and lore/article/sailing.md. The water is canon, the islands are not. Output, never canon.</desc>
 <style>
@@ -35,7 +35,7 @@
 </style>
 <rect width="100%" height="100%" fill="var(--page)"/>
 <text class="ttl" x="26" y="54">Nuitai</text>
-<text class="sub" x="26" y="79">The ocean, at 50 miles to the pixel. Green is land, and the blue is how near the maelstrom you are.</text>
+<text class="sub" x="26" y="79">The ocean, at 50 miles to the pixel. Green is land, and the blue is how near the whirlpool you are.</text>
 <rect class="px" x="26" y="104" width="800" height="800" fill="var(--beyond)"/>
 <g class="px light-only">
 <rect x="386" y="104" width="80" height="4" fill="#BFE3F2"/>
