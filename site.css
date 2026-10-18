@@ -133,7 +133,7 @@ section .note { color: var(--muted); margin: 0 0 1rem; }
 .tile figcaption span { display: block; color: var(--muted); margin-top: .2rem; }
 .tile figcaption .old { font-style: italic; }
 .tile .from { display: block; margin-top: .3rem; color: var(--c); font-size: .85rem; text-decoration: none; }
-.tile .from:hover { text-decoration: underline; }
+.tile .from:hover { font-weight: 700; }
 .faces { display: flex; flex-wrap: wrap; gap: .6rem; }
 .face {
   display: block; width: 4.5rem; height: 4.5rem; border-radius: .6rem; overflow: hidden;
@@ -198,6 +198,9 @@ details.src[open] { padding-bottom: .8rem; }
 ul.qs li { margin: .3rem 0; }
 dl.pairs .meta { display: block; color: var(--muted); font-size: .88rem; margin-top: .15rem; }
 .block p a, .block li a { color: var(--c); }
+/* Links show by colour and weight, never an underline (Frankie, 10/17). */
+.block a, .gate a { text-decoration: none; font-weight: 700; }
+.block a:hover, .gate a:hover { background: var(--cb); border-radius: 3px; }
 
 /* The Lexicon (Frankie, 10/16): its sections hold prose, lists and tables from lore/register/lexicon/. */
 .lex h3 { font-size: 1.1rem; margin: 1.4rem 0 .4rem; color: var(--c); }
