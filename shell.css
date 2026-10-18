@@ -69,6 +69,10 @@ body.shelled > .content { flex: 1; min-width: 0; }
   background: var(--card); color: var(--ink); border: 1px solid var(--line);
 }
 .theme-btn:hover, .art-btn:hover, .sound-btn:hover { background: var(--bg); }
+/* The spoiler switch (D-531, D-535), red while spoilers are shown. */
+.spoiler-btn.on { border-color: hsl(0 70% 50%); color: hsl(0 70% 45%); background: hsl(0 80% 50% / .1); }
+:root[data-theme="dark"] .spoiler-btn.on { color: hsl(0 80% 72%); }
+.lex-switch { margin: -4px 0 12px; }
 
 /* The AI art switch (Frankie, 10/16): with it off, everything marked "ai" goes, on every page and
    in the wiki: the pictures made with Gemini or ChatGPT, the portraits and faces cut from them,

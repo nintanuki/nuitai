@@ -807,7 +807,7 @@ function phys(a,t,power,el,statuses,noGuard,acc){
   if(real.status.abreak)m*=COMBO.red_hot_poker.break_multiplier; if(el==="Ahi"&&real.status.rain)m*=.5;
   /* The were-tiger hits with Magic in place of Strength: a mage who becomes a juggernaut (Frankie, 10/13 night). */
   const d=jit(power*m*up(a.tiger&&a.berserk>0?a.st.mag:a.st.str)*down(real.st.vit)*(a.berserk>0?(a.tiger?C.tigerPow:C.berserkPow):1)*(a.status.rally?MOVE.war_cry.power_multiplier:1)*(a.status.weak?MOVE.lure.weaken:1)); const woke=real.status.sleep; if(woke)delete real.status.sleep;
-  say(`${real.name} ${blk?"blocks and ":""}takes ${d}${g?" (guarded, x"+m+")":m>1?" (weak!)":m<1&&!blk?" (resisted)":""}.${woke?" It wakes up.":""}`,{a:a.id,t:real.id,num:-d,fx:"hit",snd:HOW||"punch"}); deal(real,d); scald(real,el,d); if(d>0)grow(real,"vit");
+  say(`${real.name} ${blk?"blocks and ":""}takes ${d}${g?" (guarded, x"+m+")":m>1?" (weak!)":m<1&&!blk?" (resisted)":""}.${woke?" It wakes up.":""}`,{a:a.id,t:real.id,num:-d,fx:"hit",snd:HOW||"punch",phys:1}); deal(real,d); scald(real,el,d); if(d>0)grow(real,"vit");
   if(blk)warmUp(real,WARM.dodge_gain,"by blocking");
   /* "ignite" is a sure burn, Asap's Brand (D-315); the burn rules of D-312 still apply. */
   (statuses||[]).forEach(s=>s==="ignite"?scald(real,"Ahi",d,1):inflict(real,s));
@@ -1220,7 +1220,10 @@ function act(a,t){ if(S.busy&&!S.chain)return; if(a.pick)return openChain(t); co
   const on=from||t; say(`${u.name} ${a.brew?"throws":"uses"} ${a.n}${on&&on!==u?" on "+on.name:""}.`,{a:u.id,t:on&&on!==u?on.id:null,big:1,nolog:a.n==="Attack"&&STK()?1:0});
   if(S.g&&u.side==="party"){S.g.stats.turns++;if(a.item)S.g.stats.items++}
   HOW=a.brew?"thrown":a.n==="Attack"?attackWay(u):wayOf(a.n+" "+(a.d||"")); warmSpend(u,warmNeed(a,u)); FROM=from; const q0=S.queue.length; try{a.run(u,t)}finally{FROM=null}
-  if(u.side==="party"&&!a.item&&!a.brew&&a.n!=="Attack"&&S.queue.slice(q0).some(e=>e.fx==="heal"||(typeof e.num==="number"&&e.num<0)))grow(u,"mag"); const c=u.used!=null?u.used:a.c;
+  /* A technique's own damage grows by its kind (D-527): a physical hit Strength, magic damage or healing Intelligence,
+     one try at Intelligence for every mana point it cost (D-528); grow() stops after the first rise. */
+  if(u.side==="party"&&!a.item&&!a.brew&&a.n!=="Attack"){const ev=S.queue.slice(q0), hurt=e=>typeof e.num==="number"&&e.num<0&&e.t!==u.id;
+   if(ev.some(e=>hurt(e)&&e.phys))grow(u,"str"); if(ev.some(e=>e.fx==="heal"||(hurt(e)&&!e.phys)))for(let i=Math.max(1,tierOf(u,a));i--;)grow(u,"mag")} const c=u.used!=null?u.used:a.c;
   const f=fatigue(a,(u.used!=null?u.used:0)/attackWait()+extra/attackWait()); delete u.used; spend(u,f!=null?f:c+extra); advance() }
 /* Attack by hand (D-211, D-213, D-214): Attack, then the enemy, then Light, Medium or Strong as fast as the player clicks;
    the rules run at once and the playback catches up. A turn holds 7 points (rules.warmup.strokes.points). The player is
