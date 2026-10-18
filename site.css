@@ -84,6 +84,20 @@ html[data-art="off"] .map-link .map-plain { display: block; }
 }
 .map-link .place.hue { border-color: hsl(var(--h) 75% 66%); }
 .map-link .place:hover, .map-link .place:focus-visible { background: rgb(10 20 40 / .92); outline: none; transform: translate(-50%, -50%) scale(1.08); }
+/* Pōhaku Nui where he stands today (Frankie, 10/18): his picture in a gold ring, with a slow ripple. */
+.map-link .walker {
+  position: absolute; transform: translate(-50%, -50%); width: clamp(36px, 6%, 72px); aspect-ratio: 1;
+  border-radius: 50%; border: 2px solid #f2c94c; box-shadow: 0 0 0 3px rgb(10 20 40 / .65), 0 2px 8px rgb(0 0 0 / .6);
+}
+.map-link .walker[hidden] { display: none; }
+.map-link .walker img { width: 100%; height: 100%; object-fit: cover; border: 0; border-radius: 50%; }
+.map-link .walker::after {
+  content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #f2c94c;
+  animation: walker-ripple 3s ease-out infinite; pointer-events: none;
+}
+.map-link .walker:hover, .map-link .walker:focus-visible { transform: translate(-50%, -50%) scale(1.15); outline: none; }
+@keyframes walker-ripple { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(1.9); } }
+@media (prefers-reduced-motion: reduce) { .map-link .walker::after { animation: none; opacity: 0; } }
 /* The floating continent, over the sea only while its name is pointed at or focused (Frankie, 10/14). */
 .map-link .sky-layer { position: absolute; inset: 0; border-color: transparent; background: none; opacity: 0; transition: opacity .7s ease; pointer-events: none; }
 .map-wrap:has(.sky:hover, .sky:focus-visible) .sky-layer { opacity: 1; }
