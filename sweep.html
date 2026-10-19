@@ -11,17 +11,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<meta name="description" content="A tropical seafaring adventure where movement is magic. A world being built for a turn-based RPG.">
-<meta property="og:site_name" content="Nuitai">
-<meta property="og:title" content="CTB Battle Sweep">
-<meta property="og:description" content="A tropical seafaring adventure where movement is magic. A world being built for a turn-based RPG.">
-<meta property="og:url" content="https://nintanuki.github.io/nuitai/sweep.html">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://nintanuki.github.io/nuitai/art/preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <title>CTB Battle Sweep</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -2205,4 +2194,9 @@ function showLog(c,kind){
 
 /* ---- tooltip ---- */
 const tip=$("#tip");
-function place(x,y){const w
+function place(x,y){const w=tip.offsetWidth,h=tip.offsetHeight;let l=x+14,t=y+14;if(l+w>innerWidth-8)l=x-w-14;if(t+h>innerHeight-8)t=y-h-14;tip.style.left=Math.max(8,l)+"px";tip.style.top=Math.max(8,t)+"px"}
+document.addEventListener("pointerover",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(!t){tip.hidden=true;return}tip.innerHTML=t.dataset.tip;tip.hidden=false;place(e.clientX,e.clientY)});
+document.addEventListener("pointermove",e=>{if(!tip.hidden)place(e.clientX,e.clientY)});
+document.addEventListener("focusin",e=>{const t=e.target.closest&&e.target.closest("[data-tip]");if(!t){tip.hidden=true;return}const r=t.getBoundingClientRect();tip.innerHTML=t.dataset.tip;tip.hidden=false;place(r.right-10,r.bottom-4)});
+document.addEventListener("scroll",()=>{tip.hidden=true},{passive:true});
+</script>

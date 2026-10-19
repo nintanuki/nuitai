@@ -12,17 +12,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<meta name="description" content="Free Battle: pick three fighters and play the battle test in your browser.">
-<meta property="og:site_name" content="Nuitai">
-<meta property="og:title" content="Free Battle · Nuitai">
-<meta property="og:description" content="Free Battle: pick three fighters and play the battle test in your browser.">
-<meta property="og:url" content="https://nintanuki.github.io/nuitai/play.html">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://nintanuki.github.io/nuitai/art/preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
@@ -93,4 +82,13 @@ window.addEventListener("hashchange",function(){mark();body.classList.remove("me
 document.querySelectorAll(".shell-item > a").forEach(function(a){a.addEventListener("click",function(e){var d=a.parentNode;
 if(!d.querySelector("ul, .side"))return;
 if(d.classList.contains("open")){d.classList.remove("open");e.preventDefault()}
-else if(a.classList.contains("on")){d.classList.a
+else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}})})})();</script>
+<button class="menu-tab" id="menu-tab" type="button" aria-controls="shell"></button>
+<div class="content"><iframe class="battle-frame" src="battle.html" title="Free Battle" allow="autoplay; gamepad"></iframe></div>
+<script>(function(){var b=document.getElementById("menu-tab"),k="nuitai-battle-menu";
+function set(h){document.body.classList.toggle("menu-hidden",h);b.textContent=h?"▶ Menu":"◀";
+  b.title=h?"Show the site's menu":"Hide the menu";b.setAttribute("aria-expanded",String(!h));}
+var h=false;try{h=localStorage.getItem(k)==="hidden"}catch(e){}set(h);
+b.addEventListener("click",function(){h=!h;set(h);try{localStorage.setItem(k,h?"hidden":"shown")}catch(e){}});})();</script>
+</body>
+</html>

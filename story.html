@@ -12,17 +12,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<meta name="description" content="The story test: two scenes to pick from, each with a choice, a fight and two endings.">
-<meta property="og:site_name" content="Nuitai">
-<meta property="og:title" content="Nuitai Story Test">
-<meta property="og:description" content="The story test: two scenes to pick from, each with a choice, a fight and two endings.">
-<meta property="og:url" content="https://nintanuki.github.io/nuitai/story.html">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://nintanuki.github.io/nuitai/art/preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -2100,4 +2089,16 @@ function end(msg){
   g("st-card").innerHTML=`<div class="in"><h1>Nuitai</h1><p>${msg}</p><button class="go" id="st-again">Back to the scenes</button></div>`;
   g("st-again").onclick=title; g("st-again").focus();
 }
-function adv
+function advance(){ if(typing){finish();return} if(waiting)next() }
+g("st-box").addEventListener("click",advance);
+/* The story screens sit outside the battle page's #app, so their own clicks and keys start the sea and the music. */
+const sea=()=>{if(typeof SND!=="undefined"&&!g("st").hidden)SND.waves(true)};
+g("st").addEventListener("click",sea); addEventListener("keydown",sea);
+g("st-skip").addEventListener("click",e=>{e.stopPropagation();if(g("st-choices").children.length)return;clearInterval(typing);typing=null;next(true)});
+addEventListener("keydown",e=>{if(g("st").hidden||!g("st-card").hidden)return;if((e.key===" "||e.key==="Enter")&&e.target.tagName!=="BUTTON"){e.preventDefault();advance()}});
+document.title="Nuitai Story Test";
+title();
+})();
+</script>
+</body>
+</html>

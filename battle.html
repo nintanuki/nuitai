@@ -12,17 +12,6 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
-<meta name="description" content="A tropical seafaring adventure where movement is magic. A world being built for a turn-based RPG.">
-<meta property="og:site_name" content="Nuitai">
-<meta property="og:title" content="Nuitai: Free Battle">
-<meta property="og:description" content="A tropical seafaring adventure where movement is magic. A world being built for a turn-based RPG.">
-<meta property="og:url" content="https://nintanuki.github.io/nuitai/battle.html">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://nintanuki.github.io/nuitai/art/preview.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1940,4 +1929,17 @@ function hover(e){ if(S.screen!=="battle"||(S.busy&&!S.chain))return;
   const tb=e.target.closest&&e.target.closest("button[data-t]");
   document.querySelectorAll(".unit.aim").forEach(x=>x.classList.remove("aim"));
   if(tb){card(+tb.dataset.t).classList.add("aim");return}
-  const b=e.target.closest&&e.target.closest("button[data-
+  const b=e.target.closest&&e.target.closest("button[data-a]"); if(!b||S.pending)return;
+  const a=ACTIONS[+b.dataset.a]; if(S.preview!==a)preview(a) }
+app.addEventListener("mouseover",hover); app.addEventListener("focusin",hover);
+app.addEventListener("mouseleave",()=>{if(S.screen==="battle"&&!S.busy&&!S.pending&&S.preview)preview(null)});
+/* The story test (story.html, built from this page by game/shared/build.py) runs its fights here:
+   it names the party and the enemies, and done() hears "win" or "lose" when the player presses Continue.
+   The first three named fight; anyone after them waits on the bench, to swap in. */
+function storyFight(f,done){ document.documentElement.classList.add("embedded");
+  S.embed=Object.assign({},f,{done}); S.picks=f.party.filter(n=>ROSTER[n]); S.token=(S.token||0)+1; start() }
+setup();
+</script>
+
+</body>
+</html>
