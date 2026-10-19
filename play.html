@@ -25,7 +25,17 @@
 html, body { height: 100%; }
 body.shelled > .content { align-self: stretch; height: 100vh; height: 100dvh; }
 .battle-frame { display: block; width: 100%; height: 100%; border: 0; }
+/* The menu can be hidden for more room, and stays hidden next time (Frankie, 10/19). A tab on its edge. */
+.menu-tab {
+  position: fixed; top: 14px; left: 290px; z-index: 30; font: 600 14px/1 system-ui, sans-serif; cursor: pointer;
+  padding: 8px 9px; border: 1px solid var(--line); border-left: 0; border-radius: 0 8px 8px 0;
+  background: var(--panel); color: var(--ink); box-shadow: 2px 2px 6px rgb(0 0 0 / .15);
+}
+.menu-tab:hover { background: var(--card); }
+body.menu-hidden .shell { display: none; }
+body.menu-hidden .menu-tab { left: 0; }
 @media (max-width: 860px) {
+  .menu-tab { display: none; }
   .shell, .shell-bar, .shell-shade { display: none !important; }
   body.shelled > .content { margin-top: 0 !important; }
 }
@@ -73,6 +83,12 @@ document.querySelectorAll(".shell-item > a").forEach(function(a){a.addEventListe
 if(!d.querySelector("ul, .side"))return;
 if(d.classList.contains("open")){d.classList.remove("open");e.preventDefault()}
 else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}})})})();</script>
+<button class="menu-tab" id="menu-tab" type="button" aria-controls="shell"></button>
 <div class="content"><iframe class="battle-frame" src="battle.html" title="Free Battle" allow="autoplay; gamepad"></iframe></div>
+<script>(function(){var b=document.getElementById("menu-tab"),k="nuitai-battle-menu";
+function set(h){document.body.classList.toggle("menu-hidden",h);b.textContent=h?"▶ Menu":"◀";
+  b.title=h?"Show the site's menu":"Hide the menu";b.setAttribute("aria-expanded",String(!h));}
+var h=false;try{h=localStorage.getItem(k)==="hidden"}catch(e){}set(h);
+b.addEventListener("click",function(){h=!h;set(h);try{localStorage.setItem(k,h?"hidden":"shown")}catch(e){}});})();</script>
 </body>
 </html>
