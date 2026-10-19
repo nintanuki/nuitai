@@ -150,24 +150,4 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
           sources(bubble("", "Sarjana", data.answer), data.sources);
         } else {
           history.pop();
-          bubble("oops", "Sarjana", data.error || "Sarjana has stepped out of the reading room. Try again in a little while.");
-        }
-      })
-      .catch(function () {
-        wait.remove(); history.pop();
-        bubble("oops", "Sarjana", "Sarjana has stepped out of the reading room. Try again in a little while.");
-      })
-      .then(function () { send.disabled = false; q.focus(); });
-  }
-
-  if (!SAGE) {
-    send.disabled = true; q.disabled = true;
-    bubble("wait", "Sarjana", "Sarjana hasn't opened the reading room yet. Come back soon.");
-    return;
-  }
-  form.addEventListener("submit", function (e) { e.preventDefault(); ask(q.value); });
-  q.addEventListener("keydown", function (e) { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); ask(q.value); } });
-})();
-</script>
-</body>
-</html>
+          bubble("oops", "Sarjana", data.error || "Sarjana has stepped out 
