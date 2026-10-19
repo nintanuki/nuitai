@@ -28,7 +28,7 @@
   --panel:#1c4a78; --panel2:#081a3a; --ink:#f2f6fa; --muted:#a9c3dc; --line:#4f82b0; --accent:#7fd8f2; --accent-ink:#06222a; --glow:#7fd8f255;
   --hp:#ef6a52; --hp-low:#ef6a52; --rd:#46c277; --sp:#f2c230; --foe:#3a2c40; --pal:#2a64a0;
   /* The stats' colours, their elements' (D-503), darker or lighter where the element colour is hard to read as text. */
-  --ahi:#e04a3a; --ahi-ink:#1c0503; --lau:#7bc043; --lau-ink:#04180a; --wai:#1fafc7; --wai-ink:#03121f;
+  --afi:#e04a3a; --afi-ink:#1c0503; --lau:#7bc043; --lau-ink:#04180a; --wai:#1fafc7; --wai-ink:#03121f;
   --la:#f2c230; --la-ink:#2a2000; --ata:#8e44ad; --ata-ink:#ffffff; --mana:#3d6be0; --mana-ink:#ffffff;
   --s-vit:#8fd15a; --s-str:#f06e5f; --s-end:#3cc8dc; --s-per:#f2c230; --s-luck:#c08ae6; --s-int:#8aa8ff; --s-will:#f17db3; --s-agi:#ffa94d;
   --none:#123660; --none-ink:#e6f1f3; --poison:#8bd450; --poison-ink:#0b1f02; --warm:#5a9cf0; --fatigue:#ffa94d; --gain:#5fd68b; --cost:#ff7a8a;
@@ -59,7 +59,7 @@ button.on{border-color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent)}
 button.go{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);font-weight:700;text-align:center}
 button.small{padding:3px 10px;font-size:.85rem}
 .chip{display:inline-block;border-radius:999px;padding:1px 9px;font-size:.78rem;font-weight:700;white-space:nowrap}
-.Ahi{background:var(--ahi);color:var(--ahi-ink)} .Lau{background:var(--lau);color:var(--lau-ink)}
+.Afi{background:var(--afi);color:var(--afi-ink)} .Lau{background:var(--lau);color:var(--lau-ink)}
 .Wai{background:var(--wai);color:var(--wai-ink)} .La{background:var(--la);color:var(--la-ink)}
 .Ata{background:var(--ata);color:var(--ata-ink)} .Mana{background:var(--mana);color:var(--mana-ink)}
 .elem{font-size:1.15rem;line-height:1}
@@ -510,7 +510,7 @@ function planPow(){const s=STK(); if(!s)return attackPow(); let p=0,n=0,pts=0;
   for(const k of s.auto){const x=s[k]; if(pts+x.points>s.points)break; pts+=x.points; p+=attackPow()*x.power*Math.min(1,x.hit+s.steady*n+(S.active!=null&&byId(S.active)?aimOf(byId(S.active)):0)); n++}
   return p}
 /* Stats, 10/7. Everyone starts at 10 in each. Every element adds +2 to both stats of its triangle
-   (material Ahi, Lau, Wai: Strength and Vitality; spiritual La, Ata, Mana: Magic and Spirit) and +3 to
+   (material Afi, Lau, Wai: Strength and Vitality; spiritual La, Ata, Mana: Magic and Spirit) and +3 to
    the two stats of its job. So every character gets 16 points, shaped by their pair. Monsters use the
    same rule with their one element, and a boss counts its element twice, so it gets 16 like the party. Each point of Strength or Magic over 10 adds 5% to damage. Vitality,
    Spirit and Speed work the other way, shrinking damage taken and waits. All of these numbers are
@@ -554,7 +554,7 @@ const up=v=>(ST0.base+v)/(2*ST0.base), down=v=>(2*ST0.base)/(ST0.base+v);
    on the Bag tab. What exists, the starting stock and the pocket size are in the shared file. The bag and the
    pockets carry over from one fight to the next, and this browser remembers them. */
 const ITEMS=SHARED.items, ITEM=Object.fromEntries(ITEMS.map(i=>[i.id,i])), PACK=SHARED.inventory, SLOTS=PACK.pocket_slots;
-const KIND={heal:"var(--hp)",poison:"var(--poison)",weapon:"var(--ahi)"};
+const KIND={heal:"var(--hp)",poison:"var(--poison)",weapon:"var(--afi)"};
 const kc=k=>KIND[ITEM[k].kind]||"var(--line)";
 const IDOF=Object.fromEntries(SHARED.characters.map(c=>[c.name,c.id])), SPK=PACK.start_pockets||{};
 /* Kiki's crafts (D-224 to D-226). Alchemy, between fights on the Bag tab: two regular items make a better one, for anyone.
@@ -594,7 +594,7 @@ function unpackItem(n,i){const p=INV.pockets[n],k=p[i];if(!k)return;p.splice(i,1
 function statOf(m){const p=m.power,e=m.effect; if(!p)return null;
   if(e==="physical"||e==="hunt")return ["phys",p]; if(e==="magic"||e==="drain")return ["magic",p]; if(e==="cure"||e==="heal")return ["heal",p]; if(!e&&p)return ["phys",p]; return null}
 const statChip=s=>!s?"":s[0]==="heal"?`<span class="stat" style="--k:var(--hp)">💚 heals ${s[1]}</span>`
-  :`<span class="stat" style="--k:var(${s[0]==="phys"?"--ahi":"--mana"})">${s[0]==="phys"?"👊":"✨"} ${s[1]} ${s[0]==="phys"?"physical":"magic"}</span>`;
+  :`<span class="stat" style="--k:var(${s[0]==="phys"?"--afi":"--mana"})">${s[0]==="phys"?"👊":"✨"} ${s[1]} ${s[0]==="phys"?"physical":"magic"}</span>`;
 /* The short form for the mana rows (D-321): the icon and colour say physical, magic or healing. */
 /* In the mana rows (D-321) a button is only its name and element; the numbers move behind the ?. */
 /* The element shows as the button's left edge, split in two for a dual element move (Frankie, 10/15). */
@@ -724,7 +724,7 @@ const calm=()=>true;
 const mult=(a,t)=>!a||!t?1:BEATS[a]===t?SHARED.elements.advantage:BEATS[t]===a?SHARED.elements.disadvantage:1;
 const jit=x=>Math.round(x*(1-RULES.damage_jitter+Math.random()*2*RULES.damage_jitter));
 /* An element shows as its pygame icon. The emoji stays only for an element with no icon yet. */
-const EL=Object.fromEntries(Object.entries({Ahi:"🔥",Wai:"🌊",Lau:"🌺",La:"☀️",Ata:"💀",Mana:"🌀"}).map(([k,v])=>{const src=ART.icons[k.toLowerCase()];return [k,src?`<img class="ico" src="${src}" alt="">`:v]}));
+const EL=Object.fromEntries(Object.entries({Afi:"🔥",Wai:"🌊",Lau:"🌺",La:"☀️",Ata:"💀",Mana:"🌀"}).map(([k,v])=>{const src=ART.icons[k.toLowerCase()];return [k,src?`<img class="ico" src="${src}" alt="">`:v]}));
 const ST={blind:"🕶️ blind",sleep:"💤 asleep",poison:"☠️ poison",zombie:"🧟 zombie",doom:"⏳ doom",slow:"🐌 slow",regen:"🌿 regen",protect:"🛡️ protect",shell:"🔮 shell",rally:"📣 rally",weak:"📉 weakened",seed:"🌱 seeded",burn:"🔥 burn",abreak:"🔨 armor break",mbreak:"🧠 mental break",lightwave:"🌊 Light Wave",rain:"🌧️ Spring Rain",possess:"👻 possessed",sap:"🕯️ sapped"};
 /* Statuses that count down, shown with their number. */
 const COUNTED=["possess","doom","slow","regen","protect","shell","rally","weak","seed","burn"];
@@ -783,7 +783,7 @@ function start(){
    at the start of that turn it all comes back twice over as fire on the enemy he chose, or a random one if it has fallen. */
 const cook=u=>{const g=u.guard,f=byId(g.at),fs=live("foe"),t=f&&f.hp>0&&f.side==="foe"?f:fs[Math.floor(Math.random()*fs.length)];
   if(!g.took||!t){say(`${u.name} lets the lid off, but nothing has built up.`,{a:u.id});return}
-  const m=mult("Ahi",t.element),d=Math.round(g.took*MOVE.pressure_cooker.return_multiplier*m);
+  const m=mult("Afi",t.element),d=Math.round(g.took*MOVE.pressure_cooker.return_multiplier*m);
   say(`${u.name} lets it all out on ${t.name}: ${d}${m>1?" (weak!)":m<1?" (resisted)":""}.`,{a:u.id,t:t.id,num:-d,fx:"hit",snd:"punch"});deal(t,d)};
 function deal(t,amt){ if(t.hp<=0)return; if(amt>0&&t.hp>amt)grow(t,"hp"); if(S.g)S.g.stats[t.side==="foe"?"dealt":"taken"]+=Math.min(t.hp,amt); t.hp=Math.max(0,t.hp-amt);  if(t.hp<=0){if(S.g&&t.side==="foe"){S.g.stats.enemies++;if(t.boss)S.g.stats.bosses++}t.status={};t.guard=null;t.trap=null;t.ward=false;t.safe=false;t.haste=0;t.berserk=0;t.tiger=false;t.warm=0;say(`${t.name} falls.`,{t:t.id})} }
 function heal(t,amt,full){ if(t.hp<=0)return;
@@ -816,18 +816,18 @@ function phys(a,t,power,el,statuses,noGuard,acc){
   if(el==="Ata"&&real.ward){real.ward=false;say(`Shaka's Light blocks the shadow attack on ${real.name}.`,{t:real.id,num:"blocked",fx:"miss"});return 0}
   if(warmOn()&&WARM.evade&&Math.random()>=(acc==null?1:acc)+aimOf(a)-evadeOf(real)){say(`${real.name} dodges.`,{a:a.id,t:real.id,num:"dodged",fx:"miss"});warmUp(real,WARM.dodge_gain,"by dodging");grow(real,"eva");return 0}
   const blk=!!(warmOn()&&WARM.block&&Math.random()<blockOf(real));
-  let m; if(g&&g.guard.kind==="lure"){m=mult(el,real.element);if(real.defend)m*=RULES.defend_multiplier} else if(g){m=RULES.guard_multiplier;if(el==="Ahi")m*=RULES.guard_ahi_multiplier;if(el==="Lau")m*=RULES.guard_lau_multiplier} else {m=mult(el,real.element);if(real.defend)m*=RULES.defend_multiplier}
+  let m; if(g&&g.guard.kind==="lure"){m=mult(el,real.element);if(real.defend)m*=RULES.defend_multiplier} else if(g){m=RULES.guard_multiplier;if(el==="Afi")m*=RULES.guard_afi_multiplier;if(el==="Lau")m*=RULES.guard_lau_multiplier} else {m=mult(el,real.element);if(real.defend)m*=RULES.defend_multiplier}
   if(real.status.protect)m*=C.protect; if(blk)m*=WARM.block.multiplier;
-  if(real.status.abreak)m*=COMBO.red_hot_poker.break_multiplier; if(el==="Ahi"&&real.status.rain)m*=.5;
+  if(real.status.abreak)m*=COMBO.red_hot_poker.break_multiplier; if(el==="Afi"&&real.status.rain)m*=.5;
   /* The were-tiger hits with Magic in place of Strength: a mage who becomes a juggernaut (Frankie, 10/13 night). */
   const d=jit(power*m*up(a.tiger&&a.berserk>0?a.st.mag:a.st.str)*down(real.st.vit)*(a.berserk>0?(a.tiger?C.tigerPow:C.berserkPow):1)*(a.status.rally?MOVE.war_cry.power_multiplier:1)*(a.status.weak?MOVE.lure.weaken:1)); const woke=real.status.sleep; if(woke)delete real.status.sleep;
   say(`${real.name} ${blk?"blocks and ":""}takes ${d}${g?" (guarded, x"+m+")":m>1?" (weak!)":m<1&&!blk?" (resisted)":""}.${woke?" It wakes up.":""}`,{a:a.id,t:real.id,num:-d,fx:"hit",snd:HOW||"punch",phys:1}); if(d>0&&real.guard&&real.guard.kind==="cooker")real.guard.took+=Math.min(real.hp,d); deal(real,d); scald(real,el,d); if(d>0)grow(real,"vit");
   if(d>0&&real.hp>0&&real.status.possess){delete real.status.possess;say(`The blow knocks the spirit out of ${real.name}.`,{t:real.id})}
   if(blk)warmUp(real,WARM.dodge_gain,"by blocking");
   /* "ignite" is a sure burn, Asap's Brand (D-315); the burn rules of D-312 still apply. */
-  (statuses||[]).forEach(s=>s==="ignite"?scald(real,"Ahi",d,1):inflict(real,s));
+  (statuses||[]).forEach(s=>s==="ignite"?scald(real,"Afi",d,1):inflict(real,s));
   if(g&&g.hp>0){
-    if(g.guard.kind==="counter"&&a.hp>0){const c=jit(C.attack*mult("Ahi",a.element)*up(g.st.str)*down(a.st.vit));say(`${g.name} counters with a flaming kick for ${c}.`,{a:g.id,t:a.id,num:-c,fx:"hit",snd:"punch"});deal(a,c)}
+    if(g.guard.kind==="counter"&&a.hp>0){const c=jit(C.attack*mult("Afi",a.element)*up(g.st.str)*down(a.st.vit));say(`${g.name} counters with a flaming kick for ${c}.`,{a:g.id,t:a.id,num:-c,fx:"hit",snd:"punch"});deal(a,c)}
     if(g.guard.kind==="ring"&&a.hp>0){say(`${a.name} gets a face full of ink and venom.`,{a:g.id,t:a.id});
       for(const k of ["blind","poison"]){if((a.immune||[]).includes(k))say(`${a.name} is immune to ${k}.`,{t:a.id,num:"immune",fx:"miss"});else{a.status[k]=true;say(`${a.name} is afflicted with ${k}.`,{t:a.id,num:ST[k],fx:k==="poison"?"status psn":"status"})}}}
     if(g.guard.kind==="trap"){g.guard=null;if(a.hp>0){if((a.immune||[]).includes("blind"))say(`${a.name} is immune to blind.`,{t:a.id,num:"immune",fx:"miss"});else{a.status.blind=true;say(`${g.name} throws grit in ${a.name}'s eyes.`,{a:g.id,t:a.id,num:ST.blind,fx:"status"})}}}
@@ -856,7 +856,7 @@ function magic(a,t,power,el,statuses,noReflect){
   if(el==="Ata"&&t.ward){t.ward=false;say(`Shaka's Light blocks the shadow spell on ${t.name}.`,{t:t.id,num:"blocked",fx:"miss"});return 0}
   if(power){const g=guardFor(t,["sentinel","cooker","counter","spring","provoke","lure","trap","ring"]);if(g)say(`${g.name}'s ${{sentinel:"Sentinel",cooker:"Pressure Cooker",counter:"Counter Guard",spring:"Spring Guard",provoke:"Provoke",lure:"Lure",trap:"Dirty Trick",ring:"Blue Ring"}[g.guard.kind]} can't stop magic.`,{a:g.id,t:t.id})}
   let d=0; if(power){let m=mult(el,t.element)*(t.status.shell?C.shell:1);
-    if(t.status.mbreak)m*=COMBO.red_hot_poker.break_multiplier; if(waveOn(t))m*=el==="Ata"?.25:.5; if(el==="Ahi"&&t.status.rain)m*=.5;
+    if(t.status.mbreak)m*=COMBO.red_hot_poker.break_multiplier; if(waveOn(t))m*=el==="Ata"?.25:.5; if(el==="Afi"&&t.status.rain)m*=.5;
     d=jit(power*m*up(a.st.mag)*down(t.st.spr));
     say(`${t.name} takes ${d}${m>1?" (weak!)":m<1?" (resisted)":""}.`,{a:a.id,t:t.id,num:-d,fx:"hit",snd:"magic"});deal(t,d);scald(t,el,d);if(d>0)grow(t,"spr")}
   (statuses||[]).forEach(s=>inflict(t,s)); return d }
@@ -869,7 +869,7 @@ function burnTick(u){ if(!u.status.burn||u.hp<=0)return; if(!u.defend&&!u.still)
    of the move being used, set by act(); anything else (Attack, monsters, combos) rolls at tier 1. */
 let TIER=null;
 const burnChance=()=>RULES.fire_burn_chance+(RULES.fire_burn_per_tier||0)*(Math.min(7,Math.max(1,TIER||1))-1);
-function scald(t,el,d,ch){ if(el!=="Ahi"||!d||t.hp<=0||t.status.burn||t.element==="Ahi"||(t.elements||[]).includes("Ahi")||(t.immune||[]).includes("burn"))return;
+function scald(t,el,d,ch){ if(el!=="Afi"||!d||t.hp<=0||t.status.burn||t.element==="Afi"||(t.elements||[]).includes("Afi")||(t.immune||[]).includes("burn"))return;
   if(Math.random()<(ch==null?burnChance():ch)){t.status.burn=RULES.fire_burn_turns;say(`${t.name} catches fire.`,{t:t.id,num:ST.burn,fx:"status"})} }
 function spend(u,c){ burnTick(u); u.still=false; u.t0=S.now=u.t; if(FAT())u.fat=c; u.t+=costFor(u,c)*down(u.st.spd); if(u.haste>0)u.haste--;
   if(u.status.slow&&!--u.status.slow)delete u.status.slow;
@@ -907,11 +907,11 @@ const ACTIONS=[
     has been thrown once it shows only ???, aims at nobody in particular, and finds its own target. */
  ...ALC.brews.map(b=>({get n(){return KNOWN.has(b.id)?b.name:"???"},item:b.id,brew:true,c:C.basic,get tg(){return KNOWN.has(b.id)?b.target:"none"},
    get d(){return KNOWN.has(b.id)?b.description:"???"},st:null,ok:u=>(u.satchel||[]).includes(b.id),run:(u,t)=>throwBrew(u,b,t)})),
- mvAct("flame_kick",(u,t,m)=>phys(u,t,m.power,"Ahi")),
- mvAct("brand",(u,t,m)=>phys(u,t,m.power,"Ahi",["ignite"])),
- mvAct("flame_slash",(u,t,m)=>phys(u,t,m.power,"Ahi")),
+ mvAct("flame_kick",(u,t,m)=>phys(u,t,m.power,"Afi")),
+ mvAct("brand",(u,t,m)=>phys(u,t,m.power,"Afi",["ignite"])),
+ mvAct("flame_slash",(u,t,m)=>phys(u,t,m.power,"Afi")),
  mvAct("spirit_blast",(u,t,m)=>magic(u,t,m.power,"Mana")),
- /* 10/8: every Ahi character also strikes physically in their other element, and every Mana character casts in it.
+ /* 10/8: every Afi character also strikes physically in their other element, and every Mana character casts in it.
     Which moves exist, and who gets each, is the "needs" list in the shared file. */
  ...SHARED.moves.filter(m=>m.needs).map(m=>mvAct(m.id,(u,t,x)=>(x.effect==="physical"?phys:magic)(u,t,x.power,cap(x.element)))),
  mvAct("sentinel",u=>{u.guard={kind:"sentinel",left:XTRA}}),
@@ -945,7 +945,7 @@ const ACTIONS=[
  mvAct("borrowed_life",(u,r,m)=>{const f=FROM||r,t=FROM?r:null,d=magic(u,f,m.power,"Lau");if(!t||t.hp>0)return;t.hp=Math.min(t.max,Math.max(Math.round(t.max*(m.revive_floor??0.25)),d||0,1));t.status={};t.t=u.t+C.element*down(t.st.spd);say(`${t.name} gets back up with ${t.hp} HP.`,{t:t.id,num:`+${t.hp} revived`,fx:"heal"})}),
  mvAct("triple_trouble",(u,t,m)=>magic(u,t,m.power,"Ata",m.statuses)),
  mvAct("spring_guard",u=>{u.guard={kind:"spring"}}),
- mvAct("flare",(u,t,m)=>magic(u,t,m.power,"Ahi")),
+ mvAct("flare",(u,t,m)=>magic(u,t,m.power,"Afi")),
  /* Drain, Osmose and Rasp (D-409): hit or take from an enemy; Drain and Osmose give what they take to Maika or an ally (FROM is the enemy). */
  mvAct("drain",(u,r,m)=>{const t=FROM||r,d=magic(u,t,m.power,"Lau");if(d)heal(FROM?r:u,Math.round(d/2))}),
  mvAct("osmose",(u,r,m)=>{const t=FROM||r,k=loseMana(t,m.gift);if(k)warmUp(r,k+(m.bonus||0),"from "+t.name)}),
@@ -955,7 +955,7 @@ const ACTIONS=[
    for(let i=0;i<n;i++){const fs=live("foe");if(!fs.length)break;magic(u,fs[Math.floor(Math.random()*fs.length)],m.power,"Mana")}}),
  /* Paku's Storm Mirror (D-348, built 10/16; was Sarjana's Celestial Mirror): the reflect. */
  mvAct("celestial_mirror",u=>{u.guard={kind:"reflect"}}),
- mvAct("hunt",(u,t,m)=>{const d=phys(u,t,m.power*(t.beast?m.beast_multiplier:1),"Ahi");if(t.beast){if(d)heal(u,d);if(t.hp<=0)give(u,"meat",`${u.name} carves off a piece of Meat.`)}}),
+ mvAct("hunt",(u,t,m)=>{const d=phys(u,t,m.power*(t.beast?m.beast_multiplier:1),"Afi");if(t.beast){if(d)heal(u,d);if(t.hp<=0)give(u,"meat",`${u.name} carves off a piece of Meat.`)}}),
  mvAct("berserk",u=>{u.goBerserk=true;say(`${u.name} flies into a rage.`,{a:u.id,t:u.id,num:"😤 berserk",fx:"status"})}),
  mvAct("dirty_trick",u=>{u.guard={kind:"trap"};say(`${u.name} goads the enemy, one hand behind her back.`,{a:u.id})}),
  /* The Apostate, 10/8 (D-098 to D-100). Each special is a buff on himself and the matching debuff on an enemy. */
@@ -980,7 +980,7 @@ const ACTIONS=[
    if(Math.random()<C.kill){say(`${u.name} finds the gap. ${t.name} drops.`,{a:u.id,t:t.id,num:"killed",fx:"hit"});deal(t,t.hp)}else say(`${u.name} goes for the kill and misses.`,{a:u.id,t:t.id,num:"miss",fx:"miss"})}),
  mvAct("mug",(u,t,m)=>{const d=phys(u,t,m.power,"Ata");if(d&&t.loot){const k=t.loot;t.loot=null;if(S.g)S.g.stats.stolen++;give(u,k,`${u.name} steals a ${ITEM[k].name} from ${t.name}.`)}}),
  mvAct("throw",(u,t,m)=>{const k=throwable(u);if(!k){say(`${u.name} has nothing to throw.`,{a:u.id,num:"nothing",fx:"miss"});return}
-   useUp(u,k);say(`${u.name} lights a ${ITEM[k].name} and throws it.`,{a:u.id,t:t.id});phys(u,t,ITEM[k].power,"Ahi")}),
+   useUp(u,k);say(`${u.name} lights a ${ITEM[k].name} and throws it.`,{a:u.id,t:t.id});phys(u,t,ITEM[k].power,"Afi")}),
  /* Paku, 10/8: a wave over every enemy, and each one it hits is slowed (Frankie named it; the Slow keeps the parked Riptide idea).
     Then the wave washes the whole field to the bench, Paku included, and refills it from the bench (Frankie, 10/8 and 10/10, D-115, D-159). */
  mvAct("tidal_wave",(u,t,m)=>{say(`${u.name} roars with laughter and calls up a tidal wave.`,{a:u.id,big:1});live("foe").forEach(f=>{if(f.hp<=0||u.hp<=0)return;magic(u,f,m.power,"Wai");slowDown(f)});shuffleParty(u)}),
@@ -1009,7 +1009,7 @@ const perRow=a=>{const p=a.st[1]/a.warm;return Math.round(p*10)/10};
 const growText=a=>!a.up||!a.warm?"":a.up==="power"&&a.st?` ${a.st[0]==="heal"?"Heals":"Power"} ${perRow(a)} per row: ${Math.round(perRow(a)*a.warm)} in row ${a.warm}, ${Math.round(perRow(a)*TIERS)} in row ${TIERS}.`
   :a.up==="gift"&&(a.id==="osmose"||a.id==="rasp")?` 1 more mana per row above ${a.warm}: ${MOVE[a.id].gift} in row ${a.warm}, ${MOVE[a.id].gift+TIERS-a.warm} in row ${TIERS}.`:a.up==="gift"?` Gives 1 mana per row.`:a.up==="turns"?` Lasts 1 more turn for each row above ${a.warm}.`:"";
 const grownText=(u,a)=>growText(a);
-const ORD=["Ahi","Wai","Lau","La","Ata","Mana"];
+const ORD=["Afi","Wai","Lau","La","Ata","Mana"];
 /* Everything a character knows that takes a slot, in both stances. */
 const knownBy=n=>{const who={name:n,elements:ROSTER[n]};return ACTIONS.filter(a=>a.id&&!a.off&&(a.sp?a.sp===n:a.ok(who)))};
 const reach=a=>a.up?Array.from({length:TIERS-a.warm+1},(_,i)=>a.warm+i):[a.warm];
@@ -1048,7 +1048,7 @@ function throwBrew(u,b,t){
   const fx={
    bitter_tonic(){const a=t&&t.side==="party"&&t.hp>0?t:pick1(party);if(!a)return;heal(a,b.power);if(a.hp>0){a.status.poison=true;say(`${a.name} is poisoned by it.`,{t:a.id,num:ST.poison||"poison",fx:"status psn"})}},
    salt_bomb(){party.forEach(a=>{strip(a);const d=Math.min(b.power,a.hp-1);say(`The salt scours ${a.name} clean${d>0?` and stings for ${d}`:""}.`,{t:a.id,num:d>0?-d:"clean",fx:d>0?"hit":"heal"});if(d>0)deal(a,d)})},
-   fire_pot(){foes.forEach(f=>{if(f.hp>0&&magic(u,f,b.power,"Ahi")>0&&f.hp>0)inflict(f,"poison")});if(u.hp>0){say(`${u.name} is singed.`,{t:u.id,num:-b.self,fx:"hit"});deal(u,b.self)}},
+   fire_pot(){foes.forEach(f=>{if(f.hp>0&&magic(u,f,b.power,"Afi")>0&&f.hp>0)inflict(f,"poison")});if(u.hp>0){say(`${u.name} is singed.`,{t:u.id,num:-b.self,fx:"hit"});deal(u,b.self)}},
    shrapnel_jar(){foes.forEach(f=>{if(f.hp>0)phys(u,f,b.power,null,null,true)});const a=pick1(live("party"));if(a){say(`A shard catches ${a.name}.`,{t:a.id,num:-b.self,fx:"hit"});deal(a,b.self)}},
    smoke_flask(){foes.forEach(f=>{if((f.immune||[]).includes("blind"))say(`${f.name} is immune to blind.`,{t:f.id,num:"immune",fx:"miss"});else{f.status.blind=true;say(`${f.name} is lost in the smoke.`,{t:f.id,num:ST.blind||"blind",fx:"status"})}});
      if(u.hp>0){u.status.blind=true;say(`So is ${u.name}.`,{t:u.id,num:ST.blind||"blind",fx:"status"})}},
@@ -1079,12 +1079,12 @@ const partners=u=>{const nx=rows()[1],ok=p=>p&&p!==u&&p.side==="party"&&p.hp>0&&
   const l=live("party").filter(p=>p.ready&&ok(p)), n=nx&&byId(nx.id); if(ok(n)&&!l.includes(n))l.unshift(n); return l};
 const combosFor=u=>partners(u).flatMap(p=>(SHARED.combos||[]).filter(cb=>canCombo(cb,u,p)).map(cb=>({cb,p})));
 const COMBORUN={
- solar_fist:(r,t,m)=>phys(r.Ahi,t,m.power,"La"),
- vine_whip:(r,t,m)=>phys(r.Ahi,t,m.power,"Lau"),
+ solar_fist:(r,t,m)=>phys(r.Afi,t,m.power,"La"),
+ vine_whip:(r,t,m)=>phys(r.Afi,t,m.power,"Lau"),
  light_wave:(r,t,m)=>{live("party").forEach(x=>x.status.lightwave=r.Wai.id);say(`A wall of shining water rises in front of the party.`,{a:r.Wai.id,num:ST.lightwave,fx:"heal"})},
  spring_rain:(r,t,m)=>{say(`A warm rain falls over the party.`,{a:r.Lau.id});live("party").forEach(x=>{delete x.status.poison;delete x.status.burn;x.status.rain=true});say(`Poison and burns wash away.`,{num:ST.rain,fx:"heal"})},
- red_hot_poker:(r,t,m)=>{phys(r.Ahi,t,m.power,"Ahi");if(t.hp>0){delete t.status.protect;delete t.status.shell;t.status.abreak=true;t.status.mbreak=true;say(`${t.name}'s armor and mind crack.`,{t:t.id,num:"🔨 broken",fx:"status"})}},
- scorch:(r,t,m)=>{phys(r.Ahi,t,m.power,"Ahi");inflict(t,"burn");slowDown(t)},
+ red_hot_poker:(r,t,m)=>{phys(r.Afi,t,m.power,"Afi");if(t.hp>0){delete t.status.protect;delete t.status.shell;t.status.abreak=true;t.status.mbreak=true;say(`${t.name}'s armor and mind crack.`,{t:t.id,num:"🔨 broken",fx:"status"})}},
+ scorch:(r,t,m)=>{phys(r.Afi,t,m.power,"Afi");inflict(t,"burn");slowDown(t)},
  riptide:(r,t,m)=>{magic(r.Mana,t,m.power,"Wai");slowDown(t)},
  blue_ring:(r,t,m)=>{r.Wai.guard={kind:"ring"};say(`${r.Ata.name} coats ${r.Wai.name} in ink and venom. ${r.Wai.name} goads the enemy.`,{a:r.Wai.id,num:"🐙 Blue Ring",fx:"status"})},
  /* The other seven pairs (D-419). */
@@ -1138,12 +1138,12 @@ function berserkTurn(u){
   const ts=live("foe"),t=ts[Math.floor(Math.random()*ts.length)];
   /* The were-tiger plays the same way, but claws with the sun (D-099). */
   if(u.tiger){say(`${u.name}, the tiger, claws at ${t.name}.`,{a:u.id,t:t.id,big:1}); phys(u,t,MOVE.were_tiger.power,"La")}
-  else{say(`${u.name} is berserk and slashes at ${t.name}.`,{a:u.id,t:t.id,big:1}); phys(u,t,MOVE.flame_slash.power,"Ahi")}
+  else{say(`${u.name} is berserk and slashes at ${t.name}.`,{a:u.id,t:t.id,big:1}); phys(u,t,MOVE.flame_slash.power,"Afi")}
   spend(u,C.element) }
 /* A story guest's turn plays itself: fire at one of the enemies. */
 function guestTurn(u){
   const ts=live("foe"),t=ts[Math.floor(Math.random()*ts.length)]; if(!t)return;
-  say(`${u.name} spins and lashes ${t.name} with fire.`,{a:u.id,t:t.id,big:1}); phys(u,t,Math.round(MOVE.flame_slash.power*2.5),"Ahi");
+  say(`${u.name} spins and lashes ${t.name} with fire.`,{a:u.id,t:t.id,big:1}); phys(u,t,Math.round(MOVE.flame_slash.power*2.5),"Afi");
   spend(u,C.element) }
 function foeTurn(m){
   const tot=m.moves.reduce((s,x)=>s+x.w,0);let r=Math.random()*tot;const move=m.moves.find(x=>(r-=x.w)<0)||m.moves[0];
@@ -1316,7 +1316,7 @@ function chooseRaw(u,pretend){
     const many=allies.find(a=>ills(a).length>=2); if(many&&can("Cure All"))return["Cure All",many];
     for(const k of ["sleep","poison","blind"]){const sick=allies.find(a=>ills(a).includes(k)), n="Cure "+cap(k); if(sick&&can(n))return[n,sick]}}
   if(can("Cauterize")){const sick=allies.find(a=>a.status.poison&&!a.status.burn&&frac(a)>.2);if(sick)return["Cauterize",sick]}
-  if(can("Brand")){const f=foes.filter(f=>!f.status.burn&&f.element!=="Ahi"&&!(f.immune||[]).includes("burn")&&f.hp>60).sort((a,b)=>b.hp-a.hp)[0];if(f)return["Brand",f]}
+  if(can("Brand")){const f=foes.filter(f=>!f.status.burn&&f.element!=="Afi"&&!(f.immune||[]).includes("burn")&&f.hp>60).sort((a,b)=>b.hp-a.hp)[0];if(f)return["Brand",f]}
   if(can("Storm Mirror")&&magicThreat&&frac(weakest)<.8)return["Storm Mirror",u];
   if(magicThreat&&!allies.some(a=>a.guard&&(a.guard.kind==="reflect"||SOAK[a.guard.kind])))for(const n of ["Tide Veil","Mirror Ward"])
     if(can(n)&&frac(weakest)<.9)return[n,u,"guard"];
@@ -1350,7 +1350,7 @@ function chooseRaw(u,pretend){
   if(statusThreat&&can("Safeguard")){const bare=allies.filter(a=>!a.safe&&a!==u);if(bare.length&&frac(weakest)>.45)return["Safeguard",bare.reduce((a,b)=>a.st.str+a.st.mag>=b.st.str+b.st.mag?a:b),"buff"]}
   if(hasS(u,"La")){
     if(shadowThreat&&!weakest.ward&&frac(weakest)<.8)return["Shaka's Light",weakest,"buff"];
-    const slow=allies.find(a=>a.haste===0&&(has(a,"Ahi")||has(a,"Mana"))); if(slow)return["Haste",slow,"buff"]}
+    const slow=allies.find(a=>a.haste===0&&(has(a,"Afi")||has(a,"Mana"))); if(slow)return["Haste",slow,"buff"]}
   if(has(u,"Ata")){
     const big=foes.reduce((a,b)=>a.hp>=b.hp?a:b), trio=["blind","sleep","poison"];
     const missing=trio.filter(s=>!big.status[s]&&!(big.immune||[]).includes(s));
@@ -1370,13 +1370,13 @@ function chooseRaw(u,pretend){
 const bestAttack=(u,foes,pretend)=>attackPlan(u,foes,pretend).best;
 function attackPlan(u,foes,pretend){
   const opts=[["Attack","phys",planPow(),null]];
-  if(has(u,"Ahi"))opts.push([u.name===WHO.jago?"Flame Slash":"Flame Kick","phys",C.elem,"Ahi"]);
+  if(has(u,"Afi"))opts.push([u.name===WHO.jago?"Flame Slash":"Flame Kick","phys",C.elem,"Afi"]);
   if(has(u,"Mana"))opts.push(["Spirit Blast","magic",C.elem,"Mana"]);
   SHARED.moves.filter(m=>m.needs&&m.needs.every(e=>has(u,cap(e)))).forEach(m=>opts.push([m.name,m.effect==="physical"?"phys":"magic",m.power,cap(m.element)]));
   SHARED.moves.filter(m=>m.tier==="element"&&(m.owner&&WHO[m.owner]===u.name||(m.also||[]).some(x=>WHO[x]===u.name))&&m.power&&!opts.some(o=>o[0]===m.name)).forEach(m=>opts.push([m.name,m.effect==="physical"?"phys":"magic",m.power,cap(m.element)]));
   {const mine=actionsFor(u); for(let i=opts.length-1;i>0;i--)if(!mine.some(a=>a.n===opts[i][0]))opts.splice(i,1)}
-  if(u.name===A("Throw").sp&&throwable(u)&&(pretend||afford(u,A("Throw"))))opts.push(["Throw","phys",ITEM[throwable(u)].power,"Ahi"]);
-  for(const [n,k,p,e] of [["Flare","magic",C.flare,"Ahi"],["Drain","magic",C.drain,"Lau"],["Hunt","phys",C.hunt,"Ahi"]])
+  if(u.name===A("Throw").sp&&throwable(u)&&(pretend||afford(u,A("Throw"))))opts.push(["Throw","phys",ITEM[throwable(u)].power,"Afi"]);
+  for(const [n,k,p,e] of [["Flare","magic",C.flare,"Afi"],["Drain","magic",C.drain,"Lau"],["Hunt","phys",C.hunt,"Afi"]])
     if(u.name===A(n).sp&&actionsFor(u).includes(A(n))&&(pretend||afford(u,A(n))))opts.push([n,k,p,e]);
   const missing=u.max-u.hp; let best=null,score=-1;
   for(const [n,k,p,e] of opts.filter(o=>pretend||afford(u,A(o[0]))))for(const f of foes){
@@ -1455,7 +1455,7 @@ function build(){
 function paint(sn){
   sn.units.forEach(s=>{const u=byId(s.id),el=card(s.id),f=s.hp/u.max,st=[];
     for(const k in s.status)st.push(chip(k==="poison"?"poison":k==="regen"?"Lau":"none",ST[k]+(COUNTED.includes(k)?" "+s.status[k]:"")));
-    if(s.ward)st.push(chip("La","🌟 Shaka's Light")); if(s.safe)st.push(chip("La","🔰 Safeguard")); if(s.haste)st.push(chip("La",`⚡ haste ${s.haste}`)); if(s.berserk)st.push(s.tiger?chip("La",`🐯 tiger ${s.berserk}`):chip("Ahi",`😤 berserk ${s.berserk}`)); if(s.defend)st.push(chip("none","🛡️ defending")); if(s.pressure)st.push(chip("Ahi",`♨️ ${s.pressure} held in`)); if(s.trap)st.push(chip("Wai",s.trap==="spines"?"🌵 Spines":"🪤 Snap set")); if(s.ready)st.push(chip("La","🤝 ready for a combo"));
+    if(s.ward)st.push(chip("La","🌟 Shaka's Light")); if(s.safe)st.push(chip("La","🔰 Safeguard")); if(s.haste)st.push(chip("La",`⚡ haste ${s.haste}`)); if(s.berserk)st.push(s.tiger?chip("La",`🐯 tiger ${s.berserk}`):chip("Afi",`😤 berserk ${s.berserk}`)); if(s.defend)st.push(chip("none","🛡️ defending")); if(s.pressure)st.push(chip("Afi",`♨️ ${s.pressure} held in`)); if(s.trap)st.push(chip("Wai",s.trap==="spines"?"🌵 Spines":"🪤 Snap set")); if(s.ready)st.push(chip("La","🤝 ready for a combo"));
     if(s.guard)st.push(chip(s.guard==="reflect"?"Mana":s.guard==="mirror_ward"?"La":s.guard==="trap"?"Ata":"Wai",{provoke:"😈 Provoking",trap:"😈 Dirty Trick ready",sentinel:"🛡️ Sentinel up",cooker:"♨️ Pressure Cooker",lure:"🎣 Luring",purity:"🛡️ Status Guard up",counter:"🛡️ Counter Guard up",spring:"🛡️ Spring Guard up",reflect:"🪞 Mirror up",tide_veil:"🛡️ Tide Veil up",mirror_ward:"🪞 Mirror Ward up"}[s.guard]));
     const cur=u.side==="party"&&STANCE[u.name]&&STANCE[u.name][s.stance||0], els=u.side==="party"?u.elements.map(e=>elBox(e,cur&&cur.el===e)).join(""):chip(u.element)+(u.boss?chip("none","👑 boss"):"")+(u.beast?chip("none","🐾 beast"):"");
     hpTo(el,s.hp,u.max,f);
@@ -1512,7 +1512,7 @@ async function play(){
    Techniques, Item, Defend, Swap. The right two thirds show what the command holds. Pointing at a command shows it; clicking or
    tapping chooses it and keeps it showing. Attack goes straight to choosing a target and Defend acts at once.
    Techniques holds every move: physical moves (red edge), then magic (purple edge), then a combo when one is
-   ready (D-185). Heal and Cure follow the healer (D-095): physical for someone who heals with medicine (Lau with Ahi or
+   ready (D-185). Heal and Cure follow the healer (D-095): physical for someone who heals with medicine (Lau with Afi or
    Wai), magic for someone who heals with magic. */
 const medicine=u=>u.elements.includes("Lau")&&u.elements.some(e=>e!=="Lau"&&MATERIAL.includes(e));
 const menuOf=(u,a)=>a.menu==="heal"?(medicine(u)?"skill":"magic"):a.menu;
@@ -1528,7 +1528,7 @@ function abilityBtn(u,a,inRow){const i=ACTIONS.indexOf(a),need=warmNeed(a,u),col
   /* In a fight the card says only what the move does, its first sentence, plus why it can't be used; the ? holds the
      numbers. How a move grows by row is for the Equip tab, where rows are chosen (Frankie, 10/16: "heals one ally is enough"). */
   if(inRow)return `<button class="itm edge" style="${edge(rowEls)}${elBorder(rowEls)}" data-a="${i}" ${dis?"disabled":""}><span class="row"><b>${elIcons(rowEls)}${a.n}</b>${ask(d)}</span><span class="d">${firstLine(a.d)+why}</span></button>`;
-  return `<button class="itm" style="--k:var(${a.form?"--warm":menuOf(u,a)==="skill"?"--ahi":"--mana"})" data-a="${i}" ${dis?"disabled":""}><span class="row"><b>${a.form?`🔄 ${a.n} ${chip(a.sel)}`:a.n}</b><span class="chips">${statChip(a.st)}${elChips(a,u.name)}${wn}${ask(d)}</span></span><span class="d">${d}</span></button>`}
+  return `<button class="itm" style="--k:var(${a.form?"--warm":menuOf(u,a)==="skill"?"--afi":"--mana"})" data-a="${i}" ${dis?"disabled":""}><span class="row"><b>${a.form?`🔄 ${a.n} ${chip(a.sel)}`:a.n}</b><span class="chips">${statChip(a.st)}${elChips(a,u.name)}${wn}${ask(d)}</span></span><span class="d">${d}</span></button>`}
 /* The menus show the name, element, damage and wait; the explanation waits behind a ? (Frankie,
    10/11): hover it for a tooltip, click it to open the text under the button. */
 /* A dual element move (D-306, Counter Guard) shows both icons; its damage still uses el. */
@@ -1788,7 +1788,7 @@ function gUse(n,k){const it=ITEM[k],g=S.g.state[n]||(S.g.state[n]={...gHP(n),sta
   if(it.cleanse)g.status={}; if(g.status.zombie)g.hp=Math.max(0,g.hp-it.power);else g.hp=Math.min(g.max,g.hp+it.power); S.g.stats.items++; saveInv()}
 function gToggle(n){const f=S.g.field,i=f.indexOf(n); if(i>=0){f.splice(i,1);return} if(f.length<3&&gHP(n).hp>0)f.push(n)}
 const gReady=()=>{const alive=S.picks.filter(n=>gHP(n).hp>0);return alive.length>0&&S.g.field.length===Math.min(3,alive.length)&&S.g.field.every(n=>gHP(n).hp>0)};
-function gStats(small){const st=S.g.stats;return `<div class="gstats${small?" small":""}">${[["Battles won",st.battles,"--accent"],["Enemies defeated",st.enemies,"--ahi"],["Bosses defeated",st.bosses,"--warm"],["Turns taken",st.turns,"--wai"],["Damage dealt",st.dealt,"--la"],["Damage taken",st.taken,"--cost"],["Items used",st.items,"--hp"],["Things stolen",st.stolen,"--ata"],["Flasks mixed",st.mixed,"--mana"],["Pots blown up",st.blown,"--lau"]].map(([l,v,k])=>`<div class="gstat" style="--k:var(${k})"><b>${v}</b>${l}</div>`).join("")}</div>`}
+function gStats(small){const st=S.g.stats;return `<div class="gstats${small?" small":""}">${[["Battles won",st.battles,"--accent"],["Enemies defeated",st.enemies,"--afi"],["Bosses defeated",st.bosses,"--warm"],["Turns taken",st.turns,"--wai"],["Damage dealt",st.dealt,"--la"],["Damage taken",st.taken,"--cost"],["Items used",st.items,"--hp"],["Things stolen",st.stolen,"--ata"],["Flasks mixed",st.mixed,"--mana"],["Pots blown up",st.blown,"--lau"]].map(([l,v,k])=>`<div class="gstat" style="--k:var(${k})"><b>${v}</b>${l}</div>`).join("")}</div>`}
 function gauntletPage(){
   if(S.g.over){const b=gBest();
     return `<section class="panel"><h2>🏟️ The gauntlet is over</h2><p class="muted">${S.g.record?"A new best!":b?`Best so far: ${b.battles} battles won, ${b.enemies} enemies defeated.`:""}</p>${gStats()}
@@ -1811,10 +1811,10 @@ function rulesPage(){const W=WARM||{},K=W.strokes||{},e=x=>chip(x)+" "+x;
   ${sec("--accent","🎯 The goal",`<ul><li>Defeat every enemy. If your whole party falls, you lose.</li><li>Enemies are random each fight. Sometimes it's a boss on its own.</li></ul>`)}
   ${sec("--hp","👥 Your party",`<ul><li>Seven travel with you. Three fight and four wait on the bench.</li><li>On any party member's turn, click 🔄 Swap to trade them for someone on the bench. Swapping is free and you can do it as often as you like. The turn ends when someone acts.</li><li>The bench keeps its HP, mana and stance.</li></ul>`)}
   ${sec("--accent","⏳ Turns",`<ul><li>Nobody takes turns in rounds. Every action has a <b>wait</b>, and a bigger move pushes you further back in line.</li><li>The <b>Turn order</b> bar on the left shows who goes next. Point at a move and it shows where that move would put you.</li><li>Agility makes your waits shorter.</li></ul>`)}
-  ${sec("--ahi","⚔️ Attack",`<ul><li>An Attack is a chain of strikes at one enemy, up to ${K.points||7} points a turn: light (${K.light?K.light.points:1}), medium (${K.medium?K.medium.points:2}) or strong (${K.strong?K.strong.points:3}).</li><li>Stronger strikes hit harder but miss more often. Each button shows its chance to hit.</li><li>Every strike that lands builds that many mana.</li></ul>`)}
+  ${sec("--afi","⚔️ Attack",`<ul><li>An Attack is a chain of strikes at one enemy, up to ${K.points||7} points a turn: light (${K.light?K.light.points:1}), medium (${K.medium?K.medium.points:2}) or strong (${K.strong?K.strong.points:3}).</li><li>Stronger strikes hit harder but miss more often. Each button shows its chance to hit.</li><li>Every strike that lands builds that many mana.</li></ul>`)}
   ${sec("--warm","✨ Mana and Techniques",`<ul><li>Mana is the row of ${W.cap||7} dots under each HP bar.</li><li>You build it by landing strikes, by dodging or blocking a hit, by Defending and by changing stance.</li><li>Every Technique costs mana, shown on its button: the bigger the move, the more it costs, up to all ${W.cap||7} for the biggest. A cost in red means you can't afford it yet.</li><li>Techniques you can't use right now are hidden. Click <b>Show all</b> to see them.</li><li>Click the <b>?</b> on any move to read what it does.</li></ul>`)}
   ${sec("--la","🔄 Stances",`<ul><li>Everyone fights in one of two stances, one for each of their elements. The element of the stance they're in has a yellow box by their portrait.</li><li>The stance you're in doubles that element's stats and drops the other element's: Kailo hits harder and moves faster in Lelua, and has more HP and takes hits better in Wai'Kenpō. Switching keeps the same share of your HP, so it never hurts you. The 📖 Characters tab shows the stats in each stance.</li><li>Your element moves follow your stance. In Lelua, Kailo has Flame Kick; in Wai'Kenpō he has Tide Kick and Sentinel instead. A move with two element icons works in either stance; one icon, only in that stance. The 📖 Characters tab lists each stance's moves.</li><li>The first button in Techniques switches to the other stance. It builds ${W.form||1} mana and ends the turn.</li><li>On the party screen, click the stance under a character's name to choose which one they start in.</li></ul>`)}
-  ${sec("--mana","🌀 Elements",`<p>Two triangles. An element does <b>double damage</b> to the one it beats and <b>half</b> to the one that beats it.</p><ul><li>${e("Ahi")} beats ${e("Lau")} beats ${e("Wai")} beats ${e("Ahi")}</li><li>${e("La")} beats ${e("Ata")} beats ${e("Mana")} beats ${e("La")}</li></ul>`)}
+  ${sec("--mana","🌀 Elements",`<p>Two triangles. An element does <b>double damage</b> to the one it beats and <b>half</b> to the one that beats it.</p><ul><li>${e("Afi")} beats ${e("Lau")} beats ${e("Wai")} beats ${e("Afi")}</li><li>${e("La")} beats ${e("Ata")} beats ${e("Mana")} beats ${e("La")}</li></ul>`)}
   ${sec("--wai","🛡️ Defend, dodge and block",`<ul><li><b>Defend</b> halves physical damage until your next turn, builds ${W.defend||1} mana, and gets you ready for a combo.</li><li>Physical hits can be dodged or blocked for half damage. Magic can't. Either one builds the defender 1 mana.</li></ul>`)}
   ${sec("--la","🤝 Combos",`<ul><li>Two characters team up for one big move. The partner has to be next in the turn order or have Defended.</li><li>Which combo you get depends on both their stances: each partner brings the element of the stance they're in.</li><li>A combo uses both their turns and costs each of them ${W.combo||2} mana. When one is ready, it appears at the bottom of Techniques.</li></ul>`)}
   ${sec("--hp","🎒 Items",`<ul><li>In a fight you can only use what a character carries in their pockets, not what's in the shared bag.</li><li>Pack pockets on the 🎒 Bag tab before a fight.</li></ul>`)}
