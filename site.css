@@ -224,3 +224,6 @@ dl.pairs .meta { display: block; color: var(--muted); font-size: .88rem; margin-
 .lex-table table { border-collapse: collapse; font-size: .92rem; min-width: 100%; }
 .lex-table th, .lex-table td { border: 1px solid var(--line); padding: .35rem .55rem; text-align: left; vertical-align: top; }
 .lex-table th { background: color-mix(in srgb, var(--c) 14%, transparent); }
+
+/* The Food page's pixel icons (10/20): drawn small, scaled up without blur. */
+dl.pairs dt .food-icon { width: 48px; height: 48px; image-rendering: pixelated; vertical-align: middle; margin-right: .5rem; }
