@@ -49,7 +49,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
 try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><button class="sound-btn" id="sound-btn" type="button"></button>
-<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,ctx=null,gain=null,started=false,V=.8;
+<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,ctx=null,gain=null,started=false,V=2;
 try{on=localStorage.getItem("ctb-sound")!=="off"}catch(e){}
 function label(){b.textContent=!on?"🔇 Sound off":started?"🔊 Sound on":"🔊 Click anywhere for the sea"}
 function ramp(v,t){gain.gain.cancelScheduledValues(ctx.currentTime);gain.gain.setValueAtTime(gain.gain.value,ctx.currentTime);gain.gain.linearRampToValueAtTime(v,ctx.currentTime+t)}
@@ -60,7 +60,7 @@ gain=ctx.createGain();gain.gain.value=0;gain.connect(ctx.destination);
 fetch("music/pelog-selisir.mp3").then(function(r){return r.arrayBuffer()}).then(function(d){return ctx.decodeAudioData(d)}).then(function(buf){
 var src=ctx.createBufferSource();src.buffer=buf;src.loop=true;src.connect(gain);src.start();if(on)ramp(V,3)}).catch(function(){})}
 function sea(){if(!on){if(a)a.pause();if(ctx)ramp(0,.5);return}
-if(!a){a=new Audio("sounds/waves.mp3");a.loop=true;a.volume=.07;setTimeout(tune,4000)}else tune();
+if(!a){a=new Audio("sounds/waves.mp3");a.loop=true;a.volume=.05;setTimeout(tune,4000)}else tune();
 a.play().catch(function(){})}
 function first(e){if(started||e.target===b)return;started=true;sea();label()}
 document.addEventListener("pointerdown",first,true);document.addEventListener("keydown",first,true);
