@@ -49,7 +49,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
 try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><button class="sound-btn" id="sound-btn" type="button"></button>
-<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,ctx=null,gain=null,started=false,V=1;
+<script>(function(){var b=document.getElementById("sound-btn"),on=true,a=null,ctx=null,gain=null,started=false,V=.8;
 try{on=localStorage.getItem("ctb-sound")!=="off"}catch(e){}
 function label(){b.textContent=!on?"🔇 Sound off":started?"🔊 Sound on":"🔊 Click anywhere for the sea"}
 function ramp(v,t){gain.gain.cancelScheduledValues(ctx.currentTime);gain.gain.setValueAtTime(gain.gain.value,ctx.currentTime);gain.gain.linearRampToValueAtTime(v,ctx.currentTime+t)}
