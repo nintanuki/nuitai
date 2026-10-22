@@ -5,12 +5,14 @@
   .disc { fill: #2E86C1; fill-opacity: 0.10; }
   .danger { fill: #3B3B8F; fill-opacity: 0.16; }
   .ring { fill: none; stroke: #2A5F9E; }
+  .real { fill: #15181C; stroke: #FFFFFF; stroke-width: 16; }
   @media (prefers-color-scheme: dark) {
     .page { fill: #15171B; } .sea { fill: #1C2128; } .land { fill: #4A515A; }
     .ink { fill: #E7EAEE; } .soft { fill: #A3ABB5; } .halo { stroke: #15171B; }
     .disc { fill: #5DADE2; fill-opacity: 0.12; }
     .danger { fill: #8E8CE0; fill-opacity: 0.16; }
     .ring { stroke: #7FB3E6; }
+    .real { fill: #FFFFFF; stroke: #15171B; }
   }
   text { paint-order: stroke; stroke-linejoin: round; }
 </style>
@@ -1635,15 +1637,73 @@
 <circle cx="-3125.4" cy="-3248.2" r="42.6" fill="#D9468A"/>
 <circle cx="-3124.9" cy="-3186.6" r="18" fill="#D9468A"/>
 <circle cx="-2966.6" cy="-3330.9" r="25.4" fill="#D9468A"/>
-<text class="soft halo" x="244.3" y="-1438.1" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Hawaii</text>
-<text class="soft halo" x="-3499.6" y="-3070.3" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Japan</text>
-<text class="soft halo" x="-4207.5" y="2147.6" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Australia</text>
-<text class="soft halo" x="-1546.3" y="2962.8" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">New Zealand</text>
-<text class="soft halo" x="300.7" y="-4430.6" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Alaska</text>
-<text class="soft halo" x="3693.4" y="-1869.3" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Mexico</text>
-<text class="soft halo" x="5721" y="1014.3" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Peru</text>
-<text class="soft halo" x="-5242.1" y="-1190.4" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Philippines</text>
-<text class="soft halo" x="199.3" y="5398.4" font-size="170" font-style="italic" text-anchor="middle" stroke-width="40">Antarctica</text>
+<text class="soft halo" x="-4207.5" y="2147.6" font-size="190" font-style="italic" text-anchor="middle" stroke-width="40" letter-spacing="30">Australia</text>
+<text class="soft halo" x="300.7" y="-4430.6" font-size="190" font-style="italic" text-anchor="middle" stroke-width="40" letter-spacing="30">Alaska</text>
+<text class="soft halo" x="199.3" y="5398.4" font-size="190" font-style="italic" text-anchor="middle" stroke-width="40" letter-spacing="30">Antarctica</text>
+<text class="soft halo" x="-4561" y="-4578.4" font-size="190" font-style="italic" text-anchor="middle" stroke-width="40" letter-spacing="30">Asia</text>
+<text class="soft halo" x="3134.4" y="-3619.3" font-size="190" font-style="italic" text-anchor="middle" stroke-width="40" letter-spacing="30">North America</text>
+<circle class="real" cx="231.6" cy="-1403.5" r="48"/>
+<text class="ink halo" x="321.6" y="-1403.5" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Hawaii</text>
+<circle class="real" cx="-812.9" cy="960.4" r="48"/>
+<text class="ink halo" x="-902.9" y="960.4" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Samoa</text>
+<circle class="real" cx="-808.3" cy="640.2" r="48"/>
+<text class="ink halo" x="-808.3" y="510.2" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">Tokelau atolls</text>
+<circle class="real" cx="-1001.4" cy="1481.5" r="48"/>
+<text class="ink halo" x="-1091.4" y="1481.5" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Tonga</text>
+<circle class="real" cx="-1469.9" cy="1259.8" r="48"/>
+<text class="ink halo" x="-1379.9" y="1259.8" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Fiji</text>
+<circle class="real" cx="709.1" cy="1222.8" r="48"/>
+<text class="ink halo" x="799.1" y="1222.8" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Tahiti</text>
+<circle class="real" cx="3202.7" cy="2120.9" r="48"/>
+<text class="ink halo" x="3292.7" y="2120.9" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Easter Island</text>
+<circle class="real" cx="-1471.2" cy="2917.3" r="48"/>
+<text class="ink halo" x="-1381.2" y="2917.3" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">New Zealand</text>
+<circle class="real" cx="-1865.2" cy="-100.4" r="48"/>
+<text class="ink halo" x="-1865.2" y="-230.4" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">Kiribati</text>
+<circle class="real" cx="-2873.1" cy="-521.6" r="48"/>
+<text class="ink halo" x="-2783.1" y="-521.6" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Micronesia</text>
+<circle class="real" cx="-3734.4" cy="-1083.4" r="48"/>
+<text class="ink halo" x="-3644.4" y="-1083.4" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Guam</text>
+<circle class="real" cx="-774.7" cy="-3662.8" r="48"/>
+<text class="ink halo" x="-774.7" y="-3462.8" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">Aleutians</text>
+<circle class="real" cx="-4543.8" cy="-2358.6" r="48"/>
+<text class="ink halo" x="-4453.8" y="-2358.6" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Okinawa</text>
+<circle class="real" cx="-3583.5" cy="-2962.5" r="48"/>
+<text class="ink halo" x="-3493.5" y="-2962.5" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Japan</text>
+<circle class="real" cx="-5042.1" cy="-2254.7" r="48"/>
+<text class="ink halo" x="-5042.1" y="-2054.7" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">Taiwan</text>
+<circle class="real" cx="-5133.1" cy="-2528.2" r="48"/>
+<text class="ink halo" x="-5223.1" y="-2528.2" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Fujian</text>
+<circle class="real" cx="-5279.7" cy="-1491.6" r="48"/>
+<text class="ink halo" x="-5189.7" y="-1491.6" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Philippines</text>
+<circle class="real" cx="-5169.8" cy="-712.8" r="48"/>
+<text class="ink halo" x="-5079.8" y="-712.8" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Mindanao</text>
+<circle class="real" cx="-5472.5" cy="-830.5" r="48"/>
+<text class="ink halo" x="-5562.5" y="-830.5" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Sulu Sea</text>
+<circle class="real" cx="-5725.7" cy="-534.9" r="48"/>
+<text class="ink halo" x="-5815.7" y="-534.9" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Sabah, Borneo</text>
+<circle class="real" cx="-5522.8" cy="244.8" r="48"/>
+<text class="ink halo" x="-5432.8" y="244.8" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Sulawesi</text>
+<circle class="real" cx="-5799.6" cy="860" r="48"/>
+<text class="ink halo" x="-5799.6" y="1060" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">Bali</text>
+<circle class="real" cx="-6166.7" cy="800.9" r="48"/>
+<text class="ink halo" x="-6256.7" y="800.9" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Java</text>
+<circle class="real" cx="-6751.9" cy="-261.8" r="48"/>
+<text class="ink halo" x="-6751.9" y="-391.8" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">Malacca</text>
+<circle class="real" cx="-6805.5" cy="60.1" r="48"/>
+<text class="ink halo" x="-6715.5" y="60.1" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Sumatra</text>
+<circle class="real" cx="-3924.4" cy="450.6" r="48"/>
+<text class="ink halo" x="-3924.4" y="320.6" font-size="150" font-weight="600" text-anchor="middle" dominant-baseline="middle" stroke-width="36">New Guinea</text>
+<circle class="real" cx="-2737.2" cy="705" r="48"/>
+<text class="ink halo" x="-2647.2" y="705" font-size="150" font-weight="600" text-anchor="start" dominant-baseline="middle" stroke-width="36">Solomons</text>
+<circle class="real" cx="-2184.3" cy="1165.7" r="48"/>
+<text class="ink halo" x="-2274.3" y="1165.7" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Vanuatu</text>
+<circle class="real" cx="4017.8" cy="-1619.3" r="48"/>
+<text class="ink halo" x="3927.8" y="-1619.3" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Mexico</text>
+<circle class="real" cx="5181.3" cy="-941.6" r="48"/>
+<text class="ink halo" x="5091.3" y="-941.6" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Central America</text>
+<circle class="real" cx="5653.7" cy="1004.4" r="48"/>
+<text class="ink halo" x="5563.7" y="1004.4" font-size="150" font-weight="600" text-anchor="end" dominant-baseline="middle" stroke-width="36">Peru</text>
 <text class="halo" x="0" y="-3880" font-size="230" font-weight="700" fill="#3A8FD9" text-anchor="middle" dominant-baseline="middle" stroke-width="50">Tokelau</text>
 <text class="halo" x="2955.7" y="-2955.7" font-size="230" font-weight="700" fill="#36B26B" text-anchor="middle" dominant-baseline="middle" stroke-width="50">Māla Iki</text>
 <text class="halo" x="3580" y="-0" font-size="230" font-weight="700" fill="#14A6A6" text-anchor="middle" dominant-baseline="middle" stroke-width="50">Lanuloa</text>
@@ -1664,5 +1724,7 @@
 <text class="soft" x="-3460" y="7420" font-size="170">Nuitai, out to the edge of the Calm Ring</text>
 <circle cx="-3660" cy="7660" r="110" class="danger"/>
 <text class="soft" x="-3460" y="7720" font-size="170">Inside 2,500 miles: no ordinary ship goes here</text>
+<circle class="real" cx="640" cy="7360" r="60"/>
+<text class="soft" x="790" y="7420" font-size="170">A real place Nuitai draws from</text>
 <text class="soft" x="-7060" y="7890" font-size="150">Distances from the whirlpool are true. Toward the edge the real continents stretch sideways, the way Antarctica does on a flat map.</text>
 </svg>
