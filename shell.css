@@ -82,9 +82,22 @@ html[data-art="off"] .ai { display: none !important; }
 /* The wiki's search, at the top of its column. */
 body.shelled > .content > .top .search { margin: 0 auto; }
 
+/* The menu can be hidden for more room on a computer, on every page, and stays hidden (Frankie,
+   10/19 the battle; 10/22 every page). A tab on the column's edge. */
+.menu-tab {
+  position: fixed; top: 14px; left: 290px; z-index: 30; font: 600 14px/1 system-ui, sans-serif; cursor: pointer;
+  padding: 8px 9px; border: 1px solid var(--line); border-left: 0; border-radius: 0 8px 8px 0;
+  background: var(--panel); color: var(--ink); box-shadow: 2px 2px 6px rgb(0 0 0 / .15);
+}
+.menu-tab:hover { background: var(--card); }
+html[data-menu="hidden"] .shell { display: none; }
+html[data-menu="hidden"] .menu-tab { left: 0; }
+
 /* A phone: a bar on top, the shell slides in from the left. */
 .shell-bar, .shell-shade { display: none; }
 @media (max-width: 860px) {
+  .menu-tab { display: none; }
+  html[data-menu="hidden"] .shell { display: flex; }
   .shell-bar {
     display: flex; align-items: center; gap: 12px; position: fixed; top: 0; left: 0; right: 0; height: 54px;
     padding: 0 14px; background: var(--panel); border-bottom: 1px solid var(--line); z-index: 20;
