@@ -227,3 +227,23 @@ dl.pairs .meta { display: block; color: var(--muted); font-size: .88rem; margin-
 
 /* The Food page's pixel icons (10/20): drawn small, scaled up without blur. */
 dl.pairs dt .food-icon { width: 48px; height: 48px; image-rendering: pixelated; vertical-align: middle; margin-right: .5rem; }
+
+/* The SNES Demo's Keyboard Controls (Frankie, 10/24): the keys on the left, what they do on the right, in groups. */
+table.keys { width: 100%; border-collapse: collapse; margin: .4rem 0 .2rem; }
+table.keys td { padding: .45rem .5rem; border-top: 1px solid var(--line); vertical-align: middle; }
+table.keys td:first-child { width: 45%; line-height: 2; }
+table.keys tr.group th {
+  text-align: left; padding: .9rem .5rem .3rem; font-family: var(--serif); font-size: 1.05rem; color: var(--c);
+}
+table.keys tbody:first-child tr.group th { padding-top: .2rem; }
+table.keys td b { color: var(--c); }
+kbd {
+  display: inline-block; min-width: 1.9em; padding: .05rem .45rem; text-align: center;
+  font: 600 .85rem var(--sans); color: var(--ink); background: var(--panel);
+  border: 1px solid var(--line); border-bottom-width: 3px; border-radius: .35rem; white-space: nowrap;
+}
+@media (max-width: 520px) {
+  table.keys td:first-child { width: auto; }
+  table.keys td { display: block; border-top: 0; padding: .1rem .5rem; }
+  table.keys tr:not(.group) { display: block; border-top: 1px solid var(--line); padding: .4rem 0; }
+}
