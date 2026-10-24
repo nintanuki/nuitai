@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<meta name="description" content="The instruction manual for the Nuitai SNES demo: controls, menus, battle, items and the party.">
+<meta property="og:site_name" content="Nuitai">
+<meta property="og:title" content="Game Manual · Nuitai">
+<meta property="og:description" content="The instruction manual for the Nuitai SNES demo: controls, menus, battle, items and the party.">
+<meta property="og:url" content="https://nintanuki.github.io/nuitai/manual.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://nintanuki.github.io/nuitai/art/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Game Manual · Nuitai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
+<link rel="stylesheet" href="site.css?v=bcf7392b">
+<link rel="stylesheet" href="shell.css?v=7f9262b7">
+<script>(function(){var t=null,a=null,m=null;try{t=localStorage.getItem("nuitai-site-theme");a=localStorage.getItem("nuitai-ai-art");m=localStorage.getItem("nuitai-menu")||localStorage.getItem("nuitai-battle-menu")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia";if(a==="off")document.documentElement.dataset.art="off";if(m==="hidden")document.documentElement.dataset.menu="hidden"})()</script>
+<style>
+  /* The Game Manual (Frankie, 10/24): the booklet that came in the box, as if this were a lost
+     cartridge from the 90s. Nothing meta: no "demo", no keyboard, no "Super Nintendo style".
+     Laid out after the Chrono Trigger booklet: a drop letter on every heading, numbered pages
+     with a faint whirlpool behind them, buttons in rings, callouts on the screens and tables
+     in two colors of rows. The windows are the game's own: ocean blue, rounded white corners. */
+  :root {
+    --pixel: "Press Start 2P", ui-monospace, monospace;
+    --win-top: #2f63b8; --win-bottom: #10285e;
+    --paper: #fbf6ec; --row: #f3ead7;
+    /* The games' element colors (game/answers.md), light pages then dark screens. */
+    --fire: #B8321F; --nature: #4B8A22; --water: #0B7A90; --light: #E2B100; --shadow: #6A2C88; --spirit: #2448B0;
+    --spiral: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cpath d='M102 100 L101 101 L101 102 L100 102 L99 102 L98 102 L98 101 L97 100 L97 99 L98 98 L98 97 L99 97 L100 97 L101 97 L102 97 L103 97 L103 98 L104 99 L104 100 L104 101 L104 102 L104 103 L103 104 L102 105 L101 106 L100 106 L99 106 L97 106 L96 105 L95 105 L94 104 L94 103 L93 102 L93 100 L92 99 L93 98 L93 96 L93 95 L94 94 L95 92 L97 92 L98 91 L100 90 L102 90 L103 90 L105 91 L107 92 L109 93 L110 94 L111 96 L112 98 L113 100 L113 103 L113 105 L112 108 L111 110 L109 112 L107 114 L104 115 L102 116 L99 117 L95 117 L92 116 L89 115 L86 113 L84 111 L81 108 L80 105 L79 101 L78 97 L78 93 L79 89 L81 85 L84 81 L87 78 L91 75 L95 73 L100 72 L105 71 L111 72 L116 73 L121 76 L126 80 L130 84 L133 89 L136 95 L137 102 L137 109 L136 116 L134 123 L130 129 L125 135 L119 141 L112 145 L104 147 L95 149 L86 149 L77 147 L68 143 L59 138 L52 131 L45 122 L41 113 L37 102 L36 90 L37 78 L40 67 L45 55 L53 44 L62 35 L74 27 L87 21 L101 17 L117 16 L132 18 L148 23 L163 31' fill='none' stroke='black' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]):not([data-theme="sepia"]) {
+      --paper: #1c222a; --row: #232a33;
+      --fire: #E04A3A; --nature: #7BC043; --water: #1FAFC7; --light: #F2C230; --shadow: #8E44AD; --spirit: #3D6BE0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c222a; --row: #232a33;
+    --fire: #E04A3A; --nature: #7BC043; --water: #1FAFC7; --light: #F2C230; --shadow: #8E44AD; --spirit: #3D6BE0;
+  }
+  :root[data-theme="sepia"] { --paper: #f6ebd0; --row: #ecdcb6; }
+
+  main.wrap.booklet { max-width: 46rem; }
+
+  /* The cover. */
+  .cover {
+    position: relative; overflow: hidden; margin: 0 0 1.5rem; padding: 2.4rem 1rem 1.6rem; text-align: center; color: #fff;
+    background: radial-gradient(circle at 50% 120%, #1fafc7 0%, #0b5f8a 35%, #0b1f4a 75%);
+    border: 4px solid #fff; border-radius: 14px; box-shadow: 0 0 0 3px #10285e;
+  }
+  .cover::before {
+    content: ""; position: absolute; inset: -20% -20% auto auto; width: 70%; aspect-ratio: 1; background: #fff; opacity: .07;
+    -webkit-mask: var(--spiral) center / contain no-repeat; mask: var(--spiral) center / contain no-repeat;
+  }
+  .cover .logo { position: relative; font-family: var(--pixel); font-size: clamp(2rem, 10vw, 3.4rem); letter-spacing: .08em; margin: 0; text-shadow: 4px 4px 0 #10285e; }
+  .cover .faces { position: relative; display: flex; justify-content: center; gap: .6rem; margin: 1.6rem 0 1.4rem; flex-wrap: wrap; }
+  .cover .faces img { width: 64px; height: 64px; image-rendering: pixelated; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 0 0 2px #10285e; }
+  .cover .booklet-name { position: relative; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.3rem; letter-spacing: .12em; margin: 0; }
+
+  /* Every section is a page of the booklet. */
+  section.page {
+    position: relative; overflow: hidden; margin: 1.5rem 0; padding: 1.4rem 1.25rem 2.6rem;
+    background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
+    box-shadow: 0 1px 0 var(--line), 0 6px 18px rgb(0 0 0 / .06);
+  }
+  section.page::before {
+    content: ""; position: absolute; right: -6rem; bottom: -6rem; width: 22rem; height: 22rem; background: var(--c); opacity: .08; pointer-events: none;
+    -webkit-mask: var(--spiral) center / contain no-repeat; mask: var(--spiral) center / contain no-repeat;
+  }
+  section.page > * { position: relative; }
+  .folio { position: absolute; bottom: .7rem; font-family: var(--serif); font-style: italic; font-weight: 700; color: var(--muted); }
+  section.page:nth-of-type(odd) .folio { right: 1.1rem; }
+  section.page:nth-of-type(even) .folio { left: 1.1rem; }
+
+  /* Headings with a drop letter in a square, like the old booklets. */
+  h2.cap { display: flex; align-items: stretch; gap: .5rem; margin: 0 0 1rem; padding: 0 0 .5rem; border: 0; font-family: var(--serif); }
+  h2.cap .dc {
+    flex: none; display: grid; place-items: center; width: 3.4rem; font-size: 2.6rem; font-style: italic; color: #fff;
+    background: var(--c); border-radius: 4px; box-shadow: inset 0 0 0 3px rgb(255 255 255 / .25);
+  }
+  h2.cap .rest { flex: 1; display: flex; flex-direction: column; justify-content: center; font-style: italic; font-size: 1.6rem; line-height: 1.1; color: var(--c); text-transform: uppercase; letter-spacing: .02em; border-bottom: 3px solid var(--c); padding-bottom: .3rem; position: relative; }
+  h2.cap .rest::after { content: ""; position: absolute; right: -.2rem; bottom: -.55rem; width: .8rem; height: .8rem; border-radius: 50%; background: var(--paper); border: 3px solid var(--c); }
+  .lead { font-family: var(--serif); font-style: italic; font-size: 1.12rem; }
+  h3.ring { display: inline-block; margin: 1.6rem 0 .4rem; padding: .1rem .8rem .1rem .1rem; font-family: var(--serif); font-style: italic; text-transform: uppercase; font-size: 1.15rem; color: var(--c); }
+  h3.ring::before { content: ""; display: inline-block; width: 1.6rem; height: 1.6rem; margin-right: .5rem; vertical-align: -.35rem; border: 3px solid var(--c); border-radius: 50%; opacity: .6; }
+
+  /* Screens from the game, drawn as pixels, in a black frame. */
+  .shot { margin: 1rem 0; }
+  .shot .frame { position: relative; max-width: 512px; margin: 0 auto; }
+  .shot img { width: 100%; height: auto; display: block; image-rendering: pixelated; border: 5px solid #111; border-radius: 3px; background: #000; }
+  .shot figcaption { text-align: center; font-size: .9rem; color: var(--muted); }
+  .pair { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); align-items: start; }
+  .pair .shot { margin: 0; }
+
+  /* Numbered callouts on a screen, and the key under it. */
+  .pin {
+    position: absolute; transform: translate(-50%, -50%); width: 1.6rem; height: 1.6rem; display: grid; place-items: center;
+    font: 700 .85rem var(--sans); color: #fff; background: var(--c); border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 1px #000;
+  }
+  ol.key { list-style: none; padding: 0; margin: .8rem 0; display: grid; gap: .5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); }
+  ol.key li { display: grid; grid-template-columns: 1.6rem 1fr; gap: .5rem; align-items: start; }
+  ol.key li > b:first-child { width: 1.6rem; height: 1.6rem; display: grid; place-items: center; font-size: .85rem; color: #fff; background: var(--c); border-radius: 50%; }
+  ol.key li span b { color: var(--c); text-transform: uppercase; font-size: .92rem; letter-spacing: .02em; }
+
+  /* The pad, then each button in a ring with what it does. */
+  .pad { display: block; width: 100%; max-width: 520px; height: auto; margin: .5rem auto 1rem; }
+  .pad .tag { font: italic 700 18px var(--serif); fill: var(--muted); }
+  .buttons { display: grid; gap: 1rem; margin: 1rem 0; }
+  .button { display: grid; grid-template-columns: 5.6rem 1fr; gap: .9rem; align-items: center; }
+  .badge {
+    width: 5.6rem; height: 5.6rem; border-radius: 50%; display: grid; place-content: center; text-align: center;
+    border: 4px solid var(--b); color: var(--b); font-family: var(--serif); font-style: italic; font-weight: 700; line-height: 1;
+    background: color-mix(in srgb, var(--b) 10%, transparent);
+  }
+  .badge big { font-size: 1.7rem; display: block; }
+  .badge small { font-size: .7rem; letter-spacing: .08em; margin-top: .2rem; display: block; text-transform: uppercase; }
+  .button p { margin: 0; }
+
+  /* Tables in two colors of rows. */
+  table.m { border-collapse: collapse; width: 100%; font-size: .95rem; margin: .6rem 0 1rem; }
+  table.m th { background: #1d2440; color: #fff; font-family: var(--serif); font-style: italic; padding: .4rem .6rem; text-align: left; }
+  table.m td { padding: .4rem .6rem; vertical-align: top; border-bottom: 1px solid var(--line); }
+  table.m tr:nth-child(even) td { background: var(--row); }
+  table.m tr:nth-child(odd) td { background: color-mix(in srgb, var(--c) 9%, var(--paper)); }
+  table.m td:first-child { font-weight: 700; }
+  table.m td.num { white-space: nowrap; text-align: right; }
+  .scroll { overflow-x: auto; }
+
+  /* A window from the game, for tips. */
+  .win {
+    margin: 1rem 0; padding: .8rem 1rem; color: #fff;
+    background: linear-gradient(var(--win-top), var(--win-bottom));
+    border: 3px solid #fff; border-radius: 10px; box-shadow: 0 0 0 2px #10285e;
+  }
+  .win b.label { font-family: var(--pixel); font-size: .65rem; display: block; margin-bottom: .4rem; color: #ffe27a; letter-spacing: .05em; }
+  .win p { margin: .3rem 0; }
+
+  /* The table of contents. */
+  .contents { list-style: none; padding: 0; margin: .5rem 0 0; }
+  .contents li { display: flex; gap: .5rem; align-items: baseline; margin: .45rem 0; font-family: var(--serif); font-size: 1.12rem; }
+  .contents a { text-decoration: none; font-weight: 700; color: hsl(var(--h) var(--s) var(--l)); }
+  .contents .dots { flex: 1; border-bottom: 2px dotted var(--line); transform: translateY(-.3rem); }
+  .contents .pg { font-style: italic; font-weight: 700; color: var(--muted); }
+
+  /* The elements, each in its color, with the game's icon. */
+  .el { font-weight: 700; white-space: nowrap; }
+  .el img { width: 18px; height: 18px; image-rendering: pixelated; vertical-align: -3px; margin-right: .2rem; }
+  .fire { color: var(--fire); } .nature { color: var(--nature); } .water { color: var(--water); }
+  .light { color: var(--light); } .shadow { color: var(--shadow); } .spirit { color: var(--spirit); }
+  .wheel { display: grid; gap: .8rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); margin: .8rem 0; }
+  .wheel div { background: var(--row); border: 1px solid var(--line); border-radius: .6rem; padding: .7rem .9rem; line-height: 2; }
+
+  /* The cast. */
+  .hero { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; margin: 1.6rem 0; align-items: start; }
+  .hero img { width: 110px; height: 110px; image-rendering: pixelated; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 0 0 2px #10285e; background: #10285e; }
+  .hero h3 { margin: 0; font-family: var(--serif); font-style: italic; text-transform: uppercase; font-size: 1.9rem; line-height: 1; color: var(--hc); }
+  .hero .role { color: var(--muted); font-size: .9rem; margin: .2rem 0 .4rem; }
+  .hero p { margin: .3rem 0; }
+  .moves { margin: .5rem 0 0; display: grid; gap: .45rem; }
+  .moves div b { display: block; font-size: .85rem; text-transform: uppercase; letter-spacing: .03em; color: var(--hc); }
+  @media (max-width: 30rem) { .hero { grid-template-columns: 72px 1fr; } .hero img { width: 72px; height: 72px; } }
+
+
+  /* A character sheet: the hero, a list of facts, their Status page. */
+  .sheet { margin: 1.8rem 0; padding-top: 1.2rem; border-top: 3px solid color-mix(in srgb, var(--hc) 40%, transparent); }
+  .sheet .hero { margin: 0 0 .8rem; }
+  .sheet .shot { max-width: 22rem; margin: .8rem auto 0; }
+  dl.facts { display: grid; grid-template-columns: 7.5rem 1fr; margin: 0; border-radius: .4rem; overflow: hidden; }
+  dl.facts dt, dl.facts dd { margin: 0; padding: .4rem .6rem; }
+  dl.facts dt { font-family: var(--serif); font-style: italic; font-weight: 700; text-transform: uppercase; font-size: .85rem; color: #fff; background: var(--hc); }
+  dl.facts dd { background: var(--row); }
+  dl.facts dd:nth-of-type(even) { background: color-mix(in srgb, var(--hc) 9%, var(--paper)); }
+  @media (max-width: 30rem) { dl.facts { grid-template-columns: 1fr; } dl.facts dt { padding-bottom: .2rem; } }
+
+  /* The creatures, each on a patch of jungle. */
+  .beasts { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); margin: 1rem 0; }
+  .beasts figure { margin: 0; display: grid; grid-template-rows: auto 1fr; background: var(--row); border: 1px solid var(--line); border-radius: .6rem; overflow: hidden; }
+  .beasts .pic { height: 10.5rem; display: grid; place-items: center; background: linear-gradient(#5b8a3c, #2d4f22); }
+  .beasts img { width: auto; height: auto; max-width: none; margin: 0; background: none; border: 0; border-radius: 0; box-shadow: none; transform: scale(2); image-rendering: pixelated; }
+  .beasts figcaption { padding: .6rem .8rem .8rem; font-size: .95rem; }
+  .beasts figcaption b { display: block; font-family: var(--serif); font-style: italic; text-transform: uppercase; font-size: 1.1rem; color: var(--c); }
+
+  .item img { width: 32px; height: 32px; image-rendering: pixelated; vertical-align: middle; margin-right: .4rem; }
+  .coin { width: 16px; height: 16px; image-rendering: pixelated; vertical-align: -2px; }
+</style>
+</head>
+<body class="shelled">
+<header class="shell-bar">
+<button class="shell-menu-btn" id="shell-menu-btn" type="button" aria-label="Open the menu">&#9776; Menu</button>
+<a class="shell-brand" href="index.html"><svg class="nautilus" viewBox="-58.8 -126.3 156.1 201.7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-7.9 19.8 L-6.5 20.6 L-5.0 21.3 L-3.5 21.9 L-2.0 22.4 L-0.4 22.7 L1.3 23.0 L3.0 23.1 L4.7 23.1 L6.5 23.0 L8.2 22.8 L10.0 22.4 L11.7 21.9 L13.4 21.3 L15.1 20.5 L16.8 19.6 L18.4 18.6 L19.9 17.4 L21.4 16.2 L22.8 14.8 L24.1 13.2 L25.3 11.6 L26.4 9.9 L27.4 8.0 L28.2 6.1 L29.0 4.1 L29.6 2.0 L30.0 -0.1 L30.3 -2.3 L30.4 -4.5 L30.4 -6.8 L30.2 -9.1 L29.9 -11.4 L29.3 -13.7 L28.6 -16.0 L27.8 -18.2 L26.7 -20.4 L25.5 -22.6 L24.1 -24.7 L22.5 -26.7 L20.8 -28.6 L18.9 -30.4 L16.9 -32.1 L14.7 -33.7 L12.4 -35.1 L9.9 -36.3 L7.4 -37.4 L4.7 -38.4 L2.0 -39.1 L-0.9 -39.6 L-3.8 -40.0 L-6.7 -40.1 L-9.7 -40.0 L-12.8 -39.7 L-15.8 -39.2 L-18.8 -38.4 L-21.8 -37.4 L-24.8 -36.2 L-27.7 -34.7 L-30.5 -33.1 L-33.2 -31.2 L-35.8 -29.1 L-38.3 -26.7 L-40.6 -24.2 L-42.8 -21.5 L-44.8 -18.6 L-46.6 -15.5 L-48.2 -12.2 L-49.6 -8.8 L-50.8 -5.3 L-51.7 -1.6 L-52.3 2.1 L-52.7 6.0 L-52.8 9.9 L-52.6 13.8 L-52.1 17.8 L-51.3 21.8 L-50.2 25.8 L-48.8 29.7 L-47.2 33.6 L-45.2 37.4 L-42.9 41.1 L-40.3 44.6 L-37.5 48.0 L-34.3 51.2 L-30.9 54.3 L-27.3 57.1 L-23.4 59.6 L-19.3 61.9 L-14.9 64.0 L-10.4 65.7 L-5.7 67.1 L-0.9 68.2 L4.1 69.0 L9.2 69.4 L14.4 69.4 L19.6 69.0 L24.8 68.3 L30.1 67.2 L35.3 65.7 L40.5 63.7 L45.5 61.4 L50.5 58.7 L55.3 55.6 L59.9 52.1 L64.3 48.3 L68.5 44.1 L72.4 39.5 L76.0 34.6 L79.3 29.4 L82.3 23.9 L84.8 18.1 L87.0 12.1 L88.8 5.9 L90.1 -0.6 L91.0 -7.2 L91.4 -13.9 L91.3 -20.7 L90.7 -27.6 L89.6 -34.5 L87.9 -41.4 L85.8 -48.2 L83.1 -55.0 L80.0 -61.6 L76.3 -68.1 L72.0 -74.3 L67.3 -80.4 L62.1 -86.1 L56.5 -91.5 L50.4 -96.6 L43.8 -101.2 L36.8 -105.4 L29.5 -109.2 L21.8 -112.4 L13.8 -115.2 L5.5 -117.3 L-3.0 -118.9 L-11.7 -119.9 L-20.6 -120.3 L-29.6 -120.0 L-38.7 -119.0 Q-33.1 -69.3 -12.9 -39.7"/><g stroke-width="3"><path d="M91.4 -14.5Q66.3 1.3 30.5 -4.8"/><path d="M83.0 22.3Q55.8 26.3 27.7 7.4"/><path d="M62.0 50.4Q37.4 43.4 20.7 16.8"/><path d="M33.5 66.2Q15.3 51.0 11.2 22.1"/><path d="M3.3 68.9Q-6.4 49.0 1.1 23.0"/><path d="M-23.3 59.7Q-24.0 39.2 -7.8 19.9"/><path d="M-42.4 41.8Q-35.2 24.2 -14.1 13.9"/><path d="M-51.8 19.4Q-39.0 7.2 -17.3 6.5"/><path d="M-51.3 -3.2Q-35.8 -8.7 -17.1 -1.1"/><path d="M-42.3 -22.1Q-27.1 -21.0 -14.1 -7.4"/><path d="M-27.5 -34.8Q-15.0 -28.0 -9.2 -11.6"/><path d="M-10.2 -40.0Q-2.1 -29.5 -3.4 -13.3"/><path d="M6.5 -37.8Q9.4 -25.8 2.2 -12.6"/><path d="M19.8 -29.6Q17.7 -18.4 6.6 -9.9"/></g></svg>Nuitai</a>
+</header>
+<div class="shell-shade" id="shell-shade"></div>
+<button class="menu-tab" id="menu-tab" type="button" aria-controls="shell"></button>
+<aside class="shell" id="shell">
+<a class="shell-brand" href="index.html"><svg class="nautilus" viewBox="-58.8 -126.3 156.1 201.7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-7.9 19.8 L-6.5 20.6 L-5.0 21.3 L-3.5 21.9 L-2.0 22.4 L-0.4 22.7 L1.3 23.0 L3.0 23.1 L4.7 23.1 L6.5 23.0 L8.2 22.8 L10.0 22.4 L11.7 21.9 L13.4 21.3 L15.1 20.5 L16.8 19.6 L18.4 18.6 L19.9 17.4 L21.4 16.2 L22.8 14.8 L24.1 13.2 L25.3 11.6 L26.4 9.9 L27.4 8.0 L28.2 6.1 L29.0 4.1 L29.6 2.0 L30.0 -0.1 L30.3 -2.3 L30.4 -4.5 L30.4 -6.8 L30.2 -9.1 L29.9 -11.4 L29.3 -13.7 L28.6 -16.0 L27.8 -18.2 L26.7 -20.4 L25.5 -22.6 L24.1 -24.7 L22.5 -26.7 L20.8 -28.6 L18.9 -30.4 L16.9 -32.1 L14.7 -33.7 L12.4 -35.1 L9.9 -36.3 L7.4 -37.4 L4.7 -38.4 L2.0 -39.1 L-0.9 -39.6 L-3.8 -40.0 L-6.7 -40.1 L-9.7 -40.0 L-12.8 -39.7 L-15.8 -39.2 L-18.8 -38.4 L-21.8 -37.4 L-24.8 -36.2 L-27.7 -34.7 L-30.5 -33.1 L-33.2 -31.2 L-35.8 -29.1 L-38.3 -26.7 L-40.6 -24.2 L-42.8 -21.5 L-44.8 -18.6 L-46.6 -15.5 L-48.2 -12.2 L-49.6 -8.8 L-50.8 -5.3 L-51.7 -1.6 L-52.3 2.1 L-52.7 6.0 L-52.8 9.9 L-52.6 13.8 L-52.1 17.8 L-51.3 21.8 L-50.2 25.8 L-48.8 29.7 L-47.2 33.6 L-45.2 37.4 L-42.9 41.1 L-40.3 44.6 L-37.5 48.0 L-34.3 51.2 L-30.9 54.3 L-27.3 57.1 L-23.4 59.6 L-19.3 61.9 L-14.9 64.0 L-10.4 65.7 L-5.7 67.1 L-0.9 68.2 L4.1 69.0 L9.2 69.4 L14.4 69.4 L19.6 69.0 L24.8 68.3 L30.1 67.2 L35.3 65.7 L40.5 63.7 L45.5 61.4 L50.5 58.7 L55.3 55.6 L59.9 52.1 L64.3 48.3 L68.5 44.1 L72.4 39.5 L76.0 34.6 L79.3 29.4 L82.3 23.9 L84.8 18.1 L87.0 12.1 L88.8 5.9 L90.1 -0.6 L91.0 -7.2 L91.4 -13.9 L91.3 -20.7 L90.7 -27.6 L89.6 -34.5 L87.9 -41.4 L85.8 -48.2 L83.1 -55.0 L80.0 -61.6 L76.3 -68.1 L72.0 -74.3 L67.3 -80.4 L62.1 -86.1 L56.5 -91.5 L50.4 -96.6 L43.8 -101.2 L36.8 -105.4 L29.5 -109.2 L21.8 -112.4 L13.8 -115.2 L5.5 -117.3 L-3.0 -118.9 L-11.7 -119.9 L-20.6 -120.3 L-29.6 -120.0 L-38.7 -119.0 Q-33.1 -69.3 -12.9 -39.7"/><g stroke-width="3"><path d="M91.4 -14.5Q66.3 1.3 30.5 -4.8"/><path d="M83.0 22.3Q55.8 26.3 27.7 7.4"/><path d="M62.0 50.4Q37.4 43.4 20.7 16.8"/><path d="M33.5 66.2Q15.3 51.0 11.2 22.1"/><path d="M3.3 68.9Q-6.4 49.0 1.1 23.0"/><path d="M-23.3 59.7Q-24.0 39.2 -7.8 19.9"/><path d="M-42.4 41.8Q-35.2 24.2 -14.1 13.9"/><path d="M-51.8 19.4Q-39.0 7.2 -17.3 6.5"/><path d="M-51.3 -3.2Q-35.8 -8.7 -17.1 -1.1"/><path d="M-42.3 -22.1Q-27.1 -21.0 -14.1 -7.4"/><path d="M-27.5 -34.8Q-15.0 -28.0 -9.2 -11.6"/><path d="M-10.2 -40.0Q-2.1 -29.5 -3.4 -13.3"/><path d="M6.5 -37.8Q9.4 -25.8 2.2 -12.6"/><path d="M19.8 -29.6Q17.7 -18.4 6.6 -9.9"/></g></svg>Nuitai</a>
+<p class="shell-tag">A tropical seafaring adventure where movement is magic</p>
+<nav class="shell-menu" aria-label="The site">
+<div class="shell-item hue" style="--h:200"><a href="index.html">Map <span class="em" aria-hidden="true">🗺️</span></a></div>
+<div class="shell-item hue open" style="--h:350"><a href="game.html">Game <span class="em" aria-hidden="true">🎮</span></a><ul><li><a href="snes-demo/index.html">SNES Demo</a></li><li><a href="manual.html">Game Manual</a></li><li><a href="tabletop.html">Tabletop Guide</a></li></ul></div>
+<div class="shell-item hue" style="--h:260"><a href="wiki.html">Wiki <span class="em" aria-hidden="true">📚</span></a><ul><li class="hue" style="--h:350"><a href="wiki.html#/group/person">Characters<span class="n">17</span></a></li><li class="hue" style="--h:260"><a href="wiki.html#/group/god">Gods<span class="n">24</span></a></li><li class="hue" style="--h:145"><a href="wiki.html#/group/beast">Sacred beasts<span class="n">6</span></a></li><li class="hue" style="--h:195"><a href="wiki.html#/group/location">Places<span class="n">15</span></a></li><li class="hue" style="--h:165"><a href="wiki.html#/group/settlement">Settlements<span class="n">3</span></a></li><li class="hue" style="--h:22"><a href="wiki.html#/group/ethnicity">Peoples<span class="n">6</span></a></li><li class="hue" style="--h:125"><a href="wiki.html#/group/species">Species<span class="n">17</span></a></li><li class="hue" style="--h:275"><a href="wiki.html#/group/organization">Faiths and factions<span class="n">19</span></a></li><li class="hue" style="--h:245"><a href="wiki.html#/group/law">Cosmology<span class="n">6</span></a></li><li class="hue" style="--h:325"><a href="wiki.html#/group/language">Languages<span class="n">4</span></a></li><li class="hue" style="--h:45"><a href="wiki.html#/group/technology">Arts and technology<span class="n">11</span></a></li><li class="hue" style="--h:75"><a href="wiki.html#/group/ritual">Games and codes<span class="n">4</span></a></li><li class="hue" style="--h:300"><a href="wiki.html#/group/document">Books and documents<span class="n">1</span></a></li><li class="hue" style="--h:210"><a href="wiki.html#/group/article">Game mechanics<span class="n">11</span></a></li><li class="hue" style="--h:30"><a href="items.html">Item glossary</a></li><li class="hue" style="--h:95"><a href="food.html">Food</a></li></ul></div>
+<div class="shell-item hue" style="--h:195"><a href="gallery.html">Gallery <span class="em" aria-hidden="true">🖼️</span></a><ul><li class="hue" style="--h:195"><a href="gallery.html#maps">Maps</a></li><li class="hue ai" style="--h:350"><a href="gallery.html#portraits">Portraits</a></li><li class="hue" style="--h:350"><a href="gallery.html#sprites">Sprites</a></li><li class="hue ai" style="--h:350"><a href="gallery.html#person">Characters</a></li><li class="hue ai" style="--h:260"><a href="gallery.html#god">Gods</a></li><li class="hue ai" style="--h:145"><a href="gallery.html#beast">Sacred beasts</a></li><li class="hue ai" style="--h:195"><a href="gallery.html#location">Places</a></li><li class="hue ai" style="--h:165"><a href="gallery.html#settlement">Settlements</a></li><li class="hue ai" style="--h:22"><a href="gallery.html#ethnicity">Peoples</a></li><li class="hue ai" style="--h:125"><a href="gallery.html#species">Species</a></li><li class="hue ai" style="--h:275"><a href="gallery.html#organization">Faiths and factions</a></li><li class="hue ai" style="--h:245"><a href="gallery.html#law">Cosmology</a></li><li class="hue ai" style="--h:45"><a href="gallery.html#technology">Arts and technology</a></li><li class="hue ai" style="--h:75"><a href="gallery.html#ritual">Games and codes</a></li><li class="hue ai" style="--h:300"><a href="gallery.html#document">Books and documents</a></li><li class="hue ai" style="--h:210"><a href="gallery.html#article">Game mechanics</a></li></ul></div>
+<div class="shell-item hue" style="--h:325"><a href="lexicon.html">Lexicon <span class="em" aria-hidden="true">🔤</span></a><ul><li class="hue" style="--h:150"><a href="lexicon.html#nuitailo">Nuitai&#x27;lo</a></li><li class="hue" style="--h:45"><a href="lexicon.html#bandhasa">Bandhasa</a></li><li class="hue" style="--h:60"><a href="lexicon.html#bandhasa-script">The Bandhasa script</a></li><li class="hue" style="--h:200"><a href="lexicon.html#malalo">Malalo</a></li><li class="hue" style="--h:165"><a href="lexicon.html#kamego">Kamego</a></li><li class="hue" style="--h:130"><a href="lexicon.html#kaerugo">Kaerugo</a></li><li class="hue" style="--h:110"><a href="lexicon.html#ranalo">Rana&#x27;lo</a></li><li class="hue" style="--h:175"><a href="lexicon.html#chelonian">The Umigame language</a></li><li class="hue" style="--h:300"><a href="lexicon.html#pekapeka">Pekapeka&#x27;ro</a></li><li class="hue" style="--h:20"><a href="lexicon.html#mokomoko">Mokomoko&#x27;lo</a></li><li class="hue" style="--h:90"><a href="lexicon.html#nagas">Geram</a></li><li class="hue" style="--h:0"><a href="lexicon.html#manogata">Samego</a></li><li class="hue" style="--h:280"><a href="lexicon.html#stone-speech">Stone Speech</a></li><li><a href="wiki.html#/language/glossary">Glossary in the wiki</a></li></ul></div>
+<div class="shell-item hue" style="--h:45"><a href="behind-the-scenes.html">Behind the scenes <span class="em" aria-hidden="true">🎬</span></a><ul><li class="hue" style="--h:195"><a href="behind-the-scenes.html#why">Why Nuitai</a></li><li class="hue" style="--h:25"><a href="behind-the-scenes.html#circle">The circle</a></li><li class="hue" style="--h:45"><a href="behind-the-scenes.html#choices">Small choices</a></li><li class="hue" style="--h:350"><a href="behind-the-scenes.html#secrets">Secrets</a></li><li class="hue" style="--h:150"><a href="behind-the-scenes.html#sources">Where it comes from</a></li><li class="hue" style="--h:280"><a href="behind-the-scenes.html#drafts">Not canon yet</a></li><li class="hue" style="--h:0"><a href="behind-the-scenes.html#disagree">Loose threads</a></li><li class="hue" style="--h:220"><a href="behind-the-scenes.html#open">Still undecided</a></li><li class="hue" style="--h:260"><a href="behind-the-scenes.html#numbers">The numbers</a></li><li class="hue" style="--h:30"><a href="old-pictures.html">Old pictures</a></li></ul></div>
+<div class="shell-item shell-ask hue" style="--h:220"><a href="ask.html"><img class="shell-face ai" src="art/portraits/sarjana-portrait-a.png" alt="">Ask Sarjana</a></div>
+</nav>
+<footer class="shell-foot"><button class="theme-btn" id="theme-btn" type="button" aria-label="Change the colors"></button>
+<script>(function(){var r=document.documentElement,b=document.getElementById("theme-btn"),
+order=["sepia","dark","light"],names={dark:"Dark",light:"Light",sepia:"Sepia"};
+function label(){b.textContent="Theme: "+names[r.dataset.theme]}
+b.addEventListener("click",function(){var t=order[(order.indexOf(r.dataset.theme)+1)%3];r.dataset.theme=t;
+try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();</script><button class="art-btn" id="art-btn" type="button" aria-label="Show or hide the pictures made with AI"></button>
+<script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
+function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
+b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-10-23</span></footer>
+</aside>
+<script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
+b.addEventListener("click",function(){body.classList.toggle("menu-open")});
+var r=document.documentElement,t=document.getElementById("menu-tab");
+function tab(){var h=r.dataset.menu==="hidden";t.textContent=h?"▶ Menu":"◀";
+t.title=h?"Show the site's menu":"Hide the menu";t.setAttribute("aria-expanded",String(!h))}
+t.addEventListener("click",function(){var h=r.dataset.menu!=="hidden";if(h)r.dataset.menu="hidden";else delete r.dataset.menu;
+try{localStorage.setItem("nuitai-menu",h?"hidden":"shown")}catch(e){}tab();window.dispatchEvent(new Event("resize"))});tab();
+s.addEventListener("click",function(){body.classList.remove("menu-open")});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")body.classList.remove("menu-open")});
+var here=location.pathname.split("/").pop()||"index.html";
+function mark(){var h=location.hash.replace(/^#\/?$/,"");
+document.querySelectorAll(".shell-menu a[href], .shell-foot a[href]").forEach(function(a){var p=a.getAttribute("href").split("#");
+a.classList.toggle("on",(p[0]||here)===here&&(p[1]?"#"+p[1]:"")===h)})}
+window.addEventListener("hashchange",function(){mark();body.classList.remove("menu-open")});mark();
+document.querySelectorAll(".shell-item > a").forEach(function(a){a.addEventListener("click",function(e){var d=a.parentNode;
+if(!d.querySelector("ul, .side"))return;
+if(d.classList.contains("open")){d.classList.remove("open");e.preventDefault()}
+else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}})})})();</script>
+<main class="wrap booklet">
+
+  <header class="cover">
+    <p class="logo">NUITAI</p>
+    <div class="faces">
+      <img src="manual/kailo_portrait.png" alt="Kailo">
+      <img src="manual/hina_portrait.png" alt="Hina">
+      <img src="manual/maika_portrait.png" alt="Maika">
+      <img src="manual/tawiri_portrait.png" alt="Tawiri">
+    </div>
+    <p class="booklet-name">INSTRUCTION BOOKLET</p>
+  </header>
+
+  <!-- 2 -->
+  <section class="page hue" style="--h:210" id="contents">
+    <h2 class="cap"><b class="dc">T</b><span class="rest">able of<br>Contents</span></h2>
+    <ol class="contents">
+      <li class="hue" style="--h:190"><a href="#world">The World of Nuitai</a><span class="dots"></span><span class="pg">3</span></li>
+      <li class="hue" style="--h:220"><a href="#controls">Basic Controls</a><span class="dots"></span><span class="pg">4</span></li>
+      <li class="hue" style="--h:160"><a href="#start">Getting Started</a><span class="dots"></span><span class="pg">6</span></li>
+      <li class="hue" style="--h:95"><a href="#field">Out in the World</a><span class="dots"></span><span class="pg">8</span></li>
+      <li class="hue" style="--h:265"><a href="#menu">The Field Menu</a><span class="dots"></span><span class="pg">10</span></li>
+      <li class="hue" style="--h:350"><a href="#battle">Battle Screen</a><span class="dots"></span><span class="pg">14</span></li>
+      <li class="hue" style="--h:40"><a href="#elements">Elements and Stances</a><span class="dots"></span><span class="pg">18</span></li>
+      <li class="hue" style="--h:15"><a href="#cast">Cast of Characters</a><span class="dots"></span><span class="pg">20</span></li>
+      <li class="hue" style="--h:20"><a href="#bestiary">Creatures of the Islands</a><span class="dots"></span><span class="pg">24</span></li>
+      <li class="hue" style="--h:130"><a href="#items">Items</a><span class="dots"></span><span class="pg">26</span></li>
+      <li class="hue" style="--h:300"><a href="#stronger">Growing Stronger</a><span class="dots"></span><span class="pg">28</span></li>
+      <li class="hue" style="--h:180"><a href="#guide">Adventure Guide</a><span class="dots"></span><span class="pg">30</span></li>
+    </ol>
+    <span class="folio">2</span>
+  </section>
+
+  <!-- 3 -->
+  <section class="page hue" style="--h:190" id="world">
+    <h2 class="cap"><b class="dc">T</b><span class="rest">he World<br>of Nuitai</span></h2>
+    <p class="lead">Nuitai is a world of ocean, scattered with islands that circle a great whirlpool. Its people say that magic is motion: a dance, a kick, a breath can call on the elements.</p>
+    <p>Kulāiwi is a small island in the Māla Iki Islands, beside Māla Iki itself, the largest island of the chain. It has one village, also called Kulāiwi. This is the home of Kailo, the village cook, and Hina, a young priestess.</p>
+    <p>It is the last day of summer. The boars have come down from the woods again, and they are digging up the taro patch. Tonight the whole village gathers for Old Pono's wake. Before then, someone has to deal with the boars, and with the biggest of them all, the Great Boar, at the top of the woods.</p>
+    <span class="folio">3</span>
+  </section>
+
+  <!-- 4 -->
+  <section class="page hue" style="--h:220" id="controls">
+    <h2 class="cap"><b class="dc">B</b><span class="rest">asic<br>Controls</span></h2>
+    <p class="lead">Here is how the controller works in NUITAI.</p>
+
+    <svg class="pad" viewBox="0 0 600 300" role="img" aria-label="The controller: the D-Pad on the left, SELECT and START in the middle, the X, Y, A and B buttons on the right, and the L and R buttons on top">
+      <text class="tag" x="130" y="26" text-anchor="middle">L</text>
+      <text class="tag" x="470" y="26" text-anchor="middle">R</text>
+      <!-- shoulder buttons -->
+      <path d="M62 92 Q80 48 150 40 L205 40 L205 52 L150 52 Q96 58 76 98 Z" fill="#9f9ca7"/>
+      <path d="M538 92 Q520 48 450 40 L395 40 L395 52 L450 52 Q504 58 524 98 Z" fill="#9f9ca7"/>
+      <!-- body -->
+      <path d="M160 48 H440 A116 116 0 0 1 440 280 H160 A116 116 0 0 1 160 48 Z" fill="#dcd9e0" stroke="#a7a4ae" stroke-width="3"/>
+      <!-- D-Pad in its well -->
+      <circle cx="160" cy="164" r="68" fill="#cbc8d0" stroke="#b6b3bc" stroke-width="3"/>
+      <path d="M144 112 h32 v36 h36 v32 h-36 v36 h-32 v-36 h-36 v-32 h36 z" fill="#4a4850" stroke="#2f2e33" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M160 120 l-7 10 h14 z M160 208 l-7 -10 h14 z M116 164 l10 -7 v14 z M204 164 l-10 -7 v14 z" fill="#6b6971"/>
+      <!-- SELECT and START -->
+      <rect x="244" y="170" width="44" height="16" rx="8" fill="#85828c" transform="rotate(-30 266 178)"/>
+      <rect x="312" y="170" width="44" height="16" rx="8" fill="#85828c" transform="rotate(-30 334 178)"/>
+      <text x="262" y="218" text-anchor="middle" style="font: italic 700 12px sans-serif; fill: #6b6971">SELECT</text>
+      <text x="334" y="218" text-anchor="middle" style="font: italic 700 12px sans-serif; fill: #6b6971">START</text>
+      <!-- the face buttons on their plate -->
+      <circle cx="440" cy="164" r="98" fill="#b7b4bd"/>
+      <rect x="348" y="108" width="130" height="58" rx="29" fill="#d9d6de" transform="rotate(-45 413 137)"/>
+      <rect x="402" y="162" width="130" height="58" rx="29" fill="#d9d6de" transform="rotate(-45 467 191)"/>
+      <circle cx="440" cy="110" r="22" fill="#3554b8"/>
+      <circle cx="494" cy="164" r="22" fill="#d23a2a"/>
+      <circle cx="440" cy="218" r="22" fill="#e8bd22"/>
+      <circle cx="386" cy="164" r="22" fill="#2f9447"/>
+      <text x="474" y="84" style="font: italic 700 16px sans-serif; fill: #6b6971">X</text>
+      <text x="526" y="136" style="font: italic 700 16px sans-serif; fill: #6b6971">A</text>
+      <text x="400" y="258" style="font: italic 700 16px sans-serif; fill: #6b6971">B</text>
+      <text x="350" y="200" style="font: italic 700 16px sans-serif; fill: #6b6971">Y</text>
+    </svg>
+
+    <div class="buttons">
+      <div class="button" style="--b:#5d5a66"><div class="badge"><big>D</big><small>Pad</small></div>
+        <p>Use the D-Pad to walk around and to move the cursor in menus. In battle, press left or right on the D-Pad to see more commands.</p></div>
+      <div class="button" style="--b:#d23a2a"><div class="badge"><big>A</big><small>Button</small></div>
+        <p>The A Button is the action button. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking.</p></div>
+      <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
+        <p>The B Button cancels the last choice you made and takes you back.</p></div>
+      <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
+        <p>Use the Y Button to open the field menu while you are walking around (page 10).</p></div>
+      <div class="button" style="--b:#5d5a66"><div class="badge"><big>L/R</big><small>Buttons</small></div>
+        <p>On the Element, Equip and Status screens, press L or R to turn to the previous or next member of your party.</p></div>
+      <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
+        <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
+    </div>
+    <div class="win"><b class="label">RESET</b><p>Hold L, R, START and SELECT together to reset the game and go back to the title screen. Anything you have not saved will be lost.</p></div>
+    <span class="folio">4</span>
+  </section>
+
+  <!-- 6 -->
+  <section class="page hue" style="--h:160" id="start">
+    <h2 class="cap"><b class="dc">G</b><span class="rest">etting<br>Started</span></h2>
+    <p class="lead">Insert the Game Pak and turn the power on. When the title screen appears, choose with the D-Pad and press A.</p>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/title.png" alt="The title screen: NEW GAME and CONTINUE" width="768" height="672"></div></figure>
+      <div>
+        <h3 class="ring" style="margin-top:0">New Game</h3>
+        <p>Begin a new adventure from the very start.</p>
+        <h3 class="ring">Continue</h3>
+        <p>Pick one of your three saved games and start from wherever you last saved.</p>
+        <p>To erase a saved game, choose <b>DELETE A SAVE</b> under the three files, then the file, then <b>YES</b>. Once erased, it is gone for good.</p>
+      </div>
+    </div>
+    <h3 class="ring">Saving Progress</h3>
+    <p>You can save only at a save point. Look for places to rest, like <b>Kailo's bed</b> in his house in town, or the <b>healing pool</b> in the woods. Take a nap or a drink and you will be asked if you want to save. While you stand next to one, you can also choose <b>Save</b> from the field menu. Anywhere else, Save is grayed out.</p>
+    <p>Resting there also heals the whole party and brings back anyone who has fallen.</p>
+    <div class="win"><b class="label">SAVE OFTEN</b><p>It is very important to save your game often, and always before a big fight.</p></div>
+    <span class="folio">6</span>
+  </section>
+
+  <!-- 8 -->
+  <section class="page hue" style="--h:95" id="field">
+    <h2 class="cap"><b class="dc">O</b><span class="rest">ut in<br>the World</span></h2>
+    <p class="lead">This is where most of your adventure takes place: in the village, on the beach and in the woods.</p>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/overworld.png" alt="Kailo walking in the village" width="768" height="672"></div></figure>
+      <div>
+        <h3 class="ring" style="margin-top:0">Walking</h3>
+        <p>Walk with the D-Pad. Walk off the edge of the screen to go on to the next area. Walk up into a door to go inside.</p>
+        <h3 class="ring">Talking</h3>
+        <p>Face someone and press A to talk with them. The people of the village know a great deal, and some have something to teach you.</p>
+      </div>
+    </div>
+    <h3 class="ring">Monsters</h3>
+    <p>Monsters roam out in the open. When you touch one, a battle begins (page 14). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back when you return.</p>
+    <p>A fight in the village is fought on the beach. Anywhere outside of town, it is fought in the jungle.</p>
+    <p>Some great beasts stand still and wait for you. When you walk up to one, you will be asked if you are ready. Say no to go back and prepare.</p>
+    <h3 class="ring">Shops</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/shop.png" alt="The market stall: Noni, Broth and Counter for sale" width="768" height="672"></div></figure>
+      <div>
+        <p>Talk to a seller to see what they have. Choose an item, then how many.</p>
+        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles.</p>
+        <p>There is a market stall in the village. Other sellers may turn up where you least expect them.</p>
+        <p>Some people are good at haggling. With the right friend along, every seller charges less.</p>
+      </div>
+    </div>
+    <h3 class="ring">Gardens</h3>
+    <p>Taro grows in the village garden, and wheat in the palm grove. Face a ripe plant and press A to pick it. A ripe patch gives two.</p>
+    <p>Anyone can pick, but only Hina knows how to plant a patch again. Press A on a bare patch with Hina in the party and she will replant it, using one of what it grows. A patch picked without her stays bare until she comes by.</p>
+    <p>Plants grow as you walk, so keep exploring and come back later. Someone you meet in the woods knows a way to make a planted patch grow faster.</p>
+    <h3 class="ring">The Cooking Pot</h3>
+    <p>There are big cooking pots in the village. Face one and press A, and Kailo will cook. It works just like <b>Craft</b> on the field menu (page 10).</p>
+    <span class="folio">8</span>
+  </section>
+
+  <!-- 10 -->
+  <section class="page hue" style="--h:265" id="menu">
+    <h2 class="cap"><b class="dc">T</b><span class="rest">he Field<br>Menu</span></h2>
+    <p class="lead">Press the Y Button while walking around to open the field menu.</p>
+    <figure class="shot"><div class="frame">
+      <img src="manual/menu.png" alt="The field menu" width="768" height="672">
+      <span class="pin" style="left:13%;top:12%">1</span>
+      <span class="pin" style="left:59%;top:11%">2</span>
+      <span class="pin" style="left:46%;top:20%">3</span>
+      <span class="pin" style="left:95%;top:28%">4</span>
+      <span class="pin" style="left:67%;top:75%">5</span>
+      <span class="pin" style="left:67%;top:87%">6</span>
+    </div></figure>
+    <ol class="key">
+      <li><b>1</b><span><b>Face</b><br>The three who fight. Move the cursor left onto the faces to change their order.</span></li>
+      <li><b>2</b><span><b>Hit Points</b><br>HP. When a member's HP reaches 0, they fall.</span></li>
+      <li><b>3</b><span><b>Elements</b><br>The member's two elements. The boxed one is the stance they start a battle in.</span></li>
+      <li><b>4</b><span><b>Commands</b><br>Choose one with the D-Pad and press A.</span></li>
+      <li><b>5</b><span><b>Date</b><br>The season and the day.</span></li>
+      <li><b>6</b><span><b>Money</b><br>Kupang <img class="coin" src="manual/kupang.png" alt="">, the coins, and pule <img class="coin" src="manual/pule.png" alt="">, the shells.</span></li>
+    </ol>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Command</th><th>What it does</th></tr>
+      <tr><td>Items</td><td>Look in the bag and use an item: heal someone, eat a seed, or listen to a memory shell.</td></tr>
+      <tr><td>Craft</td><td>The cooking pot. Put two things in and see what comes out.</td></tr>
+      <tr><td>Element</td><td>Each member's element moves, row by row. Choose which moves go in which row.</td></tr>
+      <tr><td>Equip</td><td>Change weapons.</td></tr>
+      <tr><td>Status</td><td>A page for each member: HP, Mana, TECH, stats and stances. Change the starting stance here.</td></tr>
+      <tr><td>Party</td><td>Choose who fights and who waits on the bench.</td></tr>
+      <tr><td>Data</td><td>The bestiary, the Lore of the islands, your time played and your steps.</td></tr>
+      <tr><td>Save</td><td>Save your game. Only at a save point.</td></tr>
+    </table>
+    </div>
+    <p>On the Element, Equip and Status screens, press L or R to turn to the next member without going back.</p>
+
+    <h3 class="ring">Craft</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The Craft screen: wheat, broth and taro ready for the pot" width="768" height="672"></div></figure>
+      <div>
+        <p>The pot shows everything in the bag that can go in it. Choose one thing, then a second, and see what you get. If the two don't go together, the pot says so and you keep both.</p>
+        <p>Only Kailo cooks, so the pot is his.</p>
+      </div>
+    </div>
+
+    <h3 class="ring">Element</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/loadout.png" alt="The Element screen: Hina's moves in numbered rows" width="768" height="672"></div></figure>
+      <div>
+        <p>Every element move sits in a numbered row, from 1 to 7. The row is what the move costs in Mana. Each row holds three moves.</p>
+        <p>Move a move up to a higher row and it grows stronger, but it costs more. A move can never go below its own row.</p>
+        <p>The window at the bottom tells you what the move under the cursor does.</p>
+      </div>
+    </div>
+
+    <h3 class="ring">Equip</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/equip.png" alt="The Equip screen: Kailo holds the Frying Pan" width="768" height="672"></div></figure>
+      <div>
+        <p>First choose the member, then the weapon. Before you take it, the stats show how the weapon would change them.</p>
+      </div>
+    </div>
+
+    <h3 class="ring">Status</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page: his stats, his TECH and his two stances" width="768" height="672"></div></figure>
+      <div>
+        <p>Each member has a page: HP, Mana, the eight stats (page 28), their TECH and their two stances.</p>
+        <p>The stance on top, in color, is the one they start every battle in. Press A to switch it, and watch the stats change with it.</p>
+      </div>
+    </div>
+
+    <h3 class="ring">Party</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/bench.png" alt="The Party screen: Kailo, Hina and Maika fight, Tawiri waits" width="768" height="672"></div></figure>
+      <div>
+        <p>Only three fight at a time. The three on top fight; everyone else waits below.</p>
+        <p>Choose one from each row and they trade places. To change the order of the three, move the cursor left onto the faces on the field menu.</p>
+      </div>
+    </div>
+
+    <h3 class="ring">Data</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Data screen: Bestiary, Lore, Time Played and Steps" width="768" height="672"></div></figure>
+      <div>
+        <p><b>Bestiary</b> has a page for every creature you have beaten.</p>
+        <p><b>Lore</b> holds pages about the people and places of the islands. New pages appear as your journey goes on, so look in now and then.</p>
+        <p><b>Time Played</b> and <b>Steps</b> count up from the start of your adventure.</p>
+      </div>
+    </div>
+    <figure class="shot"><div class="frame"><img src="manual/lore-page.png" alt="A Lore page about Kulāiwi" width="768" height="672"></div><figcaption>A Lore page. Press left or right to turn to the next one.</figcaption></figure>
+    <span class="folio">10</span>
+  </section>
+
+  <!-- 14 -->
+  <section class="page hue" style="--h:350" id="battle">
+    <h2 class="cap"><b class="dc">B</b><span class="rest">attle<br>Screen</span></h2>
+    <p class="lead">A battle starts when you touch a monster. Beat every monster to win!</p>
+    <figure class="shot"><div class="frame">
+      <img src="manual/battle-command.png" alt="A battle against three boars in the jungle" width="768" height="672">
+      <span class="pin" style="left:9%;top:8%">1</span>
+      <span class="pin" style="left:58%;top:30%">2</span>
+      <span class="pin" style="left:30%;top:70%">3</span>
+      <span class="pin" style="left:53%;top:66%">4</span>
+      <span class="pin" style="left:95%;top:66%">5</span>
+    </div></figure>
+    <ol class="key">
+      <li><b>1</b><span><b>Turn Order</b><br>Who acts next, from the top down. The party is marked in blue, monsters in red.</span></li>
+      <li><b>2</b><span><b>Enemies</b><br>Know your foe!</span></li>
+      <li><b>3</b><span><b>Commands</b><br>What the member whose turn it is can do. Press left or right on the D-Pad for more.</span></li>
+      <li><b>4</b><span><b>Elements</b><br>The member's two elements. The stance they fight in is boxed in yellow.</span></li>
+      <li><b>5</b><span><b>Hit Points</b><br>HP left. The small blue marks under the bar are Mana.</span></li>
+    </ol>
+
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Command</th><th>What it does</th></tr>
+      <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
+      <tr><td>TECH</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Charm</b>, Tawiri's <b>Call</b>. It costs no Mana.</td></tr>
+      <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
+      <tr><td>Item</td><td>Use an item from the bag.</td></tr>
+      <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
+      <tr><td>Escape</td><td>Try to run away. It does not always work, and you cannot run from some fights.</td></tr>
+      <tr><td>Weapon</td><td>Change weapons, if you have another.</td></tr>
+      <tr><td>Swap</td><td>Trade places with someone on the bench. The one coming in takes the turn.</td></tr>
+      <tr><td>Combo</td><td>Appears when two members are ready to team up.</td></tr>
+    </table>
+    </div>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/battle-left.png" alt="Left on the D-Pad: WEAPON, ESCAPE, DEFEND" width="768" height="672"></div><figcaption>Press left: Weapon, Escape, Defend</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="manual/battle-right.png" alt="Right on the D-Pad: SWAP" width="768" height="672"></div><figcaption>Press right: Swap and Combo</figcaption></figure>
+    </div>
+
+    <h3 class="ring">Attack</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/battle-strokes.png" alt="Strokes: LIGHT, MEDIUM and STRONG, each with its chance to hit" width="768" height="672"></div></figure>
+      <div>
+        <p>An Attack is made of strokes. Each turn you have 7 points to spend: <b>LIGHT</b> costs 1, <b>MEDIUM</b> 2 and <b>STRONG</b> 3.</p>
+        <p>Each stroke shows its chance to hit. A light stroke almost always lands. A strong one hits much harder, but misses more. Every stroke that lands makes the next one more likely to land, and builds Mana.</p>
+        <p>You can stop any time and finish your turn with an element move or an item.</p>
+      </div>
+    </div>
+
+    <h3 class="ring">Mana</h3>
+    <p>Mana is the energy a fighter builds by moving. Everyone starts a battle with 0 Mana and can hold up to 7. Attack and Defend to build it, then spend it on element moves. A move in row 3 costs 3 Mana.</p>
+
+    <h3 class="ring">Status Trouble</h3>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Trouble</th><th>What happens</th></tr>
+      <tr><td>Poison</td><td>Slowly takes HP. A poisoned monster turns green.</td></tr>
+      <tr><td>Sleep</td><td>Cannot act until hit. A sleeping monster has Zs over its head.</td></tr>
+      <tr><td>Blind</td><td>Blows miss half the time. A blinded monster wears sunglasses.</td></tr>
+      <tr><td>Burn</td><td>Hurts each time the burned one acts. It cannot be healed until the burn is gone.</td></tr>
+      <tr><td>Confuse</td><td>Sometimes attacks its own side.</td></tr>
+    </table>
+    </div>
+
+    <h3 class="ring">Victory and Defeat</h3>
+    <p>Monsters you beat drop pule, and sometimes an item. If your whole party falls, the game is over, and you must start again from your last save.</p>
+    <span class="folio">14</span>
+  </section>
+
+  <!-- 18 -->
+  <section class="page hue" style="--h:40" id="elements">
+    <h2 class="cap"><b class="dc">E</b><span class="rest">lements<br>and Stances</span></h2>
+    <p class="lead">There are six elements. Every fighter has two, and every monster has at least one.</p>
+    <div class="wheel">
+      <div><span class="el fire"><img src="manual/afi.png" alt="">Fire</span> beats <span class="el nature"><img src="manual/lau.png" alt="">Nature</span><br>
+        <span class="el nature"><img src="manual/lau.png" alt="">Nature</span> beats <span class="el water"><img src="manual/wai.png" alt="">Water</span><br>
+        <span class="el water"><img src="manual/wai.png" alt="">Water</span> beats <span class="el fire"><img src="manual/afi.png" alt="">Fire</span></div>
+      <div><span class="el light"><img src="manual/la.png" alt="">Light</span> beats <span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span><br>
+        <span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span> beats <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span><br>
+        <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span> beats <span class="el light"><img src="manual/la.png" alt="">Light</span></div>
+    </div>
+    <p>A hit from the element that beats yours does double damage. A hit from the element yours beats does half.</p>
+    <h3 class="ring">What Each Element Does</h3>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Element</th><th>Its work</th></tr>
+      <tr><td class="el fire"><img src="manual/afi.png" alt="">Fire</td><td>Gives a punch or a kick its force.</td></tr>
+      <tr><td class="el nature"><img src="manual/lau.png" alt="">Nature</td><td>Heals.</td></tr>
+      <tr><td class="el water"><img src="manual/wai.png" alt="">Water</td><td>Guards, taking blows for a friend.</td></tr>
+      <tr><td class="el light"><img src="manual/la.png" alt="">Light</td><td>Protects and strengthens with a spell.</td></tr>
+      <tr><td class="el shadow"><img src="manual/ata.png" alt="">Shadow</td><td>Curses: blind, sleep, poison.</td></tr>
+      <tr><td class="el spirit"><img src="manual/mana.png" alt="">Spirit</td><td>Gives magic its force.</td></tr>
+    </table>
+    </div>
+    <h3 class="ring">Stances</h3>
+    <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide.</p>
+    <p>To change stance in battle, choose <b>Element</b>. The switch is at the top, named after the other stance, and it gives you 1 Mana. Some moves use both elements and work in either stance.</p>
+    <p>Every battle begins in the stance boxed on the field menu. Change it on the Status screen.</p>
+    <span class="folio">18</span>
+  </section>
+
+  <!-- 20 -->
+  <section class="page hue" style="--h:15" id="cast">
+    <h2 class="cap"><b class="dc">C</b><span class="rest">ast of<br>Characters</span></h2>
+    <p class="lead">Along the way, Kailo will be joined by friends. Each of them has special abilities.</p>
+
+    <div class="sheet" style="--hc:var(--fire)">
+      <div class="hero">
+        <img src="manual/kailo_portrait.png" alt="Kailo">
+        <div>
+          <h3>Kailo</h3>
+          <p class="role">The Cook</p>
+          <p>The village cook, about nineteen, who looks after a house full of younger brothers, sisters and cousins. He has never left the islands and dreams of seeing the world. Wasting food upsets him.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el fire"><img src="manual/afi.png" alt="">Fire</span> and <span class="el water"><img src="manual/wai.png" alt="">Water</span></dd>
+        <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
+        <dt>Weapon</dt><dd>Frying Pan</dd>
+        <dt>TECH</dt><dd><b>Cook.</b> Pick two ingredients. On his next turn he serves the dish to anyone. Cooked fresh, a dish heals more than the same dish from the bag.</dd>
+        <dt>Moves</dt><dd><b>Flame Kick</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half.</dd>
+        <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="sheet" style="--hc:var(--nature)">
+      <div class="hero">
+        <img src="manual/hina_portrait.png" alt="Hina">
+        <div>
+          <h3>Hina</h3>
+          <p class="role">The Māla Priestess</p>
+          <p>A young priestess of Māla and the party's healer. Sharp tongued, and usually right. One day she hopes to become the high priestess of her village.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el light"><img src="manual/la.png" alt="">Light</span></dd>
+        <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that speed up friends and ward off harm.</dd>
+        <dt>Weapon</dt><dd>Gohei</dd>
+        <dt>TECH</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. Every kind of monster takes it differently.</dd>
+        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shaka's Light</b>, blocks the next shadow attack.</dd>
+        <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="sheet" style="--hc:var(--spirit)">
+      <div class="hero">
+        <img src="manual/maika_portrait.png" alt="Maika">
+        <div>
+          <h3>Maika</h3>
+          <p class="role">The Maki Sage</p>
+          <p>A traveling medicine seller from Māla Iki: calm, well spoken, and a little too sure of himself. He moves life from where it is to where it is needed. You may meet him in the woods, if you look.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
+        <dt>Stances</dt><dd><b class="nature">Kilomi</b>, the healers' art of pressing points on the body. <b class="spirit">Maki Hula</b>, a slow spiral dance that strikes with spirit magic.</dd>
+        <dt>Weapon</dt><dd>Ko'oko'o</dd>
+        <dt>TECH</dt><dd><b>Charm.</b> A wild card. The enemy might drop its guard, refuse to fight, or even turn on its friends.</dd>
+        <dt>Moves</dt><dd><b>Spin</b>, one turn of the spiral. <b>Heal</b>, mends one ally. <b>Drain</b>, takes life from an enemy and gives half to an ally.</dd>
+        <dt>On the Road</dt><dd>While Maika travels with you, sellers charge less. He also knows how to make a garden grow faster.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-maika.png" alt="Maika's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="sheet" style="--hc:var(--shadow)">
+      <div class="hero">
+        <img src="manual/tawiri_portrait.png" alt="Tawiri">
+        <div>
+          <h3>Tawiri</h3>
+          <p class="role">The Caller</p>
+          <p>An old woman from far away who speaks with the dead, with a dark sense of humor to match. One eye is clouded white. She knows more moves than anyone.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
+        <dt>Stances</dt><dd><b class="shadow">Ata Kanikani</b>, a dark dance that curses. <b class="spirit">Wiri Kanikani</b>, a whirling dance that strikes like lightning.</dd>
+        <dt>Weapon</dt><dd>Tokotoko</dd>
+        <dt>TECH</dt><dd><b>Call.</b> One of the dead comes to fight at her side for a few turns.</dd>
+        <dt>Moves</dt><dd><b>Static</b>, lightning that burns away the enemy's Mana. <b>Sleep</b>, a doze; a hit wakes it. <b>Chain Lightning</b>, jumps to every enemy. And many more.</dd>
+        <dt>On the Road</dt><dd>With Tawiri in the party, everyone's stats grow faster in battle.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-tawiri.png" alt="Tawiri's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="win"><b class="label">PARTY</b><p>Only three fight at a time. When a fourth joins, one waits on the bench. Use Swap in battle, or Party on the field menu, to trade places. Everyone who travels with you helps on the road, bench or not.</p></div>
+    <span class="folio">20</span>
+  </section>
+
+  <!-- 24 -->
+  <section class="page hue" style="--h:20" id="bestiary">
+    <h2 class="cap"><b class="dc">C</b><span class="rest">reatures of<br>the Islands</span></h2>
+    <p class="lead">The woods and the jungle are not empty. Here are a few of the creatures you may meet.</p>
+    <div class="beasts">
+      <figure><div class="pic"><img src="manual/boar.png" alt="" loading="lazy"></div><figcaption><b>Boar</b>A wild boar from the woods above town. It roots up gardens in the night and charges anything that comes between it and a meal. Where there is one, there are usually more.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/santelmo.png" alt="" loading="lazy"></div><figcaption><b>Santelmo</b>A ball of fire said to be a wandering soul. It burns what it touches, and a fire that seems to be out may flare up again.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/nuno_sa_punso.png" alt="" loading="lazy"></div><figcaption><b>Nuno sa Punso</b>The old man of the mound, a small spirit known for cursing whoever disturbs his home. Watch where you step.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/sigbin.png" alt="" loading="lazy"></div><figcaption><b>Sigbin</b>A night creature said to feed through its victim's shadow. You may smell it before you see it.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/wicked_dwende.png" alt="" loading="lazy"></div><figcaption><b>Wicked Dwende</b>A small earth spirit gone sour. It looks after its own kind, and it does not like visitors.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/amaranhig.png" alt="" loading="lazy"></div><figcaption><b>Amaranhig</b>A corpse that climbs out of its grave at night. Stiff and slow, but it does not give up.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/kaperosa.png" alt="" loading="lazy"></div><figcaption><b>Kaperosa</b>A pale lady ghost in white. Better not to stay and listen when she sings.</figcaption></figure>
+    </div>
+    <div class="win"><b class="label">BESTIARY</b><p>Every creature you beat gets a page under Data on the field menu, with its picture and what is known about it.</p></div>
+    <span class="folio">24</span>
+  </section>
+
+  <!-- 26 -->
+  <section class="page hue" style="--h:130" id="items">
+    <h2 class="cap"><b class="dc">I</b><span class="rest">tems</span></h2>
+    <p class="lead">When your HP is low, during or after a battle, you will need these items.</p>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/inventory.png" alt="The Items screen, with Noni in the bag" width="768" height="672"></div></figure>
+      <p>The party shares one bag. Use items with Items on the field menu, or Item in battle. The window at the top tells you what the item under the cursor does.</p>
+    </div>
+
+    <h3 class="ring">Island Medicine</h3>
+    <p>The islanders heal with the plants that grow around them: fruit, roots, leaves and oil. Noni is sold at the market stall. For the rest, look for someone who sells medicine.</p>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Name</th><th>Price</th><th>Description</th></tr>
+      <tr><td class="item"><img src="manual/noni.png" alt="">Noni</td><td class="num">10</td><td>Restores 30 HP. Mashed noni fruit. It stinks.</td></tr>
+      <tr><td class="item"><img src="manual/awa.png" alt="">'Awa</td><td class="num">30</td><td>Restores 80 HP. A calming root drink.</td></tr>
+      <tr><td class="item"><img src="manual/kukui.png" alt="">Kukui</td><td class="num">15</td><td>Candlenut oil. In battle, cures a burn.</td></tr>
+      <tr><td class="item"><img src="manual/ti_leaf.png" alt="">Ti Leaf</td><td class="num">15</td><td>A cool leaf. In battle, cures sleep and confusion.</td></tr>
+      <tr><td class="item"><img src="manual/olena.png" alt="">'Ōlena</td><td class="num">15</td><td>Turmeric root. In battle, cures poison.</td></tr>
+    </table>
+    </div>
+
+    <h3 class="ring">Food</h3>
+    <p>Anything that goes in the pot can also be eaten as it is, for a little HP. Cooked, it is worth much more. Kailo cooks with <b>Craft</b> on the field menu, or with <b>Cook</b> in battle. There is no recipe book: put two things in the pot and find out! If they don't go together, nothing is lost.</p>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Name</th><th>Price</th><th>Where to find it</th></tr>
+      <tr><td>Wheat</td><td class="num"></td><td>Grows in the palm grove.</td></tr>
+      <tr><td>Taro</td><td class="num"></td><td>Grows in the village garden.</td></tr>
+      <tr><td>Broth</td><td class="num">5</td><td>Sold at the market stall.</td></tr>
+    </table>
+    </div>
+
+    <h3 class="ring">Special Items</h3>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Name</th><th>Description</th></tr>
+      <tr><td>Memory Shell</td><td>A seashell that holds a memory. Listen to it and one member learns a new move. Then the shell goes quiet. In a shop it shows the name of the move it teaches.</td></tr>
+      <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's element and HP. Used up.</td></tr>
+      <tr><td>Seeds</td><td>A Seed of Strength, a Seed of Agility, and more. Each raises that stat for one member. Rare!</td></tr>
+    </table>
+    </div>
+    <span class="folio">26</span>
+  </section>
+
+  <!-- 28 -->
+  <section class="page hue" style="--h:300" id="stronger">
+    <h2 class="cap"><b class="dc">G</b><span class="rest">rowing<br>Stronger</span></h2>
+    <p class="lead">Your party never gains levels. They grow stronger by doing.</p>
+    <p><b>Stats grow by use.</b> Land strokes and Agility may go up. Take blows and Endurance may go up. Heal a friend and Intelligence may go up. When it happens, a message along the top of the screen tells you. Each stat can go up once in a battle at most.</p>
+    <p><b>New moves come from what you find:</b> memory shells, and people who teach you.</p>
+    <p><b>Seeds</b> raise a stat for good.</p>
+    <h3 class="ring">The Eight Stats</h3>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Stat</th><th>What it does</th></tr>
+      <tr><td>Vitality</td><td>Your HP. Ten HP for each point.</td></tr>
+      <tr><td>Strength</td><td>How hard your blows land.</td></tr>
+      <tr><td>Intelligence</td><td>How strong your magic and healing are.</td></tr>
+      <tr><td>Endurance</td><td>Blocks blows.</td></tr>
+      <tr><td>Willpower</td><td>Shrinks magic damage.</td></tr>
+      <tr><td>Agility</td><td>How soon your next turn comes.</td></tr>
+      <tr><td>Perception</td><td>Your chance to land a hit.</td></tr>
+      <tr><td>Luck</td><td>Your chance to dodge.</td></tr>
+    </table>
+    </div>
+    <span class="folio">28</span>
+  </section>
+
+  <!-- 30 -->
+  <section class="page hue" style="--h:180" id="guide">
+    <h2 class="cap"><b class="dc">A</b><span class="rest">dventure<br>Guide</span></h2>
+    <p class="lead">Prepare to set out on your journey. Use this guide to help you in the beginning.</p>
+    <h3 class="ring">Visit Your Neighbors</h3>
+    <p>Walk around the village and talk with everyone. They will have information you may need, and the old man at the market stall has something only he sells.</p>
+    <h3 class="ring">Know Your Foe</h3>
+    <p>Boars are creatures of Nature. Kailo's fiery kicks hit them twice as hard.</p>
+    <h3 class="ring">Rest Before You Go</h3>
+    <p>Before a big fight, take a nap in Kailo's bed and save your game.</p>
+    <h3 class="ring">Watch and Learn</h3>
+    <p>Sometimes the best thing to do is nothing at all. Stop and watch the world for a while.</p>
+    <span class="folio">30</span>
+  </section>
+
+</main>
+</body>
+</html>
