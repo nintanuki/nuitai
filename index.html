@@ -58,7 +58,7 @@ function tune(){if(!on)return;
 if(ctx){ctx.resume();ramp(V,1);return}
 try{ctx=new (window.AudioContext||window.webkitAudioContext)()}catch(e){return}
 gain=ctx.createGain();gain.gain.value=0;gain.connect(ctx.destination);
-fetch("music/pelog-selisir.mp3").then(function(r){return r.arrayBuffer()}).then(function(d){return ctx.decodeAudioData(d)}).then(function(buf){
+fetch("music/main-theme.mp3").then(function(r){return r.arrayBuffer()}).then(function(d){return ctx.decodeAudioData(d)}).then(function(buf){
 var src=ctx.createBufferSource();src.buffer=buf;src.loop=true;src.connect(gain);src.start();if(on)ramp(V,3)}).catch(function(){})}
 function sea(){if(!on){if(a)a.pause();if(ctx)ramp(0,.5);return}
 if(!a){a=new Audio("sounds/waves.mp3");a.loop=true;a.volume=.05;setTimeout(tune,4000)}else tune();
