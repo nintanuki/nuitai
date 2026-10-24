@@ -219,7 +219,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 <script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
-try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-10-23</span></footer>
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-10-24</span></footer>
 </aside>
 <script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
 b.addEventListener("click",function(){body.classList.toggle("menu-open")});
@@ -416,7 +416,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="scroll">
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
-      <tr><td>Items</td><td>Look in the bag and use an item: heal someone, eat a seed, or listen to a memory shell.</td></tr>
+      <tr><td>Items</td><td>Look in the bag and use an item: heal someone, eat a seed, or learn a move.</td></tr>
       <tr><td>Craft</td><td>The cooking pot. Put two things in and see what comes out.</td></tr>
       <tr><td>Element</td><td>Each member's element moves, row by row. Choose which moves go in which row.</td></tr>
       <tr><td>Equip</td><td>Change weapons.</td></tr>
@@ -730,7 +730,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="scroll">
     <table class="m">
       <tr><th>Name</th><th>Description</th></tr>
-      <tr><td>Memory Shell</td><td>A seashell that holds a memory. Listen to it and one member learns a new move. Then the shell goes quiet. In a shop it shows the name of the move it teaches.</td></tr>
+      <tr><td>Moves</td><td>An item that teaches one member a move, shown in the bag and in shops by the move's name, like Counter. Use it and that member learns the move. Then it is gone.</td></tr>
       <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's element and HP. Used up.</td></tr>
       <tr><td>Seeds</td><td>A Seed of Strength, a Seed of Agility, and more. Each raises that stat for one member. Rare!</td></tr>
     </table>
@@ -743,7 +743,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <h2 class="cap"><b class="dc">G</b><span class="rest">rowing<br>Stronger</span></h2>
     <p class="lead">Your party never gains levels. They grow stronger by doing.</p>
     <p><b>Stats grow by use.</b> Land strokes and Agility may go up. Take blows and Endurance may go up. Heal a friend and Intelligence may go up. When it happens, a message along the top of the screen tells you. Each stat can go up once in a battle at most.</p>
-    <p><b>New moves come from what you find:</b> memory shells, and people who teach you.</p>
+    <p><b>New moves come from what you find:</b> items named for a move, and people who teach you.</p>
     <p><b>Seeds</b> raise a stat for good.</p>
     <h3 class="ring">The Eight Stats</h3>
     <div class="scroll">
