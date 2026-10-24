@@ -162,6 +162,12 @@ config = {
     fb_height : "720"
 }
 
+// Nuitai: on a phone or tablet the page places the game's picture itself,
+// to leave room for the on-screen pad (see the pad at the end of the page).
+const NUITAI_TOUCH = matchMedia("(pointer: coarse)").matches
+    || (navigator.maxTouchPoints > 0 && matchMedia("(hover: none)").matches)
+if (NUITAI_TOUCH) config.user_canvas_managed = 1
+
 function show_infobox() {
     infobox.style.display = "block";
 
@@ -182,8 +188,7 @@ function show_infobox() {
     <title>nuitai</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="height=device-height, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes"/>
 
@@ -433,6 +438,257 @@ frameborder="1"
         window.frames["iframe"].location = url;
     }
 
+    </script>
+
+    <!--
+    Nuitai: the on-screen pad, shaped like a Super Nintendo controller, for
+    phones and tablets only (Frankie, 10/24). The page draws it and keeps what
+    is held in window.nuitai_pad, one bit per button numbered as the game
+    numbers a pad (A 0, B 1, X 2, Y 3, L 4, R 5, SELECT 6, START 7, up 8,
+    down 9, left 10, right 11). The game reads it each frame as one more
+    controller (game/pygame/ui/touch_pad.py), so every button means what it
+    means on a real pad. On a touch screen the page also places the game's
+    picture itself, whole, with the pad below it or on both sides of it.
+    -->
+    <style>
+        #pad { display: none; }
+        body.touch {
+            background: #04122a !important;
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            overscroll-behavior: none;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body.touch #pad { display: block; }
+        body.touch canvas.emscripten#canvas { image-rendering: pixelated; }
+        #pad > * {
+            position: fixed;
+            box-sizing: border-box;
+            z-index: 20;
+        }
+        .pad-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-weight: bold;
+            background: linear-gradient(#1c4a78, #081a3a);
+            border: 3px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+        .pad-btn.on {
+            background: linear-gradient(#4a8ed0, #1c4a78);
+            transform: scale(0.94);
+        }
+        .pad-round { position: absolute; border-radius: 50%; }
+        .pad-shoulder { border-radius: 10px 10px 18px 18px; }
+        #pad-l { border-top-left-radius: 22px; }
+        #pad-r { border-top-right-radius: 22px; }
+        .pad-pill { border-radius: 999px; letter-spacing: 0.05em; }
+        #pad-dpad svg { width: 100%; height: 100%; display: block; overflow: visible; }
+        #pad-dpad .lit { fill: #ffffff; opacity: 0; }
+        #pad-dpad .lit.on { opacity: 0.35; }
+        #pad-dpad .arrow { fill: #ffffff; opacity: 0.7; }
+    </style>
+
+    <div id="pad" aria-hidden="true">
+        <div class="pad-btn pad-shoulder" id="pad-l" data-b="4">L</div>
+        <div class="pad-btn pad-shoulder" id="pad-r" data-b="5">R</div>
+        <div id="pad-dpad">
+            <svg viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="pad-ocean" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#1c4a78"/>
+                        <stop offset="1" stop-color="#081a3a"/>
+                    </linearGradient>
+                    <clipPath id="pad-cross-clip"><path id="pad-cross-shape" d="M38,4 H62 Q68,4 68,10 V32 H90 Q96,32 96,38 V62 Q96,68 90,68 H68 V90 Q68,96 62,96 H38 Q32,96 32,90 V68 H10 Q4,68 4,62 V38 Q4,32 10,32 H32 V10 Q32,4 38,4 Z"/></clipPath>
+                </defs>
+                <use href="#pad-cross-shape" fill="url(#pad-ocean)" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                <g clip-path="url(#pad-cross-clip)">
+                    <rect class="lit" data-d="8" x="32" y="0" width="36" height="36"/>
+                    <rect class="lit" data-d="9" x="32" y="64" width="36" height="36"/>
+                    <rect class="lit" data-d="10" x="0" y="32" width="36" height="36"/>
+                    <rect class="lit" data-d="11" x="64" y="32" width="36" height="36"/>
+                </g>
+                <path class="arrow" d="M50,12 L58,24 H42 Z"/>
+                <path class="arrow" d="M50,88 L58,76 H42 Z"/>
+                <path class="arrow" d="M12,50 L24,42 V58 Z"/>
+                <path class="arrow" d="M88,50 L76,42 V58 Z"/>
+            </svg>
+        </div>
+        <div id="pad-face">
+            <div class="pad-btn pad-round" data-b="2" style="left: 32%; top: 0;">X</div>
+            <div class="pad-btn pad-round" data-b="3" style="left: 0; top: 32%;">Y</div>
+            <div class="pad-btn pad-round" data-b="0" style="left: 64%; top: 32%;">A</div>
+            <div class="pad-btn pad-round" data-b="1" style="left: 32%; top: 64%;">B</div>
+        </div>
+        <div class="pad-btn pad-pill" id="pad-select" data-b="6">SELECT</div>
+        <div class="pad-btn pad-pill" id="pad-start" data-b="7">START</div>
+    </div>
+
+    <script type="application/javascript">
+    (() => {
+        // A tap shorter than a frame still reaches the game: each button
+        // pressed counts as held until the game has read it once.
+        window.nuitai_pad = 0
+        let tapped = 0
+        window.nuitai_pad_read = () => {
+            const mask = window.nuitai_pad | tapped
+            tapped = 0
+            return mask
+        }
+        if (!NUITAI_TOUCH) return
+        document.body.classList.add("touch")
+
+        const $ = (id) => document.getElementById(id)
+        const dpad = $("pad-dpad"), face = $("pad-face")
+        const L = $("pad-l"), R = $("pad-r"), select = $("pad-select"), start = $("pad-start")
+        const GAP = 10
+        let placed = ""
+
+        function place(el, x, y, w, h) {
+            el.style.left = Math.round(x) + "px"
+            el.style.top = Math.round(y) + "px"
+            el.style.width = Math.round(w) + "px"
+            el.style.height = Math.round(h) + "px"
+        }
+
+        // The game's picture, whole: 256 by 224 pixels, eight wide to seven high.
+        function aspect() {
+            return canvas.width > 1 && canvas.height > 1 ? canvas.width / canvas.height : 8 / 7
+        }
+
+        function placeScreen(x, y, w, h) {
+            const s = canvas.style
+            s.position = "fixed"
+            s.margin = "0"
+            s.right = "auto"
+            s.bottom = "auto"
+            place(canvas, x, y, w, h)
+            placed = s.cssText
+        }
+
+        function layout() {
+            const vw = window.innerWidth, vh = window.innerHeight, ar = aspect()
+            const shoulderH = Math.max(30, Math.min(40, vh * 0.07))
+            const pillH = 28
+            if (vh >= vw) {
+                // Portrait: the picture across the top, the pad under it.
+                let sw = vw, sh = sw / ar
+                const need = shoulderH + pillH + 110 + GAP * 5
+                if (vh - sh < need) { sh = vh - need; sw = sh * ar }
+                placeScreen((vw - sw) / 2, 0, sw, sh)
+                const top = sh + GAP, room = vh - top - GAP
+                let D = Math.min(vw * 0.42, 180, room - shoulderH - pillH - GAP * 3)
+                const used = shoulderH + D + pillH + GAP * 3
+                const y0 = top + Math.max(0, (room - used) / 2)
+                const sideW = Math.min(vw * 0.3, 130)
+                place(L, GAP, y0, sideW, shoulderH)
+                place(R, vw - GAP - sideW, y0, sideW, shoulderH)
+                const yPad = y0 + shoulderH + GAP * 1.5
+                place(dpad, GAP * 1.5, yPad, D, D)
+                place(face, vw - GAP * 1.5 - D, yPad, D, D)
+                const pillW = Math.min(vw * 0.24, 100), yPill = yPad + D + GAP * 1.5
+                place(select, vw / 2 - GAP / 2 - pillW, yPill, pillW, pillH)
+                place(start, vw / 2 + GAP / 2, yPill, pillW, pillH)
+            } else {
+                // Landscape: the picture in the middle, the D-pad left, the face buttons right.
+                const minSide = 150
+                let sh = vh, sw = sh * ar
+                if (vw - sw < minSide * 2) { sw = vw - minSide * 2; sh = sw / ar }
+                placeScreen((vw - sw) / 2, (vh - sh) / 2, sw, sh)
+                const side = (vw - sw) / 2
+                const D = Math.min(side - GAP * 2, 180, vh - shoulderH - pillH - GAP * 4)
+                const used = shoulderH + D + pillH + GAP * 3
+                const y0 = Math.max(GAP, (vh - used) / 2)
+                const sideW = Math.min(side - GAP * 2, 130)
+                place(L, GAP, y0, sideW, shoulderH)
+                place(R, vw - GAP - sideW, y0, sideW, shoulderH)
+                const yPad = y0 + shoulderH + GAP * 1.5
+                place(dpad, (side - D) / 2, yPad, D, D)
+                place(face, vw - side + (side - D) / 2, yPad, D, D)
+                const pillW = Math.min(side - GAP * 2, 100), yPill = yPad + D + GAP * 1.5
+                place(select, (side - pillW) / 2, yPill, pillW, pillH)
+                place(start, vw - side + (side - pillW) / 2, yPill, pillW, pillH)
+            }
+            const D = dpad.offsetWidth
+            for (const b of face.children) {
+                b.style.width = b.style.height = Math.round(D * 0.36) + "px"
+                b.style.fontSize = Math.round(D * 0.15) + "px"
+            }
+            L.style.fontSize = R.style.fontSize = Math.round(shoulderH * 0.5) + "px"
+            select.style.fontSize = start.style.fontSize = "12px"
+        }
+
+        // What each finger holds. Fingers can slide from button to button,
+        // and around the D-pad, as thumbs do on a real pad.
+        const fingers = new Map()
+
+        function dpadBits(x, y) {
+            const r = dpad.getBoundingClientRect()
+            const dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2)
+            const dist = Math.hypot(dx, dy)
+            if (dist > r.width * 0.7) return 0
+            if (dist < r.width * 0.1) return 0
+            // Each direction covers 120 degrees around its arm, so the four
+            // diagonals are narrow and a thumb on an arm stays straight.
+            const a = Math.atan2(dy, dx) * 180 / Math.PI
+            const near = (c) => Math.abs(((a - c + 540) % 360) - 180) < 60
+            return (near(-90) ? 1 << 8 : 0) | (near(90) ? 1 << 9 : 0)
+                 | (near(180) ? 1 << 10 : 0) | (near(0) ? 1 << 11 : 0)
+        }
+
+        function update() {
+            let mask = 0
+            for (const [x, y] of fingers.values()) {
+                // A button under the finger first; the D-pad reaches a
+                // little past its edges, but never over another button.
+                const hit = document.elementFromPoint(x, y)
+                const b = hit && hit.closest && hit.closest("[data-b]")
+                if (b) { mask |= 1 << Number(b.dataset.b); continue }
+                const d = dpadBits(x, y)
+                if (d > 0) mask |= d
+            }
+            tapped |= mask & ~window.nuitai_pad
+            window.nuitai_pad = mask
+            for (const b of document.querySelectorAll("#pad [data-b]"))
+                b.classList.toggle("on", !!(mask & (1 << Number(b.dataset.b))))
+            for (const d of document.querySelectorAll("#pad [data-d]"))
+                d.classList.toggle("on", !!(mask & (1 << Number(d.dataset.d))))
+        }
+
+        document.addEventListener("pointerdown", (e) => {
+            fingers.set(e.pointerId, [e.clientX, e.clientY]); update()
+        })
+        document.addEventListener("pointermove", (e) => {
+            if (fingers.has(e.pointerId)) { fingers.set(e.pointerId, [e.clientX, e.clientY]); update() }
+        })
+        const lift = (e) => { if (fingers.delete(e.pointerId)) update() }
+        document.addEventListener("pointerup", lift)
+        document.addEventListener("pointercancel", lift)
+        const letGo = () => { fingers.clear(); update() }
+        window.addEventListener("blur", letGo)
+        document.addEventListener("visibilitychange", letGo)
+
+        // No scrolling, zooming, text picking or long-press menus while playing.
+        const stop = (e) => e.preventDefault()
+        for (const kind of ["touchstart", "touchmove", "touchend", "gesturestart", "dblclick", "contextmenu"])
+            document.addEventListener(kind, stop, { passive: false })
+
+        layout()
+        window.addEventListener("resize", layout)
+        window.addEventListener("orientationchange", () => setTimeout(layout, 200))
+        // The game sizes its canvas when it opens its window; place it again then.
+        new MutationObserver(() => {
+            if (canvas.style.cssText !== placed) layout()
+        }).observe(canvas, { attributes: true, attributeFilter: ["width", "height", "style"] })
+    })()
     </script>
 
 </body>
