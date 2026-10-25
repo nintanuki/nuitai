@@ -167,6 +167,8 @@ config = {
 const NUITAI_TOUCH = matchMedia("(pointer: coarse)").matches
     || (navigator.maxTouchPoints > 0 && matchMedia("(hover: none)").matches)
 if (NUITAI_TOUCH) config.user_canvas_managed = 1
+// The game asks this to leave the CRT off on a touch screen (ui/touch_pad.py).
+window.nuitai_touch = NUITAI_TOUCH
 
 function show_infobox() {
     infobox.style.display = "block";
