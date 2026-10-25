@@ -444,8 +444,8 @@ frameborder="1"
     Nuitai: the on-screen pad, shaped like a Super Nintendo controller, for
     phones and tablets only (Frankie, 10/24). The page draws it and keeps what
     is held in window.nuitai_pad, one bit per button numbered as the game
-    numbers a pad (A 0, B 1, X 2, Y 3, L 4, R 5, SELECT 6, START 7, up 8,
-    down 9, left 10, right 11). The game reads it each frame as one more
+    numbers a pad, by position (B south 0, A east 1, Y west 2, X north 3,
+    L 4, R 5, SELECT 6, START 7, up 8, down 9, left 10, right 11). The game reads it each frame as one more
     controller (game/pygame/ui/touch_pad.py), so every button means what it
     means on a real pad. On a touch screen the page also places the game's
     picture itself, whole, with the pad below it or on both sides of it.
@@ -523,10 +523,10 @@ frameborder="1"
             </svg>
         </div>
         <div id="pad-face">
-            <div class="pad-btn pad-round" data-b="2" style="left: 32%; top: 0;">X</div>
-            <div class="pad-btn pad-round" data-b="3" style="left: 0; top: 32%;">Y</div>
-            <div class="pad-btn pad-round" data-b="0" style="left: 64%; top: 32%;">A</div>
-            <div class="pad-btn pad-round" data-b="1" style="left: 32%; top: 64%;">B</div>
+            <div class="pad-btn pad-round" data-b="3" style="left: 32%; top: 0;">X</div>
+            <div class="pad-btn pad-round" data-b="2" style="left: 0; top: 32%;">Y</div>
+            <div class="pad-btn pad-round" data-b="1" style="left: 64%; top: 32%;">A</div>
+            <div class="pad-btn pad-round" data-b="0" style="left: 32%; top: 64%;">B</div>
         </div>
         <div class="pad-btn pad-pill" id="pad-select" data-b="6">SELECT</div>
         <div class="pad-btn pad-pill" id="pad-start" data-b="7">START</div>
