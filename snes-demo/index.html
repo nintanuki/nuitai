@@ -691,5 +691,19 @@ frameborder="1"
     })()
     </script>
 
+    <script type="application/javascript">
+    // F11 fills the screen, as in the desktop game (Frankie, 10/25). The game
+    // takes every key the page gets, so the browser never sees F11; the page
+    // catches it first and asks for fullscreen itself, which a browser only
+    // allows inside the key press.
+    window.addEventListener("keydown", (e) => {
+        if (e.key !== "F11") return
+        e.preventDefault()
+        e.stopImmediatePropagation()
+        if (document.fullscreenElement) document.exitFullscreen()
+        else document.documentElement.requestFullscreen()
+    }, { capture: true })
+    </script>
+
 </body>
 </html>
