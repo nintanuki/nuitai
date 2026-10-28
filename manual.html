@@ -19,14 +19,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 <link rel="stylesheet" href="site.css?v=0d351f2b">
-<link rel="stylesheet" href="shell.css?v=1eeab275">
+<link rel="stylesheet" href="shell.css?v=7f9262b7">
 <script>(function(){var t=null,a=null,m=null;try{t=localStorage.getItem("nuitai-site-theme");a=localStorage.getItem("nuitai-ai-art");m=localStorage.getItem("nuitai-menu")||localStorage.getItem("nuitai-battle-menu")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia";if(a==="off")document.documentElement.dataset.art="off";if(m==="hidden")document.documentElement.dataset.menu="hidden"})()</script>
+<script>document.documentElement.classList.add("turn")</script>
 <style>
   /* The Game Manual (Frankie, 10/24): the booklet that came in the box, as if this were a lost
      cartridge from the 90s. Nothing meta: no "demo", no keyboard, no "Super Nintendo style".
      Laid out after the Chrono Trigger booklet: a drop letter on every heading, numbered pages
      with a faint whirlpool behind them, buttons in rings, callouts on the screens and tables
-     in two colors of rows. The windows are the game's own: ocean blue, rounded white corners. */
+     in two colors of rows. The windows are the game's own: ocean blue, rounded white corners.
+     A booklet you turn, not a page you scroll (Frankie, 10/28): small tall pages at the old
+     booklets' shape, 4.6 by 6.7 inches, two side by side on a computer and one on a phone, the
+     cover alone first, as in a real one. The script at the bottom pours the sections into the
+     pages; without it the sections read as one long page. */
   :root {
     --pixel: "Press Start 2P", ui-monospace, monospace;
     --win-top: #2f63b8; --win-bottom: #10285e;
@@ -49,35 +54,166 @@
 
   main.wrap.booklet { max-width: 46rem; }
 
-  /* The cover. */
-  .cover {
-    position: relative; overflow: hidden; margin: 0 0 1.5rem; padding: 2.4rem 1rem 1.6rem; text-align: center; color: #fff;
-    background: radial-gradient(circle at 50% 120%, #1fafc7 0%, #0b5f8a 35%, #0b1f4a 75%);
-    border: 4px solid #fff; border-radius: 14px; box-shadow: 0 0 0 3px #10285e;
+  /* The covers (Frankie, 10/28): minimalist, after Japanese box art. Deep ocean blue, the nautilus of
+     the website and the game's shortcut, the name, and very little else. Not a painted scene. */
+  .cover, .back {
+    position: relative; overflow: hidden; color: #f3e3c3; box-sizing: border-box;
+    width: 100%; max-width: 420px; aspect-ratio: 420 / 612; margin: 0 auto 1.5rem; border-radius: 3px;
+    background: radial-gradient(130% 85% at 50% 32%, #1a4d84 0%, #0e2f5e 46%, #061632 100%);
   }
-  .cover::before {
-    content: ""; position: absolute; inset: -20% -20% auto auto; width: 70%; aspect-ratio: 1; background: #fff; opacity: .07;
-    -webkit-mask: var(--spiral) center / contain no-repeat; mask: var(--spiral) center / contain no-repeat;
+  .cover::after, .back::after {
+    content: ""; position: absolute; inset: 14px; border: 1px solid rgb(243 227 195 / .28); border-radius: 2px; pointer-events: none;
   }
-  .cover .logo { position: relative; font-family: var(--pixel); font-size: clamp(2rem, 10vw, 3.4rem); letter-spacing: .08em; margin: 0; text-shadow: 4px 4px 0 #10285e; }
-  .cover .faces { position: relative; display: flex; justify-content: center; gap: .6rem; margin: 1.6rem 0 1.4rem; flex-wrap: wrap; }
-  .cover .faces img { width: 64px; height: 64px; image-rendering: pixelated; border: 3px solid #fff; border-radius: 8px; box-shadow: 0 0 0 2px #10285e; }
-  .cover .booklet-name { position: relative; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 1.3rem; letter-spacing: .12em; margin: 0; }
+  .cover { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding-bottom: 6%; }
+  .cover-mark { width: 27%; color: #f3e3c3; }
+  .cover-mark svg, .back-mark svg { display: block; width: 100%; height: auto; }
+  .cover .logo { margin: 2.2rem 0 0 .34em; font-family: var(--serif); font-weight: 700; font-size: 2.3rem; line-height: 1; letter-spacing: .34em; }
+  .cover .booklet-name { margin: .9rem 0 0 .32em; font-family: var(--serif); font-style: italic; font-size: .7rem; letter-spacing: .32em; opacity: .7; }
+  .back { display: flex; flex-direction: column; justify-content: flex-end; padding: 38px 34px 34px; font-family: var(--sans); font-size: 10px; line-height: 1.5; }
+  .back-mark { order: -1; flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px; font-family: var(--serif); font-weight: 700; font-size: 15px; letter-spacing: .34em; opacity: .85; }
+  .back-mark svg { width: 30px; }
+  .back .fine { padding: 10px 13px; border: 1px solid rgb(243 227 195 / .4); border-radius: 3px; color: rgb(243 227 195 / .85); }
+  .back .fine-head { margin: 0 0 4px; text-align: center; font-weight: 700; letter-spacing: .24em; }
+  .back ul { margin: 0 0 6px; padding-left: 13px; }
+  .back li { margin: 1px 0; }
+  .back .fine p { margin: 5px 0 0; }
 
-  /* Every section is a page of the booklet. */
+  /* Without the script, every section is a page of the booklet, one after another. */
   section.page {
     position: relative; overflow: hidden; margin: 1.5rem 0; padding: 1.4rem 1.25rem 2.6rem;
     background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
     box-shadow: 0 1px 0 var(--line), 0 6px 18px rgb(0 0 0 / .06);
   }
-  section.page::before {
+  section.page::before, .leaf.hue::before {
     content: ""; position: absolute; right: -6rem; bottom: -6rem; width: 22rem; height: 22rem; background: var(--c); opacity: .08; pointer-events: none;
     -webkit-mask: var(--spiral) center / contain no-repeat; mask: var(--spiral) center / contain no-repeat;
   }
-  section.page > * { position: relative; }
-  .folio { position: absolute; bottom: .7rem; font-family: var(--serif); font-style: italic; font-weight: 700; color: var(--muted); }
-  section.page:nth-of-type(odd) .folio { right: 1.1rem; }
-  section.page:nth-of-type(even) .folio { left: 1.1rem; }
+  section.page > *, .leaf-body > * { position: relative; }
+  .folio { position: absolute; bottom: 12px; z-index: 2; font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 13px; color: var(--muted); }
+  .leaf.odd .folio { right: 20px; }
+  .leaf.even .folio { left: 20px; }
+
+  /* The booklet you turn (Frankie, 10/28). Every page is the same size, 420 by 612, the shape of the
+     old booklets, laid out once at that size and scaled to the screen as a whole, so a page holds
+     the same words on a phone as on a computer. */
+  .booklet { --pw: 420px; --ph: 612px; }
+  html.turn .booklet-src { display: none; }
+  html.turn body.shelled { height: 100vh; height: 100dvh; overflow: hidden; }
+  html.turn main.wrap.booklet {
+    max-width: none; height: 100vh; height: 100dvh; padding: 0; display: flex; flex-direction: column; overflow: hidden;
+  }
+  @media (max-width: 860px) {
+    html.turn main.wrap.booklet { height: calc(100vh - 54px); height: calc(100dvh - 54px); }
+  }
+  .book {
+    flex: 1; min-height: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 18px 16px 10px; touch-action: pan-y pinch-zoom;
+  }
+  @media (min-width: 861px) { .book { padding: 22px 48px 12px; } }
+  .spread { position: relative; flex: none; }
+  .spread-in {
+    position: absolute; left: 0; top: 0; height: var(--ph); display: flex; transform-origin: 0 0;
+    box-shadow: 0 1px 3px rgb(0 0 0 / .14), 0 12px 32px rgb(0 0 0 / .2);
+  }
+  .measure { position: absolute; left: -10000px; top: 0; visibility: hidden; pointer-events: none; }
+  .leaf {
+    position: relative; flex: none; width: var(--pw); height: var(--ph); overflow: hidden; display: none;
+    background-color: var(--paper); color: var(--ink); font-size: 14px; line-height: 1.45;
+    background-image: radial-gradient(130% 100% at 50% 45%, transparent 55%, rgb(110 80 30 / .07));
+  }
+  .leaf.show, .measure .leaf { display: block; }
+  .leaf > .cover, .leaf > .back { position: absolute; inset: 0; width: auto; max-width: none; margin: 0; border-radius: 0; aspect-ratio: auto; }
+  .leaf-body { position: absolute; inset: 24px 24px 38px; overflow: hidden; }
+  .leaf-body > :first-child { margin-top: 0; }
+  /* The binding: a little shadow on the side of each page that goes into the fold. */
+  .leaf > .bind { position: absolute; top: 0; bottom: 0; width: 26px; z-index: 2; pointer-events: none; }
+  .leaf.odd > .bind { left: 0; background: linear-gradient(to right, rgb(0 0 0 / .13), rgb(0 0 0 / .03) 40%, transparent); }
+  .leaf.even > .bind { right: 0; background: linear-gradient(to left, rgb(0 0 0 / .13), rgb(0 0 0 / .03) 40%, transparent); }
+  /* The fold between the two pages of a spread, and its two staples. */
+  .fold { position: absolute; top: 0; bottom: 0; left: var(--pw); width: 0; z-index: 3; border-left: 1px solid rgb(0 0 0 / .2); pointer-events: none; }
+  .fold::before, .fold::after {
+    content: ""; position: absolute; left: -2.5px; width: 4px; height: 38px; border-radius: 1px;
+    background: linear-gradient(to right, #8d9198, #e4e6ea 45%, #a3a7ad); box-shadow: 0 1px 1px rgb(0 0 0 / .35);
+  }
+  .fold::before { top: 22%; }
+  .fold::after { bottom: 22%; }
+
+  /* Turning: the page edges, the arrows, a quick fade as the page comes in. */
+  .edge { position: absolute; top: 0; bottom: 0; width: 46px; z-index: 4; padding: 0; border: 0; background: none; cursor: pointer; }
+  .edge.prev { left: 0; }
+  .edge.next { right: 0; }
+  .edge[hidden] { display: none; }
+  .edge::after { content: ""; position: absolute; bottom: 0; width: 32px; height: 32px; opacity: 0; transition: opacity .15s; }
+  .edge.next::after { right: 0; background: linear-gradient(to top left, var(--bg) 0 50%, color-mix(in srgb, var(--paper) 80%, #000) 50%, var(--paper) 100%); }
+  .edge.prev::after { left: 0; background: linear-gradient(to top right, var(--bg) 0 50%, color-mix(in srgb, var(--paper) 80%, #000) 50%, var(--paper) 100%); }
+  @media (hover: hover) { .edge:hover::after { opacity: 1; } }
+  .edge:focus-visible { outline: 2px solid var(--muted); outline-offset: -4px; }
+  .turnbar { flex: none; display: flex; align-items: center; justify-content: center; gap: 16px; color: var(--muted); font: 600 13px/1 var(--sans); }
+  .turnbar .where { min-width: 7.5em; text-align: center; font-variant-numeric: tabular-nums; }
+  .turn-btn {
+    width: 38px; height: 38px; display: grid; place-items: center; padding: 0; border-radius: 50%; cursor: pointer;
+    font: 700 20px/1 var(--sans); color: var(--ink); background: var(--card); border: 1px solid var(--line);
+  }
+  .turn-btn:hover { background: var(--panel); }
+  .turn-btn:disabled { opacity: .35; cursor: default; }
+  .leaf.in-next { animation: turn-next .2s ease-out; }
+  .leaf.in-prev { animation: turn-prev .2s ease-out; }
+  @keyframes turn-next { from { opacity: 0; transform: translateX(12px); } }
+  @keyframes turn-prev { from { opacity: 0; transform: translateX(-12px); } }
+  @media (prefers-reduced-motion: reduce) { .leaf.in-next, .leaf.in-prev { animation: none; } }
+
+  /* The manual's parts, a little smaller to fit the small page. */
+  .leaf h2.cap { margin-bottom: .8rem; }
+  .leaf h2.cap .dc { width: 2.8rem; font-size: 2.1rem; }
+  .leaf h2.cap .rest { font-size: 1.3rem; }
+  .leaf .lead { font-size: 15.5px; }
+  .leaf p { margin: .55em 0; }
+  .leaf p.cont { text-indent: 0; }
+  .leaf h3.ring { margin: .9rem 0 .25rem; font-size: 1rem; }
+  .leaf h3.ring::before { width: 1.2rem; height: 1.2rem; vertical-align: -.28rem; border-width: 2.5px; }
+  .leaf .shot { margin: .7rem 0; }
+  .leaf .shot img { border-width: 4px; }
+  .leaf .shot figcaption { font-size: 12px; margin-top: .3rem; }
+  .leaf .pair { gap: .8rem; margin: .7rem 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); }
+  .leaf .pair .shot { margin: 0; }
+  .leaf .pin { width: 1.2rem; height: 1.2rem; font-size: .66rem; }
+  .leaf ol.key { gap: .35rem .8rem; margin: .6rem 0; font-size: 13px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); }
+  .leaf ol.key li { grid-template-columns: 1.3rem 1fr; gap: .4rem; }
+  .leaf ol.key li > b:first-child { width: 1.3rem; height: 1.3rem; font-size: .7rem; }
+  .leaf ol.key li span b { font-size: 12px; }
+  .leaf .pad { margin: 0 auto .4rem; }
+  .leaf .buttons { gap: .55rem; margin: .5rem 0; }
+  .leaf .button { grid-template-columns: 3.5rem 1fr; gap: .7rem; }
+  .leaf .badge { width: 3.5rem; height: 3.5rem; border-width: 3px; }
+  .leaf .badge big { font-size: 1.1rem; }
+  .leaf .badge small { font-size: .48rem; }
+  .leaf table.m { font-size: 12.5px; margin: .5rem 0 .8rem; }
+  .leaf table.m th, .leaf table.m td { padding: .28rem .5rem; }
+  .leaf .win { margin: .8rem 0; padding: .55rem .8rem; font-size: 13px; border-width: 2.5px; }
+  .leaf .win b.label { font-size: .52rem; }
+  .leaf .contents li { margin: .32rem 0; font-size: 15px; }
+  .leaf .wheel { gap: .6rem; margin: .6rem 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); }
+  .leaf .wheel div { padding: .45rem .55rem; font-size: 12px; line-height: 1.9; }
+  .leaf .wheel .el img { margin-right: .1rem; }
+  .leaf table.m td.item { white-space: nowrap; }
+  .leaf .item img { width: 24px; height: 24px; margin-right: .3rem; }
+  .leaf .hero { grid-template-columns: 76px 1fr; gap: .8rem; margin: .8rem 0; }
+  .leaf .hero img { width: 76px; height: 76px; }
+  .leaf .hero h3 { font-size: 1.45rem; }
+  .leaf .hero .role { font-size: 12.5px; margin: .1rem 0 .3rem; }
+  .leaf .sheet { margin: .9rem 0; padding-top: .8rem; }
+  .leaf .sheet:first-child { padding-top: 0; border-top: 0; }
+  .leaf .sheet .shot { max-width: 15rem; }
+  .leaf dl.facts { grid-template-columns: 5.6rem 1fr; font-size: 12.5px; }
+  .leaf dl.facts dt { font-size: 10.5px; }
+  .leaf dl.facts dt, .leaf dl.facts dd { padding: .28rem .5rem; }
+  .leaf .beasts { gap: .7rem; margin: .7rem 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); }
+  .leaf .beasts .pic { height: 6.2rem; }
+  .leaf .beasts img { transform: scale(1.4); }
+  .leaf .beasts figcaption { padding: .45rem .6rem .6rem; font-size: 12px; }
+  .leaf .beasts figcaption b { font-size: .95rem; }
+  /* A part that will not fit on a page even alone is drawn smaller (the script sets the zoom). */
+  .leaf .squeezed { transform-origin: 0 0; }
 
   /* Headings with a drop letter in a square, like the old booklets. */
   h2.cap { display: flex; align-items: stretch; gap: .5rem; margin: 0 0 1rem; padding: 0 0 .5rem; border: 0; font-family: var(--serif); }
@@ -239,20 +375,15 @@ document.querySelectorAll(".shell-item > a").forEach(function(a){a.addEventListe
 if(!d.querySelector("ul, .side"))return;
 if(d.classList.contains("open")){d.classList.remove("open");e.preventDefault()}
 else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}})})})();</script>
-<main class="wrap booklet">
+<main class="wrap booklet" id="booklet">
+<div class="booklet-src" id="booklet-src">
 
-  <header class="cover">
+  <header class="cover" data-leaf="front">
+    <div class="cover-mark"><svg class="nautilus" viewBox="-58.8 -126.3 156.1 201.7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-7.9 19.8 L-6.5 20.6 L-5.0 21.3 L-3.5 21.9 L-2.0 22.4 L-0.4 22.7 L1.3 23.0 L3.0 23.1 L4.7 23.1 L6.5 23.0 L8.2 22.8 L10.0 22.4 L11.7 21.9 L13.4 21.3 L15.1 20.5 L16.8 19.6 L18.4 18.6 L19.9 17.4 L21.4 16.2 L22.8 14.8 L24.1 13.2 L25.3 11.6 L26.4 9.9 L27.4 8.0 L28.2 6.1 L29.0 4.1 L29.6 2.0 L30.0 -0.1 L30.3 -2.3 L30.4 -4.5 L30.4 -6.8 L30.2 -9.1 L29.9 -11.4 L29.3 -13.7 L28.6 -16.0 L27.8 -18.2 L26.7 -20.4 L25.5 -22.6 L24.1 -24.7 L22.5 -26.7 L20.8 -28.6 L18.9 -30.4 L16.9 -32.1 L14.7 -33.7 L12.4 -35.1 L9.9 -36.3 L7.4 -37.4 L4.7 -38.4 L2.0 -39.1 L-0.9 -39.6 L-3.8 -40.0 L-6.7 -40.1 L-9.7 -40.0 L-12.8 -39.7 L-15.8 -39.2 L-18.8 -38.4 L-21.8 -37.4 L-24.8 -36.2 L-27.7 -34.7 L-30.5 -33.1 L-33.2 -31.2 L-35.8 -29.1 L-38.3 -26.7 L-40.6 -24.2 L-42.8 -21.5 L-44.8 -18.6 L-46.6 -15.5 L-48.2 -12.2 L-49.6 -8.8 L-50.8 -5.3 L-51.7 -1.6 L-52.3 2.1 L-52.7 6.0 L-52.8 9.9 L-52.6 13.8 L-52.1 17.8 L-51.3 21.8 L-50.2 25.8 L-48.8 29.7 L-47.2 33.6 L-45.2 37.4 L-42.9 41.1 L-40.3 44.6 L-37.5 48.0 L-34.3 51.2 L-30.9 54.3 L-27.3 57.1 L-23.4 59.6 L-19.3 61.9 L-14.9 64.0 L-10.4 65.7 L-5.7 67.1 L-0.9 68.2 L4.1 69.0 L9.2 69.4 L14.4 69.4 L19.6 69.0 L24.8 68.3 L30.1 67.2 L35.3 65.7 L40.5 63.7 L45.5 61.4 L50.5 58.7 L55.3 55.6 L59.9 52.1 L64.3 48.3 L68.5 44.1 L72.4 39.5 L76.0 34.6 L79.3 29.4 L82.3 23.9 L84.8 18.1 L87.0 12.1 L88.8 5.9 L90.1 -0.6 L91.0 -7.2 L91.4 -13.9 L91.3 -20.7 L90.7 -27.6 L89.6 -34.5 L87.9 -41.4 L85.8 -48.2 L83.1 -55.0 L80.0 -61.6 L76.3 -68.1 L72.0 -74.3 L67.3 -80.4 L62.1 -86.1 L56.5 -91.5 L50.4 -96.6 L43.8 -101.2 L36.8 -105.4 L29.5 -109.2 L21.8 -112.4 L13.8 -115.2 L5.5 -117.3 L-3.0 -118.9 L-11.7 -119.9 L-20.6 -120.3 L-29.6 -120.0 L-38.7 -119.0 Q-33.1 -69.3 -12.9 -39.7"/><g stroke-width="3"><path d="M91.4 -14.5Q66.3 1.3 30.5 -4.8"/><path d="M83.0 22.3Q55.8 26.3 27.7 7.4"/><path d="M62.0 50.4Q37.4 43.4 20.7 16.8"/><path d="M33.5 66.2Q15.3 51.0 11.2 22.1"/><path d="M3.3 68.9Q-6.4 49.0 1.1 23.0"/><path d="M-23.3 59.7Q-24.0 39.2 -7.8 19.9"/><path d="M-42.4 41.8Q-35.2 24.2 -14.1 13.9"/><path d="M-51.8 19.4Q-39.0 7.2 -17.3 6.5"/><path d="M-51.3 -3.2Q-35.8 -8.7 -17.1 -1.1"/><path d="M-42.3 -22.1Q-27.1 -21.0 -14.1 -7.4"/><path d="M-27.5 -34.8Q-15.0 -28.0 -9.2 -11.6"/><path d="M-10.2 -40.0Q-2.1 -29.5 -3.4 -13.3"/><path d="M6.5 -37.8Q9.4 -25.8 2.2 -12.6"/><path d="M19.8 -29.6Q17.7 -18.4 6.6 -9.9"/></g></svg></div>
     <p class="logo">NUITAI</p>
-    <div class="faces">
-      <img src="manual/kailo_portrait.png" alt="Kailo">
-      <img src="manual/hina_portrait.png" alt="Hina">
-      <img src="manual/maika_portrait.png" alt="Maika">
-      <img src="manual/tawiri_portrait.png" alt="Tawiri">
-    </div>
     <p class="booklet-name">INSTRUCTION BOOKLET</p>
   </header>
 
-  <!-- 2 -->
   <section class="page hue" style="--h:210" id="contents">
     <h2 class="cap"><b class="dc">T</b><span class="rest">able of<br>Contents</span></h2>
     <ol class="contents">
@@ -269,19 +400,15 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <li class="hue" style="--h:300"><a href="#stronger">Growing Stronger</a><span class="dots"></span><span class="pg">28</span></li>
       <li class="hue" style="--h:180"><a href="#guide">Adventure Guide</a><span class="dots"></span><span class="pg">30</span></li>
     </ol>
-    <span class="folio">2</span>
   </section>
 
-  <!-- 3 -->
   <section class="page hue" style="--h:190" id="world">
     <h2 class="cap"><b class="dc">T</b><span class="rest">he World<br>of Nuitai</span></h2>
     <p class="lead">Nuitai is a world of ocean, scattered with islands that circle a great whirlpool. Its people say that magic is motion: a dance, a kick, a breath can call on the elements.</p>
     <p>Kulāiwi is a small island in the Māla Iki Islands, beside Māla Iki itself, the largest island of the chain. It has one village, also called Kulāiwi. This is the home of Kailo, the village cook, and Hina, a young priestess.</p>
     <p>It is the last day of summer. The boars have come down from the woods again, and they are digging up the taro patch. Tonight the whole village gathers for Old Pono's wake. Before then, someone has to deal with the boars, and with the biggest of them all, the Great Boar, at the top of the woods.</p>
-    <span class="folio">3</span>
   </section>
 
-  <!-- 4 -->
   <section class="page hue" style="--h:220" id="controls">
     <h2 class="cap"><b class="dc">B</b><span class="rest">asic<br>Controls</span></h2>
     <p class="lead">Here is how the controller works in NUITAI.</p>
@@ -325,17 +452,15 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
         <p>The B Button cancels the last choice you made and takes you back.</p></div>
       <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
-        <p>Use the Y Button to open the field menu while you are walking around (page 10).</p></div>
+        <p>Use the Y Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>).</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>L/R</big><small>Buttons</small></div>
         <p>On the Element, Equip and Status screens, press L or R to turn to the previous or next member of your party.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
         <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
     </div>
     <div class="win"><b class="label">RESET</b><p>Hold L, R, START and SELECT together to reset the game and go back to the title screen. Anything you have not saved will be lost.</p></div>
-    <span class="folio">4</span>
   </section>
 
-  <!-- 6 -->
   <section class="page hue" style="--h:160" id="start">
     <h2 class="cap"><b class="dc">G</b><span class="rest">etting<br>Started</span></h2>
     <p class="lead">Insert the Game Pak and turn the power on. When the title screen appears, choose with the D-Pad and press A.</p>
@@ -353,10 +478,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>You can save only at a save point. Look for places to rest, like <b>Kailo's bed</b> in his house in town, or the <b>healing pool</b> in the woods. Take a nap or a drink and you will be asked if you want to save. While you stand next to one, you can also choose <b>Save</b> from the field menu. Anywhere else, Save is grayed out.</p>
     <p>Resting there also heals the whole party and brings back anyone who has fallen.</p>
     <div class="win"><b class="label">SAVE OFTEN</b><p>It is very important to save your game often, and always before a big fight.</p></div>
-    <span class="folio">6</span>
   </section>
 
-  <!-- 8 -->
   <section class="page hue" style="--h:95" id="field">
     <h2 class="cap"><b class="dc">O</b><span class="rest">ut in<br>the World</span></h2>
     <p class="lead">This is where most of your adventure takes place: in the village, on the beach and in the woods.</p>
@@ -370,7 +493,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <h3 class="ring">Monsters</h3>
-    <p>Monsters roam out in the open. When you touch one, a battle begins (page 14). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back when you return.</p>
+    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back when you return.</p>
     <p>A fight in the village is fought on the beach. Anywhere outside of town, it is fought in the jungle.</p>
     <p>Some great beasts stand still and wait for you. When you walk up to one, you will be asked if you are ready. Say no to go back and prepare.</p>
     <h3 class="ring">Shops</h3>
@@ -388,11 +511,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Anyone can pick, but only Hina knows how to plant a patch again. Press A on a bare patch with Hina in the party and she will replant it, using one of what it grows. A patch picked without her stays bare until she comes by.</p>
     <p>Plants grow as you walk, so keep exploring and come back later. Someone you meet in the woods knows a way to make a planted patch grow faster.</p>
     <h3 class="ring">The Cooking Pot</h3>
-    <p>There are big cooking pots in the village. Face one and press A, and Kailo will cook. It works just like <b>Craft</b> on the field menu (page 10).</p>
-    <span class="folio">8</span>
+    <p>There are big cooking pots in the village. Face one and press A, and Kailo will cook. It works just like <b>Craft</b> on the field menu (<a class="xref" href="#menu">page 10</a>).</p>
   </section>
 
-  <!-- 10 -->
   <section class="page hue" style="--h:265" id="menu">
     <h2 class="cap"><b class="dc">T</b><span class="rest">he Field<br>Menu</span></h2>
     <p class="lead">Press the Y Button while walking around to open the field menu.</p>
@@ -459,7 +580,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page: his stats, his Skill and his two stances" width="768" height="672"></div></figure>
       <div>
-        <p>Each member has a page: HP, Mana, the eight stats (page 28), their Skill and their two stances.</p>
+        <p>Each member has a page: HP, Mana, the eight stats (<a class="xref" href="#stronger">page 28</a>), their Skill and their two stances.</p>
         <p>The stance on top, in color, is the one they start every battle in. Press A to switch it, and watch the stats change with it.</p>
       </div>
     </div>
@@ -483,10 +604,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <figure class="shot"><div class="frame"><img src="manual/lore-page.png" alt="A Lore page about Kulāiwi" width="768" height="672"></div><figcaption>A Lore page. Press left or right to turn to the next one.</figcaption></figure>
-    <span class="folio">10</span>
   </section>
 
-  <!-- 14 -->
   <section class="page hue" style="--h:350" id="battle">
     <h2 class="cap"><b class="dc">B</b><span class="rest">attle<br>Screen</span></h2>
     <p class="lead">A battle starts when you touch a monster. Beat every monster to win!</p>
@@ -552,10 +671,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
 
     <h3 class="ring">Victory and Defeat</h3>
     <p>Monsters you beat drop pule, and sometimes an item. If your whole party falls, the game is over, and you must start again from your last save.</p>
-    <span class="folio">14</span>
   </section>
 
-  <!-- 18 -->
   <section class="page hue" style="--h:40" id="elements">
     <h2 class="cap"><b class="dc">E</b><span class="rest">lements<br>and Stances</span></h2>
     <p class="lead">There are six elements. Every fighter has two, and every monster has at least one.</p>
@@ -584,10 +701,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide.</p>
     <p>To change stance in battle, choose <b>Element</b>. The switch is at the top, named after the other stance, and it gives you 1 Mana. Some moves use both elements and work in either stance.</p>
     <p>Every battle begins in the stance boxed on the field menu. Change it on the Status screen.</p>
-    <span class="folio">18</span>
   </section>
 
-  <!-- 20 -->
   <section class="page hue" style="--h:15" id="cast">
     <h2 class="cap"><b class="dc">C</b><span class="rest">ast of<br>Characters</span></h2>
     <p class="lead">Along the way, Kailo will be joined by friends. Each of them has special abilities.</p>
@@ -673,10 +788,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
 
     <div class="win"><b class="label">PARTY</b><p>Only three fight at a time. When a fourth joins, one waits on the bench. Use Swap in battle, or Party on the field menu, to trade places. Everyone who travels with you helps on the road, bench or not.</p></div>
-    <span class="folio">20</span>
   </section>
 
-  <!-- 24 -->
   <section class="page hue" style="--h:20" id="bestiary">
     <h2 class="cap"><b class="dc">C</b><span class="rest">reatures of<br>the Islands</span></h2>
     <p class="lead">The woods and the jungle are not empty. Here are a few of the creatures you may meet.</p>
@@ -690,10 +803,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure><div class="pic"><img src="manual/kaperosa.png" alt="" loading="lazy"></div><figcaption><b>Kaperosa</b>A pale lady ghost in white. Better not to stay and listen when she sings.</figcaption></figure>
     </div>
     <div class="win"><b class="label">BESTIARY</b><p>Every creature you beat gets a page under Data on the field menu, with its picture and what is known about it.</p></div>
-    <span class="folio">24</span>
   </section>
 
-  <!-- 26 -->
   <section class="page hue" style="--h:130" id="items">
     <h2 class="cap"><b class="dc">I</b><span class="rest">tems</span></h2>
     <p class="lead">When your HP is low, during or after a battle, you will need these items.</p>
@@ -735,10 +846,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Seeds</td><td>A Seed of Strength, a Seed of Agility, and more. Each raises that stat for one member. Rare!</td></tr>
     </table>
     </div>
-    <span class="folio">26</span>
   </section>
 
-  <!-- 28 -->
   <section class="page hue" style="--h:300" id="stronger">
     <h2 class="cap"><b class="dc">G</b><span class="rest">rowing<br>Stronger</span></h2>
     <p class="lead">Your party never gains levels. They grow stronger by doing.</p>
@@ -759,10 +868,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Luck</td><td>Your chance to dodge.</td></tr>
     </table>
     </div>
-    <span class="folio">28</span>
   </section>
 
-  <!-- 30 -->
   <section class="page hue" style="--h:180" id="guide">
     <h2 class="cap"><b class="dc">A</b><span class="rest">dventure<br>Guide</span></h2>
     <p class="lead">Prepare to set out on your journey. Use this guide to help you in the beginning.</p>
@@ -774,9 +881,337 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Before a big fight, take a nap in Kailo's bed and save your game.</p>
     <h3 class="ring">Watch and Learn</h3>
     <p>Sometimes the best thing to do is nothing at all. Stop and watch the world for a while.</p>
-    <span class="folio">30</span>
   </section>
 
+  <footer class="back" data-leaf="back">
+    <div class="fine">
+      <p class="fine-head">PRECAUTIONS</p>
+      <ul>
+        <li>This is a high precision Game Pak. Do not store it in very hot or very cold places. Never hit it or drop it, and do not take it apart.</li>
+        <li>Do not touch the connectors, and do not let them get wet or dirty.</li>
+        <li>Always turn the power off before you insert or remove the Game Pak.</li>
+        <li>Do not clean the Game Pak with thinner, benzine, alcohol or any other solvent.</li>
+        <li>Keep this instruction booklet in a safe place.</li>
+      </ul>
+      <p>Copying, renting or showing this game in public without permission is prohibited.</p>
+      <p>NUITAI, its world and its characters belong to their author. All rights reserved.</p>
+    </div>
+    <div class="back-mark"><svg class="nautilus" viewBox="-58.8 -126.3 156.1 201.7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M-7.9 19.8 L-6.5 20.6 L-5.0 21.3 L-3.5 21.9 L-2.0 22.4 L-0.4 22.7 L1.3 23.0 L3.0 23.1 L4.7 23.1 L6.5 23.0 L8.2 22.8 L10.0 22.4 L11.7 21.9 L13.4 21.3 L15.1 20.5 L16.8 19.6 L18.4 18.6 L19.9 17.4 L21.4 16.2 L22.8 14.8 L24.1 13.2 L25.3 11.6 L26.4 9.9 L27.4 8.0 L28.2 6.1 L29.0 4.1 L29.6 2.0 L30.0 -0.1 L30.3 -2.3 L30.4 -4.5 L30.4 -6.8 L30.2 -9.1 L29.9 -11.4 L29.3 -13.7 L28.6 -16.0 L27.8 -18.2 L26.7 -20.4 L25.5 -22.6 L24.1 -24.7 L22.5 -26.7 L20.8 -28.6 L18.9 -30.4 L16.9 -32.1 L14.7 -33.7 L12.4 -35.1 L9.9 -36.3 L7.4 -37.4 L4.7 -38.4 L2.0 -39.1 L-0.9 -39.6 L-3.8 -40.0 L-6.7 -40.1 L-9.7 -40.0 L-12.8 -39.7 L-15.8 -39.2 L-18.8 -38.4 L-21.8 -37.4 L-24.8 -36.2 L-27.7 -34.7 L-30.5 -33.1 L-33.2 -31.2 L-35.8 -29.1 L-38.3 -26.7 L-40.6 -24.2 L-42.8 -21.5 L-44.8 -18.6 L-46.6 -15.5 L-48.2 -12.2 L-49.6 -8.8 L-50.8 -5.3 L-51.7 -1.6 L-52.3 2.1 L-52.7 6.0 L-52.8 9.9 L-52.6 13.8 L-52.1 17.8 L-51.3 21.8 L-50.2 25.8 L-48.8 29.7 L-47.2 33.6 L-45.2 37.4 L-42.9 41.1 L-40.3 44.6 L-37.5 48.0 L-34.3 51.2 L-30.9 54.3 L-27.3 57.1 L-23.4 59.6 L-19.3 61.9 L-14.9 64.0 L-10.4 65.7 L-5.7 67.1 L-0.9 68.2 L4.1 69.0 L9.2 69.4 L14.4 69.4 L19.6 69.0 L24.8 68.3 L30.1 67.2 L35.3 65.7 L40.5 63.7 L45.5 61.4 L50.5 58.7 L55.3 55.6 L59.9 52.1 L64.3 48.3 L68.5 44.1 L72.4 39.5 L76.0 34.6 L79.3 29.4 L82.3 23.9 L84.8 18.1 L87.0 12.1 L88.8 5.9 L90.1 -0.6 L91.0 -7.2 L91.4 -13.9 L91.3 -20.7 L90.7 -27.6 L89.6 -34.5 L87.9 -41.4 L85.8 -48.2 L83.1 -55.0 L80.0 -61.6 L76.3 -68.1 L72.0 -74.3 L67.3 -80.4 L62.1 -86.1 L56.5 -91.5 L50.4 -96.6 L43.8 -101.2 L36.8 -105.4 L29.5 -109.2 L21.8 -112.4 L13.8 -115.2 L5.5 -117.3 L-3.0 -118.9 L-11.7 -119.9 L-20.6 -120.3 L-29.6 -120.0 L-38.7 -119.0 Q-33.1 -69.3 -12.9 -39.7"/><g stroke-width="3"><path d="M91.4 -14.5Q66.3 1.3 30.5 -4.8"/><path d="M83.0 22.3Q55.8 26.3 27.7 7.4"/><path d="M62.0 50.4Q37.4 43.4 20.7 16.8"/><path d="M33.5 66.2Q15.3 51.0 11.2 22.1"/><path d="M3.3 68.9Q-6.4 49.0 1.1 23.0"/><path d="M-23.3 59.7Q-24.0 39.2 -7.8 19.9"/><path d="M-42.4 41.8Q-35.2 24.2 -14.1 13.9"/><path d="M-51.8 19.4Q-39.0 7.2 -17.3 6.5"/><path d="M-51.3 -3.2Q-35.8 -8.7 -17.1 -1.1"/><path d="M-42.3 -22.1Q-27.1 -21.0 -14.1 -7.4"/><path d="M-27.5 -34.8Q-15.0 -28.0 -9.2 -11.6"/><path d="M-10.2 -40.0Q-2.1 -29.5 -3.4 -13.3"/><path d="M6.5 -37.8Q9.4 -25.8 2.2 -12.6"/><path d="M19.8 -29.6Q17.7 -18.4 6.6 -9.9"/></g></svg><span>NUITAI</span></div>
+  </footer>
+
+</div>
 </main>
+<script>
+/* The booklet you turn (Frankie, 10/28). The sections above are poured into pages of one fixed size,
+   measured as they go: a section starts on a new page, and what does not fit carries on to the next,
+   split between paragraphs, rows, list items or, inside a long paragraph, between words. Then the pages
+   are shown the way a real booklet opens: the cover alone, then 2 and 3, 4 and 5, and the back cover
+   alone, or one page at a time where two would be too small. Arrow keys, a swipe, the page edges and
+   the arrows turn them; the address keeps the page, as #page-7. */
+(function () {
+  var main = document.getElementById("booklet"), src = document.getElementById("booklet-src");
+  if (!main || !src || !document.documentElement.classList.contains("turn")) return;
+  var PW = 420, PH = 612;
+  // What may be split across two pages, and what must stay with what follows it.
+  var SPLIT = ".scroll, table, tbody, ol.key, ol.contents, .buttons, .beasts, .sheet, dl.facts, .pair, .pair > div, .wheel";
+  function keep(n) {
+    return n.matches("h2, h3, dt") || (n.tagName === "TR" && !!n.querySelector("th") && !n.querySelector("td"));
+  }
+  function make(tag, cls, parent) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+
+  var book = make("div", "book", main), spread = make("div", "spread", book), inner = make("div", "spread-in", spread);
+  var fold = make("i", "fold", inner);
+  var prevEdge = make("button", "edge prev", inner), nextEdge = make("button", "edge next", inner);
+  prevEdge.type = nextEdge.type = "button";
+  prevEdge.setAttribute("aria-label", "Previous page");
+  nextEdge.setAttribute("aria-label", "Next page");
+  var bar = make("nav", "turnbar", book);
+  bar.setAttribute("aria-label", "Turn the pages");
+  var prevBtn = make("button", "turn-btn", bar), where = make("span", "where", bar), nextBtn = make("button", "turn-btn", bar);
+  prevBtn.type = nextBtn.type = "button";
+  prevBtn.textContent = "‹"; nextBtn.textContent = "›";
+  prevBtn.setAttribute("aria-label", "Previous page"); nextBtn.setAttribute("aria-label", "Next page");
+  where.setAttribute("aria-live", "polite");
+  var measure = make("div", "measure", main);
+
+  var leaves = [], ids = {}, views = [], two = false, view = 0;
+
+  // --- Pouring the sections into pages ---------------------------------------------------------
+  // Rectangles, not offsets: the controller is an SVG, which has none. The measuring pages are not scaled.
+  function bottom(c, body) { return c.getBoundingClientRect().bottom - body.getBoundingClientRect().top; }
+  function fits(body) {
+    var c = body.lastElementChild;
+    return !c || bottom(c, body) <= body.clientHeight + .5;
+  }
+  function newLeaf(sec) {
+    var leaf = make("div", "leaf", measure);
+    if (sec) { leaf.classList.add("hue"); leaf.style.cssText = sec.style.cssText; }
+    leaves.push(leaf);
+    return make("div", "leaf-body", leaf);
+  }
+  function wordCuts(text) {
+    var cuts = [], re = /\s+/g, m;
+    while ((m = re.exec(text))) if (m.index > 0 && m.index + m[0].length < text.length) cuts.push(m.index);
+    return cuts;
+  }
+  function locate(node, k) {
+    var w = document.createTreeWalker(node, NodeFilter.SHOW_TEXT), n, pos = 0, last = null;
+    while ((n = w.nextNode())) {
+      if (pos + n.data.length >= k) return [n, k - pos];
+      pos += n.data.length; last = n;
+    }
+    return [last, last ? last.data.length : 0];
+  }
+  function cutAfter(node, k) {
+    var at = locate(node, k), r = document.createRange();
+    r.setStart(at[0], at[1]); r.setEnd(node, node.childNodes.length); r.deleteContents();
+    return node;
+  }
+  function cutBefore(node, k) {
+    var at = locate(node, k), r = document.createRange();
+    r.setStart(node, 0); r.setEnd(at[0], at[1]); r.deleteContents();
+    var first = document.createTreeWalker(node, NodeFilter.SHOW_TEXT).nextNode();
+    if (first) first.data = first.data.replace(/^\s+/, "");
+  }
+  // A paragraph split between words, at least a few on each side, so no line is left alone.
+  function splitText(dst, p, body) {
+    var cuts = wordCuts(p.textContent), lo = 0, hi = cuts.length - 1, best = -1, part;
+    while (lo <= hi) {
+      var mid = (lo + hi) >> 1;
+      part = cutAfter(p.cloneNode(true), cuts[mid]);
+      dst.appendChild(part);
+      var ok = fits(body);
+      dst.removeChild(part);
+      if (ok) { best = mid; lo = mid + 1; } else hi = mid - 1;
+    }
+    if (best < 7) return false;
+    best = Math.min(best, cuts.length - 8);
+    if (best < 7) return false;
+    dst.appendChild(cutAfter(p.cloneNode(true), cuts[best]));
+    cutBefore(p, cuts[best]);
+    p.classList.add("cont");
+    return true;
+  }
+  function worth(part) {
+    return part.matches(".pair") ? part.children.length >= 2 : !!part.firstElementChild;
+  }
+  function carryHead(part, rest) {
+    var h = part.firstElementChild, r = rest.firstElementChild;
+    if (part.tagName === "TBODY" && h && keep(h) && r && !keep(r)) rest.insertBefore(h.cloneNode(true), rest.firstChild);
+  }
+  // Moves as much of from's children into dst as fits on the page; true if anything went in.
+  function pour(dst, from, body) {
+    while (from.firstChild) {
+      var c = from.firstChild;
+      dst.appendChild(c);
+      if (c.nodeType !== 1 || fits(body)) continue;
+      from.insertBefore(c, from.firstChild);
+      if (c.matches(SPLIT)) {
+        var part = c.cloneNode(false);
+        part.removeAttribute("id");
+        dst.appendChild(part);
+        if (pour(part, c, body) && worth(part)) carryHead(part, c);
+        else {
+          while (part.lastChild) c.insertBefore(part.lastChild, c.firstChild);
+          dst.removeChild(part);
+        }
+      } else if (c.tagName === "P") {
+        splitText(dst, c, body);
+      }
+      break;
+    }
+    // A heading, a term or a table's header row never ends a page.
+    var last = dst.lastElementChild;
+    while (from.firstElementChild && last && keep(last)) {
+      while (dst.lastChild !== last) from.insertBefore(dst.lastChild, from.firstChild);
+      from.insertBefore(last, from.firstChild);
+      last = dst.lastElementChild;
+    }
+    return !!dst.firstElementChild;
+  }
+  // Something too tall for a page even alone is drawn smaller, to fit.
+  function squeeze(c, body) {
+    var r = c.getBoundingClientRect(), h = r.height, room = body.clientHeight - (r.top - body.getBoundingClientRect().top);
+    if (h > room && room > 40) { c.classList.add("squeezed"); c.style.zoom = Math.max(.5, room / h).toFixed(3); }
+  }
+  function layChapter(sec) {
+    var first = true;
+    while (sec.firstElementChild) {
+      var body = newLeaf(sec);
+      if (first) { ids[sec.id] = leaves.length; first = false; }
+      if (!pour(body, sec, body)) {
+        var c;
+        do {
+          c = sec.firstElementChild;
+          while (sec.firstChild !== c) body.appendChild(sec.firstChild);
+          body.appendChild(c);
+        } while (keep(c) && sec.firstElementChild);
+        squeeze(c, body);
+      }
+    }
+  }
+  function coverLeaf(node) {
+    var leaf = make("div", "leaf", measure), copy = node.cloneNode(true);
+    copy.removeAttribute("data-leaf");
+    leaf.appendChild(copy);
+    leaves.push(leaf);
+  }
+  function paginate() {
+    leaves.forEach(function (l) { l.remove(); });
+    leaves = []; ids = {};
+    var front = src.querySelector('[data-leaf="front"]'), back = src.querySelector('[data-leaf="back"]');
+    if (front) coverLeaf(front);
+    src.querySelectorAll("section.page").forEach(function (s) {
+      var sec = s.cloneNode(true);
+      layChapter(sec);
+    });
+    // The back cover is an even page, alone at the end, as in a booklet: a blank page before it if need be.
+    if ((leaves.length + 1) % 2) newLeaf(null);
+    if (back) coverLeaf(back);
+    leaves.forEach(function (leaf, i) {
+      var n = i + 1;
+      leaf.classList.add(n % 2 ? "odd" : "even");
+      leaf.dataset.page = n;
+      make("i", "bind", leaf);
+      if (n > 1 && n < leaves.length) make("span", "folio", leaf).textContent = n;
+    });
+    // The contents and every "page 10" point at the pages as they fell.
+    leaves.forEach(function (leaf) {
+      leaf.querySelectorAll('.contents a[href^="#"]').forEach(function (a) {
+        var n = ids[a.getAttribute("href").slice(1)], pg = a.parentNode.querySelector(".pg");
+        if (n && pg) pg.textContent = n;
+      });
+      leaf.querySelectorAll('a.xref[href^="#"]').forEach(function (a) {
+        var n = ids[a.getAttribute("href").slice(1)];
+        if (n) a.textContent = "page " + n;
+      });
+    });
+    leaves.forEach(function (leaf) { inner.insertBefore(leaf, fold); });
+  }
+
+  // --- Showing and turning ---------------------------------------------------------------------
+  function room() {
+    var cs = getComputedStyle(book);
+    return [book.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight),
+            book.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom) - bar.offsetHeight - parseFloat(cs.rowGap || 0)];
+  }
+  function makeViews() {
+    var N = leaves.length, i;
+    views = [];
+    if (!two) { for (i = 1; i <= N; i++) views.push([i]); return; }
+    views.push([1]);
+    for (i = 2; i < N; i += 2) views.push(i + 1 < N ? [i, i + 1] : [i]);
+    if (N > 1) views.push([N]);
+  }
+  function viewOf(page) {
+    for (var v = 0; v < views.length; v++) if (views[v].indexOf(page) >= 0) return v;
+    return 0;
+  }
+  function fit() {
+    var r = room(), n = views[view] ? views[view].length : 1;
+    var k = Math.max(.2, Math.min(r[0] / (PW * (two ? 2 : 1)), r[1] / PH, 1.6));
+    spread.style.width = PW * n * k + "px";
+    spread.style.height = PH * k + "px";
+    inner.style.width = PW * n + "px";
+    inner.style.transform = "scale(" + k + ")";
+  }
+  function decide() {
+    var r = room(), page = views[view] ? views[view][0] : 1, was = two;
+    two = Math.min(r[0] / (2 * PW), r[1] / PH) >= .82;
+    if (was !== two || !views.length) { makeViews(); show(viewOf(page)); } else fit();
+  }
+  function label(pages) {
+    var N = leaves.length;
+    if (pages[0] === 1) return "Cover";
+    if (pages[0] === N) return "Back cover";
+    return (pages.length === 2 ? pages[0] + "–" + pages[1] : pages[0]) + " of " + N;
+  }
+  function show(v, dir) {
+    view = Math.max(0, Math.min(views.length - 1, v));
+    var pages = views[view];
+    leaves.forEach(function (l) { l.classList.remove("show", "in-next", "in-prev"); });
+    pages.forEach(function (n) {
+      var l = leaves[n - 1];
+      void l.offsetWidth;
+      l.classList.add("show");
+      if (dir) l.classList.add(dir > 0 ? "in-next" : "in-prev");
+    });
+    fold.hidden = pages.length !== 2;
+    prevBtn.disabled = prevEdge.hidden = view === 0;
+    nextBtn.disabled = nextEdge.hidden = view === views.length - 1;
+    where.textContent = label(pages);
+    fit();
+    var h = "#page-" + pages[0];
+    if (location.hash !== h) { try { history.replaceState(null, "", h); } catch (e) {} }
+  }
+  function go(d) { if (views[view + d]) show(view + d, d); }
+  function pageFromHash() {
+    var h = location.hash, m = /^#page-(\d+)$/.exec(h);
+    if (m) return Math.max(1, Math.min(leaves.length, +m[1]));
+    try { return ids[decodeURIComponent(h.slice(1))] || 1; } catch (e) { return 1; }
+  }
+
+  prevBtn.addEventListener("click", function () { go(-1); });
+  nextBtn.addEventListener("click", function () { go(1); });
+  // The page edges turn the page, except over a link, which they pass the click to.
+  function edge(d) {
+    return function (e) {
+      var a = null;
+      if (e.clientX || e.clientY) document.elementsFromPoint(e.clientX, e.clientY).some(function (n) {
+        a = n.closest && n.closest(".leaf a[href]");
+        return !!a;
+      });
+      if (a) a.click(); else go(d);
+    };
+  }
+  prevEdge.addEventListener("click", edge(-1));
+  nextEdge.addEventListener("click", edge(1));
+  document.addEventListener("keydown", function (e) {
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    var t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    var d = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[e.key];
+    if (d) { e.preventDefault(); go(d); }
+    else if (e.key === "Home") { e.preventDefault(); show(0, -1); }
+    else if (e.key === "End") { e.preventDefault(); show(views.length - 1, 1); }
+  });
+  var touch = null;
+  book.addEventListener("touchstart", function (e) {
+    touch = e.touches.length === 1 ? [e.touches[0].clientX, e.touches[0].clientY] : null;
+  }, { passive: true });
+  book.addEventListener("touchend", function (e) {
+    if (!touch || e.changedTouches.length !== 1) return;
+    var dx = e.changedTouches[0].clientX - touch[0], dy = e.changedTouches[0].clientY - touch[1];
+    touch = null;
+    if (window.visualViewport && window.visualViewport.scale > 1.01) return;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.4) go(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  window.addEventListener("hashchange", function () {
+    var v = viewOf(pageFromHash());
+    if (v !== view) show(v, v > view ? 1 : -1); else show(v);
+  });
+  if (window.ResizeObserver) new ResizeObserver(decide).observe(book);
+  else window.addEventListener("resize", decide);
+
+  function start() {
+    var page = views[view] ? views[view][0] : null;
+    paginate();
+    views = [];
+    var r = room();
+    two = Math.min(r[0] / (2 * PW), r[1] / PH) >= .82;
+    makeViews();
+    show(viewOf(page || pageFromHash()));
+  }
+  var loading = document.fonts && document.fonts.status === "loading";
+  start();
+  // The pixel letters of the game's windows may arrive late; lay the pages out again with them.
+  if (loading) document.fonts.ready.then(start);
+})();
+</script>
 </body>
 </html>
