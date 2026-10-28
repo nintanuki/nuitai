@@ -420,7 +420,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Craft</td><td>The cooking pot. Put two things in and see what comes out.</td></tr>
       <tr><td>Element</td><td>Each member's element moves, row by row. Choose which moves go in which row.</td></tr>
       <tr><td>Equip</td><td>Change weapons.</td></tr>
-      <tr><td>Status</td><td>A page for each member: HP, Mana, TECH, stats and stances. Change the starting stance here.</td></tr>
+      <tr><td>Status</td><td>A page for each member: HP, Mana, Skill, stats and stances. Change the starting stance here.</td></tr>
       <tr><td>Party</td><td>Choose who fights and who waits on the bench.</td></tr>
       <tr><td>Data</td><td>The bestiary, the Lore of the islands, your time played and your steps.</td></tr>
       <tr><td>Save</td><td>Save your game. Only at a save point.</td></tr>
@@ -457,9 +457,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
 
     <h3 class="ring">Status</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page: his stats, his TECH and his two stances" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page: his stats, his Skill and his two stances" width="768" height="672"></div></figure>
       <div>
-        <p>Each member has a page: HP, Mana, the eight stats (page 28), their TECH and their two stances.</p>
+        <p>Each member has a page: HP, Mana, the eight stats (page 28), their Skill and their two stances.</p>
         <p>The stance on top, in color, is the one they start every battle in. Press A to switch it, and watch the stats change with it.</p>
       </div>
     </div>
@@ -510,7 +510,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
-      <tr><td>TECH</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Charm</b>, Tawiri's <b>Call</b>. It costs no Mana.</td></tr>
+      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Charm</b>, Tawiri's <b>Call</b>. It costs no Mana.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
       <tr><td>Item</td><td>Use an item from the bag.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
@@ -605,7 +605,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Elements</dt><dd><span class="el fire"><img src="manual/afi.png" alt="">Fire</span> and <span class="el water"><img src="manual/wai.png" alt="">Water</span></dd>
         <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
         <dt>Weapon</dt><dd>Frying Pan</dd>
-        <dt>TECH</dt><dd><b>Cook.</b> Pick two ingredients. On his next turn he serves the dish to anyone. Cooked fresh, a dish heals more than the same dish from the bag.</dd>
+        <dt>Skill</dt><dd><b>Cook.</b> Pick two ingredients. On his next turn he serves the dish to anyone. Cooked fresh, a dish heals more than the same dish from the bag.</dd>
         <dt>Moves</dt><dd><b>Flame Kick</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half.</dd>
         <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
       </dl>
@@ -625,7 +625,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el light"><img src="manual/la.png" alt="">Light</span></dd>
         <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that speed up friends and ward off harm.</dd>
         <dt>Weapon</dt><dd>Gohei</dd>
-        <dt>TECH</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. Every kind of monster takes it differently.</dd>
+        <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. Every kind of monster takes it differently.</dd>
         <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shaka's Light</b>, blocks the next shadow attack.</dd>
         <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
       </dl>
@@ -645,7 +645,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
         <dt>Stances</dt><dd><b class="nature">Kilomi</b>, the healers' art of pressing points on the body. <b class="spirit">Maki Hula</b>, a slow spiral dance that strikes with spirit magic.</dd>
         <dt>Weapon</dt><dd>Ko'oko'o</dd>
-        <dt>TECH</dt><dd><b>Charm.</b> A wild card. The enemy might drop its guard, refuse to fight, or even turn on its friends.</dd>
+        <dt>Skill</dt><dd><b>Charm.</b> A wild card. The enemy might drop its guard, refuse to fight, or even turn on its friends.</dd>
         <dt>Moves</dt><dd><b>Spin</b>, one turn of the spiral. <b>Heal</b>, mends one ally. <b>Drain</b>, takes life from an enemy and gives half to an ally.</dd>
         <dt>On the Road</dt><dd>While Maika travels with you, sellers charge less. He also knows how to make a garden grow faster.</dd>
       </dl>
@@ -665,7 +665,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Elements</dt><dd><span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
         <dt>Stances</dt><dd><b class="shadow">Ata Kanikani</b>, a dark dance that curses. <b class="spirit">Wiri Kanikani</b>, a whirling dance that strikes like lightning.</dd>
         <dt>Weapon</dt><dd>Tokotoko</dd>
-        <dt>TECH</dt><dd><b>Call.</b> One of the dead comes to fight at her side for a few turns.</dd>
+        <dt>Skill</dt><dd><b>Call.</b> One of the dead comes to fight at her side for a few turns.</dd>
         <dt>Moves</dt><dd><b>Static</b>, lightning that burns away the enemy's Mana. <b>Sleep</b>, a doze; a hit wakes it. <b>Chain Lightning</b>, jumps to every enemy. And many more.</dd>
         <dt>On the Road</dt><dd>With Tawiri in the party, everyone's stats grow faster in battle.</dd>
       </dl>
