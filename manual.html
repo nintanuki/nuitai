@@ -451,12 +451,16 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <p>The A Button is the action button. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking.</p></div>
       <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
         <p>The B Button cancels the last choice you made and takes you back.</p></div>
+      <div class="button" style="--b:#3554b8"><div class="badge"><big>X</big><small>Button</small></div>
+        <p>Use the X Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>).</p></div>
       <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
-        <p>Use the Y Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>).</p></div>
+        <p>The Y Button uses Kailo's tool (<a class="xref" href="#field">page 8</a>). Hold it to open the tool wheel.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>L/R</big><small>Buttons</small></div>
         <p>On the Element, Equip and Status screens, press L or R to turn to the previous or next member of your party.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
         <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
+      <div class="button" style="--b:#5d5a66"><div class="badge"><big>Sel</big><small>Select</small></div>
+        <p>The SELECT Button shows a map of the area. Rooms fill in as you find them.</p></div>
     </div>
     <div class="win"><b class="label">RESET</b><p>Hold L, R, START and SELECT together to reset the game and go back to the title screen. Anything you have not saved will be lost.</p></div>
   </section>
@@ -475,8 +479,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <h3 class="ring">Saving Progress</h3>
-    <p>You can save only at a save point. Look for places to rest, like <b>Kailo's bed</b> in his house in town, or the <b>healing pool</b> in the woods. Take a nap or a drink and you will be asked if you want to save. While you stand next to one, you can also choose <b>Save</b> from the field menu. Anywhere else, Save is grayed out.</p>
-    <p>Resting there also heals the whole party and brings back anyone who has fallen.</p>
+    <p>You can save only at an <b>Akua totem</b>, a carved post where the party kneels and tells the Akua all that has happened. Face one and press A, and you will be asked if you want to save. There is one in the village, and another deep in the woods. The field menu has no Save.</p>
+    <p>Praying at a totem also brings back anyone who has fallen. A nap in Kailo's bed or a drink at the healing pool in the woods heals the party, but it does not save, and the fallen stay down.</p>
     <div class="win"><b class="label">SAVE OFTEN</b><p>It is very important to save your game often, and always before a big fight.</p></div>
   </section>
 
@@ -493,16 +497,16 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <h3 class="ring">Monsters</h3>
-    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back when you return.</p>
+    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back after you have walked 200 steps, or all at once when the party takes a nap.</p>
     <p>A fight in the village is fought on the beach. Anywhere outside of town, it is fought in the jungle.</p>
     <p>Some great beasts stand still and wait for you. When you walk up to one, you will be asked if you are ready. Say no to go back and prepare.</p>
     <h3 class="ring">Shops</h3>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/shop.png" alt="The market stall: Noni, Broth and Counter for sale" width="768" height="672"></div></figure>
       <div>
-        <p>Talk to a seller to see what they have. Choose an item, then how many.</p>
+        <p>Talk to a seller to see what they have. Choose an item to buy one.</p>
         <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles.</p>
-        <p>There is a market stall in the village. Other sellers may turn up where you least expect them.</p>
+        <p>The market stall in the village sells food and odds and ends, and the hunters' lodge sells weapons, relics and moves. Other sellers may turn up where you least expect them.</p>
         <p>Some people are good at haggling. With the right friend along, every seller charges less.</p>
       </div>
     </div>
@@ -510,20 +514,34 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Taro grows in the village garden, and wheat in the palm grove. Face a ripe plant and press A to pick it. A ripe patch gives two.</p>
     <p>Anyone can pick, but only Hina knows how to plant a patch again. Press A on a bare patch with Hina in the party and she will replant it, using one of what it grows. A patch picked without her stays bare until she comes by.</p>
     <p>Plants grow as you walk, so keep exploring and come back later. Someone you meet in the woods knows a way to make a planted patch grow faster.</p>
-    <h3 class="ring">The Cooking Pot</h3>
-    <p>There are big cooking pots in the village. Face one and press A, and Kailo will cook. It works just like <b>Craft</b> on the field menu (<a class="xref" href="#menu">page 10</a>).</p>
+    <h3 class="ring">Tools</h3>
+    <p>Press Y to use the tool Kailo has ready. Hold Y to open the tool wheel, press the D-Pad toward a tool, and let go to make it the one Y uses.</p>
+    <p>The <b>Ko'i</b>, a stone adze from his dad's chest, chops trees in the woods. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! Ten chops fell a tree, and five more clear its stump. The wood goes in the bag. The trees stand again when you leave the area.</p>
+    <h3 class="ring">Fresh Water</h3>
+    <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good. After ten scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
+    <h3 class="ring">Cooking</h3>
+    <div class="pair">
+      <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The cooking pot: the ingredients on the right, ready to go in" width="768" height="672"></div></figure>
+      <div>
+        <p>Face the big cooking pot in Kailo's house and press A to cook. His boat, the <b>Meialana</b>, is moored at the harbor. Face it and choose <b>Cook</b> to use its kitchen, or <b>Nap</b> to rest as in his bed.</p>
+        <p>Choose an ingredient, then a second, and see what you get. A dish you have made goes on the list, so next time just pick it. If the two don't go together, both are lost, and the pot remembers the pair.</p>
+        <p>Only Kailo cooks, so the pot is his.</p>
+      </div>
+    </div>
+    <h3 class="ring">Cooking for Hire</h3>
+    <p>Hungry villagers sometimes ask Kailo to cook them something. Bring them the dish and they will pay in pule.</p>
   </section>
 
   <section class="page hue" style="--h:265" id="menu">
     <h2 class="cap"><b class="dc">T</b><span class="rest">he Field<br>Menu</span></h2>
-    <p class="lead">Press the Y Button while walking around to open the field menu.</p>
+    <p class="lead">Press the X Button while walking around to open the field menu.</p>
     <figure class="shot"><div class="frame">
       <img src="manual/menu.png" alt="The field menu" width="768" height="672">
       <span class="pin" style="left:13%;top:12%">1</span>
       <span class="pin" style="left:59%;top:11%">2</span>
       <span class="pin" style="left:46%;top:20%">3</span>
       <span class="pin" style="left:95%;top:28%">4</span>
-      <span class="pin" style="left:67%;top:75%">5</span>
+      <span class="pin" style="left:67%;top:68%">5</span>
       <span class="pin" style="left:67%;top:87%">6</span>
     </div></figure>
     <ol class="key">
@@ -531,32 +549,22 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <li><b>2</b><span><b>Hit Points</b><br>HP. When a member's HP reaches 0, they fall.</span></li>
       <li><b>3</b><span><b>Elements</b><br>The member's two elements. The boxed one is the stance they start a battle in.</span></li>
       <li><b>4</b><span><b>Commands</b><br>Choose one with the D-Pad and press A.</span></li>
-      <li><b>5</b><span><b>Date</b><br>The season and the day.</span></li>
+      <li><b>5</b><span><b>Time and Steps</b><br>How long you have played and how far you have walked.</span></li>
       <li><b>6</b><span><b>Money</b><br>Kupang <img class="coin" src="manual/kupang.png" alt="">, the coins, and pule <img class="coin" src="manual/pule.png" alt="">, the shells.</span></li>
     </ol>
     <div class="scroll">
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Items</td><td>Look in the bag and use an item: heal someone, eat a seed, or learn a move.</td></tr>
-      <tr><td>Craft</td><td>The cooking pot. Put two things in and see what comes out.</td></tr>
       <tr><td>Element</td><td>Each member's element moves, row by row. Choose which moves go in which row.</td></tr>
       <tr><td>Equip</td><td>Change weapons.</td></tr>
       <tr><td>Status</td><td>A page for each member: HP, Mana, Skill, stats and stances. Change the starting stance here.</td></tr>
       <tr><td>Party</td><td>Choose who fights and who waits on the bench.</td></tr>
-      <tr><td>Data</td><td>The bestiary, the Lore of the islands, your time played and your steps.</td></tr>
-      <tr><td>Save</td><td>Save your game. Only at a save point.</td></tr>
+      <tr><td>Info</td><td>The Lore of the islands and the bestiary.</td></tr>
+      <tr><td>Config</td><td>Settings for the game.</td></tr>
     </table>
     </div>
     <p>On the Element, Equip and Status screens, press L or R to turn to the next member without going back.</p>
-
-    <h3 class="ring">Craft</h3>
-    <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The Craft screen: wheat, broth and taro ready for the pot" width="768" height="672"></div></figure>
-      <div>
-        <p>The pot shows everything in the bag that can go in it. Choose one thing, then a second, and see what you get. If the two don't go together, the pot says so and you keep both.</p>
-        <p>Only Kailo cooks, so the pot is his.</p>
-      </div>
-    </div>
 
     <h3 class="ring">Element</h3>
     <div class="pair">
@@ -594,13 +602,12 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
 
-    <h3 class="ring">Data</h3>
+    <h3 class="ring">Info</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Data screen: Bestiary, Lore, Time Played and Steps" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Info screen: the Lore pages by kind, then the Bestiary" width="768" height="672"></div></figure>
       <div>
+        <p><b>Lore</b> holds pages about the people and places of the islands, sorted by kind. New pages appear as your journey goes on, so look in now and then.</p>
         <p><b>Bestiary</b> has a page for every creature you have beaten.</p>
-        <p><b>Lore</b> holds pages about the people and places of the islands. New pages appear as your journey goes on, so look in now and then.</p>
-        <p><b>Time Played</b> and <b>Steps</b> count up from the start of your adventure.</p>
       </div>
     </div>
     <figure class="shot"><div class="frame"><img src="manual/lore-page.png" alt="A Lore page about Kulāiwi" width="768" height="672"></div><figcaption>A Lore page. Press left or right to turn to the next one.</figcaption></figure>
@@ -636,7 +643,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Escape</td><td>Try to run away. It does not always work, and you cannot run from some fights.</td></tr>
       <tr><td>Weapon</td><td>Change weapons, if you have another.</td></tr>
       <tr><td>Swap</td><td>Trade places with someone on the bench. The one coming in takes the turn.</td></tr>
-      <tr><td>Combo</td><td>Appears when two members are ready to team up.</td></tr>
+      <tr><td>Combo</td><td>Two members strike together. See below.</td></tr>
     </table>
     </div>
     <div class="pair">
@@ -653,6 +660,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <p>You can stop any time and finish your turn with an element move or an item.</p>
       </div>
     </div>
+
+    <h3 class="ring">Combo</h3>
+    <p>A Combo is ready when the member whose turn comes next, or one who chose Defend, fights in a stance whose element pairs with yours. Each pair of elements makes its own Combo. It costs 2 Mana from each of you, and it stays grayed out until you both have it.</p>
 
     <h3 class="ring">Mana</h3>
     <p>Mana is the energy a fighter builds by moving. Everyone starts a battle with 0 Mana and can hold up to 7. Attack and Defend to build it, then spend it on element moves. A move in row 3 costs 3 Mana.</p>
@@ -721,7 +731,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
         <dt>Weapon</dt><dd>Frying Pan</dd>
         <dt>Skill</dt><dd><b>Cook.</b> Pick two ingredients. On his next turn he serves the dish to anyone. Cooked fresh, a dish heals more than the same dish from the bag.</dd>
-        <dt>Moves</dt><dd><b>Flame Kick</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half.</dd>
+        <dt>Moves</dt><dd><b>Flame Kick</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half. <b>Counter</b>, sold at the hunters' lodge: he guards his friends and kicks back at whoever strikes them.</dd>
         <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
       </dl>
       <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page" width="768" height="672" loading="lazy"></div></figure>
@@ -802,7 +812,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure><div class="pic"><img src="manual/amaranhig.png" alt="" loading="lazy"></div><figcaption><b>Amaranhig</b>A corpse that climbs out of its grave at night. Stiff and slow, but it does not give up.</figcaption></figure>
       <figure><div class="pic"><img src="manual/kaperosa.png" alt="" loading="lazy"></div><figcaption><b>Kaperosa</b>A pale lady ghost in white. Better not to stay and listen when she sings.</figcaption></figure>
     </div>
-    <div class="win"><b class="label">BESTIARY</b><p>Every creature you beat gets a page under Data on the field menu, with its picture and what is known about it.</p></div>
+    <div class="win"><b class="label">BESTIARY</b><p>Every creature you beat gets a page under Info on the field menu, with its picture and what is known about it.</p></div>
   </section>
 
   <section class="page hue" style="--h:130" id="items">
@@ -810,7 +820,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p class="lead">When your HP is low, during or after a battle, you will need these items.</p>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/inventory.png" alt="The Items screen, with Noni in the bag" width="768" height="672"></div></figure>
-      <p>The party shares one bag. Use items with Items on the field menu, or Item in battle. The window at the top tells you what the item under the cursor does.</p>
+      <p>The party shares one bag, sorted by kind: Medicine, Ingredients, Meals, Weapons, Relics, Key Items and more. Use items with Items on the field menu, or Item in battle. The window at the top tells you what the item under the cursor does.</p>
     </div>
 
     <h3 class="ring">Island Medicine</h3>
@@ -827,12 +837,14 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
 
     <h3 class="ring">Food</h3>
-    <p>Anything that goes in the pot can also be eaten as it is, for a little HP. Cooked, it is worth much more. Kailo cooks with <b>Craft</b> on the field menu, or with <b>Cook</b> in battle. There is no recipe book: put two things in the pot and find out! If they don't go together, nothing is lost.</p>
+    <p>Anything that goes in the pot can also be eaten as it is, for a little HP. Cooked, it is worth much more: a meal heals more than medicine. Kailo cooks at the pot (<a class="xref" href="#field">page 8</a>), or with <b>Cook</b> in battle. There is no recipe book: put two things in the pot and find out!</p>
     <div class="scroll">
     <table class="m">
       <tr><th>Name</th><th>Price</th><th>Where to find it</th></tr>
-      <tr><td>Wheat</td><td class="num"></td><td>Grows in the palm grove.</td></tr>
-      <tr><td>Taro</td><td class="num"></td><td>Grows in the village garden.</td></tr>
+      <tr><td>Taro</td><td class="num">4</td><td>Grows in the village garden.</td></tr>
+      <tr><td>Wheat</td><td class="num">4</td><td>Grows in the palm grove.</td></tr>
+      <tr><td>Water</td><td class="num"></td><td>Scooped from a river or a pond.</td></tr>
+      <tr><td>Egg</td><td class="num"></td><td>Laid by the village hens. Some monsters drop them too.</td></tr>
       <tr><td>Broth</td><td class="num">5</td><td>Sold at the market stall.</td></tr>
     </table>
     </div>
@@ -842,7 +854,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Name</th><th>Description</th></tr>
       <tr><td>Moves</td><td>An item that teaches one member a move, shown in the bag and in shops by the move's name, like Counter. Use it and that member learns the move. Then it is gone.</td></tr>
-      <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's element and HP. Used up.</td></tr>
+      <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's elements, HP and Mana. The reading stays under the enemy for the rest of the fight. Used up.</td></tr>
+      <tr><td>Wood</td><td>Chopped from trees with the Ko'i. Kept under Materials.</td></tr>
       <tr><td>Seeds</td><td>A Seed of Strength, a Seed of Agility, and more. Each raises that stat for one member. Rare!</td></tr>
     </table>
     </div>
@@ -851,7 +864,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
   <section class="page hue" style="--h:300" id="stronger">
     <h2 class="cap"><b class="dc">G</b><span class="rest">rowing<br>Stronger</span></h2>
     <p class="lead">Your party never gains levels. They grow stronger by doing.</p>
-    <p><b>Stats grow by use.</b> Each time you use a stat, it fills a little, and when it is full, it goes up. Land strong blows and Strength grows. Land light strokes one after another and Agility grows. Take blows and Endurance grows. Heal a friend or strike with magic and Intelligence grows, faster for greater magic. When a stat goes up, a message along the top of the screen tells you, and a stat can go up more than once in a battle.</p>
+    <p><b>Stats grow by use.</b> Each time you use a stat, it fills a little, and when it is full, it goes up. Land strong blows and Strength grows. Land light strokes one after another and Agility grows. Take blows and Endurance grows. Heal a friend or strike with magic and Intelligence grows, faster for greater magic. A weaker foe teaches less than one your equal. When a stat goes up, a message along the top of the screen tells you, and a stat can go up more than once in a battle.</p>
     <p><b>New moves come from what you find:</b> items named for a move, and people who teach you.</p>
     <p><b>Seeds</b> raise a stat for good.</p>
     <h3 class="ring">The Eight Stats</h3>
@@ -877,8 +890,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Walk around the village and talk with everyone. They will have information you may need, and the old man at the market stall has something only he sells.</p>
     <h3 class="ring">Know Your Foe</h3>
     <p>Boars are creatures of Nature. Kailo's fiery kicks hit them twice as hard.</p>
-    <h3 class="ring">Rest Before You Go</h3>
-    <p>Before a big fight, take a nap in Kailo's bed and save your game.</p>
+    <h3 class="ring">Pray Before You Go</h3>
+    <p>Before a big fight, pray at an Akua totem and save your game.</p>
     <h3 class="ring">Watch and Learn</h3>
     <p>Sometimes the best thing to do is nothing at all. Stop and watch the world for a while.</p>
   </section>
