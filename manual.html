@@ -655,7 +655,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
-      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Charm</b>, Tawiri's <b>Call</b>. It costs no Mana.</td></tr>
+      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Wili</b>, Tawiri's <b>Call</b>. It changes with the weapon in hand. Most cost no Mana; Wili spends it.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
       <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Ola Tonic gets a fallen friend back on their feet.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
@@ -707,6 +707,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Confuse</td><td>Sometimes attacks its own side.</td></tr>
     </table>
     </div>
+    <p>Your own fighters show no picture change. The trouble is named in the party window beside their HP, and floats up the moment it lands.</p>
 
     <h3 class="ring">Victory and Defeat</h3>
     <p>Monsters you beat drop pule, and sometimes an item. A friend's help after a fight works only while that friend is still standing. If your whole party falls, the game is over, and you must start again from your last save.</p>
@@ -797,9 +798,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
       <dl class="facts">
         <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
-        <dt>Stances</dt><dd><b class="nature">Kilomi</b>, the healers' art of pressing points on the body. <b class="spirit">Maki Hula</b>, a slow spiral dance that strikes with spirit magic.</dd>
+        <dt>Stances</dt><dd><b class="nature">Kilomi</b>, the healers' art of pressing points on the body. <b class="spirit">Wili Hula</b>, a slow spiral dance that strikes with spirit magic.</dd>
         <dt>Weapon</dt><dd>Ko'oko'o</dd>
-        <dt>Skill</dt><dd><b>Charm.</b> A wild card. The enemy might drop its guard, refuse to fight, or even turn on its friends.</dd>
+        <dt>Skill</dt><dd><b>Wili,</b> with his staff. Spin the D-Pad round and round, the same way, before the bar runs out. Every full turn sends a small spirit blow at a random enemy. Wili can spend Mana past zero; until it is built back up, no element moves. With a Hula Ki'i in hand it becomes <b>Charm</b>: the enemy fights for you for three of its turns.</dd>
         <dt>Moves</dt><dd><b>Spin</b>, one turn of the spiral. <b>Heal</b>, mends one ally. <b>Drain</b>, takes life from an enemy and gives half to an ally.</dd>
         <dt>On the Road</dt><dd>While Maika travels with you, sellers charge less. He also knows how to make a garden grow faster.</dd>
       </dl>
