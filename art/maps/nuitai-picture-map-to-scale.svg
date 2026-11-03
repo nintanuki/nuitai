@@ -432,8 +432,8 @@
 <rect x="0" y="632" width="624" height="8" fill="url(#t-beyond)"/>
 <rect x="624" y="632" width="2168" height="8" fill="url(#t-sea0)"/>
 <rect x="2792" y="632" width="8" height="8" fill="url(#t-grass)"/>
-<rect x="2800" y="632" width="8" height="8" fill="url(#t-forest)"/>
-<rect x="2808" y="632" width="8" height="8" fill="url(#t-village)"/>
+<rect x="2800" y="632" width="8" height="8" fill="url(#t-village)"/>
+<rect x="2808" y="632" width="8" height="8" fill="url(#t-grass)"/>
 <rect x="2816" y="632" width="8" height="8" fill="url(#t-sea0)"/>
 <rect x="2824" y="632" width="8" height="8" fill="url(#t-shallow)"/>
 <rect x="2832" y="632" width="64" height="8" fill="url(#t-sea0)"/>
@@ -512,8 +512,8 @@
 <rect x="2040" y="672" width="768" height="8" fill="url(#t-sea0)"/>
 <rect x="2808" y="672" width="8" height="8" fill="url(#t-shallow)"/>
 <rect x="2816" y="672" width="8" height="8" fill="url(#t-sea0)"/>
-<rect x="2824" y="672" width="32" height="8" fill="url(#t-shallow)"/>
-<rect x="2856" y="672" width="80" height="8" fill="url(#t-sea0)"/>
+<rect x="2824" y="672" width="16" height="8" fill="url(#t-shallow)"/>
+<rect x="2840" y="672" width="96" height="8" fill="url(#t-sea0)"/>
 <rect x="2936" y="672" width="32" height="8" fill="url(#t-beyond)"/>
 <rect x="2968" y="672" width="8" height="8" fill="url(#t-serpent1)"/>
 <rect x="2976" y="672" width="8" height="8" fill="url(#t-serpent2)"/>
@@ -533,9 +533,7 @@
 <rect x="864" y="680" width="584" height="8" fill="url(#t-sea0)"/>
 <rect x="1448" y="680" width="624" height="8" fill="url(#t-sea1)"/>
 <rect x="2072" y="680" width="760" height="8" fill="url(#t-sea0)"/>
-<rect x="2832" y="680" width="8" height="8" fill="url(#t-sand)"/>
-<rect x="2840" y="680" width="8" height="8" fill="url(#t-forest)"/>
-<rect x="2848" y="680" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2832" y="680" width="24" height="8" fill="url(#t-shallow)"/>
 <rect x="2856" y="680" width="88" height="8" fill="url(#t-sea0)"/>
 <rect x="2944" y="680" width="576" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="688" width="568" height="8" fill="url(#t-beyond)"/>
@@ -558,10 +556,9 @@
 <rect x="864" y="688" width="560" height="8" fill="url(#t-sea0)"/>
 <rect x="1424" y="688" width="672" height="8" fill="url(#t-sea1)"/>
 <rect x="2096" y="688" width="744" height="8" fill="url(#t-sea0)"/>
-<rect x="2840" y="688" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2848" y="688" width="16" height="8" fill="url(#t-sea0)"/>
-<rect x="2864" y="688" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2872" y="688" width="80" height="8" fill="url(#t-sea0)"/>
+<rect x="2840" y="688" width="8" height="8" fill="url(#t-grass)"/>
+<rect x="2848" y="688" width="8" height="8" fill="url(#t-sand)"/>
+<rect x="2856" y="688" width="96" height="8" fill="url(#t-sea0)"/>
 <rect x="2952" y="688" width="568" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="696" width="560" height="8" fill="url(#t-beyond)"/>
 <rect x="560" y="696" width="136" height="8" fill="url(#t-sea0)"/>
@@ -575,10 +572,7 @@
 <rect x="856" y="696" width="16" height="8" fill="url(#t-algae)"/>
 <rect x="872" y="696" width="528" height="8" fill="url(#t-sea0)"/>
 <rect x="1400" y="696" width="720" height="8" fill="url(#t-sea1)"/>
-<rect x="2120" y="696" width="736" height="8" fill="url(#t-sea0)"/>
-<rect x="2856" y="696" width="8" height="8" fill="url(#t-forest)"/>
-<rect x="2864" y="696" width="8" height="8" fill="url(#t-sand)"/>
-<rect x="2872" y="696" width="88" height="8" fill="url(#t-sea0)"/>
+<rect x="2120" y="696" width="840" height="8" fill="url(#t-sea0)"/>
 <rect x="2960" y="696" width="560" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="704" width="552" height="8" fill="url(#t-beyond)"/>
 <rect x="552" y="704" width="152" height="8" fill="url(#t-sea0)"/>
@@ -591,12 +585,9 @@
 <rect x="848" y="704" width="16" height="8" fill="url(#t-algae)"/>
 <rect x="864" y="704" width="512" height="8" fill="url(#t-sea0)"/>
 <rect x="1376" y="704" width="768" height="8" fill="url(#t-sea1)"/>
-<rect x="2144" y="704" width="704" height="8" fill="url(#t-sea0)"/>
-<rect x="2848" y="704" width="16" height="8" fill="url(#t-shallow)"/>
-<rect x="2864" y="704" width="8" height="8" fill="url(#t-grass)"/>
-<rect x="2872" y="704" width="24" height="8" fill="url(#t-sea0)"/>
-<rect x="2896" y="704" width="16" height="8" fill="url(#t-shallow)"/>
-<rect x="2912" y="704" width="56" height="8" fill="url(#t-sea0)"/>
+<rect x="2144" y="704" width="736" height="8" fill="url(#t-sea0)"/>
+<rect x="2880" y="704" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2888" y="704" width="80" height="8" fill="url(#t-sea0)"/>
 <rect x="2968" y="704" width="552" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="712" width="544" height="8" fill="url(#t-beyond)"/>
 <rect x="544" y="712" width="152" height="8" fill="url(#t-sea0)"/>
@@ -614,15 +605,10 @@
 <rect x="848" y="712" width="24" height="8" fill="url(#t-algae)"/>
 <rect x="872" y="712" width="480" height="8" fill="url(#t-sea0)"/>
 <rect x="1352" y="712" width="816" height="8" fill="url(#t-sea1)"/>
-<rect x="2168" y="712" width="688" height="8" fill="url(#t-sea0)"/>
-<rect x="2856" y="712" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2864" y="712" width="8" height="8" fill="url(#t-sea0)"/>
-<rect x="2872" y="712" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2880" y="712" width="16" height="8" fill="url(#t-sea0)"/>
-<rect x="2896" y="712" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2904" y="712" width="8" height="8" fill="url(#t-sand)"/>
-<rect x="2912" y="712" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2920" y="712" width="56" height="8" fill="url(#t-sea0)"/>
+<rect x="2168" y="712" width="704" height="8" fill="url(#t-sea0)"/>
+<rect x="2872" y="712" width="8" height="8" fill="url(#t-forest)"/>
+<rect x="2880" y="712" width="8" height="8" fill="url(#t-grass)"/>
+<rect x="2888" y="712" width="88" height="8" fill="url(#t-sea0)"/>
 <rect x="2976" y="712" width="544" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="720" width="544" height="8" fill="url(#t-beyond)"/>
 <rect x="544" y="720" width="112" height="8" fill="url(#t-sea0)"/>
@@ -637,12 +623,11 @@
 <rect x="832" y="720" width="32" height="8" fill="url(#t-algae)"/>
 <rect x="864" y="720" width="472" height="8" fill="url(#t-sea0)"/>
 <rect x="1336" y="720" width="848" height="8" fill="url(#t-sea1)"/>
-<rect x="2184" y="720" width="688" height="8" fill="url(#t-sea0)"/>
-<rect x="2872" y="720" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2184" y="720" width="680" height="8" fill="url(#t-sea0)"/>
+<rect x="2864" y="720" width="16" height="8" fill="url(#t-shallow)"/>
 <rect x="2880" y="720" width="8" height="8" fill="url(#t-grass)"/>
-<rect x="2888" y="720" width="8" height="8" fill="url(#t-sand)"/>
-<rect x="2896" y="720" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2904" y="720" width="72" height="8" fill="url(#t-sea0)"/>
+<rect x="2888" y="720" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2896" y="720" width="80" height="8" fill="url(#t-sea0)"/>
 <rect x="2976" y="720" width="544" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="728" width="536" height="8" fill="url(#t-beyond)"/>
 <rect x="536" y="728" width="128" height="8" fill="url(#t-sea0)"/>
@@ -664,7 +649,9 @@
 <rect x="1312" y="728" width="896" height="8" fill="url(#t-sea1)"/>
 <rect x="2208" y="728" width="664" height="8" fill="url(#t-sea0)"/>
 <rect x="2872" y="728" width="8" height="8" fill="url(#t-shallow)"/>
-<rect x="2880" y="728" width="104" height="8" fill="url(#t-sea0)"/>
+<rect x="2880" y="728" width="40" height="8" fill="url(#t-sea0)"/>
+<rect x="2920" y="728" width="16" height="8" fill="url(#t-shallow)"/>
+<rect x="2936" y="728" width="48" height="8" fill="url(#t-sea0)"/>
 <rect x="2984" y="728" width="536" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="736" width="528" height="8" fill="url(#t-beyond)"/>
 <rect x="528" y="736" width="128" height="8" fill="url(#t-sea0)"/>
@@ -687,7 +674,11 @@
 <rect x="832" y="736" width="16" height="8" fill="url(#t-algae)"/>
 <rect x="848" y="736" width="448" height="8" fill="url(#t-sea0)"/>
 <rect x="1296" y="736" width="928" height="8" fill="url(#t-sea1)"/>
-<rect x="2224" y="736" width="768" height="8" fill="url(#t-sea0)"/>
+<rect x="2224" y="736" width="688" height="8" fill="url(#t-sea0)"/>
+<rect x="2912" y="736" width="16" height="8" fill="url(#t-shallow)"/>
+<rect x="2928" y="736" width="8" height="8" fill="url(#t-forest)"/>
+<rect x="2936" y="736" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2944" y="736" width="48" height="8" fill="url(#t-sea0)"/>
 <rect x="2992" y="736" width="528" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="744" width="520" height="8" fill="url(#t-beyond)"/>
 <rect x="520" y="744" width="128" height="8" fill="url(#t-sea0)"/>
@@ -707,7 +698,11 @@
 <rect x="864" y="744" width="16" height="8" fill="url(#t-algae)"/>
 <rect x="880" y="744" width="400" height="8" fill="url(#t-sea0)"/>
 <rect x="1280" y="744" width="960" height="8" fill="url(#t-sea1)"/>
-<rect x="2240" y="744" width="760" height="8" fill="url(#t-sea0)"/>
+<rect x="2240" y="744" width="656" height="8" fill="url(#t-sea0)"/>
+<rect x="2896" y="744" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2904" y="744" width="16" height="8" fill="url(#t-sand)"/>
+<rect x="2920" y="744" width="16" height="8" fill="url(#t-shallow)"/>
+<rect x="2936" y="744" width="64" height="8" fill="url(#t-sea0)"/>
 <rect x="3000" y="744" width="520" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="752" width="512" height="8" fill="url(#t-beyond)"/>
 <rect x="512" y="752" width="144" height="8" fill="url(#t-sea0)"/>
@@ -725,7 +720,11 @@
 <rect x="840" y="752" width="40" height="8" fill="url(#t-algae)"/>
 <rect x="880" y="752" width="384" height="8" fill="url(#t-sea0)"/>
 <rect x="1264" y="752" width="992" height="8" fill="url(#t-sea1)"/>
-<rect x="2256" y="752" width="752" height="8" fill="url(#t-sea0)"/>
+<rect x="2256" y="752" width="640" height="8" fill="url(#t-sea0)"/>
+<rect x="2896" y="752" width="16" height="8" fill="url(#t-shallow)"/>
+<rect x="2912" y="752" width="8" height="8" fill="url(#t-sea0)"/>
+<rect x="2920" y="752" width="8" height="8" fill="url(#t-shallow)"/>
+<rect x="2928" y="752" width="80" height="8" fill="url(#t-sea0)"/>
 <rect x="3008" y="752" width="512" height="8" fill="url(#t-beyond)"/>
 <rect x="0" y="760" width="504" height="8" fill="url(#t-beyond)"/>
 <rect x="504" y="760" width="160" height="8" fill="url(#t-sea0)"/>
@@ -7532,7 +7531,7 @@
 <text class="small" x="1104" y="48">N</text>
 <text class="big" x="598" y="334">The Great Whirlpool</text>
 <text class="big" x="596" y="155">Tokelau</text>
-<text class="big" x="968" y="272">Māla Iki</text>
+<text class="big" x="972" y="280">Māla Iki</text>
 <text class="big" x="1034" y="837">Lanuloa</text>
 <text class="big" x="879" y="973">Velafi</text>
 <text class="small" x="879" y="993">the Fire Islands</text>
