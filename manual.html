@@ -664,7 +664,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
       <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Wili</b>, Tawiri's <b>Call</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
-      <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet.</td></tr>
+      <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
       <tr><td>Escape</td><td>Try to run away. It does not always work, and you cannot run from some fights.</td></tr>
       <tr><td>Weapon</td><td>Change weapons, if you have another.</td></tr>
@@ -696,6 +696,10 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <p>This works only on plain blows, never on a monster's element moves or Skills. A good Perception widens the zone, and a quick monster sends its arrows faster.</p>
       </div>
     </div>
+
+    <h3 class="ring">Choosing a Target</h3>
+    <p>Every item and every element move can be aimed at either side: a heal at an enemy, a blow at a friend. The pointer starts on the side the move is meant for, then moves on to the other side.</p>
+    <p>Healing hurts the undead. A heal, from an item or an element, lands on an undead monster as damage instead. Revive does the same: used on an undead monster, it destroys it.</p>
 
     <h3 class="ring">Team Up</h3>
     <p>A Team Up is ready when the member whose turn comes right after yours, with no one in between, fights in a stance whose element pairs with yours. Each pair of elements makes its own Team Up. It takes all 7 Mana from both of you and tires you both, and it stays grayed out until you both have 7.</p>
@@ -737,7 +741,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Element</th><th>Its work</th></tr>
       <tr><td class="el fire"><img src="manual/afi.png" alt="">Fire</td><td>Gives a punch or a kick its force.</td></tr>
-      <tr><td class="el nature"><img src="manual/lau.png" alt="">Nature</td><td>Heals.</td></tr>
+      <tr><td class="el nature"><img src="manual/lau.png" alt="">Nature</td><td>Heals. Against an undead monster, a heal hurts instead.</td></tr>
       <tr><td class="el water"><img src="manual/wai.png" alt="">Water</td><td>Guards, taking blows for a friend.</td></tr>
       <tr><td class="el light"><img src="manual/la.png" alt="">Light</td><td>Protects and strengthens with a spell.</td></tr>
       <tr><td class="el shadow"><img src="manual/ata.png" alt="">Shadow</td><td>Curses: blind, sleep, poison.</td></tr>
@@ -867,7 +871,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><th>Name</th><th>Price</th><th>Description</th></tr>
       <tr><td class="item"><img src="manual/noni.png" alt="">Noni Pulu</td><td class="num">10</td><td>Noni poultice. Restores 30 HP. It stinks.</td></tr>
       <tr><td class="item"><img src="manual/awa.png" alt="">'Awa Tonic</td><td class="num">30</td><td>Kava tonic. Restores 80 HP. A calming root drink.</td></tr>
-      <tr><td class="item">Life Totem</td><td class="num">&ndash;</td><td>A carved totem. Brings a fallen friend back with half their HP.</td></tr>
+      <tr><td class="item">Life Totem</td><td class="num">&ndash;</td><td>A carved totem. Brings a fallen friend back with half their HP. Used on an undead monster, it destroys it outright, even a boss. On any other enemy it does nothing.</td></tr>
       <tr><td class="item"><img src="manual/kukui.png" alt="">Kukui</td><td class="num">15</td><td>Candlenut oil. In battle, cures a burn.</td></tr>
       <tr><td class="item"><img src="manual/ti_leaf.png" alt="">Ti Leaf</td><td class="num">15</td><td>A cool leaf. In battle, cures sleep and confusion.</td></tr>
       <tr><td class="item"><img src="manual/olena.png" alt="">'Ōlena</td><td class="num">15</td><td>Turmeric. In battle, cures poison.</td></tr>
