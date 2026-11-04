@@ -355,7 +355,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 <script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
-try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-03</span></footer>
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-04</span></footer>
 </aside>
 <script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
 b.addEventListener("click",function(){body.classList.toggle("menu-open")});
@@ -620,13 +620,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
 
     <h3 class="ring">Party</h3>
-    <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/bench.png" alt="The Party screen: Kailo, Hina and Maika fight, Tawiri waits" width="768" height="672"></div></figure>
-      <div>
-        <p>Only three fight at a time. The three on top fight; everyone else waits below.</p>
-        <p>Choose one from each row and they trade places. To change the order of the three, move the cursor left onto the faces on the field menu.</p>
-      </div>
-    </div>
+    <p>Only three fight at a time. The three on top fight; everyone else waits below.</p>
+    <p>Choose one from each row and they trade places. To change the order of the three, move the cursor left onto the faces on the field menu.</p>
 
     <h3 class="ring">Info</h3>
     <div class="pair">
@@ -662,7 +657,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
-      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b>, Maika's <b>Wili</b>, Tawiri's <b>Call</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1.</td></tr>
+      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b> and Hina's <b>Scold</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero (the bar's pips turn red), and until it is back to zero no Skill and no element can be used.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
       <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
@@ -702,7 +697,22 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Healing hurts the undead. A heal, from an item or an element, lands on an undead monster as damage instead. Revive does the same: used on an undead monster, it destroys it.</p>
 
     <h3 class="ring">Team Up</h3>
-    <p>A Team Up is ready when the member whose turn comes right after yours, with no one in between, fights in a stance whose element pairs with yours. Each pair of elements makes its own Team Up. It takes all 7 Mana from both of you and tires you both, and it stays grayed out until you both have 7.</p>
+    <p>A Team Up is ready when the member whose turn comes right after yours, with no one in between, fights in a stance whose element pairs with yours. Each pair of elements makes its own Team Up: Kailo in <span class="el fire">Lelua</span> and Hina in <span class="el nature">Māla Hula</span> make one, Kailo in <span class="el fire">Lelua</span> and Hina in <span class="el light">Shakan Mudras</span> another. Not every pair has one yet. It takes all 7 Mana from both of you and tires you both, and it stays grayed out until you both have 7.</p>
+
+    <h3 class="ring">Weapons and Skills</h3>
+    <p>Every fighter can hold three kinds of weapon, and each kind has its own Skill. The weapon in hand decides which one the Skill command is.</p>
+    <div class="scroll">
+    <table class="m">
+      <tr><th>Weapon</th><th>Skill</th></tr>
+      <tr><td>Kailo, a tool, like his Frying Pan</td><td><b>Cook.</b> Turn the D-Pad round and round at a steady pace to stir, and on his next turn the meal is served.</td></tr>
+      <tr><td>Kailo, handwraps</td><td><b>Pound.</b> Pick a move, then press its buttons before time runs out.</td></tr>
+      <tr><td>Kailo, an oar</td><td><b>Paddle.</b> Press A as fast as you can; every press is a hit.</td></tr>
+      <tr><td>Hina, a wand, like her Gohei</td><td><b>Scold.</b> Press A as fast as you can, and she tells one enemy off.</td></tr>
+      <tr><td>Hina, a fan</td><td><b>Dance.</b> Press the buttons in time with the notes to heal.</td></tr>
+      <tr><td>Hina, a bow</td><td><b>Banish.</b> Hold A to draw, and let go when the circle is small. Hold too long and the arrow is lost.</td></tr>
+    </table>
+    </div>
+    <p>Friends who join later bring their own three kinds of weapon and their own Skills, each a new little game.</p>
 
     <h3 class="ring">Mana</h3>
     <p>Mana is the energy a fighter builds by moving. Everyone starts a battle with 0 Mana and can hold up to 7. Attack and Defend to build it, then spend it on element moves. A move in row 3 costs 3 Mana.</p>
@@ -712,7 +722,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Trouble</th><th>What happens</th></tr>
       <tr><td>Poison</td><td>Slowly takes HP. A poisoned monster turns green.</td></tr>
-      <tr><td>Sleep</td><td>Cannot act until hit. A sleeping monster has Zs over its head.</td></tr>
+      <tr><td>Sleep</td><td>Cannot act for 3 turns, unless a physical hit wakes it first. A sleeping monster has Zs over its head.</td></tr>
       <tr><td>Blind</td><td>Blows miss half the time. A blinded monster wears sunglasses.</td></tr>
       <tr><td>Burn</td><td>Hurts each time the burned one acts. It cannot be healed until the burn is gone.</td></tr>
       <tr><td>Confuse</td><td>Sometimes attacks its own side.</td></tr>
@@ -736,6 +746,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span> beats <span class="el light"><img src="manual/la.png" alt="">Light</span></div>
     </div>
     <p>A hit from the element that beats yours does double damage. A hit from the element yours beats does half.</p>
+    <p>Kailo is <span class="el fire">Fire</span> and <span class="el water">Water</span>. Hina is <span class="el nature">Nature</span> and <span class="el light">Light</span>. While Hina fights as Nature, a fire attack hurts her twice as much, so watch for monsters that turn to fire.</p>
     <h3 class="ring">What Each Element Does</h3>
     <div class="scroll">
     <table class="m">
@@ -749,14 +760,14 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </table>
     </div>
     <h3 class="ring">Stances</h3>
-    <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide.</p>
+    <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide, and fire hurts him less, but nature hurts him more. Hina in <span class="el nature">Māla Hula</span> heals; in <span class="el light">Shakan Mudras</span> she wards off harm. Every friend who joins you later works the same way, with two elements of their own.</p>
     <p>To change stance in battle, choose <b>Element</b>. The switch is at the top, named after the stance you are in. Choose it and it offers the other stance; switching uses your turn and gives you 1 Mana. Some moves use both elements and work in either stance.</p>
-    <p>Every battle begins in the stance boxed on the field menu. Change it on the Status screen.</p>
+    <p>Every battle begins in the stance boxed on the field menu: the one you last chose, in a battle or on the Status screen.</p>
   </section>
 
   <section class="page hue" style="--h:15" id="cast">
     <h2 class="cap"><b class="dc">C</b><span class="rest">ast of<br>Characters</span></h2>
-    <p class="lead">Along the way, Kailo will be joined by friends. Each of them has special abilities.</p>
+    <p class="lead">Along the way, Kailo will be joined by friends, each with two elements, three kinds of weapon and Skills of their own. Everything Kailo and Hina teach you works for them too.</p>
 
     <div class="sheet" style="--hc:var(--fire)">
       <div class="hero">
@@ -796,46 +807,6 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
       </dl>
       <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
-    </div>
-
-    <div class="sheet" style="--hc:var(--spirit)">
-      <div class="hero">
-        <img src="manual/maika_portrait.png" alt="Maika">
-        <div>
-          <h3>Maika</h3>
-          <p class="role">The Maki Sage</p>
-          <p>A traveling medicine seller from Māla Iki: calm, well spoken, and a little too sure of himself. He moves life from where it is to where it is needed.</p>
-        </div>
-      </div>
-      <dl class="facts">
-        <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
-        <dt>Stances</dt><dd><b class="nature">Kilomi</b>, the healers' art of pressing points on the body. <b class="spirit">Wili Hula</b>, a slow spiral dance that strikes with spirit magic.</dd>
-        <dt>Weapon</dt><dd>Ko'oko'o</dd>
-        <dt>Skill</dt><dd><b>Wili,</b> with his staff. Spin the D-Pad round and round, the same way, before the bar runs out. Every full turn sends a small spirit blow at a random enemy. Wili can spend Mana past zero; until it is built back up, no element moves. With a Hula Ki'i in hand it becomes <b>Charm</b>: the enemy fights for you for three of its turns.</dd>
-        <dt>Moves</dt><dd><b>Spin</b>, one turn of the spiral. <b>Heal</b>, mends one ally. <b>Drain</b>, takes life from an enemy and gives half to an ally.</dd>
-        <dt>On the Road</dt><dd>While Maika travels with you, sellers charge less. He also knows how to make a garden grow faster.</dd>
-      </dl>
-      <figure class="shot"><div class="frame"><img src="manual/status-maika.png" alt="Maika's Status page" width="768" height="672" loading="lazy"></div></figure>
-    </div>
-
-    <div class="sheet" style="--hc:var(--shadow)">
-      <div class="hero">
-        <img src="manual/tawiri_portrait.png" alt="Tawiri">
-        <div>
-          <h3>Tawiri</h3>
-          <p class="role">The Caller</p>
-          <p>An old woman from far away who speaks with the dead, with a dark sense of humor to match. One eye is clouded white. She knows more moves than anyone.</p>
-        </div>
-      </div>
-      <dl class="facts">
-        <dt>Elements</dt><dd><span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
-        <dt>Stances</dt><dd><b class="shadow">Ata Kanikani</b>, a dark dance that curses. <b class="spirit">Wiri Kanikani</b>, a whirling dance that strikes like lightning.</dd>
-        <dt>Weapon</dt><dd>Tokotoko</dd>
-        <dt>Skill</dt><dd><b>Call.</b> One of the dead comes to fight at her side for a few turns.</dd>
-        <dt>Moves</dt><dd><b>Static</b>, lightning that burns away the enemy's Mana. <b>Sleep</b>, a doze; a hit wakes it. <b>Chain Lightning</b>, jumps to every enemy. And many more.</dd>
-        <dt>On the Road</dt><dd>With Tawiri in the party, everyone's stats grow faster in battle.</dd>
-      </dl>
-      <figure class="shot"><div class="frame"><img src="manual/status-tawiri.png" alt="Tawiri's Status page" width="768" height="672" loading="lazy"></div></figure>
     </div>
 
     <div class="win"><b class="label">PARTY</b><p>Only three fight at a time. When a fourth joins, one waits on the bench. Use Swap in battle, or Party on the field menu, to trade places. Everyone who travels with you helps on the road, bench or not, as long as they are standing: a friend who has fallen cannot help anyone, and Hina cannot get herself up.</p></div>
@@ -879,7 +850,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
 
     <h3 class="ring">Food</h3>
-    <p>Anything that goes in the pot can also be eaten as it is, for a little HP. Cooked, it is worth much more: a meal heals more than medicine. Kailo cooks at the pot (<a class="xref" href="#field">page 8</a>), or with <b>Cook</b> in battle. There is no recipe book: put two things in the pot and find out! Each item's window says what it is in plain English.</p>
+    <p>Anything that goes in the pot can also be eaten as it is, for a little HP. Cooked, it is worth much more: a meal heals more than medicine. Kailo cooks at the pot (<a class="xref" href="#field">page 8</a>), or with <b>Cook</b> in battle. There is no recipe book: put one, two or three things in the pot and find out! Each item's window says what it is in plain English.</p>
     <div class="scroll">
     <table class="m">
       <tr><th>Name</th><th>Price</th><th>Notes</th></tr>
@@ -925,7 +896,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Vitality</td><td>Your HP. Ten HP for each point.</td></tr>
       <tr><td>Strength</td><td>How hard your blows land.</td></tr>
       <tr><td>Intelligence</td><td>How strong your magic and healing are.</td></tr>
-      <tr><td>Endurance</td><td>Blocks blows.</td></tr>
+      <tr><td>Endurance</td><td>Shrinks the damage of blows.</td></tr>
       <tr><td>Willpower</td><td>Shrinks magic damage.</td></tr>
       <tr><td>Agility</td><td>How soon your next turn comes.</td></tr>
       <tr><td>Perception</td><td>Your chance to land a hit.</td></tr>
