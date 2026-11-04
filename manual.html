@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 <link rel="stylesheet" href="site.css?v=0d351f2b">
-<link rel="stylesheet" href="shell.css?v=7f9262b7">
+<link rel="stylesheet" href="shell.css?v=1eeab275">
 <script>(function(){var t=null,a=null,m=null;try{t=localStorage.getItem("nuitai-site-theme");a=localStorage.getItem("nuitai-ai-art");m=localStorage.getItem("nuitai-menu")||localStorage.getItem("nuitai-battle-menu")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia";if(a==="off")document.documentElement.dataset.art="off";if(m==="hidden")document.documentElement.dataset.menu="hidden"})()</script>
 <script>document.documentElement.classList.add("turn")</script>
 <style>
@@ -460,7 +460,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
         <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Sel</big><small>Select</small></div>
-        <p>The SELECT Button shows a map of the area. Rooms fill in as you find them.</p></div>
+        <p>The SELECT Button shows a map of the area. Rooms fill in as you find them. In a fight, hold it over a command or a move to read what it does and what it costs.</p></div>
     </div>
     <div class="win"><b class="label">FULL SCREEN</b><p>On a computer, press F11 to fill the screen. The picture keeps the 4:3 shape of a television and grows as large as the screen allows.</p></div>
     <div class="win"><b class="label">RESET</b><p>Hold L, R, START and SELECT together to reset the game and go back to the title screen. Anything you have not saved will be lost.</p></div>
@@ -723,9 +723,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Trouble</th><th>What happens</th></tr>
       <tr><td>Poison</td><td>Slowly takes HP. A poisoned monster turns green.</td></tr>
-      <tr><td>Sleep</td><td>Cannot act for 3 turns, unless a physical hit wakes it first. A sleeping monster has Zs over its head.</td></tr>
+      <tr><td>Sleep</td><td>Cannot act for 3 turns, unless a physical hit wakes it first. Every blow on a sleeper lands. A sleeping monster has Zs over its head.</td></tr>
       <tr><td>Blind</td><td>Blows miss half the time. A blinded monster wears sunglasses.</td></tr>
-      <tr><td>Burn</td><td>Hurts each time the burned one acts. It cannot be healed until the burn is gone.</td></tr>
+      <tr><td>Burn</td><td>Hurts each time the burned one acts. It cannot be healed until the burn is gone, and it lasts until it is cured or the burned one falls.</td></tr>
       <tr><td>Confuse</td><td>Sometimes attacks its own side.</td></tr>
     </table>
     </div>
