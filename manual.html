@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 <link rel="stylesheet" href="site.css?v=0d351f2b">
-<link rel="stylesheet" href="shell.css?v=7f9262b7">
+<link rel="stylesheet" href="shell.css?v=1eeab275">
 <script>(function(){var t=null,a=null,m=null;try{t=localStorage.getItem("nuitai-site-theme");a=localStorage.getItem("nuitai-ai-art");m=localStorage.getItem("nuitai-menu")||localStorage.getItem("nuitai-battle-menu")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia";if(a==="off")document.documentElement.dataset.art="off";if(m==="hidden")document.documentElement.dataset.menu="hidden"})()</script>
 <script>document.documentElement.classList.add("turn")</script>
 <style>
@@ -448,7 +448,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>D</big><small>Pad</small></div>
         <p>Use the D-Pad to walk around and to move the cursor in menus. In battle, press left or right on the D-Pad to see more commands.</p></div>
       <div class="button" style="--b:#d23a2a"><div class="badge"><big>A</big><small>Button</small></div>
-        <p>The A Button confirms. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking. In battle, press it as a monster's blows arrive to block them (<a class="xref" href="#battle">page 14</a>).</p></div>
+        <p>The A Button confirms. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking. In battle, press it as a monster's blows arrive to parry them (<a class="xref" href="#battle">page 14</a>).</p></div>
       <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
         <p>The B Button cancels the last choice you made and takes you back.</p></div>
       <div class="button" style="--b:#3554b8"><div class="badge"><big>X</big><small>Button</small></div>
@@ -506,7 +506,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The market stall's list: Noni Pulu, Taro, Wheat, Breadfruit and more, each with its price in pule" width="768" height="672"></div></figure>
       <div>
-        <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell something from the bag. Your pule is shown at the right.</p>
+        <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick each thing and how many, then say yes once to the total. Your pule is shown at the right.</p>
         <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. The purse holds at most 999.</p>
         <p>Each kind of seller has its own wares. A grocer sells food, seeds and everyday medicine. An angler sells bait. A hunters' lodge sells weapons, relics and moves. Some sellers turn up where you least expect them.</p>
         <p>Some people are good at haggling. With the right friend along, every seller charges less.</p>
@@ -683,13 +683,13 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
 
-    <h3 class="ring">Blocking</h3>
+    <h3 class="ring">Parrying</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/battle-block.png" alt="The block meter: red arrows sliding toward the gold zone" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/battle-block.png" alt="The parry meter: red arrows sliding toward the gold zone" width="768" height="672"></div></figure>
       <div>
-        <p>When a monster strikes with its plain blows, a meter takes the place of your commands. Red arrows slide toward a gold zone, one pair for each blow. Press <b>A</b> as a pair crosses the zone.</p>
-        <p>A <b>catch</b> takes half the damage. Catch it dead center for a <b>PERFECT</b> and you dodge the blow entirely. Miss, and the blow lands as usual. If you were defending, a catch takes only a quarter.</p>
-        <p>This works only on plain blows, never on a monster's element moves or Skills. A good Perception widens the zone, and a quick monster sends its arrows faster.</p>
+        <p>When a monster strikes with its plain blows, the <b>parry meter</b> takes the place of your commands. Red arrows slide toward a gold zone, one pair for each blow. Press <b>A</b> as a pair crosses the zone.</p>
+        <p>A <b>catch</b> takes half the damage, and <b>Glancing</b> rises over the one it hit. Catch it dead center for a <b>PERFECT</b>, a <b>PARRY</b>, and the blow does no harm at all. Miss, and the blow lands in full. If you were defending, a catch takes only a quarter.</p>
+        <p>Only plain blows can be parried, never a monster's elements or Skills, so a Skill arrives with no meter at all. A good Perception widens the zone, and a quick monster sends its arrows faster.</p>
       </div>
     </div>
 
