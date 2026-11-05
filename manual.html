@@ -355,7 +355,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 <script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
-try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-04</span></footer>
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-05</span></footer>
 </aside>
 <script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
 b.addEventListener("click",function(){body.classList.toggle("menu-open")});
@@ -662,14 +662,14 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
       <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
-      <tr><td>Escape</td><td>Try to run away. It does not always work, and you cannot run from some fights.</td></tr>
+      <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights.</td></tr>
       <tr><td>Weapon</td><td>Change weapons, if you have another.</td></tr>
       <tr><td>Swap</td><td>Trade places with someone on the bench. It costs nothing, and the one coming in takes the turn.</td></tr>
       <tr><td>Team Up</td><td>Two members strike together. See below.</td></tr>
     </table>
     </div>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/battle-left.png" alt="Left on the D-Pad: WEAPON, ESCAPE, DEFEND" width="768" height="672"></div><figcaption>Press left: Weapon, Escape, Defend</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="manual/battle-left.png" alt="Left on the D-Pad: WEAPON, DEFEND, ESCAPE" width="768" height="672"></div><figcaption>Press left: Weapon, Defend, Escape</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="manual/battle-right.png" alt="Right on the D-Pad: SWAP and TEAM UP" width="768" height="672"></div><figcaption>Press right: Swap and Team Up</figcaption></figure>
     </div>
 
@@ -679,7 +679,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div>
         <p>An Attack is made of strokes. Each turn you have 7 points to spend: <b>LIGHT</b> costs 1, <b>MEDIUM</b> 2 and <b>STRONG</b> 3.</p>
         <p>Each stroke shows its chance to hit. A light stroke almost always lands. A strong one hits much harder, but misses more. Every stroke that lands makes the next one more likely to land, and builds Mana.</p>
-        <p>You can stop any time and finish your turn with an element move or an item.</p>
+        <p>You can stop any time and finish your turn with an element move or an item. To strike a different enemy, back out of the strokes, choose Attack again and pick another; the points you have left go with you.</p>
       </div>
     </div>
 
