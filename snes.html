@@ -72,7 +72,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
   <h1 class="title">SNES Demo</h1>
 
   <nav class="doors" aria-label="The SNES Demo">
-    <a class="door hue" style="--h:160" href="snes-demo/index.html"><b>Play in Browser <span class="em" aria-hidden="true">🎮</span></b><span>Play the game right here, made in pygame. A work in progress.</span></a>
+    <a class="door hue" style="--h:160" href="play/index.html"><b>Play in Browser <span class="em" aria-hidden="true">🎮</span></b><span>Play the cartridge right here, in a Super Nintendo emulator, with a CRT screen you can turn off.</span></a>
     <a class="door hue" style="--h:280" href="nuitai.sfc" download><b>Download ROM <span class="em" aria-hidden="true">💾</span></b><span>The Super Nintendo cartridge file, 2 MB. It plays in any Super Nintendo emulator.</span></a>
     <a class="door hue" style="--h:30" href="manual.html"><b>Game Manual <span class="em" aria-hidden="true">📘</span></b><span>The instruction booklet: controls, menus, battle and items.</span></a>
   </nav>
@@ -83,20 +83,22 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="keys">
       <tbody>
         <tr class="group"><th colspan="2" scope="colgroup">Moving</th></tr>
-        <tr><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd> <kbd>&larr;</kbd> <kbd>&rarr;</kbd> or <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd></td><td>Walk, and move the cursor in menus</td></tr>
+        <tr><td><kbd>&uarr;</kbd> <kbd>&darr;</kbd> <kbd>&larr;</kbd> <kbd>&rarr;</kbd></td><td>Walk, and move the cursor in menus</td></tr>
       </tbody>
       <tbody>
         <tr class="group"><th colspan="2" scope="colgroup">Buttons</th></tr>
-        <tr><td><kbd>Z</kbd> <kbd>Enter</kbd> <kbd>Space</kbd></td><td><b>A</b>: choose, talk, check things</td></tr>
-        <tr><td><kbd>X</kbd> <kbd>Backspace</kbd></td><td><b>B</b>: cancel and go back</td></tr>
-        <tr><td><kbd>Tab</kbd></td><td><b>Y</b>: open the menu</td></tr>
+        <tr><td><kbd>Z</kbd></td><td><b>A</b>: choose, talk, check things</td></tr>
+        <tr><td><kbd>X</kbd></td><td><b>B</b>: cancel and go back</td></tr>
+        <tr><td><kbd>A</kbd></td><td><b>Y</b>: open the menu</td></tr>
+        <tr><td><kbd>S</kbd></td><td><b>X</b></td></tr>
         <tr><td><kbd>Q</kbd> <kbd>E</kbd></td><td><b>L</b> and <b>R</b>: the previous or next party member</td></tr>
-        <tr><td><kbd>P</kbd></td><td><b>START</b>: pause</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td><b>START</b>: pause</td></tr>
+        <tr><td><kbd>V</kbd></td><td><b>SELECT</b></td></tr>
       </tbody>
       <tbody>
         <tr class="group"><th colspan="2" scope="colgroup">Screen and sound</th></tr>
-        <tr><td><kbd>F11</kbd></td><td>Full screen</td></tr>
-        <tr><td><kbd>M</kbd></td><td>Sound off and on</td></tr>
+        <tr><td>The <b>CRT screen</b> button</td><td>Scanlines and a curved glass on or off. It remembers your choice</td></tr>
+        <tr><td>The buttons under the game</td><td>Full screen, sound off and on, and the volume</td></tr>
       </tbody>
     </table>
   </section>

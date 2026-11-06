@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Play Nuitai · SNES Demo</title>
+<style>
+  :root { color-scheme: light dark; --bg:#0d1320; --fg:#e8eef8; --line:#2c3a55; --hue:160; }
+  @media (prefers-color-scheme: light) { :root { --bg:#e9eef6; --fg:#14213a; --line:#b9c6dc; } }
+  html, body { margin:0; height:100%; background:var(--bg); color:var(--fg); font:15px/1.4 system-ui, sans-serif; }
+  body { display:flex; flex-direction:column; }
+  header { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; padding:.5rem .8rem; border-bottom:1px solid var(--line); }
+  header a, header button { color:var(--fg); background:transparent; border:1px solid hsl(var(--hue) 55% 50%); border-left-width:6px; border-radius:6px; padding:.3rem .7rem; font:inherit; text-decoration:none; cursor:pointer; }
+  header button[aria-pressed="true"] { background:hsl(var(--hue) 55% 50% / .25); }
+  header .hint { margin-left:auto; opacity:.75; }
+  #stage { flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:.5rem; }
+  #game { width:min(100%, calc((100vh - 5rem) * 4 / 3)); aspect-ratio:4 / 3; max-height:100%; }
+</style>
+</head>
+<body>
+<header>
+  <a href="../snes.html">&larr; SNES Demo</a>
+  <button id="crt" type="button" aria-pressed="true">CRT screen: on</button>
+  <span class="hint">Sound starts when you press the start button. Controls are on the SNES Demo page.</span>
+</header>
+<div id="stage"><div id="game"></div></div>
+<script>
+  // The cartridge in the browser (Frankie, 11/6): EmulatorJS running Snes9x, copied by build.py.
+  var crtKey = "nuitai-crt";
+  var crtOn = localStorage.getItem(crtKey) !== "off";
+  var CRT = "crt-geom.glslp";
+  // The SNES pad as keys. A, B, Y, X, L, R, Select, Start; a plugged-in controller works too.
+  function key(k, pad) { return { value: k, value2: pad }; }
+  window.EJS_player = "#game";
+  window.EJS_core = "snes";
+  window.EJS_gameUrl = "../nuitai.sfc";
+  window.EJS_gameName = "Nuitai";
+  window.EJS_pathtodata = "emulatorjs/";
+  window.EJS_DEBUG_XX = true;            // the package ships unminified
+  window.EJS_language = "en-US";
+  window.EJS_disableAutoLang = false;
+  window.EJS_threads = false;             // GitHub Pages cannot send the headers threads need
+  window.EJS_color = "#2aa876";
+  window.EJS_volume = /[?&]mute/.test(location.search) ? 0 : 0.6;   // ?mute opens it silent, for testing
+  window.EJS_startOnLoaded = false;
+  window.EJS_disableDatabases = true;
+  window.EJS_defaultOptions = { shader: crtOn ? CRT : "disabled" };
+  window.EJS_defaultControls = { 0: {
+    0: key("x", "BUTTON_2"), 1: key("a", "BUTTON_4"), 2: key("v", "SELECT"), 3: key("enter", "START"),
+    4: key("up arrow", "DPAD_UP"), 5: key("down arrow", "DPAD_DOWN"), 6: key("left arrow", "DPAD_LEFT"), 7: key("right arrow", "DPAD_RIGHT"),
+    8: key("z", "BUTTON_1"), 9: key("s", "BUTTON_3"), 10: key("q", "LEFT_TOP_SHOULDER"), 11: key("e", "RIGHT_TOP_SHOULDER")
+  }, 1: {}, 2: {}, 3: {} };
+  var btn = document.getElementById("crt");
+  function paint() { btn.setAttribute("aria-pressed", crtOn); btn.textContent = "CRT screen: " + (crtOn ? "on" : "off"); }
+  btn.addEventListener("click", function () {
+    crtOn = !crtOn;
+    localStorage.setItem(crtKey, crtOn ? "on" : "off");
+    paint();
+    if (window.EJS_emulator && window.EJS_emulator.started) window.EJS_emulator.changeSettingOption("shader", crtOn ? CRT : "disabled");
+    btn.blur();
+  });
+  paint();
+</script>
+<script src="emulatorjs/loader.js"></script>
+</body>
+</html>
