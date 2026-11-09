@@ -1,0 +1,1017 @@
+<html lang="en-us"><script src="https://pygame-web.github.io/cdn/0.9.3/pythons.js" type=module id="site" data-python="python3.12" data-LINES=42 data-COLUMNS=132 data-os="vtx,snd,gui" async defer>#<!--
+
+print("""
+Loading nuitai from nuitai.apk
+    Pygbag Version : 0.9.3
+    Template Version : 0.9.3
+    Python  : 3.12
+    CDN URL : https://pygame-web.github.io/cdn/0.9.3/
+    Screen  : 1280x720
+    Title   : nuitai
+    Folder  : nuitai
+    Authors : pgw
+    SPDX-License-Identifier: cookiecutter.spdx
+
+""")
+
+import sys
+import asyncio
+import platform
+import json
+from pathlib import Path
+
+# do not rename
+async def custom_site():
+    import embed
+
+    platform.window.transfer.hidden = true
+    platform.window.canvas.style.visibility = "visible"
+
+
+    bundle = "nuitai"
+
+    # the C or js loader could do that but be explicit.
+    appdir = Path(f"/data/data/{bundle}") # /data/data/nuitai
+    appdir.mkdir()
+
+
+    # unpack filesystem from compressed archive into work dir
+    if platform.window.location.host.find('.itch.zone')>0:
+        import zipfile
+        async with platform.fopen("nuitai.apk", "rb") as archive:
+            with zipfile.ZipFile(archive) as zip_ref:
+                zip_ref.extractall(appdir.as_posix())
+    else:
+        import tarfile
+        async with platform.fopen("nuitai.tar.gz", "rb") as archive:
+            tar = tarfile.open(fileobj=archive, mode="r:gz")
+            tar.extractall(path=appdir.as_posix(), filter='tar')
+            tar.close()
+
+    # preloader will change to work dir and prepend it to sys.path
+    platform.run_main(PyConfig, loaderhome= appdir / "assets", loadermain=None)
+
+
+    # wait preloading complete : that includes images and wasm compilation of bundled modules
+    while embed.counter()<0:
+        await asyncio.sleep(.1)
+
+    main = appdir / "assets" / "main.py"
+
+    # TODO: test for window.webkitAudioContext and block aio loop until gesture if accessing media manager play
+    # before a gesture is recorded ( touch or click )
+
+    # test/wait user media interaction
+    if not platform.window.MM.UME:
+
+        # now that apk is mounted we have access to font cache
+        # but we need to fill __file__ that is not yet set
+        __import__(__name__).__file__ = main
+
+        # now make a prompt
+        msg  = "START GAME"
+        platform.window.infobox.innerText = msg
+        print("\n"*4, f"    * Waiting for media user engagement. {msg} *" , "\n"*4)
+
+        while not platform.window.MM.UME:
+            await asyncio.sleep(.1)
+
+    # start async top level machinery if not started and add a console in any case if requested.
+    await TopLevel_async_handler.start_toplevel(platform.shell, console=window.python.config.debug)
+
+    # now that apk is mounted we have access to font cache
+    # but we need to fill __file__/__name__ that are not yet set
+    __import__(__name__).__file__ = main
+
+
+    def ui_callback(pkg):
+        platform.window.infobox.innerText = f"installing {pkg}"
+
+    await shell.source(main, callback=ui_callback)
+
+    # if you don't reach that step
+    # your main.py has an infinite sync loop somewhere !
+
+    platform.window.infobox.style.display = "none"
+    platform.window.config.gui_divider = 1
+    platform.window.window_resize()
+    print("default.tmpl: done")
+
+    shell.interactive()
+
+asyncio.run( custom_site() )
+
+
+
+
+
+
+
+
+
+
+
+
+# BEGIN BLOCK
+#
+# now this is the html part you can (and should) customize
+# It is not mandatory : pygame-script when it reads the first line (also called
+# shebang ) of above code create absolute minimal widget set
+# required for running with default rules
+#
+# do not alter that comment block it is separating python code from html code
+# =============================================================================
+# --></script><head><!--
+//=============================================================================
+//
+//
+//
+//
+//
+//
+//
+
+    {%- if cookiecutter.comment != "" -%}
+{{cookiecutter.comment}}
+    {% endif %}
+
+--><script type="application/javascript">
+// END BLOCK
+
+
+
+// this dict is available under PyConfig.config from __main__
+
+config = {
+    xtermjs : "1" ,
+    _sdl2 : "canvas",
+    user_canvas : 0,
+    user_canvas_managed : 0,
+    gui_divider : 2,
+    ume_block : 0,
+    can_close : 0,
+    archive : "nuitai",
+    gui_debug : 2,
+    cdn : "https://pygame-web.github.io/cdn/0.9.3/",
+    autorun : 0,
+    PYBUILD : "3.12",
+    fb_ar   :  1.77,
+    fb_width : "1280",
+    fb_height : "720"
+}
+
+// Nuitai: on a phone or tablet the page places the game's picture itself,
+// to leave room for the on-screen pad (see the pad at the end of the page).
+const NUITAI_TOUCH = matchMedia("(pointer: coarse)").matches
+    || (navigator.maxTouchPoints > 0 && matchMedia("(hover: none)").matches)
+// The page places the picture itself: in the 4:3 box, or beside the pad on a touch screen.
+config.user_canvas_managed = 1
+// The game asks this to leave the CRT off on a touch screen (ui/touch_pad.py).
+window.nuitai_touch = NUITAI_TOUCH
+
+function show_infobox() {
+    infobox.style.display = "block";
+
+    // Measure box
+    const w = infobox.offsetWidth;
+    const h = infobox.offsetHeight;
+
+    // Center in viewport
+    const left = (window.innerWidth - w) / 2;
+    const top = (window.innerHeight - h) / 2;
+
+    infobox.style.left = left + "px";
+    infobox.style.top = top + "px";
+}
+
+</script>
+
+    <title>Play Nuitai · PC Version</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+
+    <link rel="icon" type="image/png" href="favicon.png" sizes="16x16">
+
+    <style>
+        #status {
+            display: inline-block;
+            vertical-align: top;
+            margin-top: 20px;
+            margin-left: 30px;
+            font-weight: bold;
+            color: rgb(120, 120, 120);
+        }
+
+        #progress {
+            height: 20px;
+            width: 300px;
+        }
+
+        /* The START GAME button, as the SNES player draws its own. */
+        #infobox {
+            position: fixed; /* center relative to viewport */
+            background: #2aa876;
+            color: #ffffff;
+            font: bold 20px system-ui, sans-serif;
+            padding: 10px 40px;
+            border-radius: 999px;
+            cursor: pointer;
+ /*           display: none; */
+            z-index: 999999;
+        }
+        div.emscripten { text-align: center; }
+        div.emscripten_border { border: 1px solid black; }
+        div.thick_border { border: 4px solid black; }
+
+        /* the canvas *must not* have any border or padding, or mouse coords will be wrong */
+        /* average size of droid screen 470dp x 320dp  */
+        canvas.emscripten {
+            border: 0px none;
+            background-color: transparent;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+
+            padding: 0;
+            margin: 0 auto;
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        body {
+            font-family: system-ui, sans-serif;
+            margin: 0;
+            padding: none;
+        }
+
+        .topright{
+           position:absolute;
+           top:0px;
+           right:0px;
+        }
+
+        .bottomright {
+            position:absolute;
+            top: 40%;
+            right: 0px;
+        }
+
+        .center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .trinfo{
+           position: relative;
+           right: 0px;
+           border: 1px solid black;
+        }
+
+        .framed{
+           position: relative;
+           top: 150px;
+           right: 10px;
+           border: 1px solid black;
+        }
+    </style>
+
+    <script>
+/*
+        if (navigator.serviceWorker)
+            navigator.serviceWorker.register("https://pygame-web.github.io/cdn/0.9.3/pygbag0.9.3.js")
+        else
+            console.warn("Service workers not supported")
+*/
+    </script>
+
+    <script src="https://pygame-web.github.io/cdn/0.9.3//browserfs.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="transfer" align=center>
+<!--        <div class="spinner" id='spinner'></div> -->
+        <div class="emscripten" id="status">Downloading...</div>
+        <div class="emscripten">
+            <progress value="0" max="100" id="progress"></progress>
+        </div>
+    </div>
+
+
+
+    <canvas class="emscripten" id="canvas"
+width="1px"
+height="1px"
+    oncontextmenu="event.preventDefault()" tabindex=1>
+    </canvas>
+
+    <canvas class="emscripten" id="canvas3d"
+width="1280px"
+height="720px"
+    oncontextmenu="event.preventDefault()" tabindex=1 hidden>
+    </canvas>
+
+    <div id="infobox">Loading, please wait ...</div>
+
+    <div id=html></div>
+
+    <div id=crt  class=bottomright >
+
+        <div id="system" hidden>
+            <div class="button-container">
+                <button id="aiostop" disabled>AIO ⏏︎</button>
+                <button id="aiopaused_true" disabled>AIO ■</button>
+                <button id="aiopaused_false" disabled>AIO ▶</button>
+                <button id="pygame_mixer_music_pause" disabled>Music ■</button>
+            </div>
+
+            <div class="button-container">
+                <div id=load_min>min</div>
+                <div id=load_avg>avg</div>
+                <div id=load_max>max</div>
+              <button id="load_rst" disabled>RESET</button>
+            </div>
+
+            <div id="level">(battery level unknown)</div>
+            <div id="stateBattery">(charging state unknown)</div>
+
+        </div>
+
+        <div id=box class="emscripten_border" hidden=true>
+
+            <div id="info" class="trinfo"></div>
+
+            <iframe id="iframe" class="framed" name="iframe"
+width="470px" height="90%"
+allowtransparency="true"
+style="z-index: 10;"
+style="background: #FFFFFF;"
+frameborder="1"
+                allowfullscreen="true"
+                webkitallowfullscreen="true"
+                msallowfullscreen="true"
+                mozallowfullscreen="true"
+                sandbox="allow-same-origin allow-top-navigation allow-scripts allow-pointer-lock"
+                allow="autoplay; fullscreen *; geolocation; microphone; camera; midi; monetization; xr-spatial-tracking; gamepad; gyroscope; accelerometer; xr; cross-origin-isolated"
+                src="https://pygame-web.github.io/cdn/0.9.3/empty.html"
+                scrolling="yes">
+            </iframe>
+        </div>
+
+    </div>
+
+
+    <div id="dlg" hidden>
+        <input type="file" id="dlg_multifile" multiple accept="image/*">
+        <label for="dlg_multifile">Select files</label>
+    </div>
+
+    <div id="pyconsole">
+        <div id="terminal" tabIndex=1 align="left"></div>
+    </div>
+
+    <script type="application/javascript">
+
+    globalThis.__canvas_resized = (self, ecw, ech) => {
+        console.warn("TODO: panda3d canvas monitor", self, ecw, ech)
+    }
+
+    async function custom_onload(debug_hidden) {
+        // this is called before anything python is loaded
+        // make your js customization here
+        console.log(__FILE__, "custom_onload")
+
+        pyconsole.hidden = debug_hidden
+        system.hidden = debug_hidden
+        transfer.hidden = debug_hidden
+        info.hidden = debug_hidden
+        box.hidden =  debug_hidden
+
+        show_infobox()
+    }
+
+    function custom_prerun(){
+        // no python main and no (MEMFS + VFS) yet.
+        console.log(__FILE__, "custom_prerun")
+
+    }
+
+    function custom_postrun(){
+        // python main and no VFS filesystem yet.
+        console.log(__FILE__, "custom_postrun")
+
+    }
+
+    function debug() {
+        // allow to gain access to dev tools from js console
+        // but only on desktop. difficult to reach when in iframe
+        python.config.debug = true
+        custom_onload(false)
+        Module.PyRun_SimpleString("shell.uptime()")
+        window_resize()
+    }
+
+    function info_inline(data){
+        document.getElementById("info").innerHTML = data
+    }
+
+    function info_online(url) {
+        // display info about current APK
+        fetch( url /*, options */)
+            .then((response) => response.text())
+            .then((html) => {
+                info_inline(html);
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+    }
+
+    function frame_online(url) {
+        window.frames["iframe"].location = url;
+    }
+
+    </script>
+
+    <!--
+    Nuitai: the on-screen pad, shaped like a Super Nintendo controller, for
+    phones and tablets only (Frankie, 10/24). The page draws it and keeps what
+    is held in window.nuitai_pad, one bit per button numbered as the game
+    numbers a pad, by position (B south 0, A east 1, Y west 2, X north 3,
+    L 4, R 5, SELECT 6, START 7, up 8, down 9, left 10, right 11). The game reads it each frame as one more
+    controller (game/pygame/ui/touch_pad.py), so every button means what it
+    means on a real pad. On a touch screen the page also places the game's
+    picture itself, whole, with the pad below it or on both sides of it.
+    -->
+    <style>
+        #pad { display: none; }
+        body.touch {
+            background: #04122a !important;
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            overscroll-behavior: none;
+            touch-action: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body.touch #pad { display: block; }
+        body.touch canvas.emscripten#canvas { image-rendering: pixelated; }
+        #pad > * {
+            position: fixed;
+            box-sizing: border-box;
+            z-index: 20;
+        }
+        .pad-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-weight: bold;
+            background: linear-gradient(#1c4a78, #081a3a);
+            border: 3px solid #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+        .pad-btn.on {
+            background: linear-gradient(#4a8ed0, #1c4a78);
+            transform: scale(0.94);
+        }
+        .pad-round { position: absolute; border-radius: 50%; }
+        .pad-shoulder { border-radius: 10px 10px 18px 18px; }
+        #pad-l { border-top-left-radius: 22px; }
+        #pad-r { border-top-right-radius: 22px; }
+        .pad-pill { border-radius: 999px; letter-spacing: 0.05em; }
+        #pad-dpad svg { width: 100%; height: 100%; display: block; overflow: visible; }
+        #pad-dpad .lit { fill: #ffffff; opacity: 0; }
+        #pad-dpad .lit.on { opacity: 0.35; }
+        #pad-dpad .arrow { fill: #ffffff; opacity: 0.7; }
+    </style>
+
+    <div id="pad" aria-hidden="true">
+        <div class="pad-btn pad-shoulder" id="pad-l" data-b="4">L</div>
+        <div class="pad-btn pad-shoulder" id="pad-r" data-b="5">R</div>
+        <div id="pad-dpad">
+            <svg viewBox="0 0 100 100">
+                <defs>
+                    <linearGradient id="pad-ocean" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#1c4a78"/>
+                        <stop offset="1" stop-color="#081a3a"/>
+                    </linearGradient>
+                    <clipPath id="pad-cross-clip"><path id="pad-cross-shape" d="M38,4 H62 Q68,4 68,10 V32 H90 Q96,32 96,38 V62 Q96,68 90,68 H68 V90 Q68,96 62,96 H38 Q32,96 32,90 V68 H10 Q4,68 4,62 V38 Q4,32 10,32 H32 V10 Q32,4 38,4 Z"/></clipPath>
+                </defs>
+                <use href="#pad-cross-shape" fill="url(#pad-ocean)" stroke="#ffffff" stroke-width="3" stroke-linejoin="round"/>
+                <g clip-path="url(#pad-cross-clip)">
+                    <rect class="lit" data-d="8" x="32" y="0" width="36" height="36"/>
+                    <rect class="lit" data-d="9" x="32" y="64" width="36" height="36"/>
+                    <rect class="lit" data-d="10" x="0" y="32" width="36" height="36"/>
+                    <rect class="lit" data-d="11" x="64" y="32" width="36" height="36"/>
+                </g>
+                <path class="arrow" d="M50,12 L58,24 H42 Z"/>
+                <path class="arrow" d="M50,88 L58,76 H42 Z"/>
+                <path class="arrow" d="M12,50 L24,42 V58 Z"/>
+                <path class="arrow" d="M88,50 L76,42 V58 Z"/>
+            </svg>
+        </div>
+        <div id="pad-face">
+            <div class="pad-btn pad-round" data-b="3" style="left: 32%; top: 0;">X</div>
+            <div class="pad-btn pad-round" data-b="2" style="left: 0; top: 32%;">Y</div>
+            <div class="pad-btn pad-round" data-b="1" style="left: 64%; top: 32%;">A</div>
+            <div class="pad-btn pad-round" data-b="0" style="left: 32%; top: 64%;">B</div>
+        </div>
+        <div class="pad-btn pad-pill" id="pad-select" data-b="6">SELECT</div>
+        <div class="pad-btn pad-pill" id="pad-start" data-b="7">START</div>
+    </div>
+
+    <script type="application/javascript">
+    (() => {
+        // A tap shorter than a frame still reaches the game: each button
+        // pressed counts as held until the game has read it once.
+        window.nuitai_pad = 0
+        let tapped = 0
+        window.nuitai_pad_read = () => {
+            const mask = window.nuitai_pad | tapped
+            tapped = 0
+            return mask
+        }
+        if (!NUITAI_TOUCH) return
+        document.body.classList.add("touch")
+
+        const $ = (id) => document.getElementById(id)
+        const dpad = $("pad-dpad"), face = $("pad-face")
+        const L = $("pad-l"), R = $("pad-r"), select = $("pad-select"), start = $("pad-start")
+        const GAP = 10
+        let placed = ""
+
+        function place(el, x, y, w, h) {
+            el.style.left = Math.round(x) + "px"
+            el.style.top = Math.round(y) + "px"
+            el.style.width = Math.round(w) + "px"
+            el.style.height = Math.round(h) + "px"
+        }
+
+        // The game's picture, whole: 256 by 224 pixels, eight wide to seven high.
+        function aspect() {
+            return canvas.width > 1 && canvas.height > 1 ? canvas.width / canvas.height : 8 / 7
+        }
+
+        function placeScreen(x, y, w, h) {
+            const s = canvas.style
+            s.position = "fixed"
+            s.margin = "0"
+            s.right = "auto"
+            s.bottom = "auto"
+            place(canvas, x, y, w, h)
+            placed = s.cssText
+        }
+
+        function layout() {
+            const vw = window.innerWidth, vh = window.innerHeight, ar = aspect()
+            const shoulderH = Math.max(30, Math.min(40, vh * 0.07))
+            const pillH = 28
+            if (vh >= vw) {
+                // Portrait: the picture across the top, the pad under it.
+                let sw = vw, sh = sw / ar
+                const need = shoulderH + pillH + 110 + GAP * 5
+                if (vh - sh < need) { sh = vh - need; sw = sh * ar }
+                placeScreen((vw - sw) / 2, 0, sw, sh)
+                const top = sh + GAP, room = vh - top - GAP
+                let D = Math.min(vw * 0.42, 180, room - shoulderH - pillH - GAP * 3)
+                const used = shoulderH + D + pillH + GAP * 3
+                const y0 = top + Math.max(0, (room - used) / 2)
+                const sideW = Math.min(vw * 0.3, 130)
+                place(L, GAP, y0, sideW, shoulderH)
+                place(R, vw - GAP - sideW, y0, sideW, shoulderH)
+                const yPad = y0 + shoulderH + GAP * 1.5
+                place(dpad, GAP * 1.5, yPad, D, D)
+                place(face, vw - GAP * 1.5 - D, yPad, D, D)
+                const pillW = Math.min(vw * 0.24, 100), yPill = yPad + D + GAP * 1.5
+                place(select, vw / 2 - GAP / 2 - pillW, yPill, pillW, pillH)
+                place(start, vw / 2 + GAP / 2, yPill, pillW, pillH)
+            } else {
+                // Landscape: the picture in the middle, the D-pad left, the face buttons right.
+                const minSide = 150
+                let sh = vh, sw = sh * ar
+                if (vw - sw < minSide * 2) { sw = vw - minSide * 2; sh = sw / ar }
+                placeScreen((vw - sw) / 2, (vh - sh) / 2, sw, sh)
+                const side = (vw - sw) / 2
+                const D = Math.min(side - GAP * 2, 180, vh - shoulderH - pillH - GAP * 4)
+                const used = shoulderH + D + pillH + GAP * 3
+                const y0 = Math.max(GAP, (vh - used) / 2)
+                const sideW = Math.min(side - GAP * 2, 130)
+                place(L, GAP, y0, sideW, shoulderH)
+                place(R, vw - GAP - sideW, y0, sideW, shoulderH)
+                const yPad = y0 + shoulderH + GAP * 1.5
+                place(dpad, (side - D) / 2, yPad, D, D)
+                place(face, vw - side + (side - D) / 2, yPad, D, D)
+                const pillW = Math.min(side - GAP * 2, 100), yPill = yPad + D + GAP * 1.5
+                place(select, (side - pillW) / 2, yPill, pillW, pillH)
+                place(start, vw - side + (side - pillW) / 2, yPill, pillW, pillH)
+            }
+            const D = dpad.offsetWidth
+            for (const b of face.children) {
+                b.style.width = b.style.height = Math.round(D * 0.36) + "px"
+                b.style.fontSize = Math.round(D * 0.15) + "px"
+            }
+            L.style.fontSize = R.style.fontSize = Math.round(shoulderH * 0.5) + "px"
+            select.style.fontSize = start.style.fontSize = "12px"
+        }
+
+        // What each finger holds. Fingers can slide from button to button,
+        // and around the D-pad, as thumbs do on a real pad.
+        const fingers = new Map()
+
+        function dpadBits(x, y) {
+            const r = dpad.getBoundingClientRect()
+            const dx = x - (r.left + r.width / 2), dy = y - (r.top + r.height / 2)
+            const dist = Math.hypot(dx, dy)
+            if (dist > r.width * 0.7) return 0
+            if (dist < r.width * 0.1) return 0
+            // Each direction covers 120 degrees around its arm, so the four
+            // diagonals are narrow and a thumb on an arm stays straight.
+            const a = Math.atan2(dy, dx) * 180 / Math.PI
+            const near = (c) => Math.abs(((a - c + 540) % 360) - 180) < 60
+            return (near(-90) ? 1 << 8 : 0) | (near(90) ? 1 << 9 : 0)
+                 | (near(180) ? 1 << 10 : 0) | (near(0) ? 1 << 11 : 0)
+        }
+
+        function update() {
+            let mask = 0
+            for (const [x, y] of fingers.values()) {
+                // A button under the finger first; the D-pad reaches a
+                // little past its edges, but never over another button.
+                const hit = document.elementFromPoint(x, y)
+                const b = hit && hit.closest && hit.closest("[data-b]")
+                if (b) { mask |= 1 << Number(b.dataset.b); continue }
+                const d = dpadBits(x, y)
+                if (d > 0) mask |= d
+            }
+            tapped |= mask & ~window.nuitai_pad
+            window.nuitai_pad = mask
+            for (const b of document.querySelectorAll("#pad [data-b]"))
+                b.classList.toggle("on", !!(mask & (1 << Number(b.dataset.b))))
+            for (const d of document.querySelectorAll("#pad [data-d]"))
+                d.classList.toggle("on", !!(mask & (1 << Number(d.dataset.d))))
+        }
+
+        document.addEventListener("pointerdown", (e) => {
+            fingers.set(e.pointerId, [e.clientX, e.clientY]); update()
+        })
+        document.addEventListener("pointermove", (e) => {
+            if (fingers.has(e.pointerId)) { fingers.set(e.pointerId, [e.clientX, e.clientY]); update() }
+        })
+        const lift = (e) => { if (fingers.delete(e.pointerId)) update() }
+        document.addEventListener("pointerup", lift)
+        document.addEventListener("pointercancel", lift)
+        const letGo = () => { fingers.clear(); update() }
+        window.addEventListener("blur", letGo)
+        document.addEventListener("visibilitychange", letGo)
+
+        // No scrolling, zooming, text picking or long-press menus while playing.
+        const stop = (e) => e.preventDefault()
+        for (const kind of ["touchstart", "touchmove", "touchend", "gesturestart", "dblclick", "contextmenu"])
+            document.addEventListener(kind, stop, { passive: false })
+
+        layout()
+        window.addEventListener("resize", layout)
+        window.addEventListener("orientationchange", () => setTimeout(layout, 200))
+        // The game sizes its canvas when it opens its window; place it again then.
+        new MutationObserver(() => {
+            if (canvas.style.cssText !== placed) layout()
+        }).observe(canvas, { attributes: true, attributeFilter: ["width", "height", "style"] })
+    })()
+    </script>
+
+    <!--
+    Nuitai: the PC version plays like the SNES version beside it (Frankie, 11/9).
+    The same box at a TV's 4:3, the same curved CRT screen with scan lines (on at the
+    start, switched in Settings), the same bar under the game (restart, controls,
+    sound and volume, settings, full screen) and the same keys, which can be changed
+    in Controls and are kept in this browser. The keys reach the game as the page's
+    pad (window.nuitai_pad, ui/touch_pad.py), as the phone's on-screen pad does.
+    -->
+    <style>
+        :root { color-scheme: light dark; --bg: #0d1320; --fg: #e8eef8; }
+        @media (prefers-color-scheme: light) { :root { --bg: #e9eef6; --fg: #14213a; } }
+        html, body { background: var(--bg); color: var(--fg); }
+        #transfer { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        #status { margin: 0 0 .6rem; color: var(--fg); font-weight: 600; }
+        /* Bottom to top: the black box, the game's canvas, the CRT screen, then the box again, see-through, for the bar. */
+        .box {
+            position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            width: min(calc(100vw - 1rem), calc((100vh - 1rem) * 4 / 3)); aspect-ratio: 4 / 3; overflow: hidden;
+        }
+        #game-bg { background: #000; z-index: 2; }
+        #game { z-index: 7; }
+        :fullscreen .box, .box.full { width: min(100vw, calc(100vh * 4 / 3)); }
+        body.touch .box { display: none; }
+        #crtv { position: fixed; z-index: 6; pointer-events: none; display: none; }
+        #bar {
+            position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; display: flex; align-items: center; gap: 2px;
+            padding: 15px 10px 10px; color: #fff; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.7));
+            opacity: 0; transform: translateY(8px); transition: opacity .4s ease-in-out, transform .4s ease-in-out;
+        }
+        #game.awake #bar, #bar:focus-within { opacity: 1; transform: none; }
+        #bar .gap { flex: 1; }
+        #bar button {
+            background: none; border: 0; color: inherit; padding: 7px; border-radius: 3px; cursor: pointer; display: flex;
+        }
+        #bar button:hover, #bar button:focus-visible { background: #2aa876; outline: none; }
+        #bar svg { display: block; fill: currentColor; width: 18px; height: 18px; pointer-events: none; }
+        #bar input[type=range] { width: 60px; accent-color: #fff; margin: 0 8px 0 2px; cursor: pointer; }
+        .pop {
+            position: absolute; inset: 0; z-index: 40; display: none; align-items: center; justify-content: center;
+            background: rgba(0,0,0,.8); color: #ccc; font: 15px/1.4 system-ui, sans-serif;
+        }
+        .pop.open { display: flex; }
+        .pop > div { background: #1a1a1a; border-radius: 6px; padding: 18px 22px; min-width: 260px; max-height: 90%; overflow: auto; }
+        .pop h4 { margin: 0 0 12px; color: #fff; font-size: 17px; }
+        .pop table { border-collapse: collapse; width: 100%; }
+        .pop td { padding: 3px 6px; }
+        .pop td:first-child { color: #fff; font-weight: 600; }
+        .pop button {
+            background: #333; color: #fff; border: 1px solid #555; border-radius: 4px; padding: 4px 10px; cursor: pointer; min-width: 110px;
+            font: inherit;
+        }
+        .pop button:hover, .pop button.wait { background: #2aa876; border-color: #2aa876; }
+        .pop .row { display: flex; gap: 10px; justify-content: flex-end; margin-top: 14px; }
+        .pop .row button { min-width: 0; }
+        .pop label { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    </style>
+
+    <div id="game-bg" class="box"></div>
+    <div id="game" class="box" aria-label="Nuitai">
+        <div id="bar">
+            <button id="b-restart" title="Restart"><svg viewBox="0 0 512 512"><path d="M496 48V192c0 17.69-14.31 32-32 32H320c-17.69 0-32-14.31-32-32s14.31-32 32-32h63.39c-29.97-39.7-77.25-63.78-127.6-63.78C167.7 96.22 96 167.9 96 256s71.69 159.8 159.8 159.8c34.88 0 68.03-11.03 95.88-31.94c14.22-10.53 34.22-7.75 44.81 6.375c10.59 14.16 7.75 34.22-6.375 44.81c-39.03 29.28-85.36 44.86-134.2 44.86C132.5 479.9 32 379.4 32 256s100.5-223.9 223.9-223.9c69.15 0 134 32.47 176.1 86.12V48c0-17.69 14.31-32 32-32S496 30.31 496 48z"/></svg></button>
+            <button id="b-controls" title="Control Settings"><svg viewBox="0 0 640 512"><path fill="currentColor" d="M480 96H160C71.6 96 0 167.6 0 256s71.6 160 160 160c44.8 0 85.2-18.4 114.2-48h91.5c29 29.6 69.5 48 114.2 48 88.4 0 160-71.6 160-160S568.4 96 480 96zM256 276c0 6.6-5.4 12-12 12h-52v52c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-52H76c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h52v-52c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h52c6.6 0 12 5.4 12 12v40zm184 68c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-80c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z"/></svg></button>
+            <span class="gap"></span>
+            <button id="b-mute" title="Mute"><svg viewBox="0 0 640 512"><path d="M412.6 182c-10.28-8.334-25.41-6.867-33.75 3.402c-8.406 10.24-6.906 25.35 3.375 33.74C393.5 228.4 400 241.8 400 255.1c0 14.17-6.5 27.59-17.81 36.83c-10.28 8.396-11.78 23.5-3.375 33.74c4.719 5.806 11.62 8.802 18.56 8.802c5.344 0 10.75-1.779 15.19-5.399C435.1 311.5 448 284.6 448 255.1S435.1 200.4 412.6 182zM473.1 108.2c-10.22-8.334-25.34-6.898-33.78 3.34c-8.406 10.24-6.906 25.35 3.344 33.74C476.6 172.1 496 213.3 496 255.1s-19.44 82.1-53.31 110.7c-10.25 8.396-11.75 23.5-3.344 33.74c4.75 5.775 11.62 8.771 18.56 8.771c5.375 0 10.75-1.779 15.22-5.431C518.2 366.9 544 313 544 255.1S518.2 145 473.1 108.2zM534.4 33.4c-10.22-8.334-25.34-6.867-33.78 3.34c-8.406 10.24-6.906 25.35 3.344 33.74C559.9 116.3 592 183.9 592 255.1s-32.09 139.7-88.06 185.5c-10.25 8.396-11.75 23.5-3.344 33.74C505.3 481 512.2 484 519.2 484c5.375 0 10.75-1.779 15.22-5.431C601.5 423.6 640 342.5 640 255.1S601.5 88.34 534.4 33.4zM301.2 34.98c-11.5-5.181-25.01-3.076-34.43 5.29L131.8 160.1H48c-26.51 0-48 21.48-48 47.96v95.92c0 26.48 21.49 47.96 48 47.96h83.84l134.9 119.8C272.7 477 280.3 479.8 288 479.8c4.438 0 8.959-.9314 13.16-2.835C312.7 471.8 320 460.4 320 447.9V64.12C320 51.55 312.7 40.13 301.2 34.98z"/></svg></button>
+            <input id="b-volume" type="range" min="0" max="1" step="0.01" aria-label="Volume">
+            <button id="b-settings" title="Settings"><svg viewBox="0 0 512 512"><path d="M495.9 166.6C499.2 175.2 496.4 184.9 489.6 191.2L446.3 230.6C447.4 238.9 448 247.4 448 256C448 264.6 447.4 273.1 446.3 281.4L489.6 320.8C496.4 327.1 499.2 336.8 495.9 345.4C491.5 357.3 486.2 368.8 480.2 379.7L475.5 387.8C468.9 398.8 461.5 409.2 453.4 419.1C447.4 426.2 437.7 428.7 428.9 425.9L373.2 408.1C359.8 418.4 344.1 427 329.2 433.6L316.7 490.7C314.7 499.7 307.7 506.1 298.5 508.5C284.7 510.8 270.5 512 255.1 512C241.5 512 227.3 510.8 213.5 508.5C204.3 506.1 197.3 499.7 195.3 490.7L182.8 433.6C167 427 152.2 418.4 138.8 408.1L83.14 425.9C74.3 428.7 64.55 426.2 58.63 419.1C50.52 409.2 43.12 398.8 36.52 387.8L31.84 379.7C25.77 368.8 20.49 357.3 16.06 345.4C12.82 336.8 15.55 327.1 22.41 320.8L65.67 281.4C64.57 273.1 64 264.6 64 256C64 247.4 64.57 238.9 65.67 230.6L22.41 191.2C15.55 184.9 12.82 175.3 16.06 166.6C20.49 154.7 25.78 143.2 31.84 132.3L36.51 124.2C43.12 113.2 50.52 102.8 58.63 92.95C64.55 85.8 74.3 83.32 83.14 86.14L138.8 103.9C152.2 93.56 167 84.96 182.8 78.43L195.3 21.33C197.3 12.25 204.3 5.04 213.5 3.51C227.3 1.201 241.5 0 256 0C270.5 0 284.7 1.201 298.5 3.51C307.7 5.04 314.7 12.25 316.7 21.33L329.2 78.43C344.1 84.96 359.8 93.56 373.2 103.9L428.9 86.14C437.7 83.32 447.4 85.8 453.4 92.95C461.5 102.8 468.9 113.2 475.5 124.2L480.2 132.3C486.2 143.2 491.5 154.7 495.9 166.6V166.6zM256 336C300.2 336 336 300.2 336 255.1C336 211.8 300.2 175.1 256 175.1C211.8 175.1 176 211.8 176 255.1C176 300.2 211.8 336 256 336z"/></svg></button>
+            <button id="b-full" title="Enter Fullscreen"><svg viewBox="0 0 512 512"><path d="M208 281.4c-12.5-12.5-32.76-12.5-45.26-.002l-78.06 78.07l-30.06-30.06c-6.125-6.125-14.31-9.367-22.63-9.367c-4.125 0-8.279 .7891-12.25 2.43c-11.97 4.953-19.75 16.62-19.75 29.56v135.1C.0013 501.3 10.75 512 24 512h136c12.94 0 24.63-7.797 29.56-19.75c4.969-11.97 2.219-25.72-6.938-34.87l-30.06-30.06l78.06-78.07c12.5-12.49 12.5-32.75 .002-45.25L208 281.4zM487.1 0h-136c-12.94 0-24.63 7.797-29.56 19.75c-4.969 11.97-2.219 25.72 6.938 34.87l30.06 30.06l-78.06 78.07c-12.5 12.5-12.5 32.76 0 45.26l22.62 22.62c12.5 12.5 32.76 12.5 45.26 0l78.06-78.07l30.06 30.06c9.156 9.141 22.87 11.84 34.87 6.937C504.2 184.6 512 172.9 512 159.1V23.1C512 10.74 501.3 0 487.1 0z"/></svg></button>
+        </div>
+        <div class="pop" id="p-controls"><div>
+            <h4>Control Settings</h4>
+            <table id="keys"></table>
+            <div class="row"><button id="k-reset">Reset</button><button id="k-close">Close</button></div>
+        </div></div>
+        <div class="pop" id="p-settings"><div>
+            <h4>Settings</h4>
+            <label>CRT screen <button id="s-crt"></button></label>
+            <div class="row"><button id="s-close">Close</button></div>
+        </div></div>
+    </div>
+    <canvas id="crtv"></canvas>
+
+    <script type="application/javascript">
+    (() => {
+        const $ = (id) => document.getElementById(id)
+        const ICONS = {"restart": "<svg viewBox=\"0 0 512 512\"><path d=\"M496 48V192c0 17.69-14.31 32-32 32H320c-17.69 0-32-14.31-32-32s14.31-32 32-32h63.39c-29.97-39.7-77.25-63.78-127.6-63.78C167.7 96.22 96 167.9 96 256s71.69 159.8 159.8 159.8c34.88 0 68.03-11.03 95.88-31.94c14.22-10.53 34.22-7.75 44.81 6.375c10.59 14.16 7.75 34.22-6.375 44.81c-39.03 29.28-85.36 44.86-134.2 44.86C132.5 479.9 32 379.4 32 256s100.5-223.9 223.9-223.9c69.15 0 134 32.47 176.1 86.12V48c0-17.69 14.31-32 32-32S496 30.31 496 48z\"/></svg>", "mute": "<svg viewBox=\"0 0 640 512\"><path d=\"M412.6 182c-10.28-8.334-25.41-6.867-33.75 3.402c-8.406 10.24-6.906 25.35 3.375 33.74C393.5 228.4 400 241.8 400 255.1c0 14.17-6.5 27.59-17.81 36.83c-10.28 8.396-11.78 23.5-3.375 33.74c4.719 5.806 11.62 8.802 18.56 8.802c5.344 0 10.75-1.779 15.19-5.399C435.1 311.5 448 284.6 448 255.1S435.1 200.4 412.6 182zM473.1 108.2c-10.22-8.334-25.34-6.898-33.78 3.34c-8.406 10.24-6.906 25.35 3.344 33.74C476.6 172.1 496 213.3 496 255.1s-19.44 82.1-53.31 110.7c-10.25 8.396-11.75 23.5-3.344 33.74c4.75 5.775 11.62 8.771 18.56 8.771c5.375 0 10.75-1.779 15.22-5.431C518.2 366.9 544 313 544 255.1S518.2 145 473.1 108.2zM534.4 33.4c-10.22-8.334-25.34-6.867-33.78 3.34c-8.406 10.24-6.906 25.35 3.344 33.74C559.9 116.3 592 183.9 592 255.1s-32.09 139.7-88.06 185.5c-10.25 8.396-11.75 23.5-3.344 33.74C505.3 481 512.2 484 519.2 484c5.375 0 10.75-1.779 15.22-5.431C601.5 423.6 640 342.5 640 255.1S601.5 88.34 534.4 33.4zM301.2 34.98c-11.5-5.181-25.01-3.076-34.43 5.29L131.8 160.1H48c-26.51 0-48 21.48-48 47.96v95.92c0 26.48 21.49 47.96 48 47.96h83.84l134.9 119.8C272.7 477 280.3 479.8 288 479.8c4.438 0 8.959-.9314 13.16-2.835C312.7 471.8 320 460.4 320 447.9V64.12C320 51.55 312.7 40.13 301.2 34.98z\"/></svg>", "unmute": "<svg viewBox=\"0 0 576 512\"><path d=\"M301.2 34.85c-11.5-5.188-25.02-3.122-34.44 5.253L131.8 160H48c-26.51 0-48 21.49-48 47.1v95.1c0 26.51 21.49 47.1 48 47.1h83.84l134.9 119.9c5.984 5.312 13.58 8.094 21.26 8.094c4.438 0 8.972-.9375 13.17-2.844c11.5-5.156 18.82-16.56 18.82-29.16V64C319.1 51.41 312.7 40 301.2 34.85zM513.9 255.1l47.03-47.03c9.375-9.375 9.375-24.56 0-33.94s-24.56-9.375-33.94 0L480 222.1L432.1 175c-9.375-9.375-24.56-9.375-33.94 0s-9.375 24.56 0 33.94l47.03 47.03l-47.03 47.03c-9.375 9.375-9.375 24.56 0 33.94c9.373 9.373 24.56 9.381 33.94 0L480 289.9l47.03 47.03c9.373 9.373 24.56 9.381 33.94 0c9.375-9.375 9.375-24.56 0-33.94L513.9 255.1z\"/></svg>", "settings": "<svg viewBox=\"0 0 512 512\"><path d=\"M495.9 166.6C499.2 175.2 496.4 184.9 489.6 191.2L446.3 230.6C447.4 238.9 448 247.4 448 256C448 264.6 447.4 273.1 446.3 281.4L489.6 320.8C496.4 327.1 499.2 336.8 495.9 345.4C491.5 357.3 486.2 368.8 480.2 379.7L475.5 387.8C468.9 398.8 461.5 409.2 453.4 419.1C447.4 426.2 437.7 428.7 428.9 425.9L373.2 408.1C359.8 418.4 344.1 427 329.2 433.6L316.7 490.7C314.7 499.7 307.7 506.1 298.5 508.5C284.7 510.8 270.5 512 255.1 512C241.5 512 227.3 510.8 213.5 508.5C204.3 506.1 197.3 499.7 195.3 490.7L182.8 433.6C167 427 152.2 418.4 138.8 408.1L83.14 425.9C74.3 428.7 64.55 426.2 58.63 419.1C50.52 409.2 43.12 398.8 36.52 387.8L31.84 379.7C25.77 368.8 20.49 357.3 16.06 345.4C12.82 336.8 15.55 327.1 22.41 320.8L65.67 281.4C64.57 273.1 64 264.6 64 256C64 247.4 64.57 238.9 65.67 230.6L22.41 191.2C15.55 184.9 12.82 175.3 16.06 166.6C20.49 154.7 25.78 143.2 31.84 132.3L36.51 124.2C43.12 113.2 50.52 102.8 58.63 92.95C64.55 85.8 74.3 83.32 83.14 86.14L138.8 103.9C152.2 93.56 167 84.96 182.8 78.43L195.3 21.33C197.3 12.25 204.3 5.04 213.5 3.51C227.3 1.201 241.5 0 256 0C270.5 0 284.7 1.201 298.5 3.51C307.7 5.04 314.7 12.25 316.7 21.33L329.2 78.43C344.1 84.96 359.8 93.56 373.2 103.9L428.9 86.14C437.7 83.32 447.4 85.8 453.4 92.95C461.5 102.8 468.9 113.2 475.5 124.2L480.2 132.3C486.2 143.2 491.5 154.7 495.9 166.6V166.6zM256 336C300.2 336 336 300.2 336 255.1C336 211.8 300.2 175.1 256 175.1C211.8 175.1 176 211.8 176 255.1C176 300.2 211.8 336 256 336z\"/></svg>", "enterFullscreen": "<svg viewBox=\"0 0 512 512\"><path d=\"M208 281.4c-12.5-12.5-32.76-12.5-45.26-.002l-78.06 78.07l-30.06-30.06c-6.125-6.125-14.31-9.367-22.63-9.367c-4.125 0-8.279 .7891-12.25 2.43c-11.97 4.953-19.75 16.62-19.75 29.56v135.1C.0013 501.3 10.75 512 24 512h136c12.94 0 24.63-7.797 29.56-19.75c4.969-11.97 2.219-25.72-6.938-34.87l-30.06-30.06l78.06-78.07c12.5-12.49 12.5-32.75 .002-45.25L208 281.4zM487.1 0h-136c-12.94 0-24.63 7.797-29.56 19.75c-4.969 11.97-2.219 25.72 6.938 34.87l30.06 30.06l-78.06 78.07c-12.5 12.5-12.5 32.76 0 45.26l22.62 22.62c12.5 12.5 32.76 12.5 45.26 0l78.06-78.07l30.06 30.06c9.156 9.141 22.87 11.84 34.87 6.937C504.2 184.6 512 172.9 512 159.1V23.1C512 10.74 501.3 0 487.1 0z\"/></svg>", "exitFullscreen": "<svg viewBox=\"0 0 512 512\"><path d=\"M215.1 272h-136c-12.94 0-24.63 7.797-29.56 19.75C45.47 303.7 48.22 317.5 57.37 326.6l30.06 30.06l-78.06 78.07c-12.5 12.5-12.5 32.75-.0012 45.25l22.62 22.62c12.5 12.5 32.76 12.5 45.26 .0013l78.06-78.07l30.06 30.06c6.125 6.125 14.31 9.367 22.63 9.367c4.125 0 8.279-.7891 12.25-2.43c11.97-4.953 19.75-16.62 19.75-29.56V296C239.1 282.7 229.3 272 215.1 272zM296 240h136c12.94 0 24.63-7.797 29.56-19.75c4.969-11.97 2.219-25.72-6.938-34.87l-30.06-30.06l78.06-78.07c12.5-12.5 12.5-32.76 .0002-45.26l-22.62-22.62c-12.5-12.5-32.76-12.5-45.26-.0003l-78.06 78.07l-30.06-30.06c-9.156-9.141-22.87-11.84-34.87-6.937c-11.97 4.953-19.75 16.62-19.75 29.56v135.1C272 229.3 282.7 240 296 240z\"/></svg>", "gamepad": "<svg viewBox=\"0 0 640 512\"><path fill=\"currentColor\" d=\"M480 96H160C71.6 96 0 167.6 0 256s71.6 160 160 160c44.8 0 85.2-18.4 114.2-48h91.5c29 29.6 69.5 48 114.2 48 88.4 0 160-71.6 160-160S568.4 96 480 96zM256 276c0 6.6-5.4 12-12 12h-52v52c0 6.6-5.4 12-12 12h-40c-6.6 0-12-5.4-12-12v-52H76c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h52v-52c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h52c6.6 0 12 5.4 12 12v40zm184 68c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-80c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48z\"/></svg>"}
+        const store = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)) } catch (e) {} }
+        const load = (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v) } catch (e) { return d } }
+        const game = $("game")
+
+        // ---- The keys: the SNES version's, as the game numbers a pad (ui/touch_pad.py).
+        const BUTTONS = [
+            [8, "Up", "KeyW"], [9, "Down", "KeyS"], [10, "Left", "KeyA"], [11, "Right", "KeyD"],
+            [1, "A", "KeyL"], [0, "B", "Semicolon"], [3, "X", "KeyK"], [2, "Y", "KeyJ"],
+            [4, "L", "KeyQ"], [5, "R", "KeyE"], [6, "SELECT", "ShiftLeft"], [7, "START", "Enter"],
+        ]
+        // The arrows walk too, and either Shift is SELECT; only the first key of each is shown or changed.
+        const EXTRA = { ArrowUp: 8, ArrowDown: 9, ArrowLeft: 10, ArrowRight: 11, ShiftRight: 6, NumpadEnter: 7 }
+        const defaults = () => Object.fromEntries(BUTTONS.map(([b, , k]) => [b, k]))
+        let keys = Object.assign(defaults(), load("nuitai-pc-keys", {}))
+        let held = 0, waiting = null
+        const bitOf = (code) => {
+            for (const b in keys) if (keys[b] === code) return Number(b)
+            const d = defaults()
+            if (code in EXTRA && keys[EXTRA[code]] === d[EXTRA[code]]) return EXTRA[code]
+            return -1
+        }
+        // The page's pad: the phone's on-screen pad (if any) and the keyboard together.
+        const before = window.nuitai_pad_read
+        let tapped = 0
+        window.nuitai_pad_read = () => {
+            const touch = before ? before() : 0
+            const mask = touch | held | tapped
+            tapped = 0
+            return mask
+        }
+        const keyName = (code) => code.replace(/^Key|^Digit/, "").replace("Semicolon", ";").replace("ShiftLeft", "Shift")
+            .replace("ShiftRight", "Right Shift").replace(/^Arrow/, "").replace("Enter", "Enter")
+        function drawKeys() {
+            $("keys").innerHTML = ""
+            for (const [b, name] of BUTTONS) {
+                const tr = document.createElement("tr")
+                const td = document.createElement("td"); td.textContent = name
+                const btn = document.createElement("button")
+                btn.textContent = waiting === b ? "Press a key" : keyName(keys[b])
+                btn.classList.toggle("wait", waiting === b)
+                btn.addEventListener("click", () => { waiting = b; drawKeys() })
+                const td2 = document.createElement("td"); td2.appendChild(btn)
+                tr.append(td, td2); $("keys").appendChild(tr)
+            }
+        }
+        function onKey(e) {
+            if (e.key === "F11") return   // the page's full screen, below
+            const down = e.type === "keydown"
+            if (waiting !== null) {
+                if (down) {
+                    if (e.code !== "Escape") {
+                        for (const b in keys) if (keys[b] === e.code) keys[b] = keys[waiting]
+                        keys[waiting] = e.code
+                        store("nuitai-pc-keys", keys)
+                    }
+                    waiting = null; drawKeys()
+                }
+                e.preventDefault(); e.stopImmediatePropagation(); return
+            }
+            if (document.querySelector(".pop.open")) {
+                if (down && e.code === "Escape") closePops()
+                e.stopImmediatePropagation(); return
+            }
+            const b = bitOf(e.code)
+            if (b < 0) return
+            e.preventDefault(); e.stopImmediatePropagation()
+            if (down) { if (!(held >> b & 1)) tapped |= 1 << b; held |= 1 << b }
+            else held &= ~(1 << b)
+        }
+        window.addEventListener("keydown", onKey, { capture: true })
+        window.addEventListener("keyup", onKey, { capture: true })
+        window.addEventListener("blur", () => { held = 0 })
+
+        // ---- Sound: one volume over all of the game's sound, as the emulator's slider.
+        let volume = load("nuitai-pc-volume", 0.6), muted = load("nuitai-pc-muted", false)
+        const level = () => muted ? 0 : volume
+        const gains = new Map()
+        const connect = AudioNode.prototype.connect
+        function gainFor(ctx) {
+            let g = gains.get(ctx)
+            if (!g) { g = ctx.createGain(); g.gain.value = level(); connect.call(g, ctx.destination); gains.set(ctx, g) }
+            return g
+        }
+        AudioNode.prototype.connect = function (dest, ...rest) {
+            if (typeof AudioDestinationNode !== "undefined" && dest instanceof AudioDestinationNode)
+                return connect.call(this, gainFor(dest.context), ...rest)
+            return connect.call(this, dest, ...rest)
+        }
+        const media = new Set()
+        const vol = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, "volume")
+        Object.defineProperty(HTMLMediaElement.prototype, "volume", {
+            configurable: true,
+            get() { return this.nuitaiVolume ?? 1 },
+            set(v) { this.nuitaiVolume = v; media.add(this); vol.set.call(this, v * level()) },
+        })
+        const play = HTMLMediaElement.prototype.play
+        HTMLMediaElement.prototype.play = function () {
+            media.add(this); vol.set.call(this, (this.nuitaiVolume ?? 1) * level())
+            return play.apply(this, arguments)
+        }
+        function sound() {
+            for (const g of gains.values()) g.gain.value = level()
+            for (const m of media) vol.set.call(m, (m.nuitaiVolume ?? 1) * level())
+            $("b-volume").value = muted ? 0 : volume
+            $("b-mute").innerHTML = level() > 0 ? ICONS.mute : ICONS.unmute
+            $("b-mute").title = level() > 0 ? "Mute" : "Unmute"
+            store("nuitai-pc-volume", volume); store("nuitai-pc-muted", muted)
+        }
+        $("b-volume").addEventListener("input", (e) => { volume = Number(e.target.value); muted = volume === 0; sound() })
+        $("b-mute").addEventListener("click", () => { if (level() > 0) muted = true; else { muted = false; if (!volume) volume = 0.6 } sound() })
+        sound()
+
+        // ---- The bar: shows while the mouse moves over the game, as the emulator's.
+        let sleep = 0
+        game.addEventListener("mousemove", () => {
+            game.classList.add("awake"); clearTimeout(sleep)
+            sleep = setTimeout(() => game.classList.remove("awake"), 3000)
+        })
+        game.addEventListener("mouseleave", () => game.classList.remove("awake"))
+        $("b-restart").addEventListener("click", () => location.reload())
+        const closePops = () => { waiting = null; for (const p of document.querySelectorAll(".pop")) p.classList.remove("open") }
+        $("b-controls").addEventListener("click", () => { drawKeys(); $("p-controls").classList.add("open") })
+        $("k-close").addEventListener("click", closePops)
+        $("k-reset").addEventListener("click", () => { keys = defaults(); store("nuitai-pc-keys", keys); drawKeys() })
+        $("b-settings").addEventListener("click", () => $("p-settings").classList.add("open"))
+        $("s-close").addEventListener("click", closePops)
+        for (const p of document.querySelectorAll(".pop")) p.addEventListener("click", (e) => { if (e.target === p) closePops() })
+        function full() {
+            if (document.fullscreenElement) document.exitFullscreen()
+            else document.documentElement.requestFullscreen()
+        }
+        $("b-full").addEventListener("click", full)
+        document.addEventListener("fullscreenchange", () => {
+            const on = !!document.fullscreenElement
+            $("b-full").innerHTML = on ? ICONS.exitFullscreen : ICONS.enterFullscreen
+            $("b-full").title = on ? "Exit Fullscreen" : "Enter Fullscreen"
+            for (const b of document.querySelectorAll(".box")) b.classList.toggle("full", on)
+        })
+        // F11 fills the screen, as in the desktop game (Frankie, 10/25). The game
+        // takes every key the page gets, so the browser never sees F11; the page
+        // catches it first and asks for fullscreen itself, inside the key press.
+        window.addEventListener("keydown", (e) => {
+            if (e.key !== "F11") return
+            e.preventDefault(); e.stopImmediatePropagation(); full()
+        }, { capture: true })
+
+        // ---- The picture: the game's canvas in the 4:3 box, under the CRT screen.
+        let crt = load("nuitai-pc-crt", true)
+        function crtLabel() { $("s-crt").textContent = crt ? "On" : "Off" }
+        $("s-crt").addEventListener("click", () => { crt = !crt; store("nuitai-pc-crt", crt); crtLabel() })
+        crtLabel()
+        function placeCanvas() {
+            if (document.body.classList.contains("touch")) return   // the pad's layout places it
+            const r = game.getBoundingClientRect(), s = canvas.style
+            s.position = "fixed"; s.margin = "0"; s.right = "auto"; s.bottom = "auto"
+            s.left = r.left + "px"; s.top = r.top + "px"; s.width = r.width + "px"; s.height = r.height + "px"
+            s.imageRendering = "pixelated"; s.zIndex = "3"
+        }
+        placeCanvas()
+        window.addEventListener("resize", placeCanvas)
+        document.addEventListener("fullscreenchange", () => setTimeout(placeCanvas, 50))
+        new MutationObserver(() => { if (!document.body.classList.contains("touch") && canvas.style.left !== game.getBoundingClientRect().left + "px") placeCanvas() })
+            .observe(canvas, { attributes: true, attributeFilter: ["style", "width", "height"] })
+
+        // The CRT: crt-geom's look (a curved glass, rounded corners, a scan line per game
+        // row, a faint shadow mask), drawn each frame from the game's canvas.
+        const view = $("crtv")
+        const gl = view.getContext("webgl", { alpha: false, antialias: false })
+        if (!gl) return   // no WebGL: the plain picture stays
+        const VS = "attribute vec2 p; varying vec2 uv; void main(){ uv = p * 0.5 + 0.5; uv.y = 1.0 - uv.y; gl_Position = vec4(p, 0.0, 1.0); }"
+        const FS = [
+            "precision mediump float;",
+            "uniform sampler2D t; uniform vec2 out_size; uniform float on; varying vec2 uv;",
+            "const float ROWS = 224.0;",
+            "vec2 warp(vec2 q){ q = q * 2.0 - 1.0; q *= vec2(1.0 + q.y * q.y * 0.031, 1.0 + q.x * q.x * 0.041); return q * 0.5 + 0.5; }",
+            "float corner(vec2 q){ vec2 d = min(q, 1.0 - q) * vec2(out_size.x / out_size.y, 1.0);",
+            "  vec2 c = max(vec2(0.03) - d, 0.0); return clamp((0.03 - length(c)) * 400.0, 0.0, 1.0); }",
+            "void main(){",
+            "  if (on < 0.5) { gl_FragColor = vec4(texture2D(t, uv).rgb, 1.0); return; }",
+            "  vec2 q = warp(uv);",
+            "  if (q.x < 0.0 || q.x > 1.0 || q.y < 0.0 || q.y > 1.0) { gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0); return; }",
+            "  vec3 c = texture2D(t, q).rgb;",
+            "  float f = fract(q.y * ROWS) - 0.5;",
+            "  float scan = mix(1.0, 0.45, pow(abs(f) * 2.0, 2.5));",
+            "  float m = mod(gl_FragCoord.x, 3.0);",
+            "  vec3 mask = m < 1.0 ? vec3(1.0, 0.88, 0.88) : (m < 2.0 ? vec3(0.88, 1.0, 0.88) : vec3(0.88, 0.88, 1.0));",
+            "  vec2 v = q * (1.0 - q); float vig = pow(v.x * v.y * 16.0, 0.12);",
+            "  gl_FragColor = vec4(c * scan * mask * vig * 1.3 * corner(q), 1.0);",
+            "}",
+        ].join("\n")
+        function shader(kind, src) { const s = gl.createShader(kind); gl.shaderSource(s, src); gl.compileShader(s); return s }
+        const prog = gl.createProgram()
+        gl.attachShader(prog, shader(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, shader(gl.FRAGMENT_SHADER, FS))
+        gl.linkProgram(prog)
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return
+        gl.useProgram(prog)
+        gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer())
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW)
+        const at = gl.getAttribLocation(prog, "p")
+        gl.enableVertexAttribArray(at); gl.vertexAttribPointer(at, 2, gl.FLOAT, false, 0, 0)
+        const tex = gl.createTexture()
+        gl.bindTexture(gl.TEXTURE_2D, tex)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+        const uSize = gl.getUniformLocation(prog, "out_size"), uOn = gl.getUniformLocation(prog, "on")
+        let working = null   // null until the game's canvas is up and readable
+        function frame() {
+            requestAnimationFrame(frame)
+            // The game's window is 256 by 224 times a whole number (ScreenSettings.WEB_SCALE).
+            if (canvas.width < 512 || canvas.width % 256) return
+            if (working === null) {
+                // The game draws its canvas in 2D; anything else, and the plain picture stays.
+                working = !!canvas.getContext("2d")
+                if (working) { view.style.display = "block"; canvas.style.opacity = "0" }
+            }
+            if (!working) return
+            const r = canvas.getBoundingClientRect(), dpr = window.devicePixelRatio || 1
+            const w = Math.round(r.width * dpr), h = Math.round(r.height * dpr)
+            if (view.width !== w || view.height !== h) { view.width = w; view.height = h }
+            const s = view.style
+            s.left = r.left + "px"; s.top = r.top + "px"; s.width = r.width + "px"; s.height = r.height + "px"
+            const filter = crt ? gl.LINEAR : gl.NEAREST
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, filter)
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, filter)
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas)
+            gl.viewport(0, 0, w, h)
+            gl.uniform2f(uSize, w, h); gl.uniform1f(uOn, crt ? 1 : 0)
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+        }
+        requestAnimationFrame(frame)
+    })()
+    </script>
+
+</body>
+</html>

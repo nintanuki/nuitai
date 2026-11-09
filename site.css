@@ -247,3 +247,7 @@ kbd {
   table.keys td { display: block; border-top: 0; padding: .1rem .5rem; }
   table.keys tr:not(.group) { display: block; border-top: 1px solid var(--line); padding: .4rem 0; }
 }
+
+/* The Game page's four doors, two by two (Frankie, 11/9); one column on a phone. */
+.doors.two { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 40rem) { .doors.two { grid-template-columns: 1fr; } }

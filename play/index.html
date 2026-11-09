@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Play Nuitai · SNES Demo</title>
+<title>Play Nuitai · SNES Version</title>
 <style>
   :root { color-scheme: light dark; --bg:#0d1320; --fg:#e8eef8; --line:#2c3a55; --hue:160; }
   @media (prefers-color-scheme: light) { :root { --bg:#e9eef6; --fg:#14213a; --line:#b9c6dc; } }
@@ -18,7 +18,8 @@
 <div id="stage"><div id="game"></div></div>
 <script>
   // The cartridge in the browser (Frankie, 11/6): EmulatorJS running Snes9x, copied by build.py.
-  // The SNES pad as keys. A, B, Y, X, L, R, Select, Start; a plugged-in controller works too.
+  // The SNES pad as keys, the same as the PC version (Frankie, 11/9): WASD the D-pad, J Y, K X, L A, ; B,
+  // Q and E L and R, Enter START, Shift SELECT. A plugged-in controller works too; keys can be changed in the emulator's Controls.
   function key(k, pad) { return { value: k, value2: pad }; }
   window.EJS_player = "#game";
   window.EJS_core = "snes";
@@ -35,10 +36,20 @@
   window.EJS_disableDatabases = true;
   window.EJS_defaultOptions = { shader: "crt-geom.glslp" };   // CRT on by default; turned off in the emulator's own settings
   window.EJS_defaultControls = { 0: {
-    0: key("x", "BUTTON_2"), 1: key("a", "BUTTON_4"), 2: key("v", "SELECT"), 3: key("enter", "START"),
-    4: key("up arrow", "DPAD_UP"), 5: key("down arrow", "DPAD_DOWN"), 6: key("left arrow", "DPAD_LEFT"), 7: key("right arrow", "DPAD_RIGHT"),
-    8: key("z", "BUTTON_1"), 9: key("s", "BUTTON_3"), 10: key("q", "LEFT_TOP_SHOULDER"), 11: key("e", "RIGHT_TOP_SHOULDER")
+    0: key("semi-colon", "BUTTON_2"), 1: key("j", "BUTTON_4"), 2: key("shift", "SELECT"), 3: key("enter", "START"),
+    4: key("w", "DPAD_UP"), 5: key("s", "DPAD_DOWN"), 6: key("a", "DPAD_LEFT"), 7: key("d", "DPAD_RIGHT"),
+    8: key("l", "BUTTON_1"), 9: key("k", "BUTTON_3"), 10: key("q", "LEFT_TOP_SHOULDER"), 11: key("e", "RIGHT_TOP_SHOULDER")
   }, 1: {}, 2: {}, 3: {} };
+</script>
+<script>
+  // The emulator matches keys by their old key codes. Firefox gives ; as 59 where the emulator knows 186,
+  // and the arrows are folded onto WASD so they walk too (one key per button in the emulator).
+  (function () {
+    var as = { 59: 186, 37: 65, 38: 87, 39: 68, 40: 83 };
+    function fold(e) { var c = as[e.keyCode]; if (c) Object.defineProperty(e, "keyCode", { value: c }); }
+    window.addEventListener("keydown", fold, true);
+    window.addEventListener("keyup", fold, true);
+  })();
 </script>
 <script src="emulatorjs/loader.js"></script>
 </body>
