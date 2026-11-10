@@ -251,3 +251,6 @@ kbd {
 /* The Game page's four doors, two by two (Frankie, 11/9); one column on a phone. */
 .doors.two { grid-template-columns: repeat(2, 1fr); }
 @media (max-width: 40rem) { .doors.two { grid-template-columns: 1fr; } }
+
+/* The Game page's two-paragraph intro above the doors (Frankie, 11/10). */
+.intro { max-width: 40rem; margin: 0 auto 1.2rem; text-align: center; font-size: 1.05rem; color: var(--ink); }
