@@ -355,7 +355,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 <script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
-try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-09</span></footer>
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-10</span></footer>
 </aside>
 <script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
 b.addEventListener("click",function(){body.classList.toggle("menu-open")});
@@ -450,19 +450,18 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#d23a2a"><div class="badge"><big>A</big><small>Button</small></div>
         <p>The A Button confirms. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking. In battle, press it as a monster's blows arrive to parry them (<a class="xref" href="#battle">page 14</a>).</p></div>
       <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
-        <p>The B Button cancels the last choice you made and takes you back.</p></div>
+        <p>The B Button cancels the last choice you made and takes you back. When someone is talking, it shows the rest of their words at once.</p></div>
       <div class="button" style="--b:#3554b8"><div class="badge"><big>X</big><small>Button</small></div>
-        <p>Use the X Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>).</p></div>
+        <p>Use the X Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>). When someone is talking, press it to move their words to the top of the screen, and again to move them back.</p></div>
       <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
         <p>The Y Button uses the tool Kailo has set: the Ko'i, the Old Rod or the 'O'o (<a class="xref" href="#field">page 8</a>). Tap it to use the tool. Hold it to open the tool wheel, press the D-Pad toward a tool and let go to set it.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>L/R</big><small>Buttons</small></div>
-        <p>On the Element, Equip and Status screens, press L or R to turn to the previous or next member of your party.</p></div>
+        <p>On the Element, Equip and Status screens, press L or R to turn to the previous or next member of your party. While walking, press L or R to change who leads the way. In battle, Escape is played on L and R.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
         <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Sel</big><small>Select</small></div>
         <p>The SELECT Button shows a map of the area. Rooms fill in as you find them. In a fight, hold it over a command or a move to read what it does and what it costs.</p></div>
     </div>
-    <div class="win"><b class="label">FULL SCREEN</b><p>On a computer, press F11 to fill the screen. The picture keeps the 4:3 shape of a television and grows as large as the screen allows.</p></div>
     <div class="win"><b class="label">RESET</b><p>Hold L, R, START and SELECT together to reset the game and go back to the title screen. Anything you have not saved will be lost.</p></div>
   </section>
 
@@ -499,7 +498,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <h3 class="ring">Monsters</h3>
-    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back after you have walked 200 steps, or all at once when the party takes a nap.</p>
+    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back after you have walked 200 steps, or all at once when the party takes a nap or drinks at a healing pool.</p>
     <p>A fight in the village is fought on the beach. Anywhere outside of town, it is fought in the jungle.</p>
     <p>Some great beasts stand still and wait for you. When you walk up to one, you will be asked if you are ready. Say no to go back and prepare.</p>
     <h3 class="ring">Shops</h3>
@@ -536,13 +535,13 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to land the fish. Be too slow and it gets away. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
     <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Not everyone in the village will be glad to see Kailo digging!</p>
     <h3 class="ring">Fresh Water</h3>
-    <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good. After ten scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
+    <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good. After five scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
     <h3 class="ring">Cooking</h3>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The cooking pot: the ingredients on the right, ready to go in" width="768" height="672"></div></figure>
       <div>
         <p>Face the big cooking pot in Kailo's house and press A to cook. His boat, the <b>Meialana</b>, has a kitchen too: face it and choose <b>Cook</b> to use its kitchen, or <b>Nap</b> to rest as in his bed.</p>
-        <p>Put two or three ingredients in, and see what you get. A dish you have made goes on the list, so next time just pick it. If they don't go together, you get a dish of ???, and whoever eats it gets sick.</p>
+        <p>Put one, two or three ingredients in, and see what you get. A dish you have made goes on the list, so next time just pick it. If they don't go together, you get a dish of ???, and whoever eats it gets sick.</p>
         <p>Only Kailo cooks, so the pot is his.</p>
       </div>
     </div>
@@ -563,7 +562,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <span class="pin" style="left:67%;top:87%">6</span>
     </div></figure>
     <ol class="key">
-      <li><b>1</b><span><b>Face</b><br>The three who fight. Move the cursor left onto the faces to change their order.</span></li>
+      <li><b>1</b><span><b>Face</b><br>The three who fight. Move the cursor left onto the faces to change their order, or press Y on a face to switch the stance they start in.</span></li>
       <li><b>2</b><span><b>Hit Points</b><br>HP. When a member's HP reaches 0, they fall.</span></li>
       <li><b>3</b><span><b>Elements</b><br>The member's two elements. The boxed one is the stance they start a battle in.</span></li>
       <li><b>4</b><span><b>Commands</b><br>Choose one with the D-Pad and press A.</span></li>
@@ -576,7 +575,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Items</td><td>Look in the bag and use an item: heal someone, eat a seed, or learn a move.</td></tr>
       <tr><td>Element</td><td>Each member's element moves, row by row. Choose which moves go in which row.</td></tr>
       <tr><td>Equip</td><td>Change weapons and relics, take them off, and see how well each member knows their weapons.</td></tr>
-      <tr><td>Status</td><td>A page for each member: HP, Mana, Skill, stats and stances. Change the starting stance here.</td></tr>
+      <tr><td>Status</td><td>A page for each member: HP, Skill, stats and stances. Change the starting stance here.</td></tr>
       <tr><td>Party</td><td>Choose who fights and who waits on the bench.</td></tr>
       <tr><td>Info</td><td>The Lore of the islands and the bestiary.</td></tr>
       <tr><td>Config</td><td>Settings for the game: the cursor, how fast messages go, the window color, sound and the buttons.</td></tr>
@@ -615,14 +614,14 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page: his stats, his Skill and his two stances" width="768" height="672"></div></figure>
       <div>
-        <p>Each member has a page: HP, Mana, the eight stats (<a class="xref" href="#stronger">page 28</a>), their Skill and their two stances.</p>
+        <p>Each member has a page: HP, the eight stats (<a class="xref" href="#stronger">page 28</a>), their Skill and their two stances.</p>
         <p>The stance on top, in color, is the one they start every battle in. Press A to switch it, and watch the stats change with it.</p>
       </div>
     </div>
 
     <h3 class="ring">Party</h3>
     <p>Only three fight at a time. The three on top fight; everyone else waits below.</p>
-    <p>Choose one from each row and they trade places. To change the order of the three, move the cursor left onto the faces on the field menu.</p>
+    <p>Choose one, then another, and they trade places. Choose two from the same row to change their order. You can also change the order of the three by moving the cursor left onto the faces on the field menu.</p>
 
     <h3 class="ring">Info</h3>
     <div class="pair">
@@ -679,7 +678,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div>
         <p>An Attack is made of strokes. Each turn you have 7 points to spend: <b>LIGHT</b> costs 1, <b>MEDIUM</b> 2 and <b>STRONG</b> 3.</p>
         <p>Each stroke shows its chance to hit. A light stroke almost always lands. A strong one hits much harder, but misses more. Every stroke that lands makes the next one more likely to land, and builds Mana.</p>
-        <p>You can stop any time and finish your turn with an element move or an item. To strike a different enemy, back out of the strokes, choose Attack again and pick another; the points you have left go with you.</p>
+        <p>You can stop any time and finish your turn with Defend, an element move or an item. To strike a different enemy, back out of the strokes, choose Attack again and pick another; the points you have left go with you.</p>
       </div>
     </div>
 
@@ -688,7 +687,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure class="shot"><div class="frame"><img src="manual/battle-block.png" alt="The parry meter: red arrows sliding toward the gold zone" width="768" height="672"></div></figure>
       <div>
         <p>When a monster strikes with its plain blows, the <b>parry meter</b> takes the place of your commands. Red arrows slide toward a gold zone, one pair for each blow. Press <b>A</b> as a pair crosses the zone.</p>
-        <p>A <b>catch</b> takes half the damage, and <b>Glancing</b> rises over the one it hit. Catch it dead center for a <b>PERFECT</b>, a <b>PARRY</b>, and the blow does no harm at all. Miss, and the blow lands in full. If you were defending, a catch takes only a quarter.</p>
+        <p>A <b>catch</b> takes half the damage, and <b>Glancing</b> rises over the one it hit. Catch it dead center for a <b>PARRY</b>, and the blow does no harm at all. Miss, and the blow lands in full. If you were defending, a catch takes only a quarter.</p>
         <p>Only plain blows can be parried, never a monster's elements or Skills, so a Skill arrives with no meter at all. A good Perception widens the zone, and a quick monster sends its arrows faster.</p>
       </div>
     </div>
@@ -716,16 +715,16 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Friends who join later bring their own three kinds of weapon and their own Skills, each a new little game.</p>
 
     <h3 class="ring">Mana</h3>
-    <p>Mana is the energy a fighter builds by moving. Everyone starts a battle with 0 Mana and can hold up to 7. Attack and Defend to build it, then spend it on element moves. A move in row 3 costs 3 Mana.</p>
+    <p>Mana is the energy a fighter builds by moving. Everyone starts a battle with 0 Mana and can hold up to 7. Attack, Defend or use an item to build it, then spend it on element moves. A move in row 3 costs 3 Mana.</p>
 
     <h3 class="ring">Status Trouble</h3>
     <div class="scroll">
     <table class="m">
       <tr><th>Trouble</th><th>What happens</th></tr>
-      <tr><td>Poison</td><td>Slowly takes HP. A poisoned monster turns green.</td></tr>
-      <tr><td>Sleep</td><td>Cannot act for 3 turns, unless a physical hit wakes it first. Every blow on a sleeper lands. A sleeping monster has Zs over its head.</td></tr>
+      <tr><td>Poison</td><td>Slowly takes HP. A skull and crossbones floats over a poisoned monster.</td></tr>
+      <tr><td>Sleep</td><td>Cannot act for a few turns, unless a physical hit wakes it first. Every blow on a sleeper lands. A sleeping monster has Zs over its head.</td></tr>
       <tr><td>Blind</td><td>Blows miss half the time. A blinded monster wears sunglasses.</td></tr>
-      <tr><td>Burn</td><td>Hurts each time the burned one acts. It cannot be healed until the burn is gone, and it lasts until it is cured or the burned one falls.</td></tr>
+      <tr><td>Burn</td><td>Hurts each time the burned one acts. It cannot be healed until the burn is gone, and it lasts until it is cured or the burned one falls. A small flame flickers over a burning monster.</td></tr>
       <tr><td>Confuse</td><td>Sometimes attacks its own side.</td></tr>
     </table>
     </div>
@@ -763,7 +762,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <h3 class="ring">Stances</h3>
     <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide, and fire hurts him less, but nature hurts him more. Hina in <span class="el nature">Māla Hula</span> heals; in <span class="el light">Shakan Mudras</span> she wards off harm. Every friend who joins you later works the same way, with two elements of their own.</p>
     <p>To change stance in battle, choose <b>Element</b>. The switch is at the top, named after the stance you are in. Choose it and it offers the other stance; switching uses your turn and gives you 1 Mana. Some moves use both elements and work in either stance.</p>
-    <p>Every battle begins in the stance boxed on the field menu: the one you last chose, in a battle or on the Status screen.</p>
+    <p>Every battle begins in the stance boxed on the field menu: the one you last chose, in a battle, on the field menu or on the Status screen.</p>
   </section>
 
   <section class="page hue" style="--h:15" id="cast">
@@ -803,8 +802,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el light"><img src="manual/la.png" alt="">Light</span></dd>
         <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that ward off harm.</dd>
         <dt>Weapon</dt><dd>Gohei</dd>
-        <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. Every kind of monster takes it differently.</dd>
-        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shaka's Light</b>, blocks the next shadow attack.</dd>
+        <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. If it takes it to heart, it sulks and loses a few turns.</dd>
+        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shaka's Light</b>, softens the next shadow attack on one ally.</dd>
         <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
       </dl>
       <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
@@ -817,7 +816,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <h2 class="cap"><b class="dc">C</b><span class="rest">reatures of<br>the Islands</span></h2>
     <p class="lead">The woods and the jungle are not empty. Here are a few of the creatures you may meet.</p>
     <div class="beasts">
-      <figure><div class="pic"><img src="manual/boar.png" alt="" loading="lazy"></div><figcaption><b>Boar</b>A wild boar from the woods above town. It roots up gardens in the night and charges anything that comes between it and a meal. Where there is one, there are usually more.</figcaption></figure>
+      <figure><div class="pic"><img src="manual/boar.png" alt="" loading="lazy"></div><figcaption><b>Wild Boar</b>A wild boar from the woods above town. It roots up gardens in the night and charges anything that comes between it and a meal. Where there is one, there are usually more.</figcaption></figure>
       <figure><div class="pic"><img src="manual/santelmo.png" alt="" loading="lazy"></div><figcaption><b>Santelmo</b>A ball of fire said to be a wandering soul. It burns what it touches, and a fire that seems to be out may flare up again.</figcaption></figure>
       <figure><div class="pic"><img src="manual/nuno_sa_punso.png" alt="" loading="lazy"></div><figcaption><b>Nuno sa Punso</b>The old man of the mound, a small spirit known for cursing whoever disturbs his home. Watch where you step.</figcaption></figure>
       <figure><div class="pic"><img src="manual/sigbin.png" alt="" loading="lazy"></div><figcaption><b>Sigbin</b>A night creature said to feed through its victim's shadow. You may smell it before you see it.</figcaption></figure>
@@ -842,10 +841,10 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Name</th><th>Price</th><th>Description</th></tr>
       <tr><td class="item"><img src="manual/noni.png" alt="">Noni Pulu</td><td class="num">10</td><td>Noni poultice. Restores 30 HP. It stinks.</td></tr>
-      <tr><td class="item"><img src="manual/awa.png" alt="">'Awa Tonic</td><td class="num">30</td><td>Kava tonic. Restores 80 HP. A calming root drink.</td></tr>
-      <tr><td class="item">Life Totem</td><td class="num">&ndash;</td><td>A carved totem. Brings a fallen friend back with half their HP. Used on an undead monster, it destroys it outright, even a boss. On any other enemy it does nothing.</td></tr>
+      <tr><td class="item"><img src="manual/awa.png" alt="">'Awa Tonic</td><td class="num">40</td><td>Kava tonic. Restores 80 HP. A calming root drink.</td></tr>
+      <tr><td class="item">Life Totem</td><td class="num">100</td><td>A carved totem. Brings a fallen friend back with half their HP. Used on an undead monster, it destroys it outright, even a boss. On any other enemy it does nothing.</td></tr>
       <tr><td class="item"><img src="manual/kukui.png" alt="">Kukui</td><td class="num">15</td><td>Candlenut oil. In battle, cures a burn.</td></tr>
-      <tr><td class="item"><img src="manual/ti_leaf.png" alt="">Ti Leaf</td><td class="num">15</td><td>A cool leaf. In battle, cures sleep and confusion.</td></tr>
+      <tr><td class="item"><img src="manual/ti_leaf.png" alt="">Ti Leaf</td><td class="num">20</td><td>A cool leaf. In battle, cures sleep and confusion.</td></tr>
       <tr><td class="item"><img src="manual/olena.png" alt="">'Ōlena</td><td class="num">15</td><td>Turmeric. In battle, cures poison.</td></tr>
     </table>
     </div>
@@ -855,14 +854,14 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="scroll">
     <table class="m">
       <tr><th>Name</th><th>Price</th><th>Notes</th></tr>
-      <tr><td>Taro</td><td class="num">4</td><td>Picked from a garden.</td></tr>
-      <tr><td>Wheat</td><td class="num">4</td><td>Picked from a garden.</td></tr>
+      <tr><td>Taro</td><td class="num">8</td><td>Picked from a garden.</td></tr>
+      <tr><td>Wheat</td><td class="num">8</td><td>Picked from a garden.</td></tr>
       <tr><td>Water</td><td class="num"></td><td>Scooped from a river or a pond.</td></tr>
       <tr><td>Egg</td><td class="num"></td><td>Laid by hens. Some monsters drop them too.</td></tr>
-      <tr><td>Broth</td><td class="num">5</td><td>A soup base.</td></tr>
-      <tr><td>Breadfruit</td><td class="num">6</td><td>Falls from trees now and then.</td></tr>
-      <tr><td>Pineapple</td><td class="num">6</td><td>Turns up when you chop trees.</td></tr>
-      <tr><td>Salt</td><td class="num">2</td><td>It cooks meat, eggs and nuts.</td></tr>
+      <tr><td>Broth</td><td class="num"></td><td>A soup base, made in the pot.</td></tr>
+      <tr><td>Breadfruit</td><td class="num">10</td><td>Falls from trees now and then.</td></tr>
+      <tr><td>Pineapple</td><td class="num">10</td><td>Turns up when you chop trees.</td></tr>
+      <tr><td>Salt</td><td class="num">2</td><td>It seasons a dish.</td></tr>
       <tr><td>Noodles</td><td class="num">10</td><td></td></tr>
       <tr><td>Fish</td><td class="num"></td><td>Caught by fishing. It needs cooking.</td></tr>
       <tr><td>Pork</td><td class="num"></td><td>It needs cooking. Raw, it makes you sick.</td></tr>
@@ -873,7 +872,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="scroll">
     <table class="m">
       <tr><th>Name</th><th>Description</th></tr>
-      <tr><td>Moves</td><td>An item that teaches one member a move, shown in the bag and in shops by the move's name, like Counter. Use it and that member learns the move. Then it is gone.</td></tr>
+      <tr><td>Elements</td><td>An item that teaches one member an element move, kept under Elements in the bag and shown in shops by the move's name, like Counter. Use it and that member learns the move. Then it is gone.</td></tr>
       <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's elements, HP and Mana. The reading stays under the enemy for the rest of the fight. Used up.</td></tr>
       <tr><td>Wood</td><td>Koa, chopped from trees with the Ko'i. Kept under Materials.</td></tr>
       <tr><td>Tools</td><td>The Ko'i, the Old Rod and the 'O'o are Key Items. Set one to Y on the tool wheel.</td></tr>
