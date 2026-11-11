@@ -254,3 +254,12 @@ kbd {
 
 /* The Game page's two-paragraph intro above the doors (Frankie, 11/10). */
 .intro { max-width: 40rem; margin: 0 auto 1.2rem; text-align: center; font-size: 1.05rem; color: var(--ink); }
+
+/* The Music page (music.html): one card per piece, in its own color, with the web MIDI player inside. */
+.tracks { margin: 1rem 0 2rem; }
+.track h2 { margin: 0; font-size: 1.2rem; }
+.track .len { color: var(--muted); font-size: .9rem; margin: .1rem 0; font-variant-numeric: tabular-nums; }
+.track .note { margin: .2rem 0 .3rem; font-family: var(--serif); }
+.track midi-player { display: block; width: 100%; margin: .5rem 0 0; }
+.track midi-player::part(control-panel) { background: var(--panel); border: 1px solid var(--line); border-radius: .5rem; color: var(--ink); }
+.track midi-player::part(time) { color: var(--muted); }
