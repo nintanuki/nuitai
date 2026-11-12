@@ -506,15 +506,15 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The market stall's list: Noni Pulu, Taro, Wheat, Breadfruit and more, each with its price in pule" width="768" height="672"></div></figure>
       <div>
-        <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick each thing and how many, then say yes once to the total. Your pule is shown at the right.</p>
-        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. The purse holds at most 999.</p>
+        <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick each thing and how many, then say yes once to the total. When choosing how many, Up and Down count one at a time, Left adds ten and Right takes ten off. Your pule is shown at the right.</p>
+        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. Your wallet holds 1,000 to start, and bigger wallets can be bought, one size at a time. A full wallet takes no more: monsters drop none and digging finds none.</p>
         <p>Each kind of seller has its own wares. A grocer sells food, seeds and everyday medicine. An angler sells bait. A hunters' lodge sells weapons, relics and moves. Some sellers turn up where you least expect them.</p>
         <p>Some people are good at haggling. With the right friend along, every seller charges less.</p>
       </div>
     </div>
     <h3 class="ring">Around Town</h3>
     <p>Every village has a <b>loremaster</b>, an old man who knows the stories of the islands. Ask him about the world as often as you like. What he tells you goes in your Lore pages.</p>
-    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. The Great Boar is a hunt of its own. The other hunt is always up, and when it is paid the next goes up. The hunters there have tips on fighting for anyone who asks.</p>
+    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. The Great Boar is a hunt of its own, and beside it one more hunt is always up; when that one is paid, the next goes up. If your wallet is too full for the pay, the keeper holds it until there is room. The hunters there have tips on fighting for anyone who asks.</p>
     <p>Some towns have an <b>inn</b>. A night's sleep costs a few pule and heals the whole party.</p>
     <h3 class="ring">Kaigara</h3>
     <p>Kaigara is the shell game of the Kame, played with cowries on a chalk grid of 9 by 9 points. In some lodges a player sits at a low table, ready for anyone who wants a game, and some play for coins.</p>
@@ -532,8 +532,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <p>There are three: the Ko'i to chop, the Old Rod to fish and the 'O'o to dig.</p>
       </div>
     </div>
-    <p>The <b>Ko'i</b>, a stone adze, chops trees. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! Ten chops fell a tree, and five more clear its stump. The wood goes in the bag. The trees stand again when you leave the area. Chopped trees sometimes drop food, too.</p>
-    <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to land the fish. Be too slow and it gets away. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
+    <p>Small finds, like the wood from a tree, an egg, a fish or what a dig turns up, show for a moment at the top of the screen, in the window that names each new area. They never stop you, so keep going.</p>
+    <p>The <b>Ko'i</b>, a stone adze, chops trees. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! Ten chops fell a tree, and five more clear its stump. The wood goes in the bag. The trees stand again after you have walked 600 steps; leaving the area does not bring them back. Chopped trees sometimes drop food, too.</p>
+    <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to hook it. Be too slow and it gets away. A fish, or anything rare, has to be reeled in: roll the D-Pad round and round the same way before it gets off the hook. Bait makes a fish likelier to bite. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
     <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Not everyone in the village will be glad to see Kailo digging!</p>
     <h3 class="ring">Fresh Water</h3>
     <p>Face a river, a pond or a spring and press A to scoop up fresh water for cooking. Seawater is no good, and neither is the shore. A spring with little sparkles over it heals: press A to rest there, and once everyone is at full health, press A again to scoop water from it. After five scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
@@ -591,6 +592,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div>
         <p>Every element move sits in a numbered row, from 1 to 7. The row is what the move costs in Mana. Each row holds three moves.</p>
         <p>Move a move up to a higher row and it grows stronger, but it costs more.</p>
+        <p>Not every slot is open at first. A locked one says Locked, and beating a great beast opens another. The last row is the bank: moves you know but are not taking wait there.</p>
         <p>The window at the bottom tells you what the move under the cursor does.</p>
       </div>
     </div>
@@ -630,7 +632,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div>
         <p>Info opens a short list of three: <b>Bestiary</b>, <b>Lore</b> and <b>Quests</b>.</p>
         <p><b>Bestiary</b> has a page for every creature you have beaten.</p>
-        <p><b>Lore</b> holds pages about the world: its people, places, food, gods and faiths, fighting arts and everyday words, sorted by kind. New pages appear as your journey goes on, so look in now and then. A Food page appears the first time you have that food in the bag.</p>
+        <p><b>Lore</b> holds pages about the world: its people, places, food, gods and faiths, fighting arts and everyday words, sorted by kind. New pages appear as your journey goes on, and a note at the top of the screen says when one is added. Talk to someone with a name and they get a People page, with their picture when they have one. A Food page appears the first time you have that food in the bag.</p>
         <p><b>Quests</b> lists what you have been asked to do, one short line each. Move the cursor onto one to read what to do next. A quest shows up once the game has told you about it, and moves to the bottom, marked Done, when it is over. The hunts from the hunters' lodge are in the same list, each starting with "Hunt:" and the count so far.</p>
       </div>
     </div>
@@ -642,30 +644,30 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p class="lead">A battle starts when you touch a monster. Beat every monster to win!</p>
     <figure class="shot"><div class="frame">
       <img src="manual/battle-command.png" alt="A battle against three boars in the jungle" width="768" height="672">
-      <span class="pin" style="left:9%;top:8%">1</span>
+      <span class="pin" style="left:91%;top:8%">1</span>
       <span class="pin" style="left:58%;top:30%">2</span>
       <span class="pin" style="left:30%;top:70%">3</span>
       <span class="pin" style="left:53%;top:66%">4</span>
       <span class="pin" style="left:95%;top:66%">5</span>
     </div></figure>
     <ol class="key">
-      <li><b>1</b><span><b>Turn Order</b><br>Who acts next, from the top down. The party is marked in blue, monsters in red.</span></li>
+      <li><b>1</b><span><b>Turn Order</b><br>Down the right side: who acts next, from the top down. The party is marked in blue, monsters in red.</span></li>
       <li><b>2</b><span><b>Enemies</b><br>Know your foe!</span></li>
-      <li><b>3</b><span><b>Commands</b><br>What the member whose turn it is can do. Press left or right on the D-Pad for more.</span></li>
-      <li><b>4</b><span><b>Elements</b><br>The member's two elements. The stance they fight in is boxed in yellow.</span></li>
-      <li><b>5</b><span><b>Hit Points</b><br>HP left. The small blue marks under the bar are Mana.</span></li>
+      <li><b>3</b><span><b>Commands</b><br>On the left: what the member whose turn it is can do. Press left or right on the D-Pad for more.</span></li>
+      <li><b>4</b><span><b>Elements</b><br>On the right, by each member's name: their two elements. The stance they fight in is boxed in yellow.</span></li>
+      <li><b>5</b><span><b>Hit Points</b><br>HP left, out of the most. The number rolls up or down as a hit or a heal lands, and turns yellow when HP runs low. The small marks under it are Mana.</span></li>
     </ol>
 
     <div class="scroll">
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
-      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b> and Hina's <b>Scold</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero (the bar's pips turn red), and until it is back to zero no Skill and no element can be used.</td></tr>
+      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b> and Hina's <b>Scold</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero: the fighter is out of breath, the Mana pips turn red, and until it is back to zero no Skill and no element can be used.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
       <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
-      <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights.</td></tr>
-      <tr><td>Equip</td><td>Two choices. <b>Weapon</b>: take a spare weapon from the bag. <b>Element</b>: move one element on the grid. Either one ends your turn.</td></tr>
+      <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights. Only the one who runs gets away, with the HP they have; the rest fight on. If everyone left behind falls, the fight is over, but it is not the end of the game.</td></tr>
+      <tr><td>Equip</td><td>Two choices. <b>Weapon</b>: take a spare weapon from the bag. <b>Element</b>: move one element, from the bank into a row or from one row to another. Either one ends your turn.</td></tr>
       <tr><td>Swap</td><td>Trade places with someone on the bench. It costs nothing, and the one coming in takes the turn.</td></tr>
       <tr><td>Team Up</td><td>Two members strike together. See below.</td></tr>
     </table>
@@ -690,8 +692,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure class="shot"><div class="frame"><img src="manual/battle-block.png" alt="The parry meter: red arrows sliding toward the gold zone" width="768" height="672"></div></figure>
       <div>
         <p>When a monster strikes with its plain blows, the <b>parry meter</b> takes the place of your commands. Red arrows slide toward a gold zone, one pair for each blow. Press <b>A</b> as a pair crosses the zone.</p>
-        <p>A <b>catch</b> takes half the damage, and <b>Glancing</b> rises over the one it hit. Catch it dead center for a <b>PARRY</b>, and the blow does no harm at all. Miss, and the blow lands in full. If you were defending, a catch takes only a quarter.</p>
-        <p>Only plain blows can be parried, never a monster's elements or Skills, so a Skill arrives with no meter at all. A good Perception widens the zone, and a quick monster sends its arrows faster.</p>
+        <p>Catch a pair dead center and <b>Parried!</b> rises from the meter: the blow does no harm at all. A catch anywhere else in the zone says nothing, but the blow does less damage, and less still the nearer it was to the center. Miss, and the blow lands in full. If you were defending, a catch takes off its share on top of Defend's half.</p>
+        <p>Parry three blows of one attack in a row, all dead center, and the one who parried strikes back at once with a strong stroke.</p>
+        <p>Only plain blows can be parried, never a monster's elements or Skills, so a Skill arrives with no meter at all. A good Perception widens the zone, good Luck widens its center, and a quick monster sends its arrows faster.</p>
       </div>
     </div>
 
@@ -732,8 +735,10 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </table>
     </div>
     <p>Your own fighters show no picture change. The trouble is named in the party window beside their HP, and floats up the moment it lands.</p>
+    <p>Some help lasts too. <b>Haste</b> brings a fighter's turns around sooner, more when it is cast from a higher row, and it lasts the rest of the fight, until that fighter falls.</p>
 
     <h3 class="ring">Victory and Defeat</h3>
+    <p>The fight is won only when every monster is down. Beating the biggest one does not end it while any other still stands.</p>
     <p>Monsters you beat drop pule, and sometimes an item. A friend's help after a fight works only while that friend is still standing. If your whole party falls, the game is over, and you must start again from your last save.</p>
   </section>
 
@@ -786,7 +791,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
         <dt>Weapon</dt><dd>Frying Pan</dd>
         <dt>Skill</dt><dd><b>Cook.</b> He cooks a meal right in the battle. Only meals you have already made at the pot are on his list, and he takes what he needs from the bag. One meal feeds the whole party, for the ingredients of one, and does for each of them what it would do from the bag. Stir steadily for the best meal. On his next turn he serves it, and a meal can fill them past their full HP for the rest of the fight. A hit before then ruins it. The better he gets with tools, the more his cooking heals, up to double. Later he learns to swap one ingredient for another of its kind (a vegetable can even stand in for meat, for friends who eat none), then to cook without using his ingredients up, and at last to cook with no ingredients at all.</dd>
-        <dt>Moves</dt><dd><b>Flame Kick</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half. <b>Counter</b>: he guards his friends and kicks back at whoever strikes them.</dd>
+        <dt>Moves</dt><dd><b>Flame Kick</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half. <b>Counter</b>: he guards his friends and kicks back at whoever strikes them. <b>Wave Fist</b>, a quick water punch.</dd>
         <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
       </dl>
       <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page" width="768" height="672" loading="lazy"></div></figure>
@@ -806,7 +811,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that ward off harm.</dd>
         <dt>Weapon</dt><dd>Gohei</dd>
         <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. If it takes it to heart, it sulks and loses a few turns.</dd>
-        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shaka's Light</b>, softens the next shadow attack on one ally.</dd>
+        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shaka's Light</b>, softens the next shadow attack on one ally. <b>Green Dream</b>, brings an ally back once if they fall.</dd>
         <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
       </dl>
       <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
@@ -837,6 +842,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure class="shot"><div class="frame"><img src="manual/inventory.png" alt="The Items screen, with Noni in the bag" width="768" height="672"></div></figure>
       <p>The party shares one bag, sorted by kind: Medicine, Ingredients, Meals, Weapons, Relics, Key Items and more. Use items with Items on the field menu, or Item in battle. On the field menu, Items asks which kind first; in a list, press left or right on the D-Pad to turn to the next kind, and each press of B goes back one step. The window at the top tells you what the item under the cursor does. When an item has an island name, the window says what it is in plain English first, such as "Noni poultice" or "Taro paste".</p>
     </div>
+
+    <h3 class="ring">Battle Bags</h3>
+    <p>In a fight, Item lists only what the one whose turn it is carries in their own battle bag. Each member starts with a Grass Sash that holds 4 things, one to a slot, and bigger bags (the Coir Belt, Kapa Satchel, Net Bag and Voyager Bag) hold more. Anything you can use in a fight fits: medicine, Life Totems, Seer's Shells, Smoke Bombs, meals, and food that heals, but never tools or gear. To pack one, pick a medicine on the Items screen and choose Give to, then the member; the last kind, Battle Bags, shows each bag and lets you give things back. Whatever goes in a bag leaves the shared bag, and a member's Status page shows their bag and how full it is. Kailo's Cook still cooks from the shared bag.</p>
 
     <h3 class="ring">Island Medicine</h3>
     <p>The islanders heal with the plants that grow around them: fruit, roots, leaves and oil.</p>
@@ -875,8 +883,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="scroll">
     <table class="m">
       <tr><th>Name</th><th>Description</th></tr>
-      <tr><td>Elements</td><td>An item that teaches one member an element move, kept under Elements in the bag and shown in shops by the move's name, like Counter. Use it and that member learns the move. Then it is gone.</td></tr>
+      <tr><td>Elements</td><td>An item that teaches one member an element move, kept under Elements in the bag and shown in shops by the move's name, like Counter. Some are a <b>kapa</b>, painted bark cloth that shows the move in pictures, so anyone can learn from it. Some are a <b>lontar</b>, a palm-leaf book with the move written in it, which needs someone to read it out: Hina can, so a lontar waits in the bag while she is away. Use it and that member learns the move. Then it is gone.</td></tr>
       <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's elements, HP and Mana. The reading stays under the enemy for the rest of the fight. Used up.</td></tr>
+      <tr><td>Smoke Bomb</td><td>Throw it in battle and the whole party gets away at once, with no beat to keep. Only where Escape works. Used up.</td></tr>
       <tr><td>Wood</td><td>Koa, chopped from trees with the Ko'i. Kept under Materials.</td></tr>
       <tr><td>Tools</td><td>The Ko'i, the Old Rod and the 'O'o are Key Items. Set one to Y on the tool wheel.</td></tr>
       <tr><td>Seeds</td><td>A Seed of Strength, a Seed of Agility, and more. Each raises that stat for one member. Rare!</td></tr>
