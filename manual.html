@@ -356,7 +356,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 <script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
-try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-11</span></footer>
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-12</span></footer>
 </aside>
 <script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
 b.addEventListener("click",function(){body.classList.toggle("menu-open")});
@@ -514,7 +514,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
     <h3 class="ring">Around Town</h3>
     <p>Every village has a <b>loremaster</b>, an old man who knows the stories of the islands. Ask him about the world as often as you like. What he tells you goes in your Lore pages.</p>
-    <p>Hunters gather at a <b>hunters' lodge</b>. Its keeper posts a <b>bounty</b>: beat the monster named, then come back to be paid. When one is done, the next goes up. The hunters there have tips on fighting for anyone who asks.</p>
+    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. The Great Boar is a hunt of its own. The other hunt is always up, and when it is paid the next goes up. The hunters there have tips on fighting for anyone who asks.</p>
     <p>Some towns have an <b>inn</b>. A night's sleep costs a few pule and heals the whole party.</p>
     <h3 class="ring">Kaigara</h3>
     <p>Kaigara is the shell game of the Kame, played with cowries on a chalk grid of 9 by 9 points. In some lodges a player sits at a low table, ready for anyone who wants a game, and some play for coins.</p>
@@ -536,7 +536,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to land the fish. Be too slow and it gets away. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
     <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Not everyone in the village will be glad to see Kailo digging!</p>
     <h3 class="ring">Fresh Water</h3>
-    <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good. After five scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
+    <p>Face a river, a pond or a spring and press A to scoop up fresh water for cooking. Seawater is no good, and neither is the shore. A spring with little sparkles over it heals: press A to rest there, and once everyone is at full health, press A again to scoop water from it. After five scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
     <h3 class="ring">Cooking</h3>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The cooking pot: the ingredients on the right, ready to go in" width="768" height="672"></div></figure>
@@ -578,7 +578,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Equip</td><td>Change weapons and relics, take them off, and see how well each member knows their weapons.</td></tr>
       <tr><td>Status</td><td>A page for each member: HP, Skill, stats and stances. Change the starting stance here.</td></tr>
       <tr><td>Party</td><td>Choose who fights and who waits on the bench.</td></tr>
-      <tr><td>Info</td><td>The Lore of the islands and the bestiary.</td></tr>
+      <tr><td>Info</td><td>Opens a short list: the Bestiary, the Lore of the islands, and your Quests.</td></tr>
       <tr><td>Config</td><td>Settings for the game: the cursor, how fast messages go, the window color, sound and the buttons.</td></tr>
     </table>
     </div>
@@ -626,10 +626,12 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
 
     <h3 class="ring">Info</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Info screen: the Lore pages by kind, then the Bestiary" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Info screen: Bestiary, Lore and Quests" width="768" height="672"></div></figure>
       <div>
-        <p><b>Lore</b> holds pages about the people and places of the islands, sorted by kind: People, Places, Food, Gods, Faiths, Arts and Words. New pages appear as your journey goes on, so look in now and then. A Food page appears the first time you have that food in the bag.</p>
+        <p>Info opens a short list of three: <b>Bestiary</b>, <b>Lore</b> and <b>Quests</b>.</p>
         <p><b>Bestiary</b> has a page for every creature you have beaten.</p>
+        <p><b>Lore</b> holds pages about the world: its people, places, food, gods and faiths, fighting arts and everyday words, sorted by kind. New pages appear as your journey goes on, so look in now and then. A Food page appears the first time you have that food in the bag.</p>
+        <p><b>Quests</b> lists what you have been asked to do, one short line each. Move the cursor onto one to read what to do next. A quest shows up once the game has told you about it, and moves to the bottom, marked Done, when it is over. The hunts from the hunters' lodge are in the same list, each starting with "Hunt:" and the count so far.</p>
       </div>
     </div>
     <figure class="shot"><div class="frame"><img src="manual/lore-page.png" alt="A Lore page about Kulāiwi" width="768" height="672"></div><figcaption>A Lore page. Press left or right to turn to the next one.</figcaption></figure>
@@ -663,13 +665,13 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
       <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights.</td></tr>
-      <tr><td>Weapon</td><td>Change weapons, if you have another.</td></tr>
+      <tr><td>Equip</td><td>Two choices. <b>Weapon</b>: take a spare weapon from the bag. <b>Element</b>: move one element on the grid. Either one ends your turn.</td></tr>
       <tr><td>Swap</td><td>Trade places with someone on the bench. It costs nothing, and the one coming in takes the turn.</td></tr>
       <tr><td>Team Up</td><td>Two members strike together. See below.</td></tr>
     </table>
     </div>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/battle-left.png" alt="Left on the D-Pad: WEAPON, DEFEND, ESCAPE" width="768" height="672"></div><figcaption>Press left: Weapon, Defend, Escape</figcaption></figure>
+      <figure class="shot"><div class="frame"><img src="manual/battle-left.png" alt="Left on the D-Pad: EQUIP, DEFEND, ESCAPE" width="768" height="672"></div><figcaption>Press left: Equip, Defend, Escape</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="manual/battle-right.png" alt="Right on the D-Pad: SWAP and TEAM UP" width="768" height="672"></div><figcaption>Press right: Swap and Team Up</figcaption></figure>
     </div>
 
@@ -857,7 +859,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><th>Name</th><th>Price</th><th>Notes</th></tr>
       <tr><td>Taro</td><td class="num">8</td><td>Picked from a garden.</td></tr>
       <tr><td>Wheat</td><td class="num">8</td><td>Picked from a garden.</td></tr>
-      <tr><td>Water</td><td class="num"></td><td>Scooped from a river or a pond.</td></tr>
+      <tr><td>Water</td><td class="num"></td><td>Scooped from a river, a pond or a spring.</td></tr>
       <tr><td>Egg</td><td class="num"></td><td>Laid by hens. Some monsters drop them too.</td></tr>
       <tr><td>Broth</td><td class="num"></td><td>A soup base, made in the pot.</td></tr>
       <tr><td>Breadfruit</td><td class="num">10</td><td>Falls from trees now and then.</td></tr>
