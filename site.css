@@ -263,3 +263,15 @@ kbd {
 .track midi-player { display: block; width: 100%; margin: .5rem 0 0; }
 .track midi-player::part(control-panel) { background: var(--panel); border: 1px solid var(--line); border-radius: .5rem; color: var(--ink); }
 .track midi-player::part(time) { color: var(--muted); }
+
+/* The Sound page: parts, effect groups and play buttons */
+.jump { color: var(--muted); }
+h2.part { margin: 2.2rem 0 .3rem; font-size: 1.6rem; }
+.sfx-group > h3 { margin: 0 0 .2rem; font-size: 1.15rem; }
+.sfx-group > .note { margin: 0 0 .6rem; color: var(--muted); }
+.sfx { display: flex; align-items: center; gap: .8rem; padding: .45rem 0; border-top: 1px solid var(--line); }
+.sfx .play { flex: none; width: 2.4rem; height: 2.4rem; border-radius: 50%; border: 1px solid var(--line);
+  background: hsl(var(--h) 60% 42%); color: #fff; font-size: 1rem; cursor: pointer; line-height: 1; }
+.sfx .play:hover { filter: brightness(1.15); }
+.sfx .what b { display: block; }
+.sfx .what span { color: var(--muted); }
