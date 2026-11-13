@@ -157,7 +157,7 @@ section .note { color: var(--muted); margin: 0 0 1rem; }
 /* One frame of the sprite sheet: the walk-down row, 64 px frames, drawn three times as big. */
 .sprite .frame {
   display: block; height: 12rem; image-rendering: pixelated;
-  background: url("art/sprites/kailo-lpc.png") no-repeat; background-size: 2496px auto;
+  background: url("game/assets/sprites/characters/heroes/kailo/lpc.png") no-repeat; background-size: 2496px auto;
   background-position: center -1920px; background-color: var(--panel);
 }
 .block {
