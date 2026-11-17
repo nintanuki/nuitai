@@ -356,7 +356,7 @@ try{localStorage.setItem("nuitai-site-theme",t)}catch(e){}label()});label()})();
 <script>(function(){var r=document.documentElement,b=document.getElementById("art-btn");
 function label(){b.textContent=r.dataset.art==="off"?"AI art: hidden":"AI art: shown"}
 b.addEventListener("click",function(){var off=r.dataset.art!=="off";if(off)r.dataset.art="off";else delete r.dataset.art;
-try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-16</span></footer>
+try{localStorage.setItem("nuitai-ai-art",off?"off":"on")}catch(e){}label()});label()})();</script><span class="shell-credits"><a href="credits.html">Credits and legal</a> &middot; Built 2026-11-17</span></footer>
 </aside>
 <script>(function(){var body=document.body,b=document.getElementById("shell-menu-btn"),s=document.getElementById("shell-shade");
 b.addEventListener("click",function(){body.classList.toggle("menu-open")});
@@ -451,7 +451,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#d23a2a"><div class="badge"><big>A</big><small>Button</small></div>
         <p>The A Button confirms. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking. In battle, press it as a monster's blows arrive to parry them (<a class="xref" href="#battle">page 14</a>).</p></div>
       <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
-        <p>The B Button cancels the last choice you made and takes you back. When someone is talking, it shows the rest of their words at once. While walking, it swings the lead fighter's weapon: hit a monster with it and the battle starts with that blow already landed. Facing water, it makes Kailo jump in (<a class="xref" href="#field">page 8</a>).</p></div>
+        <p>The B Button cancels the last choice you made and takes you back. When someone is talking, it shows the rest of their words at once. While walking, it swings the lead fighter's weapon: hit a monster with it and the battle starts with that blow already landed. Facing water, once he knows how to swim, it makes Kailo jump in (<a class="xref" href="#field">page 8</a>).</p></div>
       <div class="button" style="--b:#3554b8"><div class="badge"><big>X</big><small>Button</small></div>
         <p>Use the X Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>). When someone is talking, press it to move their words to the top of the screen, and again to move them back.</p></div>
       <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
@@ -535,11 +535,12 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Small finds, like the wood from a tree, an egg, a fish or what a dig turns up, show for a moment at the top of the screen, in the window that names each new area. They never stop you, so keep going.</p>
     <p>The <b>Ko'i</b>, a stone adze, chops trees. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! Ten chops fell a tree, and five more clear its stump. The wood goes in the bag. The trees stand again after you have walked 600 steps; leaving the area does not bring them back. Chopped trees sometimes drop food, too.</p>
     <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to hook it. Be too slow and it gets away. A fish, or anything rare, has to be reeled in: roll the D-Pad round and round the same way before it gets off the hook. Bait makes a fish likelier to bite. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
-    <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Not everyone in the village will be glad to see Kailo digging!</p>
+    <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Nobody will let Kailo dig up a village, so take the 'O'o out of town.</p>
     <h3 class="ring">Fresh Water</h3>
     <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good, and neither is the shore. A spring with little sparkles over it heals instead of giving water: press A to rest there. After five scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
     <h3 class="ring">Swimming</h3>
-    <p>Face water and press B to jump in. Only Kailo swims. The friends with him stay on the shore and wait for him, but not forever: they go home to the village if he takes too long, and join him again when he comes back to them. Alone in the water, he fights whatever he meets alone. Monsters live in the sea too, so a swim can be dangerous.</p>
+    <p>Kailo has to learn to swim before he can go in. Once he knows how, face water and press B to jump in. Only Kailo swims. The friends with him stay on the shore and wait for him, but not forever: they go home to the village if he takes too long, and join him again when he comes back to them. Alone in the water, he fights whatever he meets alone. Monsters live in the sea too, so a swim can be dangerous.</p>
+    <p>A fight in the water is different. Fire goes out there: fire moves do no harm and nothing can be burned, though a weapon's plain strokes still land. Nobody can cook underwater, so Cook is grayed out.</p>
     <h3 class="ring">Cooking</h3>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The cooking pot: the ingredients on the right, ready to go in" width="768" height="672"></div></figure>
@@ -666,7 +667,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
       <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b> and Hina's <b>Scold</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero: the fighter is out of breath, the Mana pips turn red, and until it is back to zero no Skill and no element can be used.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
-      <tr><td>Item</td><td>Use an item from the bag. Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
+      <tr><td>Item</td><td>Use an item from the battle bag of the one whose turn it is (<a class="xref" href="#items">page 26</a>). Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
       <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights. Only the one who runs gets away, with the HP they have; the rest fight on. If everyone left behind falls, the fight is over, but it is not the end of the game.</td></tr>
       <tr><td>Equip</td><td>Two choices. <b>Weapon</b>: take a spare weapon from the bag. <b>Element</b>: move one element, from the bank into a row or from one row to another. Either one ends your turn.</td></tr>
@@ -705,7 +706,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Healing hurts the undead. A heal, from an item or an element, lands on an undead monster as damage instead. Revive does the same: used on an undead monster, it destroys it.</p>
 
     <h3 class="ring">Combo</h3>
-    <p>A Combo is ready when the member whose turn comes right after yours, with no one in between, fights in a stance whose element pairs with yours. Each pair of elements makes its own Combo: Kailo in <span class="el fire">Lelua</span> and Hina in <span class="el nature">Māla Hula</span> make one, Kailo in <span class="el fire">Lelua</span> and Hina in <span class="el light">Shakan Mudras</span> another. Not every pair has one yet. It takes all 7 Mana from both of you and tires you both, and it stays grayed out until you both have 7.</p>
+    <p>A Combo is ready when the member whose turn comes right after yours, with no one in between, fights in a stance whose element pairs with yours. Each pair of elements makes its own Combo: Kailo in <span class="el fire">Lelua</span> and Hina in <span class="el nature">Māla Hula</span> make one, Kailo in <span class="el fire">Lelua</span> and Hina in <span class="el light">Shakan Mudras</span> another. Not every pair has one yet. It takes all 7 Mana from both of you and tires you both. Combo lists the Combos the two of you can make, and each one stays grayed out until you both have 7.</p>
 
     <h3 class="ring">Weapons and Skills</h3>
     <p>Every fighter can hold three kinds of weapon, and each kind has its own Skill. The weapon in hand decides which one the Skill command is.</p>
@@ -846,7 +847,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
 
     <h3 class="ring">Battle Bags</h3>
-    <p>In a fight, Item lists only what the one whose turn it is carries in their own battle bag. Each member starts with a Grass Sash that holds 4 things, one to a slot, and bigger bags (the Coir Belt, Kapa Satchel, Net Bag and Voyager Bag) hold more. Anything you can use in a fight fits: medicine, Life Totems, Seer's Shells, Smoke Bombs, meals, and food that heals, but never tools or gear. To pack one, pick a medicine on the Items screen and choose Give to, then the member; the last kind, Battle Bags, shows each bag and lets you give things back. Whatever goes in a bag leaves the shared bag, and a member's Status page shows their bag and how full it is. Kailo's Cook still cooks from the shared bag.</p>
+    <p>In a fight, Item lists only what the one whose turn it is carries in their own battle bag. Each member starts with a Grass Sash that holds 4 things, one to a slot, and bigger bags (the Coir Belt, Kapa Satchel, Net Bag and Voyager Bag) hold more. Anything you can use in a fight fits: medicine, Life Totems, Seer's Shells, Smoke Bombs, meals, and food that heals, but never tools or gear. To pack one, pick the item on the Items screen and choose Give to, then the member; the member's own bag sits at the top of the Items screen, and picking a slot there gives its item back to the shared bag. Whatever goes in a bag leaves the shared bag, and a member's Status page shows their bag and how full it is. Kailo's Cook still cooks from the shared bag.</p>
 
     <h3 class="ring">Island Medicine</h3>
     <p>The islanders heal with the plants that grow around them: fruit, roots, leaves and oil.</p>
