@@ -277,6 +277,10 @@
   }
   .win b.label { font-family: var(--pixel); font-size: .65rem; display: block; margin-bottom: .4rem; color: #ffe27a; letter-spacing: .05em; }
   .win p { margin: .3rem 0; }
+  /* A bit of the world's lore, for flavor, as the old booklets had (Frankie, 11/17). */
+  .tale { margin: 1rem 0; padding: .6rem .9rem; border-left: 4px solid hsl(var(--h) var(--s) var(--l)); background: var(--row); font-family: var(--serif); }
+  .tale b.label { display: block; font-style: normal; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: hsl(var(--h) var(--s) var(--l)); margin-bottom: .2rem; }
+  .tale p { margin: .25rem 0; font-style: italic; }
 
   /* The table of contents. */
   .contents { list-style: none; padding: 0; margin: .5rem 0 0; }
@@ -325,6 +329,13 @@
 
   .item img { width: 32px; height: 32px; image-rendering: pixelated; vertical-align: middle; margin-right: .4rem; }
   .coin { width: 16px; height: 16px; image-rendering: pixelated; vertical-align: -2px; }
+  /* The world map, as the old booklets had one: the painted map with the region names, the program map when the art switch is off. */
+  .bmap { position: relative; margin: .7rem 0; }
+  .bmap img { width: 100%; height: auto; display: block; border-radius: 3px; }
+  .bmap .map-plain { display: none; }
+  html[data-art="off"] .bmap .map-plain { display: block; }
+  .bmap .place { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font: 600 9px/1.2 var(--sans, sans-serif); color: #fff; padding: .1em .45em; border-radius: 99px; background: rgb(10 20 40 / .72); border: 1.5px solid rgb(255 255 255 / .55); }
+  .bmap .place.hue { border-color: hsl(var(--h) 75% 66%); }
 </style>
 </head>
 <body class="shelled">
@@ -389,14 +400,13 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <h2 class="cap"><b class="dc">T</b><span class="rest">able of<br>Contents</span></h2>
     <ol class="contents">
       <li class="hue" style="--h:190"><a href="#world">The World of Nuitai</a><span class="dots"></span><span class="pg">3</span></li>
+      <li class="hue" style="--h:15"><a href="#cast">Cast of Characters</a><span class="dots"></span><span class="pg">20</span></li>
       <li class="hue" style="--h:220"><a href="#controls">Basic Controls</a><span class="dots"></span><span class="pg">4</span></li>
       <li class="hue" style="--h:160"><a href="#start">Getting Started</a><span class="dots"></span><span class="pg">6</span></li>
       <li class="hue" style="--h:95"><a href="#field">Out in the World</a><span class="dots"></span><span class="pg">8</span></li>
       <li class="hue" style="--h:265"><a href="#menu">The Field Menu</a><span class="dots"></span><span class="pg">10</span></li>
       <li class="hue" style="--h:350"><a href="#battle">Battle Screen</a><span class="dots"></span><span class="pg">14</span></li>
       <li class="hue" style="--h:40"><a href="#elements">Elements and Stances</a><span class="dots"></span><span class="pg">18</span></li>
-      <li class="hue" style="--h:15"><a href="#cast">Cast of Characters</a><span class="dots"></span><span class="pg">20</span></li>
-      <li class="hue" style="--h:20"><a href="#bestiary">Creatures of the Islands</a><span class="dots"></span><span class="pg">24</span></li>
       <li class="hue" style="--h:130"><a href="#items">Items</a><span class="dots"></span><span class="pg">26</span></li>
       <li class="hue" style="--h:300"><a href="#stronger">Growing Stronger</a><span class="dots"></span><span class="pg">28</span></li>
       <li class="hue" style="--h:180"><a href="#guide">Adventure Guide</a><span class="dots"></span><span class="pg">30</span></li>
@@ -406,8 +416,87 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
   <section class="page hue" style="--h:190" id="world">
     <h2 class="cap"><b class="dc">T</b><span class="rest">he World<br>of Nuitai</span></h2>
     <p class="lead">Nuitai is a world of ocean, scattered with islands that circle a great whirlpool. Its people say that magic is motion: a dance, a kick, a breath can call on the elements.</p>
+    <figure class="bmap"><img class="ai" src="art/maps/nuitai-painted-map.webp" alt="A painted map of Nuitai: a ring of islands around the Great Whirlpool."><img class="map-plain" src="art/maps/nuitai-picture-map-to-scale.svg" alt="A map of Nuitai: a ring of islands around the Great Whirlpool.">
+    <span class="place ai" style="left:50%;top:56%">Te Pito o Nuitai</span>
+    <span class="place ai" style="left:49.5%;top:3.5%">Tokelau</span>
+    <span class="place ai hue" style="left:22%;top:29%;--h:160">Kame Kingdom</span>
+    <span class="place ai hue" style="left:78.5%;top:11%;--h:120">Māla Iki</span>
+    <span class="place ai hue" style="left:81%;top:26%;--h:120">Lanuloa</span>
+    <span class="place ai hue" style="left:13%;top:59%;--h:80">Matahari</span>
+    <span class="place ai hue" style="left:13%;top:40%;--h:40">Kota Emas</span>
+    <span class="place ai hue" style="left:21%;top:76%;--h:240">Bayang Seas</span>
+    <span class="place ai hue" style="left:47%;top:93%;--h:280">Matua</span>
+    <span class="place ai hue" style="left:74%;top:90%;--h:0">Velafi</span>
+    <span class="place ai" style="left:50%;top:22%">Floating Continent</span></figure>
     <p>Kulāiwi is a small island in the Māla Iki Islands, beside Māla Iki itself, the largest island of the chain. It has one village, also called Kulāiwi. This is the home of Kailo, the village cook, and Hina, a young priestess.</p>
-    <p>It is the last day of summer. The boars have come down from the woods again, and they are digging up the taro patch. Tonight the whole village gathers for Old Pono's wake. Before then, someone has to deal with the boars, and with the biggest of them all, the Great Boar, at the top of the woods.</p>
+    <p>It is the last day of summer. The boars have come down from the woods again, and they are digging up the taro patch. Tonight the whole village gathers for Old Pono's wake. Before then, someone has to deal with the boars, and with the biggest of them all, the Great Boar.</p>
+  </section>
+
+  <section class="page hue" style="--h:15" id="cast">
+    <h2 class="cap"><b class="dc">C</b><span class="rest">ast of<br>Characters</span></h2>
+    <p class="lead">Along the way, Kailo will be joined by friends, each with two elements, three kinds of weapon and Skills of their own. Everything Kailo and Hina teach you works for them too.</p>
+
+    <div class="sheet" style="--hc:var(--fire)">
+      <div class="hero">
+        <img src="manual/kailo_portrait.png" alt="Kailo">
+        <div>
+          <h3>Kailo</h3>
+          <p class="role">The Cook</p>
+          <p>The village cook, about nineteen, who looks after a house full of younger brothers, sisters and cousins. He has never left the islands and dreams of seeing the world. Wasting food upsets him.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el fire"><img src="manual/afi.png" alt="">Fire</span> and <span class="el water"><img src="manual/wai.png" alt="">Water</span></dd>
+        <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
+        <dt>Weapon</dt><dd>Frying Pan</dd>
+        <dt>Skill</dt><dd><b>Cook.</b> He cooks a meal right in the battle. Only meals you have already made at the pot are on his list, and he takes what he needs from the bag. One meal feeds the whole party, for the ingredients of one, and does for each of them what it would do from the bag. Stir steadily for the best meal. On his next turn he serves it, and a meal can fill them past their full HP for the rest of the fight. A hit before then ruins it. The better he gets with tools, the more his cooking heals, up to double.</dd>
+        <dt>Moves</dt><dd><b>Sauté</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half. <b>Counter</b>: he guards his friends and kicks back at whoever strikes them. <b>Wave Fist</b>, a quick water punch.</dd>
+        <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="sheet" style="--hc:var(--nature)">
+      <div class="hero">
+        <img src="manual/hina_portrait.png" alt="Hina">
+        <div>
+          <h3>Hina</h3>
+          <p class="role">The Māla Priestess</p>
+          <p>A young priestess of Māla and the party's healer. Sharp tongued, and usually right. One day she hopes to become the high priestess of her village.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el light"><img src="manual/la.png" alt="">Light</span></dd>
+        <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that ward off harm.</dd>
+        <dt>Weapon</dt><dd>Gohei</dd>
+        <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. If it takes it to heart, it sulks and loses a few turns.</dd>
+        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shadow Guard</b>, softens the next shadow attack on one ally. <b>Green Dream</b>, brings an ally back once if they fall.</dd>
+        <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="sheet" style="--hc:var(--shadow)">
+      <div class="hero">
+        <img src="manual/tawiri_portrait.png" alt="Tawiri">
+        <div>
+          <h3>Tawiri</h3>
+          <p class="role">The Caller</p>
+          <p>An old Caller of the dead from far across the sea, half blind and bent with age. She is cheerful about death and grim about almost everything else.</p>
+        </div>
+      </div>
+      <dl class="facts">
+        <dt>Elements</dt><dd><span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span> and <span class="el spirit"><img src="manual/mana.png" alt="">Spirit</span></dd>
+        <dt>Stances</dt><dd><b class="shadow">Ata Kanikani</b>, a dark dance for the dead that curses foes. <b class="spirit">Wili Hula</b>, a whirling spiral dance that blasts them with spirit magic.</dd>
+        <dt>Weapon</dt><dd>Hula Ki'i, a carved doll that dances the hula</dd>
+        <dt>Skill</dt><dd><b>Call.</b> Keep the rhythm, and a spirit of the dead fights beside you for a few turns. The better the rhythm, the stronger the spirit. Only one spirit can be out at a time.</dd>
+        <dt>Moves</dt><dd><b>Spin</b>, a small burst of magic. <b>Poison</b>, an enemy loses HP each turn. <b>Storm</b>, hits every enemy for half. <b>Sleep</b>, an enemy sleeps until hit. <b>Shadow Blast</b>, a blast of shadow magic.</dd>
+        <dt>On the Road</dt><dd>While she travels with you, everyone's stats grow faster.</dd>
+      </dl>
+      <figure class="shot"><div class="frame"><img src="manual/status-tawiri.png" alt="Tawiri's Status page" width="768" height="672" loading="lazy"></div></figure>
+    </div>
+
+    <div class="win"><b class="label">PARTY</b><p>Only three fight at a time. When a fourth joins, one waits on the bench. Use Swap in battle, or Party on the field menu, to trade places. Everyone who travels with you helps on the road, bench or not, as long as they are standing: a friend who has fallen cannot help anyone, and Hina cannot get herself up.</p></div>
   </section>
 
   <section class="page hue" style="--h:220" id="controls">
@@ -461,7 +550,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
         <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Sel</big><small>Select</small></div>
-        <p>The SELECT Button shows a map of the area. Rooms fill in as you find them. In a fight, hold it over a command or a move to read what it does and what it costs.</p></div>
+        <p>The SELECT Button shows a map of the area. Rooms fill in as you find them. Once you have a World Map, press it again to see the whole world. In a fight, hold it over a command or a move to read what it does and what it costs.</p></div>
     </div>
     <div class="win"><b class="label">RESET</b><p>Hold L, R, START and SELECT together to reset the game and go back to the title screen. Anything you have not saved will be lost.</p></div>
   </section>
@@ -481,14 +570,14 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
     <h3 class="ring">Saving Progress</h3>
     <p>You can save only at an <b>Akua totem</b>, a carved post where the party kneels and tells the Akua all that has happened. Face one and press A, and you will be asked if you want to save. The field menu has no Save.</p>
-    <p>Praying at a totem also brings back anyone who has fallen. A nap in Kailo's bed or a drink at a healing pool heals the party, but it does not save, and the fallen stay down.</p>
-    <p>A small carved post with a cup of water beside it belongs to <b>Lanu</b>. Where you find one, a healing spring is close by.</p>
+    <p>Praying at a totem also brings back anyone who has fallen. A nap in a bed or a drink at a healing pool heals the party, but it does not save, and the fallen stay down.</p>
+    <div class="tale"><b class="label">The Akua</b><p>The Akua are the gods of Nuitai, great gatherings of Mana that each embody a force of nature. The three Akua Nui head them: Lanu, goddess of life and nature; Mauga, goddess of fire and change; and Moanatu, god of the sea and death. Between the gods and mortals walk the Akua Iki, who can take mortal form and vanish at will.</p></div>
     <div class="win"><b class="label">SAVE OFTEN</b><p>It is very important to save your game often, and always before a big fight.</p></div>
   </section>
 
   <section class="page hue" style="--h:95" id="field">
     <h2 class="cap"><b class="dc">O</b><span class="rest">ut in<br>the World</span></h2>
-    <p class="lead">This is where most of your adventure takes place: in the village, on the beach and in the woods.</p>
+    <p class="lead">This is where most of your adventure takes place: out exploring the islands.</p>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/overworld.png" alt="Kailo walking in the village" width="768" height="672"></div></figure>
       <div>
@@ -499,22 +588,20 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <h3 class="ring">Monsters</h3>
-    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! A boar seldom travels alone, so expect its friends to join in. Monsters you beat will leave, but they come back after you have walked 200 steps, or all at once when the party takes a nap or drinks at a healing pool.</p>
-    <p>A fight in the village is fought on the beach. Anywhere outside of town, it is fought in the jungle.</p>
+    <p>Monsters roam out in the open. When you touch one, a battle begins (<a class="xref" href="#battle">page 14</a>). Some will spot you and give chase! Some travel in packs, so expect friends to join in. Monsters you beat will leave, but they come back after you have walked a while, or all at once when the party takes a nap or drinks at a healing pool.</p>
     <p>Some great beasts stand still and wait for you. When you walk up to one, you will be asked if you are ready. Say no to go back and prepare.</p>
     <h3 class="ring">Shops</h3>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The market stall's list: Noni Pulu, Taro, Wheat, Breadfruit and more, each with its price in pule" width="768" height="672"></div></figure>
       <div>
         <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick each thing and how many, then say yes once to the total. When choosing how many, Up and Down count one at a time, Left adds ten and Right takes ten off. Your pule is shown at the right.</p>
-        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. Your wallet holds 1,000 to start, and bigger wallets can be bought, one size at a time. A full wallet takes no more: monsters drop none and digging finds none.</p>
+        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. Your wallet holds only so much, and bigger wallets can be bought, one size at a time. A full wallet takes no more: monsters drop none and digging finds none.</p>
         <p>Each kind of seller has its own wares. A grocer sells food, seeds and everyday medicine. An angler sells bait. A hunters' lodge sells weapons, relics and moves. Some sellers turn up where you least expect them.</p>
-        <p>Some people are good at haggling. With the right friend along, every seller charges less.</p>
       </div>
     </div>
     <h3 class="ring">Around Town</h3>
     <p>Every village has a <b>loremaster</b>, an old man who knows the stories of the islands. Ask him about the world as often as you like. What he tells you goes in your Lore pages.</p>
-    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. The Great Boar is a hunt of its own, and beside it one more hunt is always up; when that one is paid, the next goes up. If your wallet is too full for the pay, the keeper holds it until there is room. The hunters there have tips on fighting for anyone who asks.</p>
+    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. When a hunt is paid, a new one goes up. If your wallet is too full for the pay, the keeper holds it until there is room. The hunters there have tips on fighting for anyone who asks.</p>
     <p>Some towns have an <b>inn</b>. A night's sleep costs a few pule and heals the whole party.</p>
     <h3 class="ring">Kaigara</h3>
     <p>Kaigara is the shell game of the Kame, played with cowries on a chalk grid of 9 by 9 points. In some lodges a player sits at a low table, ready for anyone who wants a game, and some play for coins.</p>
@@ -533,11 +620,11 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       </div>
     </div>
     <p>Small finds, like the wood from a tree, an egg, a fish or what a dig turns up, show for a moment at the top of the screen, in the window that names each new area. They never stop you, so keep going.</p>
-    <p>The <b>Ko'i</b>, a stone adze, chops trees. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! Ten chops fell a tree, and five more clear its stump. The wood goes in the bag. The trees stand again after you have walked 600 steps; leaving the area does not bring them back. Chopped trees sometimes drop food, too.</p>
+    <p>The <b>Ko'i</b>, a stone adze, chops trees. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! A few chops fell a tree, and a few more clear its stump. The wood goes in the bag. The trees stand again after you have walked a long way; leaving the area does not bring them back. Chopped trees sometimes drop food, too.</p>
     <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to hook it. Be too slow and it gets away. A fish, or anything rare, has to be reeled in: roll the D-Pad round and round the same way before it gets off the hook. Bait makes a fish likelier to bite. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
     <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Nobody will let Kailo dig up a village, so take the 'O'o out of town.</p>
     <h3 class="ring">Fresh Water</h3>
-    <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good, and neither is the shore. A spring with little sparkles over it heals instead of giving water: press A to rest there. After five scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
+    <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good, and neither is the shore. A spring with little sparkles over it heals instead of giving water: press A to rest there. After a few scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
     <h3 class="ring">Swimming</h3>
     <p>Kailo has to learn to swim before he can go in. Once he knows how, face water and press B to jump in. Only Kailo swims. The friends with him stay on the shore and wait for him, but not forever: they go home to the village if he takes too long, and join him again when he comes back to them. Alone in the water, he fights whatever he meets alone. Monsters live in the sea too, so a swim can be dangerous.</p>
     <p>A fight in the water is different. Fire goes out there: fire moves do no harm and nothing can be burned, though a weapon's plain strokes still land. Nobody can cook underwater, so Cook is grayed out.</p>
@@ -545,7 +632,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/craft.png" alt="The cooking pot: the ingredients on the right, ready to go in" width="768" height="672"></div></figure>
       <div>
-        <p>Face the big cooking pot in Kailo's house and press A to cook. His boat, the <b>Meialana</b>, has a kitchen too: face it and choose <b>Cook</b> to use its kitchen, or <b>Nap</b> to rest as in his bed.</p>
+        <p>Face a cooking pot and press A to cook.</p>
         <p>Put one, two or three ingredients in, and see what you get. A dish you have made goes on the list, so next time just pick it. If they don't go together, you get a dish of ???, and whoever eats it gets sick.</p>
         <p>Only Kailo cooks, so the pot is his.</p>
       </div>
@@ -665,9 +752,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
-      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b> and Hina's <b>Scold</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero: the fighter is out of breath, the Mana pips turn red, and until it is back to zero no Skill and no element can be used.</td></tr>
+      <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b> and Tawiri's <b>Call</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero: the fighter is out of breath, the Mana pips turn red, and until it is back to zero no Skill and no element can be used.</td></tr>
       <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
-      <tr><td>Item</td><td>Use an item from the battle bag of the one whose turn it is (<a class="xref" href="#items">page 26</a>). Some medicines cure a trouble, and the Life Totem gets a fallen friend back on their feet. Used on an undead monster, a Life Totem destroys it outright, even a boss. You can aim any item at either side. See Choosing a Target below.</td></tr>
+      <tr><td>Item</td><td>Use an item from the battle bag of the one whose turn it is (<a class="xref" href="#items">page 26</a>). Some medicines cure a trouble, and some get a fallen friend back on their feet. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
       <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights. Only the one who runs gets away, with the HP they have; the rest fight on. If everyone left behind falls, the fight is over, but it is not the end of the game.</td></tr>
       <tr><td>Equip</td><td>Two choices. <b>Weapon</b>: take a spare weapon from the bag. <b>Element</b>: move one element, from the bank into a row or from one row to another. Either one ends your turn.</td></tr>
@@ -679,6 +766,15 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure class="shot"><div class="frame"><img src="manual/battle-left.png" alt="Left on the D-Pad: EQUIP, DEFEND, ESCAPE" width="768" height="672"></div><figcaption>Press left: Equip, Defend, Escape</figcaption></figure>
       <figure class="shot"><div class="frame"><img src="manual/battle-right.png" alt="Right on the D-Pad: SWAP and COMBO" width="768" height="672"></div><figcaption>Press right: Swap and Combo</figcaption></figure>
     </div>
+
+    <h3 class="ring">A Battle, Step by Step</h3>
+    <ol class="key">
+      <li><b>1</b><span>Touch a monster in the field, or hit it with B for a free first blow. The battle begins.</span></li>
+      <li><b>2</b><span>Watch the turn order on the right. When a member's turn comes, their commands appear.</span></li>
+      <li><b>3</b><span>Choose <b>Attack</b> and spend your 7 points on strokes, or use an element move, an item or a Skill.</span></li>
+      <li><b>4</b><span>When a monster swings at you, press A as the arrows cross the gold zone to parry.</span></li>
+      <li><b>5</b><span>Beat every monster to win. You take their pule, and sometimes an item.</span></li>
+    </ol>
 
     <h3 class="ring">Attack</h3>
     <div class="pair">
@@ -713,18 +809,20 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="scroll">
     <table class="m">
       <tr><th>Weapon</th><th>Skill</th></tr>
-      <tr><td>Kailo, a tool, like his Frying Pan</td><td><b>Cook.</b> Pick a meal you have cooked at home (he already knows Poi, taro pounded with water), then turn the D-Pad round and round at a steady pace to stir. On his next turn the whole party eats.</td></tr>
+      <tr><td>Kailo, a tool, like his Frying Pan</td><td><b>Cook.</b> Pick a meal you have cooked at home, then turn the D-Pad round and round at a steady pace to stir. On his next turn the whole party eats.</td></tr>
       <tr><td>Kailo, handwraps</td><td><b>Pound.</b> Pick a move, then press its buttons before time runs out.</td></tr>
       <tr><td>Kailo, an oar</td><td><b>Paddle.</b> Press A as fast as you can; every press is a hit.</td></tr>
       <tr><td>Hina, a wand, like her Gohei</td><td><b>Scold.</b> Press A as fast as you can, and she tells one enemy off.</td></tr>
       <tr><td>Hina, a fan</td><td><b>Dance.</b> Press the buttons in time with the notes to heal.</td></tr>
       <tr><td>Hina, a bow</td><td><b>Banish.</b> Hold A to draw, and let go when the circle is small. Hold too long and the arrow is lost.</td></tr>
+      <tr><td>Tawiri, a doll, like her Hula Ki'i</td><td><b>Call.</b> Keep the rhythm, and a spirit of the dead fights beside you for a few turns.</td></tr>
     </table>
     </div>
     <p>Friends who join later bring their own three kinds of weapon and their own Skills, each a new little game.</p>
 
     <h3 class="ring">Mana</h3>
     <p>Mana is the energy a fighter builds by moving. Everyone starts a battle with 0 Mana and can hold up to 7. Attack, Defend or use an item to build it, then spend it on element moves. A move in row 3 costs 3 Mana.</p>
+    <div class="tale"><b class="label">Magic Is Motion</b><p>"Stand still and you are a stone. Stones do not burn." So a Lelua teacher tells every new student. The islanders say Mana is the current that moves through everything: waves, wind, growth, fire and thought. It is never made or lost; it only moves.</p></div>
 
     <h3 class="ring">Status Trouble</h3>
     <div class="scroll">
@@ -738,7 +836,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </table>
     </div>
     <p>Your own fighters show no picture change. The trouble is named in the party window beside their HP, and floats up the moment it lands.</p>
-    <p>Some help lasts too. <b>Haste</b> brings a fighter's turns around sooner, more when it is cast from a higher row, and it lasts the rest of the fight, until that fighter falls.</p>
+    <p>Some help lasts too. A spell that speeds a fighter up does more from a higher row, and it lasts the rest of the fight, until that fighter falls.</p>
 
     <h3 class="ring">Victory and Defeat</h3>
     <p>The fight is won only when every monster is down. Beating the biggest one does not end it while any other still stands.</p>
@@ -757,7 +855,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <span class="el light"><img src="manual/la.png" alt="">Light</span> beats <span class="el shadow"><img src="manual/ata.png" alt="">Shadow</span></div>
     </div>
     <p>A hit from the element that beats yours does double damage. A hit from the element yours beats does half.</p>
-    <p>Kailo is <span class="el fire">Fire</span> and <span class="el water">Water</span>. Hina is <span class="el nature">Nature</span> and <span class="el light">Light</span>. While Hina fights as Nature, a fire attack hurts her twice as much, so watch for monsters that turn to fire.</p>
+    <p>Kailo is <span class="el fire">Fire</span> and <span class="el water">Water</span>. Hina is <span class="el nature">Nature</span> and <span class="el light">Light</span>. Tawiri is <span class="el shadow">Shadow</span> and <span class="el spirit">Spirit</span>. While Hina fights as Nature, a fire attack hurts her twice as much, so watch for monsters that turn to fire.</p>
     <h3 class="ring">What Each Element Does</h3>
     <div class="scroll">
     <table class="m">
@@ -771,116 +869,38 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </table>
     </div>
     <h3 class="ring">Stances</h3>
-    <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide, and fire hurts him less, but nature hurts him more. Hina in <span class="el nature">Māla Hula</span> heals; in <span class="el light">Shakan Mudras</span> she wards off harm. Every friend who joins you later works the same way, with two elements of their own.</p>
+    <p>Each fighter has two stances, one for each of their elements. The stance decides which element the fighter is right now: which moves they can use, which stats are higher, and which element hurts them. Kailo in <span class="el fire">Lelua</span> kicks with fire. In <span class="el water">Wai'Kenpō</span> he stands firm like the tide, and fire hurts him less, but nature hurts him more. Hina in <span class="el nature">Māla Hula</span> heals; in <span class="el light">Shakan Mudras</span> she wards off harm. Every friend who joins you later works the same way, with two elements of their own. So does every monster: it changes stance to use a move from its other element. When it does, it glows in that element's color and the battle text says so, and the switch costs it a turn, so you have one turn to get ready.</p>
     <p>To change stance in battle, choose <b>Element</b>. The switch is at the top, named after the stance you are in. Choose it and it offers the other stance; switching uses your turn and gives you 1 Mana. Some moves use both elements and work in either stance.</p>
     <p>Every battle begins in the stance boxed on the field menu: the one you last chose, in a battle, on the field menu or on the Status screen.</p>
   </section>
 
-  <section class="page hue" style="--h:15" id="cast">
-    <h2 class="cap"><b class="dc">C</b><span class="rest">ast of<br>Characters</span></h2>
-    <p class="lead">Along the way, Kailo will be joined by friends, each with two elements, three kinds of weapon and Skills of their own. Everything Kailo and Hina teach you works for them too.</p>
-
-    <div class="sheet" style="--hc:var(--fire)">
-      <div class="hero">
-        <img src="manual/kailo_portrait.png" alt="Kailo">
-        <div>
-          <h3>Kailo</h3>
-          <p class="role">The Cook</p>
-          <p>The village cook, about nineteen, who looks after a house full of younger brothers, sisters and cousins. He has never left the islands and dreams of seeing the world. Wasting food upsets him.</p>
-        </div>
-      </div>
-      <dl class="facts">
-        <dt>Elements</dt><dd><span class="el fire"><img src="manual/afi.png" alt="">Fire</span> and <span class="el water"><img src="manual/wai.png" alt="">Water</span></dd>
-        <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
-        <dt>Weapon</dt><dd>Frying Pan</dd>
-        <dt>Skill</dt><dd><b>Cook.</b> He cooks a meal right in the battle. Only meals you have already made at the pot are on his list, and he takes what he needs from the bag. One meal feeds the whole party, for the ingredients of one, and does for each of them what it would do from the bag. Stir steadily for the best meal. On his next turn he serves it, and a meal can fill them past their full HP for the rest of the fight. A hit before then ruins it. The better he gets with tools, the more his cooking heals, up to double. Later he learns to swap one ingredient for another of its kind (a vegetable can even stand in for meat, for friends who eat none), then to cook without using his ingredients up, and at last to cook with no ingredients at all.</dd>
-        <dt>Moves</dt><dd><b>Sauté</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half. <b>Counter</b>: he guards his friends and kicks back at whoever strikes them. <b>Wave Fist</b>, a quick water punch.</dd>
-        <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
-      </dl>
-      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page" width="768" height="672" loading="lazy"></div></figure>
-    </div>
-
-    <div class="sheet" style="--hc:var(--nature)">
-      <div class="hero">
-        <img src="manual/hina_portrait.png" alt="Hina">
-        <div>
-          <h3>Hina</h3>
-          <p class="role">The Māla Priestess</p>
-          <p>A young priestess of Māla and the party's healer. Sharp tongued, and usually right. One day she hopes to become the high priestess of her village.</p>
-        </div>
-      </div>
-      <dl class="facts">
-        <dt>Elements</dt><dd><span class="el nature"><img src="manual/lau.png" alt="">Nature</span> and <span class="el light"><img src="manual/la.png" alt="">Light</span></dd>
-        <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that ward off harm.</dd>
-        <dt>Weapon</dt><dd>Gohei</dd>
-        <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. If it takes it to heart, it sulks and loses a few turns.</dd>
-        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shadow Guard</b>, softens the next shadow attack on one ally. <b>Green Dream</b>, brings an ally back once if they fall.</dd>
-        <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
-      </dl>
-      <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
-    </div>
-
-    <div class="win"><b class="label">PARTY</b><p>Only three fight at a time. When a fourth joins, one waits on the bench. Use Swap in battle, or Party on the field menu, to trade places. Everyone who travels with you helps on the road, bench or not, as long as they are standing: a friend who has fallen cannot help anyone, and Hina cannot get herself up.</p></div>
-  </section>
-
-  <section class="page hue" style="--h:20" id="bestiary">
-    <h2 class="cap"><b class="dc">C</b><span class="rest">reatures of<br>the Islands</span></h2>
-    <p class="lead">The woods and the jungle are not empty. Here are a few of the creatures you may meet.</p>
-    <div class="beasts">
-      <figure><div class="pic"><img src="manual/boar.png" alt="" loading="lazy"></div><figcaption><b>Wild Boar</b>A wild boar from the woods above town. It roots up gardens in the night and charges anything that comes between it and a meal. Where there is one, there are usually more.</figcaption></figure>
-      <figure><div class="pic"><img src="manual/santelmo.png" alt="" loading="lazy"></div><figcaption><b>Santelmo</b>A ball of fire said to be a wandering soul. It burns what it touches, and a fire that seems to be out may flare up again.</figcaption></figure>
-      <figure><div class="pic"><img src="manual/nuno_sa_punso.png" alt="" loading="lazy"></div><figcaption><b>Nuno sa Punso</b>The old man of the mound, a small spirit known for cursing whoever disturbs his home. Watch where you step.</figcaption></figure>
-      <figure><div class="pic"><img src="manual/sigbin.png" alt="" loading="lazy"></div><figcaption><b>Sigbin</b>A night creature said to feed through its victim's shadow. You may smell it before you see it.</figcaption></figure>
-      <figure><div class="pic"><img src="manual/wicked_dwende.png" alt="" loading="lazy"></div><figcaption><b>Wicked Dwende</b>A small earth spirit gone sour. It looks after its own kind, and it does not like visitors.</figcaption></figure>
-      <figure><div class="pic"><img src="manual/amaranhig.png" alt="" loading="lazy"></div><figcaption><b>Amaranhig</b>A corpse that climbs out of its grave at night. Stiff and slow, but it does not give up.</figcaption></figure>
-      <figure><div class="pic"><img src="manual/kaperosa.png" alt="" loading="lazy"></div><figcaption><b>Kaperosa</b>A pale lady ghost in white. Better not to stay and listen when she sings.</figcaption></figure>
-    </div>
-    <div class="win"><b class="label">BESTIARY</b><p>Every creature you beat gets a page under Info on the field menu, with its picture and what is known about it.</p></div>
-  </section>
-
   <section class="page hue" style="--h:130" id="items">
     <h2 class="cap"><b class="dc">I</b><span class="rest">tems</span></h2>
-    <p class="lead">When your HP is low, during or after a battle, you will need these items.</p>
+    <p class="lead">When your HP is low, during or after a battle, you will need items.</p>
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/inventory.png" alt="The Items screen, with Noni in the bag" width="768" height="672"></div></figure>
       <p>The party shares one bag, sorted by kind: Medicine, Ingredients, Meals, Weapons, Relics, Key Items and more. Use items with Items on the field menu, or Item in battle. On the field menu, Items asks which kind first; in a list, press left or right on the D-Pad to turn to the next kind, and each press of B goes back one step. The window at the top tells you what the item under the cursor does. When an item has an island name, the window says what it is in plain English first, such as "Noni poultice" or "Taro paste".</p>
     </div>
 
     <h3 class="ring">Battle Bags</h3>
-    <p>In a fight, Item lists only what the one whose turn it is carries in their own battle bag. Each member starts with a Grass Sash that holds 4 things, one to a slot, and bigger bags (the Coir Belt, Kapa Satchel, Net Bag and Voyager Bag) hold more. Anything you can use in a fight fits: medicine, Life Totems, Seer's Shells, Smoke Bombs, meals, and food that heals, but never tools or gear. To pack one, pick the item on the Items screen and choose Give to, then the member; the member's own bag sits at the top of the Items screen, and picking a slot there gives its item back to the shared bag. Whatever goes in a bag leaves the shared bag, and a member's Status page shows their bag and how full it is. Kailo's Cook still cooks from the shared bag.</p>
+    <p>In a fight, Item lists only what the one whose turn it is carries in their own battle bag. Each member starts with a small bag that holds a few things, one to a slot, and bigger bags hold more. Anything you can use in a fight fits: medicine, meals and food that heals, but never tools or gear. To pack one, pick the item on the Items screen and choose Give to, then the member; the member's own bag sits at the top of the Items screen, and picking a slot there gives its item back to the shared bag. Whatever goes in a bag leaves the shared bag, and a member's Status page shows their bag and how full it is. Kailo's Cook still cooks from the shared bag.</p>
 
     <h3 class="ring">Island Medicine</h3>
-    <p>The islanders heal with the plants that grow around them: fruit, roots, leaves and oil.</p>
+    <p>The islanders heal with the plants that grow around them: fruit, roots, leaves and oil. Some medicine restores HP, some cures a trouble like poison or a burn, and some gets a fallen friend back on their feet. Each item's window says what it does.</p>
     <div class="scroll">
     <table class="m">
-      <tr><th>Name</th><th>Price</th><th>Description</th></tr>
-      <tr><td class="item"><img src="manual/noni.png" alt="">Noni Pulu</td><td class="num">10</td><td>Noni poultice. Restores 30 HP. It stinks.</td></tr>
-      <tr><td class="item"><img src="manual/awa.png" alt="">'Awa Tonic</td><td class="num">40</td><td>Kava tonic. Restores 80 HP. A calming root drink.</td></tr>
-      <tr><td class="item">Life Totem</td><td class="num">100</td><td>A carved totem. Brings a fallen friend back with half their HP. Used on an undead monster, it destroys it outright, even a boss. On any other enemy it does nothing.</td></tr>
-      <tr><td class="item"><img src="manual/kukui.png" alt="">Kukui</td><td class="num">15</td><td>Candlenut oil. In battle, cures a burn.</td></tr>
-      <tr><td class="item"><img src="manual/ti_leaf.png" alt="">Ti Leaf</td><td class="num">20</td><td>A cool leaf. In battle, cures sleep and confusion.</td></tr>
-      <tr><td class="item"><img src="manual/olena.png" alt="">'Ōlena</td><td class="num">15</td><td>Turmeric. In battle, cures poison.</td></tr>
+      <tr><th>Name</th><th>What it does</th></tr>
+      <tr><td class="item"><img src="manual/noni.png" alt="">Noni Pulu</td><td>Noni poultice. Restores 30 HP. It stinks.</td></tr>
+      <tr><td class="item"><img src="manual/awa.png" alt="">'Awa Tonic</td><td>Kava tonic. Restores 80 HP. A calming root drink.</td></tr>
+      <tr><td class="item">Life Totem</td><td>A carved totem. Brings a fallen friend back with half their HP. Used on an undead monster, it destroys it outright.</td></tr>
+      <tr><td class="item"><img src="manual/kukui.png" alt="">Kukui</td><td>Candlenut oil. In battle, cures a burn.</td></tr>
+      <tr><td class="item"><img src="manual/ti_leaf.png" alt="">Ti Leaf</td><td>A cool leaf. In battle, cures sleep and confusion.</td></tr>
+      <tr><td class="item"><img src="manual/olena.png" alt="">'Ōlena</td><td>Turmeric. In battle, cures poison.</td></tr>
     </table>
     </div>
 
     <h3 class="ring">Food</h3>
     <p>Most things that go in the pot can also be eaten as they are, for a little HP, but some raw food can make you sick. Cooked, it is worth much more: a meal heals more than medicine. Kailo cooks at the pot (<a class="xref" href="#field">page 8</a>), or with <b>Cook</b> in battle, where one meal feeds everyone. There is no recipe book: put one, two or three things in the pot and find out! Each item's window says what it is in plain English.</p>
-    <div class="scroll">
-    <table class="m">
-      <tr><th>Name</th><th>Price</th><th>Notes</th></tr>
-      <tr><td>Taro</td><td class="num">8</td><td>Picked from a garden.</td></tr>
-      <tr><td>Wheat</td><td class="num">8</td><td>Picked from a garden.</td></tr>
-      <tr><td>Fresh Water</td><td class="num"></td><td>Scooped from a river or a pond.</td></tr>
-      <tr><td>Egg</td><td class="num"></td><td>Laid by hens. Some monsters drop them too.</td></tr>
-      <tr><td>Broth</td><td class="num"></td><td>A soup base, made in the pot.</td></tr>
-      <tr><td>Breadfruit</td><td class="num">10</td><td>Falls from trees now and then.</td></tr>
-      <tr><td>Pineapple</td><td class="num">10</td><td>Grows wild on shrubs and in gardens.</td></tr>
-      <tr><td>Salt</td><td class="num">2</td><td>It seasons a dish.</td></tr>
-      <tr><td>Noodles</td><td class="num">10</td><td></td></tr>
-      <tr><td>Fish</td><td class="num"></td><td>Caught by fishing. It needs cooking.</td></tr>
-      <tr><td>Pork</td><td class="num"></td><td>It needs cooking. Raw, it makes you sick.</td></tr>
-    </table>
-    </div>
 
     <h3 class="ring">Special Items</h3>
     <div class="scroll">
@@ -889,7 +909,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><td>Elements</td><td>An item that teaches one member an element move, kept under Elements in the bag and shown in shops by the move's name, like Counter. Some are a <b>kapa</b>, painted bark cloth that shows the move in pictures, so anyone can learn from it. Some are a <b>lontar</b>, a palm-leaf book with the move written in it, which needs someone to read it out: Hina can, so a lontar waits in the bag while she is away. Use it and that member learns the move. Then it is gone.</td></tr>
       <tr><td>Seer's Shell</td><td>Hold it to your eye in battle to read an enemy's elements, HP and Mana. The reading stays under the enemy for the rest of the fight. Used up.</td></tr>
       <tr><td>Smoke Bomb</td><td>Throw it in battle and the whole party gets away at once, with no beat to keep. Only where Escape works. Used up.</td></tr>
-      <tr><td>Wood</td><td>Koa, chopped from trees with the Ko'i. Kept under Materials.</td></tr>
+      <tr><td>Materials</td><td>What you gather out in the world, like wood chopped from trees.</td></tr>
+      <tr><td>World Map</td><td>A Key Item. Once you have it, press SELECT twice to see the whole world.</td></tr>
       <tr><td>Tools</td><td>The Ko'i, the Old Rod and the 'O'o are Key Items. Set one to Y on the tool wheel.</td></tr>
       <tr><td>Seeds</td><td>A Seed of Strength, a Seed of Agility, and more. Each raises that stat for one member. Rare!</td></tr>
       <tr><td>Garden Seeds</td><td>Taro Seed, Wheat Seed and others. Plant one in a garden patch with Hina along. They are not the stat seeds above, which you eat.</td></tr>
