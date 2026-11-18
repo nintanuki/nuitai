@@ -470,7 +470,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Stances</dt><dd><b class="nature">Māla Hula</b>, a slow dance that heals and cures. <b class="light">Shakan Mudras</b>, hand seals that ward off harm.</dd>
         <dt>Weapon</dt><dd>Gohei</dd>
         <dt>Skill</dt><dd><b>Scold.</b> She tells one enemy exactly what is wrong with it. If it takes it to heart, it sulks and loses a few turns.</dd>
-        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shadow Guard</b>, softens the next shadow attack on one ally. <b>Green Dream</b>, brings an ally back once if they fall.</dd>
+        <dt>Moves</dt><dd><b>Heal</b>, mends one ally. <b>Shadow Guard</b>, softens the next shadow attack on one ally. <b>Green Dream</b>, brings an ally back right away, once, if they fall.</dd>
         <dt>On the Road</dt><dd>After a battle you win, anyone who fell gets back up with 1 HP. Only Hina can replant a garden.</dd>
       </dl>
       <figure class="shot"><div class="frame"><img src="manual/status-hina.png" alt="Hina's Status page" width="768" height="672" loading="lazy"></div></figure>
@@ -595,13 +595,13 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The grocer's list: Breadfruit, Noodles, Pia, seeds and more, each with its price in pule" width="768" height="672"></div></figure>
       <div>
         <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick each thing and how many, then say yes once to the total. When choosing how many, Up and Down count one at a time, Left adds ten and Right takes ten off. Your pule is shown at the right.</p>
-        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. Your wallet holds only so much, and bigger wallets can be bought, one size at a time. A full wallet takes no more: monsters drop none and digging finds none.</p>
-        <p>Each kind of seller has its own wares. A grocer sells food, seeds and everyday medicine. An angler sells bait. A hunters' lodge sells weapons, relics and moves. Some sellers turn up where you least expect them.</p>
+        <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by selling things, by finishing hunts, and sometimes by digging. Your wallet holds only so much, and bigger wallets can be bought, one size at a time. A full wallet takes no more, and a dig finds none.</p>
+        <p>Each kind of seller has its own wares. A grocer sells food, seeds and everyday medicine. An angler sells bait. A hunters' lodge sells weapons, relics and moves, and buys what monsters leave behind. Some sellers turn up where you least expect them.</p>
       </div>
     </div>
     <h3 class="ring">Around Town</h3>
     <p>Every village has a <b>loremaster</b>, an old man who knows the stories of the islands. Ask him about the world as often as you like. What he tells you goes in your Lore pages.</p>
-    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. When a hunt is paid, a new one goes up. If your wallet is too full for the pay, the keeper holds it until there is room. The hunters there have tips on fighting for anyone who asks.</p>
+    <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. Each hunt is paid once, and the hunts are for great beasts. If your wallet is too full for the pay, the keeper holds it until there is room. The hunters there have tips on fighting for anyone who asks.</p>
     <p>Some towns have an <b>inn</b>. A night's sleep costs a few pule and heals the whole party.</p>
     <h3 class="ring">Kaigara</h3>
     <p>Kaigara is the shell game of the Kame, played with cowries on a chalk grid of 9 by 9 points. In some lodges a player sits at a low table, ready for anyone who wants a game, and some play for coins.</p>
@@ -721,7 +721,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <p>Info opens a short list of five: <b>Quests</b>, <b>Bestiary</b>, <b>Glossary</b>, <b>Lore</b> and <b>Records</b>.</p>
         <p><b>Bestiary</b> has a page for every creature you have beaten. <b>Glossary</b> holds the island words you have learned, and <b>Records</b> what you have done so far.</p>
         <p><b>Lore</b> holds pages about the world: its people, places, food, gods and faiths, fighting arts and everyday words, sorted by kind. New pages appear as your journey goes on, and a note at the top of the screen says when one is added. Talk to someone with a name and they get a People page, with their picture when they have one. A Food page appears the first time you have that food in the bag.</p>
-        <p><b>Quests</b> lists what you have been asked to do, one short line each. Move the cursor onto one to read what to do next. A quest shows up once the game has told you about it, and moves to the bottom, marked Done, when it is over. The hunts from the hunters' lodge are in the same list, each starting with "Hunt:" and the count so far.</p>
+        <p><b>Quests</b> lists what you have been asked to do, one short line each. Move the cursor onto one to read what to do next. A quest shows up once the game has told you about it, and moves to the bottom, marked Done, when it is over. The hunts from the hunters' lodge are in the same list, each starting with "Hunt:".</p>
       </div>
     </div>
     <figure class="shot"><div class="frame"><img src="manual/lore-page.png" alt="A Lore page about Kulāiwi" width="768" height="672"></div><figcaption>A Lore page. Press left or right to turn to the next one.</figcaption></figure>
@@ -743,7 +743,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <li><b>2</b><span><b>Enemies</b><br>Know your foe!</span></li>
       <li><b>3</b><span><b>Commands</b><br>On the left: what the member whose turn it is can do. Press left or right on the D-Pad for more.</span></li>
       <li><b>4</b><span><b>Elements</b><br>On the right, by each member's name: their two elements. The stance they fight in is boxed in yellow.</span></li>
-      <li><b>5</b><span><b>Hit Points</b><br>HP left, out of the most. The number rolls up or down as a hit or a heal lands, and turns yellow when HP runs low. The small marks under it are Mana.</span></li>
+      <li><b>5</b><span><b>Hit Points</b><br>HP left, out of the most. The number rolls up or down as a hit or a heal lands, and the damage or healing hops over the one it hits, and turns yellow when HP runs low. The small marks under it are Mana.</span></li>
     </ol>
 
     <div class="scroll">
@@ -751,7 +751,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <tr><th>Command</th><th>What it does</th></tr>
       <tr><td>Attack</td><td>Strike one enemy with your weapon, in strokes. See below.</td></tr>
       <tr><td>Skill</td><td>The member's own special command, shown by its name: Kailo's <b>Cook</b>, Hina's <b>Scold</b> and Tawiri's <b>Call</b>. It changes with the weapon in hand. Each is a little game played on the pad, and it costs 1 to 7 Mana: a perfect game costs 7, a miss costs 1. If the Mana runs short, it goes below zero: the fighter is out of breath, the Mana pips turn red, and until it is back to zero no Skill and no element can be used.</td></tr>
-      <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana.</td></tr>
+      <tr><td>Element</td><td>Use an element move, or switch stance. Moves cost Mana. The move's name shows at the top of the screen, and the one using it glows in the element's color a moment before it lands.</td></tr>
       <tr><td>Item</td><td>Use an item from the battle bag of the one whose turn it is (<a class="xref" href="#items">page 26</a>). Some medicines cure a trouble, and some get a fallen friend back on their feet. You can aim any item at either side. See Choosing a Target below.</td></tr>
       <tr><td>Defend</td><td>Take half damage from blows until your next turn, and gain 1 Mana.</td></tr>
       <tr><td>Escape</td><td>Try to run away. Press the L and R buttons in turn, at a steady beat of your own: the steadier the beat, the better the chance to get away. It does not always work, and you cannot run from some fights. Only the one who runs gets away, with the HP they have; the rest fight on. If everyone left behind falls, the fight is over, but it is not the end of the game.</td></tr>
@@ -771,7 +771,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <li><b>2</b><span>Watch the turn order on the right. When a member's turn comes, their commands appear.</span></li>
       <li><b>3</b><span>Choose <b>Attack</b> and spend your 7 points on strokes, or use an element move, an item or a Skill.</span></li>
       <li><b>4</b><span>When a monster swings at you, press A as the arrows cross the gold zone to parry.</span></li>
-      <li><b>5</b><span>Beat every monster to win. You take their pule, and sometimes an item.</span></li>
+      <li><b>5</b><span>Beat every monster to win. A monster may leave something behind.</span></li>
     </ol>
 
     <h3 class="ring">Attack</h3>
@@ -838,7 +838,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
 
     <h3 class="ring">Victory and Defeat</h3>
     <p>The fight is won only when every monster is down. Beating the biggest one does not end it while any other still stands.</p>
-    <p>Monsters you beat drop pule, and sometimes an item. A friend's help after a fight works only while that friend is still standing. If your whole party falls, the game is over, and you must start again from your last save. A few fights in the story simply start over instead.</p>
+    <p>A monster you beat may leave one thing behind, such as loot to sell, medicine or a spare weapon, but never pule. A friend's help after a fight works only while that friend is still standing. If your whole party falls, the game is over, and you must start again from your last save. A few fights in the story simply start over instead.</p>
   </section>
 
   <section class="page hue" style="--h:40" id="elements">
