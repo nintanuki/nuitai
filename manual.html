@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
 <link rel="stylesheet" href="site.css?v=8ac13fef">
-<link rel="stylesheet" href="shell.css?v=7f9262b7">
+<link rel="stylesheet" href="shell.css?v=1eeab275">
 <script>(function(){var t=null,a=null,m=null;try{t=localStorage.getItem("nuitai-site-theme");a=localStorage.getItem("nuitai-ai-art");m=localStorage.getItem("nuitai-menu")||localStorage.getItem("nuitai-battle-menu")}catch(e){}document.documentElement.dataset.theme=(t==="dark"||t==="light")?t:"sepia";if(a==="off")document.documentElement.dataset.art="off";if(m==="hidden")document.documentElement.dataset.menu="hidden"})()</script>
 <script>document.documentElement.classList.add("turn")</script>
 <style>
@@ -546,7 +546,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
         <p>The Y Button uses the tool Kailo has set: the Ko'i, the Old Rod or the 'O'o (<a class="xref" href="#field">page 8</a>). Tap it to use the tool. Hold it to open the tool wheel, press the D-Pad toward a tool and let go to set it.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>L/R</big><small>Buttons</small></div>
-        <p>On the Element, Equip and Status screens, press L or R to turn to the previous or next member of your party. While walking, press L or R to change who leads the way. In battle, Escape is played on L and R.</p></div>
+        <p>On the field menu, press L or R to turn to the previous or next tab. While walking, press L or R to change who leads the way. In battle, Escape is played on L and R.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
         <p>The START Button pauses the game. Press it again to pick up where you left off.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Sel</big><small>Select</small></div>
@@ -592,7 +592,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Some great beasts stand still and wait for you. When you walk up to one, you will be asked if you are ready. Say no to go back and prepare.</p>
     <h3 class="ring">Shops</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The market stall's list: Noni Pulu, Taro, Wheat, Breadfruit and more, each with its price in pule" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The grocer's list: Breadfruit, Noodles, Pia, seeds and more, each with its price in pule" width="768" height="672"></div></figure>
       <div>
         <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick each thing and how many, then say yes once to the total. When choosing how many, Up and Down count one at a time, Left adds ten and Right takes ten off. Your pule is shown at the right.</p>
         <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by winning battles, and sometimes by digging. Your wallet holds only so much, and bigger wallets can be bought, one size at a time. A full wallet takes no more: monsters drop none and digging finds none.</p>
@@ -645,40 +645,38 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <h2 class="cap"><b class="dc">T</b><span class="rest">he Field<br>Menu</span></h2>
     <p class="lead">Press the X Button while walking around to open the field menu.</p>
     <figure class="shot"><div class="frame">
-      <img src="manual/menu.png" alt="The field menu" width="768" height="672">
-      <span class="pin" style="left:13%;top:12%">1</span>
-      <span class="pin" style="left:59%;top:11%">2</span>
-      <span class="pin" style="left:46%;top:20%">3</span>
-      <span class="pin" style="left:95%;top:28%">4</span>
-      <span class="pin" style="left:67%;top:68%">5</span>
-      <span class="pin" style="left:67%;top:87%">6</span>
+      <img src="manual/menu.png" alt="The field menu: seven tabs along the top, the party on the left, the Items page on the right" width="768" height="672">
+      <span class="pin" style="left:97%;top:12%">1</span>
+      <span class="pin" style="left:37%;top:24%">2</span>
+      <span class="pin" style="left:37%;top:31%">3</span>
+      <span class="pin" style="left:62%;top:30%">4</span>
+      <span class="pin" style="left:52%;top:92%">5</span>
     </div></figure>
     <ol class="key">
-      <li><b>1</b><span><b>Face</b><br>The three who fight. Move the cursor left onto the faces to change their order, or press Y on a face to switch the stance they start in.</span></li>
-      <li><b>2</b><span><b>Hit Points</b><br>HP. When a member's HP reaches 0, they fall.</span></li>
+      <li><b>1</b><span><b>Tabs</b><br>Seven of them: Items, Element, Equip, Status, Party, Info and Config. The open one shows its name. Press left or right to pick a tab, then down or A to open it. L and R change tabs from anywhere in the menu, and B steps back.</span></li>
+      <li><b>2</b><span><b>The party</b><br>The three who fight, with their HP, always on the left. Press left from a page to move the cursor here, then up or down to choose who the page is about. Press Y on a member to switch the stance they start in.</span></li>
       <li><b>3</b><span><b>Elements</b><br>The member's two elements. The boxed one is the stance they start a battle in.</span></li>
-      <li><b>4</b><span><b>Commands</b><br>Choose one with the D-Pad and press A.</span></li>
-      <li><b>5</b><span><b>Time and Steps</b><br>How long you have played and how far you have walked.</span></li>
-      <li><b>6</b><span><b>Money</b><br>Kupang <img class="coin" src="manual/kupang.png" alt="">, the coins, and pule <img class="coin" src="manual/pule.png" alt="">, the shells.</span></li>
+      <li><b>4</b><span><b>The page</b><br>What the open tab shows. This is the Items page.</span></li>
+      <li><b>5</b><span><b>Bottom window</b><br>It says what the cursor is on. When the cursor is not on anything, it shows your money: pule <img class="coin" src="manual/pule.png" alt=""> on the left, the shells, and kupang <img class="coin" src="manual/kupang.png" alt=""> on the right, the coins.</span></li>
     </ol>
     <div class="scroll">
     <table class="m">
       <tr><th>Command</th><th>What it does</th></tr>
-      <tr><td>Items</td><td>Look in the bag and use an item: heal someone, eat a seed, or learn a move.</td></tr>
+      <tr><td>Items</td><td>The party's bag. Use an item, give one to a member for battle, or learn a move from it.</td></tr>
       <tr><td>Element</td><td>Each member's element moves, row by row. Choose which moves go in which row.</td></tr>
       <tr><td>Equip</td><td>Change weapons and relics, take them off, and see how well each member knows their weapons.</td></tr>
-      <tr><td>Status</td><td>A page for each member: HP, Skill, stats and stances. Change the starting stance here.</td></tr>
+      <tr><td>Status</td><td>A page for each member: the eight stats, how close each is to growing, and their Skill. Press A to change the starting stance.</td></tr>
       <tr><td>Party</td><td>Choose who fights and who waits on the bench.</td></tr>
-      <tr><td>Info</td><td>Opens a short list: your Quests, the Bestiary, the Glossary, the Lore of the islands, and your Records.</td></tr>
+      <tr><td>Info</td><td>Your Quests, the Bestiary, the Glossary, the Lore of the islands and your Records, with the time you have played, your steps and the date.</td></tr>
       <tr><td>Config</td><td>Settings for the game: the cursor, how fast messages go, the window color, sound and the buttons.</td></tr>
     </table>
     </div>
     <p>There is no Save on the field menu. Save at an Akua totem (<a class="xref" href="#start">page 6</a>).</p>
-    <p>On the Element, Equip and Status screens, press L or R to turn to the next member without going back.</p>
+    <p>On the Element, Equip and Status tabs, move the cursor onto a member in the party column to see that member's page.</p>
 
     <h3 class="ring">Element</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/loadout.png" alt="The Element screen: Hina's moves in numbered rows" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/loadout.png" alt="The Element tab: Kailo's moves in numbered rows" width="768" height="672"></div></figure>
       <div>
         <p>Every element move sits in a numbered row, from 1 to 7. The row is what the move costs in Mana. Each row holds three moves.</p>
         <p>Move a move up to a higher row and it grows stronger, but it costs more.</p>
@@ -689,9 +687,9 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
 
     <h3 class="ring">Equip</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/equip.png" alt="The Equip screen: Kailo holds the Frying Pan" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/equip.png" alt="The Equip tab: Kailo holds the Frying Pan" width="768" height="672"></div></figure>
       <div>
-        <p>First choose the member. The bar along the top holds three commands: <b>Equip</b>, <b>Remove</b> and <b>Mastery</b>.</p>
+        <p>Choose the member in the party column. The bar along the bottom holds three commands: <b>Equip</b>, <b>Remove</b> and <b>Mastery</b>.</p>
         <p><b>Equip</b>: choose the Weapon or the Relic, then what to wear. Before you take it, the stats show how it would change them, a gain in yellow and a loss in red, and a line says what it raises and what it lowers.</p>
         <p><b>Remove</b>: take the weapon or relic off and put it back in the bag.</p>
       </div>
@@ -705,20 +703,20 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
 
     <h3 class="ring">Status</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status page: his stats, his Skill and his two stances" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/status-kailo.png" alt="Kailo's Status tab: his eight stats with their notches, and his Skill at the bottom" width="768" height="672"></div></figure>
       <div>
-        <p>Each member has a page: HP, the eight stats (<a class="xref" href="#stronger">page 28</a>), their Skill and their two stances.</p>
-        <p>The stance on top, in color, is the one they start every battle in. Press A to switch it, and watch the stats change with it.</p>
+        <p>Each member has a page: the eight stats (<a class="xref" href="#stronger">page 28</a>), each with a row of notches that fill as the stat gets closer to growing. The member's Skill is in the bottom window, with the stat under the cursor and its EXP to the next point.</p>
+        <p>The boxed element in the party column is the stance they start every battle in. Press A to switch it, and watch the stats change with it.</p>
       </div>
     </div>
 
     <h3 class="ring">Party</h3>
     <p>Only three fight at a time. The three on top fight; everyone else waits below.</p>
-    <p>Choose one, then another, and they trade places. Choose two from the same row to change their order. You can also change the order of the three by moving the cursor left onto the faces on the field menu.</p>
+    <p>Press A on one, then A on another, and they trade places. Two of the three on top change their order the same way. You can also do this from the party column on the left of any tab.</p>
 
     <h3 class="ring">Info</h3>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Info screen: Bestiary, Lore and Quests" width="768" height="672"></div></figure>
+      <figure class="shot"><div class="frame"><img src="manual/data.png" alt="The Info tab: Quests, Bestiary, Glossary, Lore and Records, with the time, steps and date" width="768" height="672"></div></figure>
       <div>
         <p>Info opens a short list of five: <b>Quests</b>, <b>Bestiary</b>, <b>Glossary</b>, <b>Lore</b> and <b>Records</b>.</p>
         <p><b>Bestiary</b> has a page for every creature you have beaten. <b>Glossary</b> holds the island words you have learned, and <b>Records</b> what you have done so far.</p>
@@ -878,8 +876,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <h2 class="cap"><b class="dc">I</b><span class="rest">tems</span></h2>
     <p class="lead">When your HP is low, during or after a battle, you will need items.</p>
     <div class="pair">
-      <figure class="shot"><div class="frame"><img src="manual/inventory.png" alt="The Items screen, with Noni in the bag" width="768" height="672"></div></figure>
-      <p>The party shares one bag, sorted by kind: Medicine, Ingredients, Meals, Weapons, Relics, Key Items and more. Use items with Items on the field menu, or Item in battle. On the field menu, Items asks which kind first; in a list, press left or right on the D-Pad to turn to the next kind, and each press of B goes back one step. The window at the top tells you what the item under the cursor does. When an item has an island name, the window says what it is in plain English first, such as "Noni poultice" or "Taro paste".</p>
+      <figure class="shot"><div class="frame"><img src="manual/inventory.png" alt="The Items tab: Kailo's battle bag on top, the shared bag below" width="768" height="672"></div></figure>
+      <p>The party shares one bag, sorted by kind: Medicine, Ingredients, Meals, Weapons, Relics, Key Items and more. Use items with Items on the field menu, or Item in battle. On the Items tab, the shared bag is the lower window: press up to the kind at its top, then left or right to turn to the next kind. Each press of B goes back one step. The window at the bottom tells you what the item under the cursor does. When an item has an island name, the window says what it is in plain English first, such as "Noni poultice" or "Taro paste".</p>
     </div>
 
     <h3 class="ring">Battle Bags</h3>
