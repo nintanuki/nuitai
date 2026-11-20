@@ -538,13 +538,13 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>D</big><small>Pad</small></div>
         <p>Use the D-Pad to walk around and to move the cursor in menus. In battle, press left or right on the D-Pad to see more commands.</p></div>
       <div class="button" style="--b:#d23a2a"><div class="badge"><big>A</big><small>Button</small></div>
-        <p>The A Button confirms. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking. In battle, it parries a monster's strong blows, as Y and X parry its light and medium ones (<a class="xref" href="#battle">page 14</a>).</p></div>
+        <p>The A Button confirms. Use it to choose commands, talk to people, and check things like beds, pots and plants. It also turns the page when someone is talking. In battle, press it as a monster's Strong blows arrive to parry them (<a class="xref" href="#battle">page 14</a>).</p></div>
       <div class="button" style="--b:#c79a00"><div class="badge"><big>B</big><small>Button</small></div>
         <p>The B Button cancels the last choice you made and takes you back. When someone is talking, it shows the rest of their words at once. While walking, it swings the lead fighter's weapon: hit a monster with it and the battle starts with that blow already landed. Facing water, once he knows how to swim, it makes Kailo jump in (<a class="xref" href="#field">page 8</a>).</p></div>
       <div class="button" style="--b:#3554b8"><div class="badge"><big>X</big><small>Button</small></div>
-        <p>Use the X Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>). When someone is talking, press it to move their words to the top of the screen, and again to move them back.</p></div>
+        <p>Use the X Button to open the field menu while you are walking around (<a class="xref" href="#menu">page 10</a>). When someone is talking, press it to move their words to the top of the screen, and again to move them back. In battle it parries a monster's Medium blows.</p></div>
       <div class="button" style="--b:#2f9447"><div class="badge"><big>Y</big><small>Button</small></div>
-        <p>The Y Button uses the tool Kailo has set: the Ko'i, the Old Rod or the 'O'o (<a class="xref" href="#field">page 8</a>). Tap it to use the tool. Hold it to open the tool wheel, press the D-Pad toward a tool and let go to set it.</p></div>
+        <p>The Y Button uses the tool Kailo has set: the Ko'i, the Old Rod or the 'O'o (<a class="xref" href="#field">page 8</a>). Tap it to use the tool. Hold it to open the tool wheel, press the D-Pad toward a tool and let go to set it. In battle it parries a monster's Light blows.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>L/R</big><small>Buttons</small></div>
         <p>On the field menu, press L or R to turn to the previous or next tab. While walking, press L or R to change who leads the way. In battle, Escape is played on L and R.</p></div>
       <div class="button" style="--b:#5d5a66"><div class="badge"><big>Start</big><small>Button</small></div>
@@ -623,7 +623,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     </div>
     <p>Small finds, like the wood from a tree, an egg, a fish or what a dig turns up, show for a moment at the top of the screen, in the window that names each new area. They never stop you, so keep going.</p>
     <p>The <b>Ko'i</b>, a stone adze, chops trees. Stand in front of a tree and press Y. Each chop takes a moment, and monsters do not wait for you to finish! A few chops fell a tree, and a few more clear its stump. The wood goes in the bag. The trees stand again after you have walked a long way; leaving the area does not bring them back. Chopped trees sometimes drop food, too.</p>
-    <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to hook it. Be too slow and it gets away. A fish, or anything rare, has to be reeled in: roll the D-Pad round and round the same way before it gets off the hook. Bait makes a fish likelier to bite. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
+    <p>The <b>Old Rod</b> is for fishing. Face the water and tap Y to cast. Wait, and when a <b>!</b> pops up over Kailo's head, tap Y again to hook it. Be too slow and it gets away. A fish, or anything rare, has to be reeled in: roll the D-Pad round and round the same way before it gets off the hook. Bait makes a fish likelier to bite: choose it in the bag to put it on the rod. Walk off and the line is reeled in. A fish needs cooking before it makes a good meal.</p>
     <p>The <b>'O'o</b> is a digging stick. Face soft ground, sand or dirt but never grass, and tap Y to dig. A dig may turn up nothing, an item or a few pule, and some spots hold something worth finding. The holes fill in when you leave the area. Nobody will let Kailo dig up a village, so take the 'O'o out of town.</p>
     <h3 class="ring">Fresh Water</h3>
     <p>Face a river or a pond and press A to scoop up fresh water for cooking. Seawater is no good, and neither is the shore. A spring with little sparkles over it heals instead of giving water: press A to rest there. After a few scoops in a row the canteens get heavy, and Kailo has to catch his breath before he scoops any more.</p>
@@ -772,7 +772,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <li><b>1</b><span>Touch a monster in the field, or hit it with B for a free first blow. The battle begins.</span></li>
       <li><b>2</b><span>Watch the turn order on the right. When a member's turn comes, their commands appear.</span></li>
       <li><b>3</b><span>Choose <b>Attack</b> and spend your 7 points on strokes, or use an element move, an item or a Skill.</span></li>
-      <li><b>4</b><span>When a monster swings at you, press each button as it crosses the gold zone to parry.</span></li>
+      <li><b>4</b><span>When a monster swings at you, press each blow's own button, Y, X or A, as it crosses the gold zone to parry.</span></li>
       <li><b>5</b><span>Beat every monster to win. A monster may leave something behind.</span></li>
     </ol>
 
@@ -790,7 +790,8 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/battle-block.png" alt="The parry meter: blows sliding toward the gold zone" width="768" height="672"></div></figure>
       <div>
-        <p>When a monster strikes with its plain blows, the <b>parry meter</b> takes the place of your commands. The meter has three lanes, one per kind of blow: <b>Y</b> on top for a light blow, <b>X</b> in the middle for a medium one, <b>A</b> below for a strong one. Each blow slides toward the gold zone as its own button, in its own lane. Press that button as it crosses the zone; the wrong button is a miss. Strong blows come slower than light ones, and each blow that lands speeds the next.</p>
+        <p>When a monster strikes with its plain blows, the <b>parry meter</b> stretches across the bottom of the screen. It has three lanes, one for each kind of blow: <b>Y</b> on top for a Light, <b>X</b> in the middle for a Medium, <b>A</b> below for a Strong. Each blow slides toward the gold zone as its own button, in its own lane. Press that button as it crosses the zone. The wrong button is a miss.</p>
+        <p>Every monster has its own chains of blows, so watch which lanes they use and learn to read it. A Strong comes slower than a Light, and every blow that lands on you hurries the ones after it.</p>
         <p>Catch a blow dead center and <b>Parried!</b> rises from the meter: the blow does no harm at all. A catch anywhere else in the zone says nothing, but the blow does less damage, and less still the nearer it was to the center. Miss, and the blow lands in full. If you were defending, a catch takes off its share on top of Defend's half.</p>
         <p>Parry every blow of one attack dead center, however many there are, and the one who parried strikes back at once with a strong stroke.</p>
         <p>Only plain blows can be parried, never a monster's elements or Skills, so a Skill arrives with no meter at all. A good Perception widens the zone, good Luck widens its center, and a quick monster sends its arrows faster.</p>
