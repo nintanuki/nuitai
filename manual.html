@@ -449,7 +449,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
         <dt>Elements</dt><dd><span class="el fire"><img src="manual/afi.png" alt="">Fire</span> and <span class="el water"><img src="manual/wai.png" alt="">Water</span></dd>
         <dt>Stances</dt><dd><b class="fire">Lelua</b>, a fire dance of spins, flips and flying kicks. <b class="water">Wai'Kenpō</b>, a rooted water fist that steps in to take the hits meant for friends.</dd>
         <dt>Weapon</dt><dd>Frying Pan</dd>
-        <dt>Skill</dt><dd><b>Cook.</b> He cooks a meal right in the battle. Only meals you have already made at the pot are on his list, and he takes what he needs from the bag. One meal feeds the whole party, for the ingredients of one, and does for each of them what it would do from the bag. Stir steadily for the best meal. On his next turn he serves it, and a meal can fill them past their full HP for the rest of the fight. A hit before then ruins it. The better he gets with tools, the more his cooking heals, up to double.</dd>
+        <dt>Skill</dt><dd><b>Cook.</b> He cooks a meal right in the battle. Only meals he knows are on his list: Poi from the start, and any other you have made at the pot, and he takes what he needs from the bag. One meal feeds the whole party, for the ingredients of one, and does for each of them what it would do from the bag. Stir steadily for the best meal. On his next turn he serves it, and a meal can fill them past their full HP for the rest of the fight. A hit before then ruins it. The better he gets with tools, the more his cooking heals, up to double.</dd>
         <dt>Moves</dt><dd><b>Sauté</b>, a fiery kick. <b>Wave Guard</b>, he takes his friends' blows, at half. <b>Counter</b>: he guards his friends and kicks back at whoever strikes them. <b>Wave Fist</b>, a quick water punch.</dd>
         <dt>On the Road</dt><dd>After every battle you win, Kailo feeds everyone still standing, and they get back a little HP. Only Kailo can cook in the pot.</dd>
       </dl>
@@ -596,7 +596,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <div class="pair">
       <figure class="shot"><div class="frame"><img src="manual/shop-buy.png" alt="The grocer's list: Breadfruit, Noodles, Pia, seeds and more, each with its price in pule" width="768" height="672"></div></figure>
       <div>
-        <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick a thing and how many, and A trades that many at once. When choosing how many, Up and Down count one at a time, Right adds ten and Left takes ten off. Your pule is shown at the right.</p>
+        <p>Talk to a seller and choose <b>Buy</b> to see what they have, or <b>Sell</b> to sell from the bag: pick a thing and how many, and A trades that many at once. In the Sell list, Right and Left turn a page at a time. When choosing how many, Up and Down count one at a time, Right adds ten and Left takes ten off. Your pule is shown at the right.</p>
         <p>Prices are in <b>pule</b> <img class="coin" src="manual/pule.png" alt="">, the shell money of the islands. You will earn pule by selling things, by finishing hunts, and sometimes by digging. Your wallet holds only so much, and bigger wallets can be bought, one size at a time. A full wallet takes no more, and a dig finds none.</p>
         <p>Each kind of seller has its own wares. A grocer sells food, seeds and everyday medicine. An angler sells bait. A hunters' lodge sells weapons, relics and moves, and buys what monsters leave behind. Some sellers turn up where you least expect them.</p>
       </div>
@@ -605,8 +605,12 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
     <p>Every village has a <b>loremaster</b>, an old man who knows the stories of the islands. Ask him about the world as often as you like. What he tells you goes in your Lore pages.</p>
     <p>Hunters gather at a <b>hunters' lodge</b>. Pick <b>Hunts</b> in its keeper's menu to see what is on offer and take one: beat the monster named, then come back and pick the hunt again to be paid. Each hunt is paid once, and the hunts are for great beasts. If your wallet is too full for the pay, the keeper holds it until there is room. The hunters there have tips on fighting for anyone who asks.</p>
     <p>Some towns have an <b>inn</b>. A night's sleep costs a few pule and heals the whole party.</p>
+    <h3 class="ring">Day and Night</h3>
+    <p>Once your journey is truly under way, the sun rises and sets over the islands. An hour passes in about a minute while you are out exploring, and time stands still while you talk, fight or look through the menu. Day runs from six in the morning to six at night. The time is shown beside your pule in the Items tab, in the corner of the area map, and on the Info tab.</p>
+    <p>At night the shops and the school close and the village folk go indoors, though the temple stays open. Some monsters come out only after dark.</p>
+    <p>A bed lets you rest: take a <b>Nap</b>, or sleep <b>Until evening</b> or <b>Until morning</b>. When you wake, the date and time are shown at the top of the screen.</p>
     <h3 class="ring">Kaigara</h3>
-    <p>Kaigara is the shell game of the Kame, played with cowries on a chalk grid of 9 by 9 points. In some lodges a player sits at a low table, ready for anyone who wants a game, and some play for coins.</p>
+    <p>Kaigara is the shell game of the Kame, played with cowries on a chalk grid of 9 by 9 points. In some lodges a player sits at a low table, ready for anyone who wants a game, and some will wager pule on it.</p>
     <p>Take turns putting one shell on an open point. A group of shells with no open point beside it is taken off the board. You cannot put a shell where it would be taken at once, and you cannot make a move that puts the board back the way it was a moment ago. You may pass instead of playing. When both players pass, each counts the points their shells cover or surround, and the bigger count wins.</p>
     <h3 class="ring">Gardens</h3>
     <p>Some plants can be picked. Face a ripe plant and press A to pick it. A ripe patch gives two.</p>
@@ -781,7 +785,7 @@ else if(a.classList.contains("on")){d.classList.add("open");e.preventDefault()}}
       <figure class="shot"><div class="frame"><img src="manual/battle-strokes.png" alt="Strokes: LIGHT, MEDIUM and STRONG, each with its chance to hit" width="768" height="672"></div></figure>
       <div>
         <p>An Attack is made of strokes. Each turn you have 7 points to spend: <b>LIGHT</b> costs 1, <b>MEDIUM</b> 2 and <b>STRONG</b> 3.</p>
-        <p>Each stroke shows its chance to hit. A light stroke almost always lands. A strong one hits much harder, but misses more. Every stroke that lands makes the next one more likely to land, and builds Mana.</p>
+        <p>Each button shows what its stroke costs; hold SELECT to see each one's chance to hit instead. A light stroke almost always lands. A strong one hits much harder, but misses more. Every stroke that lands makes the next one more likely to land, and builds Mana.</p>
         <p>You can stop any time and finish your turn with Defend, an element move or an item. To strike a different enemy, back out of the strokes, choose Attack again and pick another; the points you have left go with you.</p>
       </div>
     </div>
